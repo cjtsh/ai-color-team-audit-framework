@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.2 — 2026-10-02
+
+The Asset Declaration gets its mechanism.
+
+- **New: `ASSETS-TEMPLATE.md`** — the one file the auditor fills in (about five
+  minutes): 3–6 crown jewels ranked, the unforgivable acts in the owner's own
+  words, and where the assets live in the code. Includes a fully worked example
+  for a database-backed web service, mapped to the panel.
+- **AGENT.md Phase 0 rewired**: the agent reads `ASSETS.md` from the target
+  repository's root; if absent, it stops and interviews the owner to write one
+  before anything else. The audit cannot start without a confirmed declaration.
+- README quick start now shows the concrete three-file flow: AGENT.md + your
+  ASSETS.md + the target repo.
+
 ## 0.1.1 — 2026-10-02
 
 Generalization pass: the framework now states its domain independence explicitly

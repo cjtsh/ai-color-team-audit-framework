@@ -44,10 +44,13 @@ are the standard.
 
 1. Copy **[AGENT.md](AGENT.md)** into your AI coding tool's context (or drop it in
    your repo as an agents-file / skill / system prompt alongside the target code).
-2. Point it at the repository and revision to audit, and declare your assets —
-   what the audit must protect (see the Asset Declaration in
-   [PANEL-DESIGN.md](PANEL-DESIGN.md)).
-3. The agent runs the phases: baseline → the five-agent wave → the referee → the
+2. Fill in **[ASSETS-TEMPLATE.md](ASSETS-TEMPLATE.md)** and save it as `ASSETS.md`
+   in the repository being audited — your crown jewels, ranked, and the
+   unforgivable acts in your own words. About five minutes, one page. (If you
+   skip it, the agent's first act is to interview you and write it with you —
+   the audit cannot start without it.)
+3. Point the agent at the repository and revision to audit.
+4. The agent runs the phases: baseline → the five-agent wave → the referee → the
    graded report. Read **[PANEL-DESIGN.md](PANEL-DESIGN.md)** to see (or tailor)
    the charters and rubric; **[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** shows what
    you get; **[templates/pdf/](templates/pdf/)** generates the typeset edition.
@@ -82,7 +85,8 @@ cannot be sweetened.
 | File | What it is |
 |---|---|
 | `AGENT.md` | **The product.** The complete drop-in runbook for any AI coding tool. |
-| `COLOR-TEAM.md` | The color definitions, versioned (v1) — reproducible in any report using the format. |
+| `ASSETS-TEMPLATE.md` | **The one file you fill in.** Your crown jewels, ranked, and the unforgivable acts — the audit's single input, consumed in Phase 0. |
+| `COLOR-TEAM.md` | The color definitions, versioned (v1.1) — reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Charters, phases, rubric, and the report shape; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public report skeleton with the agentic appendix. |
 | `templates/pdf/` | A ReportLab generator for the typeset report edition. |

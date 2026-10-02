@@ -32,15 +32,15 @@ Before dispatching anyone:
 
 1. Identify the exact target of evaluation: repository, tag or commit, published
    artifacts. Clone fresh; never audit a dirty working tree.
-2. **Write the Asset Declaration** — the target's crown jewels, ranked: what must
-   not be stolen, destroyed, altered, or acted upon without authorization. Make it
-   concrete for the domain: a payments wallet declares funds, keys, the operator's
-   approval; a web service declares credentials, personal and payment data, session
-   control, administrative access; a database-backed service declares data
-   integrity and privilege boundaries; an embedded or infrastructure system
-   declares safety and availability. Every charter, every severity call, and the
-   report's central questions are parameterized by this declaration. Lock it with
-   the rubric — it does not change after the audit begins.
+2. **Read or write the Asset Declaration** (`ASSETS.md`). Look for it in the
+   target repository's root. If it exists, read it and confirm it with the owner.
+   If it does not exist, STOP and interview the owner using ASSETS-TEMPLATE.md:
+   the 3–6 crown jewels ranked, the unforgivable acts in the owner's own words,
+   and where the assets live in the code. Draft it, get the owner's confirmation,
+   and save it as `ASSETS.md` before proceeding. **The audit does not start
+   without a confirmed declaration** — every charter, severity call, and report
+   question is built from it, and it is locked with the rubric: it does not
+   change after the audit begins.
 3. Verify integrity yourself: recompute artifact hashes against published checksums;
    verify code signatures/notarization if the project ships binaries.
 4. Run the project's own test suites at the audited revision and record the counts.
