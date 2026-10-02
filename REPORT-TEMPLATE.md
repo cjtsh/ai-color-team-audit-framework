@@ -10,7 +10,8 @@ the standard. Delete any section that genuinely has no content — never invent 
 | | |
 |---|---|
 | **Version examined** | Tag `[tag]`, commit `[full SHA]`, published [date] |
-| **Auditor** | [Who] — a five-agent Color Team panel plus a referee; charters and grade rules locked in writing **before** the build was examined |
+| **Assets declared** | [The crown jewels this audit protected, ranked — e.g., user credentials, personal and payment data, session control; or funds, key material, operator approval] |
+| **Auditor** | [Who] — a five-agent Color Team panel plus a referee; asset declaration, charters and grade rules locked in writing **before** the build was examined |
 | **Prior audit** | [Prior cycle summary, or "first audit"] |
 | **Verification** | [What was independently re-derived: artifact hashes, signatures/notarization, test suites re-run, etc.] |
 
@@ -22,11 +23,14 @@ rule applies: if any clause of the rubric could be read to bind, it binds.]
 
 ## The four questions that matter
 
-1. Could this software [do the unforgivable thing — move funds / destroy data / act
-   without authorization]? — **[verdict + one sentence of evidence]**
-2. Could it [leak the unspeakable thing — keys / credentials / private data]? — **[verdict]**
+(Parameterized by the Asset Declaration — ask them about the declared assets.)
+
+1. Could this software [do the unforgivable thing to the declared assets — seize,
+   destroy, or alter them, or act without authorization]? — **[verdict + evidence]**
+2. Could it [leak the unspeakable thing — the declared secrets / personal data /
+   credentials]? — **[verdict]**
 3. Could a remote party, a dependency, or a local process [act invisibly — alter
-   behavior without the operator seeing it]? — **[verdict]**
+   behavior or data without the operator seeing it]? — **[verdict]**
 4. What should be fixed first? — **[answer]**
 
 ## The prior audit's findings: [status summary]

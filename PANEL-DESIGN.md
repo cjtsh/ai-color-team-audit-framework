@@ -8,8 +8,9 @@ framework; everything else is configuration.
 ## Phase structure
 
 ```
-Phase 0  Baseline      — lead only: verify target/commit/artifacts, run suites,
-                         read the project's claims, write charters, LOCK THE RUBRIC
+Phase 0  Baseline      — lead only: verify target/commit/artifacts, write the
+                         ASSET DECLARATION, run suites, read the project's claims,
+                         write charters, LOCK THE RUBRIC
 Phase 1  The wave      — five specialists dispatched simultaneously, each seeing
                          only its own charter (no cross-visibility, no priors for Red)
 Phase 2  The referee   — White re-derives load-bearing claims, merges the ledger,
@@ -18,13 +19,50 @@ Phase 3  Consolidation — lead applies the grade, writes private + public repor
                          publishes only what the gate allows
 ```
 
+## The Asset Declaration (Phase 0, mandatory)
+
+The audit's single input parameter: the target's crown jewels, ranked — what must
+not be stolen, destroyed, altered, or acted upon without authorization. Written
+before anyone examines the build, locked with the rubric, and cited in the report
+header. It parameterizes every charter, every severity call, and the central
+questions. Examples by domain:
+
+- **Payments wallet:** funds; key material; the operator's approval of a
+  transaction.
+- **Web service:** user credentials and session control; personal and payment
+  data; administrative access; the integrity of stored data.
+- **Database-backed service:** privilege boundaries; data integrity;
+  injection-to-extraction paths as the attack class against those boundaries.
+- **Embedded / infrastructure:** safety interlocks; availability; control-plane
+  authentication.
+
+The lanes adapt with the declaration (the colors do not). Orange for a wallet is
+signature math; for a web service it is auth, session, and token logic; for a data
+platform it is query semantics and privilege evaluation. Copper for a wallet is
+signing devices; for a web service it is the browser client and native apps; for
+infrastructure it is agents and edges. Say in the report which lanes you mapped
+where.
+
 ## Charter sketches (adapt lanes, keep the colors)
 
 **🔴 Red — offense.** You are an attacker. Given the software and a hostile world,
-find any path to the assets — funds, keys, data, or the operator's decision. Attack
+find any path to the declared assets: seizing, destroying, or altering them, or
+acting on the user's behalf without authorization. Hunt the full attack taxonomy
+against the declaration's domain — injection of every kind (SQL, command, path,
+template, deserialization), authentication bypass, privilege escalation, logic
+abuse, race conditions, spoofing, memory-safety where the stack exposes it. Attack
 the newest code hardest: fixes are changes, and changes are where new holes live.
 You do NOT read prior audit conclusions. Output: attack log (attempt → outcome),
 findings, sub-verdict: *No breach found / Breach found (with the path).*
+
+*Would this find a zero-day-style SQL injection or a root-access bug?* Against a
+declared asset of "data integrity and privilege boundaries," yes — Red's charter
+becomes exactly that hunt (unsanitized query construction → extraction or
+escalation paths; Blue's becomes parameterization and least-privilege controls
+plus the regression tests pinning them; Orange's becomes the auth/session logic).
+Agent audits read code adversarially and run the target's own tests; they
+complement, and do not replace, fuzzers and dynamic scanners — a thorough target
+runs both and says so in the coverage section.
 
 **🔵 Blue — defense.** Audit the armor, not the attacks. For every stated control,
 prove it holds end-to-end in code AND is pinned by a regression test that fails if
@@ -33,19 +71,21 @@ remediation work order exists, verify every item against its acceptance criteria
 Output: control-by-control table, fix ledger, sub-verdict: *Defenses hold /
 hold with gaps / broken.*
 
-**🟠 Orange — cryptography & critical logic.** The mathematics and semantics your
-target cannot afford to get wrong (for a wallet: signatures, derivation, encoding,
-transaction semantics; for a web app: auth tokens, session logic, crypto usage).
-Diff every dependency against its last-audited version — upgrades fix old bugs and
-quietly change behavior. Validate primitives against official test vectors.
-Output: delta tables, vector results, sub-verdict: *Sound as used / defects found
-(reachable?).*.
+**🟠 Orange — critical logic.** The logic your target cannot afford to get wrong,
+chosen by the Asset Declaration (for a wallet: signatures, derivation, encoding,
+transaction semantics; for a web app: auth tokens, session logic, authorization
+arithmetic; for a data platform: query and privilege semantics). Diff every
+dependency against its last-audited version — upgrades fix old bugs and quietly
+change behavior. Validate primitives against official test vectors and standards
+where they exist. Output: delta tables, vector results, sub-verdict: *Sound as
+used / defects found (reachable?).*.
 
-**🟤 Copper — hardware & endpoints.** Everything between the software and the
-physical world: device transports and drivers, the browser and native clients,
-frozen/embedded binaries. Verify loader behavior on real machines, not just in
-theory. Output: transport findings with runtime evidence where possible,
-sub-verdict: *Transport sound / gaps found.*
+**🟤 Copper — edges & endpoints.** Everything between the core and the outside
+world, chosen by the Asset Declaration: the browser and native clients, mobile
+and desktop runtimes, devices, drivers and transports, embedded and frozen
+binaries — and the counterfeit-component question for each. Verify loader and
+client behavior on real machines where possible. Output: edge findings with
+runtime evidence where possible, sub-verdict: *Edges sound / gaps found.*
 
 **🟡 Amber — supply chain & pipeline.** How the artifact is born: dependencies and
 lockfiles (hash-pinned end to end?), CI step order and secret scoping, build
@@ -62,9 +102,10 @@ issue the gate: *publish / publish with edits / do not publish.*
 
 ## The rubric (adapt, then lock, then never touch mid-audit)
 
-- 🟢 **GREEN** — requires ALL of: zero open Critical/High; every prior-cycle
-  finding verified fixed or closed by dated owner acceptance; stated defenses held
-  and regression-tested; suites green, artifacts re-verified; no new Critical/High.
+- 🟢 **GREEN** — requires ALL of: zero open Critical/High (as affects the declared
+  assets for users of the audited version); every prior-cycle finding verified
+  fixed or closed by dated owner acceptance; stated defenses held and
+  regression-tested; suites green, artifacts re-verified; no new Critical/High.
 - 🟡 **YELLOW** — no Critical/High, but open Mediums beyond owner acceptance, or
   fix-verification gaps. Label honestly: good software with work remaining.
 - 🔴 **RED** — any open Critical/High. Do not ship; say what and why.

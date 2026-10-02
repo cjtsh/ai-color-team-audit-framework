@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.1 — 2026-10-02
+
+Generalization pass: the framework now states its domain independence explicitly
+instead of inheriting the founding project's vocabulary.
+
+- **The Asset Declaration** — new, mandatory Phase 0 input: the target's crown
+  jewels, ranked, written before the audit and locked with the rubric. Every
+  charter, severity call, and report question is parameterized by it. Added to
+  AGENT.md, PANEL-DESIGN.md (with per-domain examples), README.md, and the report
+  header template.
+- **COLOR-TEAM.md v1.1** — role wording generalized beyond the founding Bitcoin
+  wallet runs (Red: any declared asset, full attack taxonomy including injection,
+  privilege escalation, logic abuse; Orange: critical logic per domain; Copper:
+  edges and endpoints per domain). Role semantics unchanged from v1; published
+  v1 reports remain citable against v1.
+- Honest scope note added: agent audits complement — and do not replace —
+  fuzzers and dynamic scanners; say in the coverage section when a target should
+  also run them.
+
 ## 0.1.0 — 2026-10-02
 
 Initial public release.

@@ -11,12 +11,19 @@ method ships as a drop-in agent file: paste it into any AI coding tool and run.
 
 | | |
 |---|---|
-| 🔴 Red | The attacker — tries to steal the money, the keys, or the operator's decision, by any path. Reads no prior conclusions, so it inherits no one's blind spots. |
+| 🔴 Red | The attacker — tries to seize, destroy, or alter the declared assets (credentials, personal or payment data, funds, control, availability — whatever your software must protect), by any path. Reads no prior conclusions, so it inherits no one's blind spots. |
 | 🔵 Blue | The defender — proves every stated protection holds and is pinned by a test that fails if anyone breaks it. |
-| 🟠 Orange | The cryptographer — the mathematics and the money semantics, including what changed in every dependency since the last audit. |
-| 🟤 Copper | The hardware specialist — everything between the software and the physical devices: transports, drivers, firmware bridges. |
+| 🟠 Orange | The critical-logic specialist — the logic a wrong byte breaks irrecoverably: cryptographic math, money and authorization arithmetic, session semantics — including what changed in every dependency since the last audit. |
+| 🟤 Copper | The edge specialist — everything between the software and the edges of the system: browsers and clients, devices and drivers, transports and frozen binaries. |
 | 🟡 Amber | The supply-chain inspector — how the artifact is born: every dependency, build step, signature and download in the chain. |
 | ⚪ White | The referee — sees everything, re-derives every load-bearing claim personally, and gates what gets published. |
+
+The audit is parameterized by an **Asset Declaration** you make before anyone
+looks at the code: what must not be stolen, destroyed, altered, or done without
+authorization — ranked. A wallet declares funds, keys, and the operator's
+decision. A web service declares credentials, personal and payment data, and
+session control. An embedded controller declares safety and availability. Every
+charter reads from that declaration. |
 
 The lanes adapt to your stack (a web app's Orange might be auth and session logic;
 its Copper might be the browser and mobile clients). The colors — and the rules —
@@ -37,7 +44,9 @@ are the standard.
 
 1. Copy **[AGENT.md](AGENT.md)** into your AI coding tool's context (or drop it in
    your repo as an agents-file / skill / system prompt alongside the target code).
-2. Point it at the repository and revision to audit.
+2. Point it at the repository and revision to audit, and declare your assets —
+   what the audit must protect (see the Asset Declaration in
+   [PANEL-DESIGN.md](PANEL-DESIGN.md)).
 3. The agent runs the phases: baseline → the five-agent wave → the referee → the
    graded report. Read **[PANEL-DESIGN.md](PANEL-DESIGN.md)** to see (or tailor)
    the charters and rubric; **[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** shows what

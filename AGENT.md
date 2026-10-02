@@ -32,13 +32,23 @@ Before dispatching anyone:
 
 1. Identify the exact target of evaluation: repository, tag or commit, published
    artifacts. Clone fresh; never audit a dirty working tree.
-2. Verify integrity yourself: recompute artifact hashes against published checksums;
+2. **Write the Asset Declaration** — the target's crown jewels, ranked: what must
+   not be stolen, destroyed, altered, or acted upon without authorization. Make it
+   concrete for the domain: a payments wallet declares funds, keys, the operator's
+   approval; a web service declares credentials, personal and payment data, session
+   control, administrative access; a database-backed service declares data
+   integrity and privilege boundaries; an embedded or infrastructure system
+   declares safety and availability. Every charter, every severity call, and the
+   report's central questions are parameterized by this declaration. Lock it with
+   the rubric — it does not change after the audit begins.
+3. Verify integrity yourself: recompute artifact hashes against published checksums;
    verify code signatures/notarization if the project ships binaries.
-3. Run the project's own test suites at the audited revision and record the counts.
-4. Read the project's own claims (release notes, prior findings, remediation
+4. Run the project's own test suites at the audited revision and record the counts.
+5. Read the project's own claims (release notes, prior findings, remediation
    records) — you will verify these, not trust them.
-5. Write the five charters (see PANEL-DESIGN.md) tailored to this target, and LOCK
-   THE GRADE RUBRIC in writing before any agent examines the build.
+6. Write the five charters (see PANEL-DESIGN.md) tailored to this target and its
+   Asset Declaration, and LOCK THE GRADE RUBRIC in writing before any agent
+   examines the build.
 
 ## Phase 1 — The wave (five specialists, dispatched simultaneously)
 
@@ -50,8 +60,8 @@ sub-verdict. Cap each report's length so the panel stays readable.
 
 Hard rules for every agent (include verbatim in each charter):
 - Read-only. No commits, pushes, tags, releases, workflow dispatches, installs.
-- No real key material, no production-network transactions, no live-system side
-  effects. Synthetic/test-vector data only.
+- No real secrets or credentials, no production-network side effects. Synthetic
+  and test-vector data only.
 - Uncertainty is a result: state what you could not determine and why.
 - If a category is clean, say "nothing found" explicitly.
 
@@ -98,11 +108,13 @@ The White referee receives all five reports plus your baseline, and must:
   fix-verification gaps. Honest label: good software with work remaining.
 - 🔴 **RED** — any open Critical/High. Do not ship. Say exactly what and why.
 
-Severity scale: **Critical** = can move funds/destroy data/act without authorization
-as affects users of the audited version · **High** = defeats a stated control or
-deceives the operator · **Medium** = a stated gate that did not run, a control weaker
-than documented, or fail-open on untrusted data · **Low** = hardening, defense in
-depth, coverage debt · **Info** = observations and documentation mismatches.
+Severity scale (parameterized by the Asset Declaration): **Critical** = can seize,
+destroy, or alter the declared assets, or act on the user's behalf without
+authorization, as affects users of the audited version · **High** = defeats a stated
+control or deceives the operator · **Medium** = a stated gate that did not run, a
+control weaker than documented, or fail-open on untrusted data · **Low** =
+hardening, defense in depth, coverage debt · **Info** = observations and
+documentation mismatches.
 
 ## What an audit is not
 
