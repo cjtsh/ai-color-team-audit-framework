@@ -1,12 +1,24 @@
 # ASSETS-TEMPLATE.md — your Asset Declaration
 
-**This is the one thing you fill in before an audit can run.** Copy this file to
-`ASSETS.md` in the repository being audited (or paste it into the conversation with
-your agent) and complete the three sections below. It takes about five minutes.
-The lead auditor reads `ASSETS.md` in Phase 0, locks it with the grade rubric, and
-every agent charter is built from it. If no `ASSETS.md` exists, the agent's first
-act is to interview you and write one — with your confirmation — before anything
-else happens.
+**How this file gets written (the two-agent flow):** you should not have to
+author it from scratch. The normal flow is:
+
+1. **The Surveyor drafts it.** One AI agent (any coding tool — ideally a
+   *different* model than the one that will run the audit, so the drafter's blind
+   spots don't become the panel's) reads the repository — entry points, data
+   stores, auth surfaces, dependencies, deployment — and fills in this template
+   from what the code actually does. Give it this file plus the repo.
+2. **You confirm it.** Read the draft; correct anything the code cannot know
+   (business context, contractual obligations, "the real crown jewel is X");
+   re-rank if your priorities differ. This confirmation is the one human moment
+   the framework insists on — an unconfirmed declaration is unverified scope,
+   and a quietly narrowed declaration is a steered audit.
+3. **It locks.** Save as `ASSETS.md` in the repo root. The audit's lead agent
+   reads it in Phase 0 and locks it with the grade rubric; it does not change
+   after the audit begins.
+
+If you prefer, write it yourself from the blank sections below — the Surveyor is
+a convenience, your confirmation is the requirement.
 
 Guidance: 3–6 assets, ranked most-valuable-first. An asset is a thing an attacker
 could steal, destroy, alter, or act upon without authorization. Be specific to

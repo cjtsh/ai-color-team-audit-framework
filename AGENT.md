@@ -8,9 +8,27 @@
 
 ## What you are running
 
-A software security audit performed by six AI agents: five specialists with one lens
-each, dispatched simultaneously and independently, plus a referee that verifies
-everything and gates publication. The defining rules:
+A software security audit performed by AI agents in two systems:
+
+1. **The Surveyor** (one agent, any tool, ideally a *different* model than the
+   panel's): reads the software before the audit and drafts the Asset Declaration
+   (`ASSETS.md`) from what the code actually does — entry points, data stores,
+   auth surfaces, dependencies, deployment. The owner confirms or corrects it in
+   one short sitting; the confirmed declaration is then locked with the rubric.
+2. **The Color Team panel** (six agents): five specialists with one lens each,
+   dispatched simultaneously and independently, plus a referee that verifies
+   everything and gates publication.
+
+The Surveyor removes the cold-start burden from the human — most owners cannot
+write a threat-model declaration from memory, but they can confirm one in five
+minutes. Using a different model for the Surveyor adds real diversity: the
+drafter's blind spots do not become the panel's. If you have only one tool, run
+it twice in separate sessions (disclose that in the report's coverage section).
+The one human moment that never goes away: **the owner confirms the declaration** —
+an unconfirmed declaration is unverified scope, and a narrowed declaration is a
+steered audit.
+
+The defining rules:
 
 1. **Independence is structural.** The five specialists are dispatched in one wave
    and cannot see each other's findings until the merge. The offense agent is never
@@ -32,13 +50,16 @@ Before dispatching anyone:
 
 1. Identify the exact target of evaluation: repository, tag or commit, published
    artifacts. Clone fresh; never audit a dirty working tree.
-2. **Read or write the Asset Declaration** (`ASSETS.md`). Look for it in the
-   target repository's root. If it exists, read it and confirm it with the owner.
-   If it does not exist, STOP and interview the owner using ASSETS-TEMPLATE.md:
-   the 3–6 crown jewels ranked, the unforgivable acts in the owner's own words,
-   and where the assets live in the code. Draft it, get the owner's confirmation,
-   and save it as `ASSETS.md` before proceeding. **The audit does not start
-   without a confirmed declaration** — every charter, severity call, and report
+2. **Confirm the Asset Declaration** (`ASSETS.md`). Preferred flow: a Surveyor
+   agent has already read the repository and drafted it (see the two-system
+   architecture above); your job is to walk the owner through it — confirm each
+   ranked asset, the unforgivable acts in the owner's own words, and where the
+   assets live; add anything code cannot see (business context, contractual
+   obligations). If no draft exists, become the Surveyor yourself: read the
+   entry points, data stores, auth surfaces, and dependencies, draft the
+   declaration from what the code actually does, then get the owner's
+   confirmation before proceeding. **The audit does not start without an
+   owner-confirmed declaration** — every charter, severity call, and report
    question is built from it, and it is locked with the rubric: it does not
    change after the audit begins.
 3. Verify integrity yourself: recompute artifact hashes against published checksums;

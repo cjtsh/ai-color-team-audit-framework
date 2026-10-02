@@ -25,7 +25,18 @@ The audit's single input parameter: the target's crown jewels, ranked — what m
 not be stolen, destroyed, altered, or acted upon without authorization. Written
 before anyone examines the build, locked with the rubric, and cited in the report
 header. It parameterizes every charter, every severity call, and the central
-questions. Examples by domain:
+questions.
+
+**How it is produced (the two-agent architecture):** a Surveyor agent reads the
+repository and drafts the declaration from what the code actually does; the owner
+confirms or corrects it in one short sitting; the confirmed file (`ASSETS.md`)
+locks. Best practice: use a *different* model for the Surveyor than for the
+panel — cross-model diversity means the declaration's blind spots and the audit's
+blind spots don't correlate. One tool only? Run it twice in separate sessions and
+disclose that in the report's coverage section. The owner's confirmation is never
+skipped: it is the framework's defense against a steered (narrowed) declaration.
+
+Examples by domain:
 
 - **Payments wallet:** funds; key material; the operator's approval of a
   transaction.

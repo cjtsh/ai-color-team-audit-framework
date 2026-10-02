@@ -42,18 +42,20 @@ are the standard.
 
 ## Quick start
 
-1. Copy **[AGENT.md](AGENT.md)** into your AI coding tool's context (or drop it in
-   your repo as an agents-file / skill / system prompt alongside the target code).
-2. Fill in **[ASSETS-TEMPLATE.md](ASSETS-TEMPLATE.md)** and save it as `ASSETS.md`
-   in the repository being audited — your crown jewels, ranked, and the
-   unforgivable acts in your own words. About five minutes, one page. (If you
-   skip it, the agent's first act is to interview you and write it with you —
-   the audit cannot start without it.)
-3. Point the agent at the repository and revision to audit.
-4. The agent runs the phases: baseline → the five-agent wave → the referee → the
-   graded report. Read **[PANEL-DESIGN.md](PANEL-DESIGN.md)** to see (or tailor)
-   the charters and rubric; **[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** shows what
-   you get; **[templates/pdf/](templates/pdf/)** generates the typeset edition.
+1. **Survey:** give **[ASSETS-TEMPLATE.md](ASSETS-TEMPLATE.md)** plus your
+   repository to any AI coding tool — the *Surveyor*. It reads the code and
+   drafts your Asset Declaration: the crown jewels, ranked, and the unforgivable
+   acts in plain words. (Best practice: use a different model than the one that
+   will run the audit.)
+2. **Confirm:** read the draft, correct anything only you know, and save it as
+   `ASSETS.md` in the repo. Five minutes — and the one human moment the
+   framework insists on.
+3. **Audit:** point **[AGENT.md](AGENT.md)** (in your AI coding tool, or dropped
+   into the repo as an agents file) at the repository. The agent runs the
+   phases: baseline → the five-agent wave → the referee → the graded report.
+   Read **[PANEL-DESIGN.md](PANEL-DESIGN.md)** to see (or tailor) the charters
+   and rubric; **[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** shows what you get;
+   **[templates/pdf/](templates/pdf/)** generates the typeset edition.
 
 Requires an AI coding tool that can spawn parallel sub-agents. If yours runs only
 one agent, run the colors sequentially in separate sessions — you lose structural

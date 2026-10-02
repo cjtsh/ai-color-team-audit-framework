@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.3 — 2026-10-02
+
+The two-agent architecture: the framework becomes a complete agentic system.
+
+- **New role: the Surveyor.** One agent reads the repository and drafts the
+  Asset Declaration from what the code actually does; the owner confirms it in
+  one short sitting; the confirmed `ASSETS.md` locks with the rubric. The human
+  confirms instead of authoring.
+- **Cross-model best practice:** use a different model for the Surveyor than for
+  the panel, so the declaration's blind spots and the audit's blind spots don't
+  correlate. One tool only: run it twice in separate sessions and disclose it.
+- **Anti-steering rule encoded:** the owner's confirmation is never skipped — an
+  unconfirmed declaration is unverified scope, and a quietly narrowed
+  declaration is a steered audit.
+- Wired through AGENT.md (two-system architecture + Phase 0),
+  ASSETS-TEMPLATE.md (the three-step flow), PANEL-DESIGN.md, and the README
+  quick start (Survey → Confirm → Audit).
+
 ## 0.1.2 — 2026-10-02
 
 The Asset Declaration gets its mechanism.
