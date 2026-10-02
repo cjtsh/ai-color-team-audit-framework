@@ -72,6 +72,21 @@ cannot be sweetened.
 
 ## Worked examples (real audits, real grades)
 
+The framework was born in production: three audits of a real Bitcoin-inheritance
+tool in one day, each carrying the grade its evidence supported. Full stories in
+[EXAMPLES.md](EXAMPLES.md); the shape of the arc:
+
+| Cycle | What happened | Grade |
+|---|---|---|
+| v0.6.2 | [Classic audit](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.2.md) — 25 findings, none critical, every remedy written down | findings → fix them |
+| v0.6.3 | [First full Color Team run](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.3.md) — all 25 fixed and regression-pinned; one process gap remained | 🟡 Yellow |
+| v0.6.4 | [The conversion run](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.4.md) — the release published itself through its own automated gates | 🟢 Green |
+
+![A Green report produced by this framework — the grade page](examples/v0.6.4-grade.png)
+
+*The grade page of the v0.6.4 report (typeset edition). Full PDF:
+[bitcoineasysigner.com/audits/ZAI-Security-Audit-v0.6.4.pdf](https://bitcoineasysigner.com/audits/ZAI-Security-Audit-v0.6.4.pdf).*
+
 - **[Bitcoin Easy Signer v0.6.2 — classic single-lead audit](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.2.md)**
   25 findings, none critical — including two library defects proven unreachable,
   and the supply-chain gap that became the next cycle's headline fix.
