@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 0.1.0 · MIT License
+Version 0.1.3 · MIT License
 
 Five specialist AI agents and a White referee independently audit your software —
 with a grade rubric locked in writing **before** the audit begins, applied
@@ -97,10 +97,20 @@ cannot be sweetened.
 
 ## Contributing and versioning
 
-The framework is versioned; `COLOR-TEAM.md` definitions are locked per version so
-published reports stay citable. Propose changes by issue or pull request. If your
-team runs a Color Team audit — whatever the grade — you are invited to link it in
-EXAMPLES.md as evidence.
+The framework is versioned, and **every version reference stays in sync**: the
+README version line, the PDF template's version stamp, and the changelog entry
+all carry the current release version at every release. (`COLOR-TEAM.md`'s
+definitions version — currently v1.1 — is deliberately independent: it changes
+only when the role definitions change, so published reports stay citable against
+the version they were written under.)
+
+**Release checklist** (in order): update the change → `CHANGELOG.md` entry →
+README version line → PDF template version stamp → commit → tag → release.
+A version line that lags the tags is a documentation-mismatch finding in any
+Color Team report — hold this repo to its own standard.
+
+Propose changes by issue or pull request. If your team runs a Color Team audit —
+whatever the grade — you are invited to link it in EXAMPLES.md as evidence.
 
 ## License
 
