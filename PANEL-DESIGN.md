@@ -8,15 +8,17 @@ framework; everything else is configuration.
 ## Phase structure
 
 ```
-Phase 0  Baseline      — lead only: verify target/commit/artifacts, write the
-                         ASSET DECLARATION, run suites, read the project's claims,
+Phase 0  Baseline      — lead only: verify target/commit/artifacts, confirm the
+                         owner-confirmed Asset Declaration, run suites, read the project's claims,
                          write charters, LOCK THE RUBRIC
 Phase 1  The wave      — five specialists dispatched simultaneously, each seeing
                          only its own charter (no cross-visibility, no priors for Red)
 Phase 2  The referee   — White re-derives load-bearing claims, merges the ledger,
                          calibrates severity, applies the rubric mechanically, gates
-Phase 3  Consolidation — lead applies the grade, writes private + public reports,
-                         publishes only what the gate allows
+Phase 3  Consolidation — lead applies the grade, writes the three deliverables
+                         (safety review + technical report + ledger)
+Phase 3½ Verification — nothing is published until the live artifact is fetched
+                         and hash-matched (publish-and-verify.sh)
 ```
 
 ## The Asset Declaration (Phase 0, mandatory)
@@ -134,12 +136,19 @@ issue the gate: *publish / publish with edits / do not publish.*
 3. *The grade is the floor.* No averaging, no trading a strong section against a
    bad one.
 
-## Report shape — three layers, three audiences
+## Report shape — three deliverables, three audiences
 
-Every engagement produces THREE deliverables, one per audience:
+Every engagement produces three deliverables, one per audience — written in this order:
 
-0. **The plain-English Safety Review** (`SAFETY-REVIEW-TEMPLATE.md`) — for the decision-maker: verdict, the questions they actually ask, the team in layman's words, the trail with severity badges. Translate from the technical report; never exceed it.
-1. **The technical report** — for the engineers and the next auditor: grade and why; the four questions (or the target's
+1. **The technical report** — for the engineers and the next auditor (the source of truth;
+   everything else translates from it).
+2. **The plain-English Safety Review** (`SAFETY-REVIEW-TEMPLATE.md`) — for the decision-maker:
+   verdict, the questions they actually ask, the team in layman's words, the trail with
+   severity badges. Translate from the technical report; never exceed it.
+3. **The findings ledger** — for agents and future audits (stable IDs, exact locations,
+   machine-checkable).
+
+The technical report contains: grade and why; the four questions (or the target's
    equivalent: can it do the unforgivable thing? can it leak the unspeakable thing?
    can anyone act invisibly? what to fix first?); the path forward if not green.
 2. **The fix ledger:** prior findings → status at this commit, with evidence.

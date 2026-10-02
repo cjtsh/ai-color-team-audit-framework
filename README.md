@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 0.2.0 · MIT License
+Version 0.2.1 · MIT License
 
 Five specialist AI agents and a White referee independently audit your software —
 with a grade rubric locked in writing **before** the audit begins, applied
@@ -91,7 +91,7 @@ tool in one day, each carrying the grade its evidence supported. Full stories in
   25 findings, none critical — including two library defects proven unreachable,
   and the supply-chain gap that became the next cycle's headline fix.
 - **[Bitcoin Easy Signer v0.6.3 — the first full Color Team run](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.3.md)**
-  All 25 prior findings verified fixed, no breach found, cryptography re-proven
+  All 22 actionable prior findings (of 25 total) verified fixed, no breach found, cryptography re-proven
   against official test vectors — graded **Yellow** because the release was
   published through a manual path that bypassed the project's own new automated
   gates. The grade, the reasoning, and the one-step path to green are all in the

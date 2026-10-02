@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.2.1 — 2026-10-02
+
+Independent review pass over 0.2.0 (13 findings, SHIP AFTER FIXES) — all fixed:
+
+- README: stray editing pipe; "25 prior findings" overstatement corrected to
+  "22 actionable of 25 total" (matched against the actual v0.6.3 report); the
+  Safety Review now named in the quick start, not discovered mid-audit.
+- PANEL-DESIGN: phase diagram updated for the Surveyor-confirmed Asset
+  Declaration and Phase 3½ publication verification; the report-shape section
+  restructured into three deliverables + a technical-report sub-list.
+- SAFETY-REVIEW-TEMPLATE: grade phrasing corrected (the safety review carries
+  the grade; the referee applies the strictest ruling — panel agents do not
+  score).
+- publish-and-verify.sh: no wasted 30s sleep after the final retry; HTTP
+  status no longer concatenates curl failure codes; temp file cleaned up on
+  any exit (trap); usage notes for Linux (sha256sum) and repo-wide `git add -A`.
+- templates/pdf/generate_report.py docstring stamp brought into version sync
+  (was still v0.1.0).
+
 ## 0.2.0 — 2026-10-02
 
 Everything the first full deployment taught, encoded. Source: the complete

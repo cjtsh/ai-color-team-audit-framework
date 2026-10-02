@@ -19,6 +19,9 @@
 # Usage:
 #   ./publish-and-verify.sh <local-file> <public-url> [poll-seconds]
 #
+# Notes: macOS (shasum); on Linux substitute sha256sum. Commits the ENTIRE
+# current tree (git add -A) — run from a clean tree or adjust to taste.
+#
 # Exit 0 = verified live and byte-identical. Anything else = not published.
 
 set -euo pipefail
@@ -39,15 +42,16 @@ echo "waiting ${POLL_SECONDS}s for the CDN..."
 sleep "$POLL_SECONDS"
 
 TMP="$(mktemp)"
+trap 'rm -f "$TMP"' EXIT
 for attempt in 1 2 3; do
-  STATUS="$(curl -sL -o "$TMP" -w '%{http_code}' "$PUBLIC_URL" || echo 000)"
+  STATUS="$(curl -sL -o "$TMP" -w '%{http_code}' "$PUBLIC_URL")" || STATUS=000
   LIVE_HASH="$(shasum -a 256 "$TMP" | awk '{print $1}')"
   if [ "$STATUS" = "200" ] && [ "$LIVE_HASH" = "$LOCAL_HASH" ]; then
     echo "VERIFIED: live ($PUBLIC_URL) is byte-identical to $LOCAL_FILE"
     rm -f "$TMP"; exit 0
   fi
-  echo "attempt $attempt: HTTP $STATUS, live sha256 $LIVE_HASH — retrying in 30s"
-  sleep 30
+  echo "attempt $attempt: HTTP $STATUS, live sha256 $LIVE_HASH"
+  if [ "$attempt" -lt 3 ]; then echo "retrying in 30s"; sleep 30; fi
 done
 
 echo "FAILED: $PUBLIC_URL did not serve the local bytes (last: HTTP $STATUS, sha256 $LIVE_HASH)"
