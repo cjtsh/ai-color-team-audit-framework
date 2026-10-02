@@ -46,11 +46,26 @@ Bitcoin threat model.
    says plainly what remains open.
    [Typeset PDF edition](https://bitcoineasysigner.com/audits/ZAI-Security-Audit-v0.6.4.pdf).
 
+4. **[Bitcoin Easy Signer — the Plain-English Safety Review](https://bitcoineasysigner.com/audits/ZAI-Safety-Review-v0.6.4.pdf)**
+   The fourth deliverable of the same engagement, and the template's origin story:
+   after the Green, the owner observed that the technical report — however
+   excellent — answered nobody's actual question. A trustee, lawyer, or spouse
+   asking "is this safe to use?" needed a different document. The Safety Review
+   is that document: verdict box, the four customer questions in ordinary words,
+   the review team explained for a layman, and the full audit trail translated
+   with severity badges (**DANGER SIGN: none found — in any review** · Important
+   to fix · Minor improvement · Housekeeping) so nobody can misread a "minor
+   improvement" as a fire. One page of letter, a few of trail, every sentence
+   traceable to the technical reports. It became the site's featured audit link —
+   the safety review for the decision-maker, the technical report for their
+   expert, the ledger for the agents.
+
 The v0.6.3 report is the framework's proof of integrity: the panel graded its own
 sponsor Yellow on a process finding when a green was available for the asking. The
 v0.6.4 report is the proof of value: the same panel, the same locked rules, and a
-team that used the Yellow to actually reach Green. If a framework can do both, its
-grades mean something.
+team that used the Yellow to actually reach Green. The Safety Review is the proof
+of reach: grades and evidence, translated for the person who has to decide. If a
+framework can do all three, its work is done.
 
 **The progression, visible:**
 

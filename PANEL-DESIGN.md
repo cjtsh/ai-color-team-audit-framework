@@ -134,9 +134,12 @@ issue the gate: *publish / publish with edits / do not publish.*
 3. *The grade is the floor.* No averaging, no trading a strong section against a
    bad one.
 
-## Report shape
+## Report shape — three layers, three audiences
 
-1. **For humans, first:** grade and why; the four questions (or the target's
+Every engagement produces THREE deliverables, one per audience:
+
+0. **The plain-English Safety Review** (`SAFETY-REVIEW-TEMPLATE.md`) — for the decision-maker: verdict, the questions they actually ask, the team in layman's words, the trail with severity badges. Translate from the technical report; never exceed it.
+1. **The technical report** — for the engineers and the next auditor: grade and why; the four questions (or the target's
    equivalent: can it do the unforgivable thing? can it leak the unspeakable thing?
    can anyone act invisibly? what to fix first?); the path forward if not green.
 2. **The fix ledger:** prior findings → status at this commit, with evidence.
@@ -149,6 +152,10 @@ issue the gate: *publish / publish with edits / do not publish.*
 6. **Agentic appendix:** the full findings ledger with stable IDs and exact
    locations, structured so a future auditor — human or AI — can verify the work
    without re-deriving it.
+
+## Conversion re-checks
+
+When a cycle ends YELLOW with a defined conversion path, the follow-up is a light re-check, not a full audit: Phase 0 baseline on the new version → a delta-scoped wave covering only the domains the delta touches (unchanged domains carry over by VERIFIED blob-identity, never assumption) → the referee rules the conversion criterion met *by execution* (a demonstrated fix, a machine-enforced gate that actually ran) and that the delta introduced no new Critical/High. Grade converts if and only if both hold.
 
 ## Cost note
 

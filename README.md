@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 0.1.4 · MIT License
+Version 0.2.0 · MIT License
 
 Five specialist AI agents and a White referee independently audit your software —
 with a grade rubric locked in writing **before** the audit begins, applied
@@ -105,7 +105,9 @@ tool in one day, each carrying the grade its evidence supported. Full stories in
 | `ASSETS-TEMPLATE.md` | **The one file you fill in.** Your crown jewels, ranked, and the unforgivable acts — the audit's single input, consumed in Phase 0. |
 | `COLOR-TEAM.md` | The color definitions, versioned (v1.1) — reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Charters, phases, rubric, and the report shape; adapt to your target. |
-| `REPORT-TEMPLATE.md` | The public report skeleton with the agentic appendix. |
+| `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |
+| `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report. |
+| `templates/publish-and-verify.sh` | The anti-"already done" tool: commit, push, poll, fetch, and hash-compare in one invocation. Nothing is published until it says VERIFIED. |
 | `templates/pdf/` | A ReportLab generator for the typeset report edition. |
 | `EXAMPLES.md` | The worked case studies. |
 | `CHANGELOG.md` | Version history. |

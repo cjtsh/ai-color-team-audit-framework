@@ -1,4 +1,7 @@
-# Report Template — public Color Team audit report
+# Report Template — public technical report (Color Team)
+
+> This is the engineer/expert layer. The decision-maker layer is
+> `SAFETY-REVIEW-TEMPLATE.md` — write both; each audience reads only its own.
 
 Replace bracketed values. Keep the structure and the honesty; the format is part of
 the standard. Delete any section that genuinely has no content — never invent any.
