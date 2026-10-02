@@ -1,0 +1,62 @@
+# Report Template — public Color Team audit report
+
+Replace bracketed values. Keep the structure and the honesty; the format is part of
+the standard. Delete any section that genuinely has no content — never invent any.
+
+---
+
+# [Auditor] Security Audit — [Product] [version] — The Color Team Report
+
+| | |
+|---|---|
+| **Version examined** | Tag `[tag]`, commit `[full SHA]`, published [date] |
+| **Auditor** | [Who] — a five-agent Color Team panel plus a referee; charters and grade rules locked in writing **before** the build was examined |
+| **Prior audit** | [Prior cycle summary, or "first audit"] |
+| **Verification** | [What was independently re-derived: artifact hashes, signatures/notarization, test suites re-run, etc.] |
+
+## The grade: [🟢 Green / 🟡 Yellow / 🔴 Red] — [one-line reason]
+
+[If not green: the finding(s) holding the grade, stated plainly with severity and
+the exact path to green. If green: what was verified to earn it. The rubric tension
+rule applies: if any clause of the rubric could be read to bind, it binds.]
+
+## The four questions that matter
+
+1. Could this software [do the unforgivable thing — move funds / destroy data / act
+   without authorization]? — **[verdict + one sentence of evidence]**
+2. Could it [leak the unspeakable thing — keys / credentials / private data]? — **[verdict]**
+3. Could a remote party, a dependency, or a local process [act invisibly — alter
+   behavior without the operator seeing it]? — **[verdict]**
+4. What should be fixed first? — **[answer]**
+
+## The prior audit's findings: [status summary]
+
+[Fix ledger: every prior-cycle finding → verified fixed / partially / open, with
+evidence and which tests pin each fix.]
+
+## The panel
+
+**🔴 Red — [sub-verdict].** [2–4 sentences: what was attacked, what held, residuals with bounds.]
+**🔵 Blue — [sub-verdict].** [Controls verified, tests that pin them, coverage gaps.]
+**🟠 Orange — [sub-verdict].** [Dependency deltas, vector results, maintenance obligations created.]
+**🟤 Copper — [sub-verdict].** [Transport/runtime evidence, device-surface notes.]
+**🟡 Amber — [sub-verdict].** [Pipeline claims verified, the one thing that matters most here.]
+**⚪ White — [the gate].** [What was re-derived; corrections made; the grade ruling; publication requirements.]
+
+## What this audit did not do
+
+[No hardware? No live network? Never-executed paths? State it. "No finding" means
+"none found within this coverage," not "none exist."]
+
+## Appendix — findings ledger
+
+[Prior-cycle IDs → status at this commit. New findings: final IDs (fixed by the
+referee after the specialists' independent counts collided), severity, one-line
+claim each, exact locations where publishable.]
+
+---
+
+*[Audit date, auditor, scope disclaimer: performed on the public repository and
+published artifacts only; the grade rules were locked before the audit began and
+applied as written; no [sensitive material] appears in this report; an audit is not
+a certification of safety; coverage limits stated above.]*
