@@ -33,9 +33,35 @@ Bitcoin threat model.
    conversion path in the report itself.
    [Typeset PDF edition](https://cjtsh.github.io/bitcoin-easy-multisig-signer/audits/ZAI-Security-Audit-v0.6.3.pdf).
 
+3. **[Bitcoin Easy Signer v0.6.4 — the conversion run](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.4.md)**
+   The closing chapter, and the framework's proof that the loop works end to end:
+   the team remediated everything, rewrote their release process to *prohibit*
+   manual publication — and then published v0.6.4 **through the automated gates
+   themselves**. The conversion re-check (Red, Blue, Amber in one wave plus the
+   referee) verified from primary evidence that the gates executed in order before
+   the release was created, that the published bytes are provably the tested bytes,
+   and that the money path is byte-identical across three audited versions.
+   **Grade: Green — earned by execution, not acceptance.** The referee kept the
+   ledger honest: nine new Low/Info findings stay on the books, and the report
+   says plainly what remains open.
+   [Typeset PDF edition](https://bitcoineasysigner.com/audits/ZAI-Security-Audit-v0.6.4.pdf).
+
 The v0.6.3 report is the framework's proof of integrity: the panel graded its own
-sponsor Yellow on a process finding when a green was available for the asking. If
-a framework can do that, its greens are worth something.
+sponsor Yellow on a process finding when a green was available for the asking. The
+v0.6.4 report is the proof of value: the same panel, the same locked rules, and a
+team that used the Yellow to actually reach Green. If a framework can do both, its
+grades mean something.
+
+**The progression, visible:**
+
+| Cycle | Report | Grade |
+|---|---|---|
+| v0.6.2 | [Classic audit](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.2.md) — 25 findings, none critical | findings → fix them |
+| v0.6.3 | [First full Color Team run](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.3.md) — everything fixed, one process gap | 🟡 Yellow |
+| v0.6.4 | [The conversion run](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.4.md) — the gates demonstrated in execution | 🟢 Green |
+
+![The Green report — cover](examples/v0.6.4-cover.png)
+![The Green report — the grade page](examples/v0.6.4-grade.png)
 
 ---
 

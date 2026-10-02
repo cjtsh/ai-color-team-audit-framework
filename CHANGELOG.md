@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.4 — 2026-10-02
+
+The framework's story completes: the first Yellow-to-Green conversion, as a worked example.
+
+- **EXAMPLES.md**: third entry — Bitcoin Easy Signer v0.6.4, the conversion run
+  (graded Green by demonstrated execution of the release gates), plus a
+  cycle-by-cycle progression table (findings → Yellow → Green) and screenshots
+  of the Green report's cover and grade page (`examples/`).
+- The v0.6.3 entry's framing extended: v0.6.3 proves integrity (the panel graded
+  its own sponsor Yellow); v0.6.4 proves value (the same rules carried a team to
+  Green). Together they are the framework's case.
+
 ## 0.1.3 — 2026-10-02
 
 The two-agent architecture: the framework becomes a complete agentic system.

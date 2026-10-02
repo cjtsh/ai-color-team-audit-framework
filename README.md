@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 0.1.3 · MIT License
+Version 0.1.4 · MIT License
 
 Five specialist AI agents and a White referee independently audit your software —
 with a grade rubric locked in writing **before** the audit begins, applied
