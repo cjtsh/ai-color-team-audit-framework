@@ -1,5 +1,51 @@
 # Changelog
 
+## 0.9.0 — 2026-10-05
+
+### Amber gets a defined chain, and the fifth lane joins the merged ruling
+
+Amber kept the panel's sharpest line — *a package that installs cleanly is not proof of
+legitimacy, because that is exactly what an attacker-registered squatter provides* — but
+it had the same three holes the other four lanes had. Its scope was self-chosen ("how the
+artifact is born"), its methods were stated as tools rather than as evidence, and its
+sub-verdict (*"Chain holds" / "Chain gaps"*) was a judgment call.
+
+**The chain is now defined:** every step that turns source the owner wrote into an
+artifact someone runs — dependencies and their transitive closure, the build and the
+secrets it can see, packaging, signing, publication, and whether a published version can
+change under you. The scope is derived from the target instead of chosen by the agent.
+
+**The chain inventory is published before verification.** Every link with its exact
+version and hash. An artifact that reaches a user through a step the inventory does not
+list is itself a finding — and so is an empty inventory, which is a claim to check rather
+than a clean result.
+
+**Five questions at every link, all requiring evidence:** **Named** (it is on the
+inventory), **Pinned** (a content hash, a fixed action or runner version, a base image
+digest, a signed tag — "latest" is not a pin, and a version range is not a pin), **Real**
+(the project it claims to be, at the version claimed, established from the registry
+rather than from the import statement), **Read** (Amber inspected what it does at that
+pinned version), and **Matched** (the published artifact re-downloaded and re-hashed
+against the audited source).
+
+**What cannot be verified is recorded, never assumed.** No lockfile, a dependency with no
+readable source, a build that cannot be reproduced, a signature with no key: Amber writes
+**UNVERIFIED** against that link and states what would close it.
+
+**The verdict is computed:** CHAIN HOLDS / CHAIN UNVERIFIED / CHAIN BROKEN, itemized per
+link, worst link wins. NOT APPLICABLE — nothing to build, nothing published — is a
+coverage statement, not a verdict.
+
+**The merged ruling absorbed Amber as one bullet**, which is what merging the rulings in
+0.8.0 was for: Red, Blue, Orange, Copper and Amber all force a block when they prove
+their own failure state, and that is now stated in one place instead of five.
+
+**A seam note** separates Amber from Orange, since both read dependencies: identity,
+provenance and integrity are Amber's question; arithmetic and semantics are Orange's.
+
+`COLOR-TEAM.md` is v1.9. Amber is the fifth of the five specialists to get a fixed
+standard and a computed verdict; only White, the referee, remains.
+
 ## 0.8.0 — 2026-10-05
 
 ### Copper gets a defined edge, and the rulings get merged
