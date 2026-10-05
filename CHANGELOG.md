@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.5.1 — 2026-10-05
+
+### The parallel wave is explained, and stops being sold as a speed purchase
+
+The framework already required Phase 1 to dispatch five specialists in parallel, but
+nowhere said **why** — so a reader could not tell which part of "parallel" is
+load-bearing, and the cost note read as though the wave were an optimization you
+could trade for money.
+
+The mechanism, now stated in `colorteam-auditor.md` and `PANEL-DESIGN.md`, is
+**drift**. A single agent working down a checklist feeds on its own prior output: by
+the fifth lane it is reasoning from the conclusions and blind spots of the first
+four, and an early wrong call propagates to the end instead of being contradicted by
+a fresh reader.
+
+- The requirement is **one fresh context per specialist**, not simultaneous
+  wall-clock. Running each color as its own isolated session keeps the independence
+  and gives up only the speed — an acceptable trade.
+- Running all five lanes in one shared session is **not** a cheaper version of the
+  wave; it is a different, weaker method, and the grade it produces is not
+  comparable. Disclose it in the coverage section if you do it.
+- `PANEL-DESIGN.md`'s cost note is reframed, defining rule 1 in
+  `colorteam-auditor.md` now names the drift mechanism, and the README no longer
+  offers one-session sequential as the fallback.
+- No other rule changed.
+
 ## 0.5.0 — 2026-10-05
 
 ### The report grades are renamed — a vocabulary change, not a logic change

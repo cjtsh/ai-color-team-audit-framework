@@ -1,10 +1,11 @@
 # Panel Design — charters, phases, rubric, report shape
 
 Everything here is a starting point to adapt to your target. What must NOT be
-adapted away: independence of the wave, the pre-locked rubric, floor-of-panel
-grading, the referee's publication gate, and **survey/audit model separation** —
-the model that writes the audit plan is never the model that runs the audit.
-Those five properties are the framework; everything else is configuration.
+adapted away: independence of the wave (a fresh context per specialist), the
+pre-locked rubric, floor-of-panel grading, the referee's publication gate, and
+**survey/audit model separation** — the model that writes the audit plan is never
+the model that runs the audit. Those five properties are the framework; everything
+else is configuration.
 
 ## Phase structure
 
@@ -12,8 +13,9 @@ Those five properties are the framework; everything else is configuration.
 Phase 0  Baseline      — lead only: verify target/commit/artifacts, verify the
                          owner-confirmed audit plan (stop if absent), run suites,
                          read the project's claims, write charters, LOCK THE RUBRIC
-Phase 1  The wave      — five specialists dispatched simultaneously, each seeing
-                         only its own charter (no cross-visibility, no priors for Red)
+Phase 1  The wave      — five specialists dispatched in parallel, each in its own
+                         fresh context and seeing only its own charter (no
+                         cross-visibility, no priors for Red)
 Phase 2  The referee   — White re-derives load-bearing claims, merges the ledger,
                          calibrates severity, applies the rubric mechanically, gates
 Phase 3  Consolidation — lead applies the grade, writes the three deliverables
@@ -185,9 +187,19 @@ The technical report contains: grade and why; the four questions (or the target'
 
 When a cycle ends CONDITIONAL with a defined conversion path, the follow-up is a light re-check, not a full audit: Phase 0 baseline on the new version → a delta-scoped wave covering only the domains the delta touches (unchanged domains carry over by VERIFIED blob-identity, never assumption) → the referee rules the conversion criterion met *by execution* (a demonstrated fix, a machine-enforced gate that actually ran) and that the delta introduced no new Critical/High. Grade converts if and only if both hold.
 
-## Cost note
+## Why the wave cannot be a checklist, and what it costs
 
-Five deep specialists plus a referee is a real compute spend. The wave buys
-wall-clock speed AND structural independence; if cost matters more than speed, run
-the colors sequentially in isolated sessions and disclose the weaker independence
-in the coverage section.
+Five deep specialists plus a referee is a real compute spend. It buys wall-clock
+speed, but speed is the side effect — the product is **independence**. One agent
+working five lanes in sequence feeds on its own output: everything lane five
+"notices" is filtered through what lanes one to four already concluded, and an early
+wrong call propagates to the end instead of being contradicted by a fresh reader.
+The wave is how the panel gets five genuinely separate first impressions of the same
+code.
+
+So the requirement is **one fresh context per specialist**, not simultaneous
+wall-clock. If cost matters more, run each color as its own isolated session — you
+keep the independence and lose only the parallelism, which is fine. Running all five
+lanes in one shared session is not a cheaper version of the wave; it is a different,
+weaker method, and the grade it produces is not comparable. Any weaker arrangement
+must be disclosed in the report's coverage section.

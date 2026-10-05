@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 0.5.0 · MIT License
+Version 0.5.1 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -132,9 +132,13 @@ Only one model available? Copy the plan skeleton out of
 surveyor is a convenience; never letting the audit model declare its own scope is
 the rule.
 
-Requires an AI coding tool that can spawn parallel sub-agents. If yours runs only
-one agent, run the colors sequentially in separate sessions — you lose structural
-independence, so say so in the report's coverage section.
+You need an AI coding tool that can spawn parallel sub-agents, because each of the
+five colors must start from a clean context. Walking the five lanes in order inside
+one session is not the same thing — each lane inherits the conclusions and blind
+spots of the ones before it. If your tool runs only one agent, run each color as its
+own separate, freshly started session: you keep the independence and give up only
+the speed, which is the acceptable trade. Running all five in one session is not,
+and if you did it anyway, say so in the report's coverage section.
 
 ## What this is not
 

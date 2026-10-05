@@ -41,9 +41,14 @@ plan is unverified scope, and a narrowed plan is a steered audit.
 
 The defining rules:
 
-1. **Independence is structural.** The five specialists are dispatched in one wave
-   and cannot see each other's findings until the merge. The offense agent is never
-   shown prior audit conclusions, so it inherits no one's blind spots.
+1. **Independence is structural — the wave is not a speed optimization.** The five
+   specialists are dispatched in one wave and cannot see each other's findings until
+   the merge. The offense agent is never shown prior audit conclusions, so it
+   inherits no one's blind spots. The reason is **drift**: a single agent working down
+   a checklist feeds on its own prior output, so by the fifth lane it is reasoning
+   from the conclusions and blind spots of the first four. Each specialist therefore
+   needs its own context — a fresh sub-agent per color, never five lanes in one
+   session.
 2. **The surveyor is never the auditor.** The agent that writes the audit plan
    must be a different model from the one that runs the panel — ideally from a
    different vendor, so the training data and the failure modes differ too. The
@@ -93,6 +98,13 @@ baseline facts, the hard rules, and the output format. Suggested charters are in
 PANEL-DESIGN.md; adapt the technical lanes to the target (the colors, not the lanes,
 are the standard). Each returns findings with stable IDs, evidence, and a
 sub-verdict. Cap each report's length so the panel stays readable.
+
+**One fresh context per specialist — that is the rule, not the timing.** Five lanes
+walked in order inside a single session is not a wave; it is one agent auditing with
+four lanes of accumulated bias. If your tool cannot spawn sub-agents, run each color
+as its own clean session, and disclose the weaker arrangement in the report's
+coverage section. Either way, no specialist sees another's output before the referee
+merges them.
 
 Hard rules for every agent (include verbatim in each charter):
 - Read-only. No commits, pushes, tags, releases, workflow dispatches, installs.
