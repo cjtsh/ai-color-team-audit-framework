@@ -126,9 +126,11 @@ Every engagement produces three deliverables, one per audience — written in th
 3. **The findings ledger** — for agents and future audits (stable IDs, exact locations,
    machine-checkable).
 
-The technical report contains: grade and why; the four questions (or the target's
-   equivalent: can it do the unforgivable thing? can it leak the unspeakable thing?
-   can anyone act invisibly? what to fix first?); the path forward if not CLEARED.
+**The technical report contains:**
+
+1. **The grade, and why.** The four questions (or the target's equivalent: can it do
+   the unforgivable thing? can it leak the unspeakable thing? can anyone act
+   invisibly? what to fix first?) and the path forward if the grade is not CLEARED.
 2. **The fix ledger:** prior findings → status at this commit, with evidence.
 3. **The color sections:** each agent's charter summary, what it did, findings,
    sub-verdict — named, in language a non-engineer can follow.
