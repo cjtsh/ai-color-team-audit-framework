@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.1.6 — 2026-10-05
+
+### The quick start you can actually follow
+
+The quick start was four paragraphs of prose with one quoted sentence in the middle of
+them. It is now two prompts you paste as they are — the runbook's URL at a pinned tag, and
+one line of instruction — plus the two steps a human does. Nothing in either block needs
+editing.
+
+- The runbooks are handed over by **tagged URL** instead of a file copied into your
+  repository. An attachment still works; a `main` URL does not, because the report has to
+  name which version of the definitions was in force.
+- The README head now says the two things apart, which it never did: the *runbooks* are
+  never copied into your repository, and the framework's *artifacts* — the plan, the scope
+  lock, and the report — are written into its root.
+
+No definitions changed — `COLOR-TEAM.md` stays v2.2.
+
 ## 1.1.5 — 2026-10-05
 
 ### One report, and a timestamp if you want one

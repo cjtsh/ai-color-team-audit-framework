@@ -2,18 +2,19 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.1.5 · MIT License
+Version 1.1.6 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
 Five specialist AI agents and a White referee independently audit your software —
 with a grade rubric locked in writing **before** the audit begins, applied
 mechanically after, and a publication gate nothing unfair survives. The whole
-method ships as drop-in agent files: paste them into any AI coding tool and run.
+method ships as drop-in agent files: hand them to any AI coding tool and run.
 
-**Never copy these runbooks into your repository.** Hand them to the agent — attach the
-file, or paste its contents. The framework's own artifacts are named after your repo, so
-they cannot collide with anything and you can always tell which cycle a file belongs to:
+**Point the agent at the runbooks — never copy them into your repository.** A tagged URL
+or an attached file both work. The framework's *own artifacts* are different: they **are**
+written into your repo, named after it, so they cannot collide with anything and you can
+always tell which cycle a file belongs to:
 
 | Artifact | Name | Written by |
 |---|---|---|
@@ -325,52 +326,58 @@ are the standard.
 
 ## Quick start
 
-**Step 1 — the survey.** Attach **[`colorteam-surveyor.md`](colorteam-surveyor.md)** to your repository,
-hand it to an AI coding tool running a *different* model than the one that will run
-the audit, and say exactly this:
+Four steps. Two are prompts you paste **exactly as they are** — nothing in them needs
+editing. One is you, for five minutes.
 
-> Conduct a survey of this repository.
+**Step 1 — the survey.** In your repository, open a fresh agent running a *different*
+model than the one that will run the audit. Paste this:
 
-That is the whole prompt. The agent reads the code, works out what is at stake and
-where, and writes **`<repo>-colorteam-audit-plan.md`** — the audit plan. It does not audit,
-does not grade, and does not invent the checking method; it reports what matters and
-where, and writes down what it did **not** examine.
+```
+Read this runbook and follow it exactly:
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.6/colorteam-surveyor.md
 
-**Step 2 — you sign off.** Read the plan. Correct anything only you know, change the
-ranking if your priorities differ, and check the exclusions. Five minutes — and the one
-human moment the framework insists on. Add your name and the date to the locked-scope
-block and it locks: from that signature on the file is hashed and never edited, so the
-audit cannot quietly drift to a different scope than the one you approved. That signature
-is the only thing asked of you, and it is the same sitting as reading the plan.
+Conduct a survey of this repository.
+```
 
-**Step 3 — the audit.** Hand **[`colorteam-auditor.md`](colorteam-auditor.md)** to a new agent, along with
-your repository and the signed `<repo>-colorteam-audit-plan.md`. It runs the phases:
-baseline → the five-specialist wave → the referee. The output of this step is the
-evidence: each lane's sub-verdict and the grade computed from them. Read
-**[COLOR-TEAM.md](COLOR-TEAM.md)** for the six agent definitions, and
-**[PANEL-DESIGN.md](PANEL-DESIGN.md)** for the phases and rubric.
+It writes **`<repo>-colorteam-audit-plan.md`** into your repo root: what is at stake,
+where, and what it did **not** examine. It does not audit and does not grade.
 
-**Step 4 — the report.** The same agent writes it, and the referee is the gate: every
-load-bearing claim is re-derived before anything goes out, and the referee decides
-whether it may go out at all. You get **`<repo>-colorteam-audit-report.md`** — one file
-carrying three sections: the technical report for engineers, the plain-English safety
-review for everyone else, and the findings ledger for agents.
+**Step 2 — you sign off.** Five minutes, no AI. Read the plan, correct what only you
+know, and add your name and date to the locked-scope block. That signature is the only
+thing the framework asks of you, and it is what locks the scope: from there the plan is
+hashed and never edited.
+
+**Step 3 — the audit.** Open a new agent — the second model — in the same repository.
+Paste this:
+
+```
+Read this runbook and follow it exactly:
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.6/colorteam-auditor.md
+
+The signed audit plan is in the repository root. Run the audit.
+```
+
+It runs baseline → the five-specialist wave → the referee, each specialist starting
+from a clean context.
+
+**Step 4 — the report.** The same agent writes **`<repo>-colorteam-audit-report.md`**
+into your repo root: one file with three sections — the technical report for engineers,
+the plain-English safety review for everyone else, and the findings ledger for agents.
+The referee re-derives every load-bearing claim and decides whether it may go out at all.
+
+*An attached runbook works as well as the URL, but pin it to a tag, never to `main` — the
+report has to name which version of the definitions was in force. You need a tool that
+spawns parallel sub-agents; without one, run each color as its own fresh session and say
+so in the report's coverage section. If you have only one model, write the plan yourself
+from the skeleton in **[`colorteam-surveyor.md`](colorteam-surveyor.md)** — never let the
+audit model declare its own scope.*
+
+The six definitions are in **[COLOR-TEAM.md](COLOR-TEAM.md)**; the phases and the rubric
+in **[PANEL-DESIGN.md](PANEL-DESIGN.md)**; the report's section templates in
 **[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** and
-**[SAFETY-REVIEW-TEMPLATE.md](SAFETY-REVIEW-TEMPLATE.md)** are the section templates;
-**[templates/pdf/](templates/pdf/)** generates the typeset edition.
+**[SAFETY-REVIEW-TEMPLATE.md](SAFETY-REVIEW-TEMPLATE.md)**; the typeset edition in
+**[templates/pdf/](templates/pdf/)**.
 
-Only one model available? Copy the plan skeleton out of
-**[`colorteam-surveyor.md`](colorteam-surveyor.md)** and write `<repo>-colorteam-audit-plan.md` yourself. The
-surveyor is a convenience; never letting the audit model declare its own scope is
-the rule.
-
-You need an AI coding tool that can spawn parallel sub-agents, because each of the
-five colors must start from a clean context. Walking the five lanes in order inside
-one session is not the same thing — each lane inherits the conclusions and blind
-spots of the ones before it. If your tool runs only one agent, run each color as its
-own separate, freshly started session: you keep the independence and give up only
-the speed, which is the acceptable trade. Running all five in one session is not,
-and if you did it anyway, say so in the report's coverage section.
 
 ## What this is not
 
