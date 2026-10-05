@@ -59,6 +59,37 @@ grades it CLEARED on software nobody examined.
 **The handoff is one file.** The surveyor writes `<repo>-colorteam-audit-plan.md`; you read
 and confirm it; the panel audits against it. Nothing else changes hands.
 
+## What you get at the end
+
+A grade, and three documents. The grade is one of three words, decided by the rubric you
+locked **before** the audit — not a score, and never an average.
+
+| | |
+|---|---|
+| ✅ **CLEARED** | All five conditions hold: no open Critical or High; every earlier finding verified fixed, or closed by your own dated acceptance; the stated defenses held and are now pinned by regression tests; the suites passed and the artifacts were re-verified; no new Critical or High appeared. |
+| ⚠️ **CONDITIONAL** | Nothing Critical or High, but there are open Mediums beyond what you accepted, or a fix that was claimed and not verified. Honest reading: good software with work remaining. The report names the shortest path to CLEARED. |
+| ⛔ **BLOCKED** | One or more Critical or High findings are open. **Do not ship.** The report says exactly what and why. |
+
+There is no partial credit. The grade is the **floor** of the panel, so one bad finding
+stands no matter how clean the other four lanes were. You get the answer either way — a
+BLOCKED report still tells you what held, what did not, and what to fix first.
+
+Then, written in this order:
+
+1. **The technical report** — for engineers and the next auditor. The grade and the
+   reasoning, each color's findings with file-and-line evidence, the referee's rulings on
+   the load-bearing claims, and an explicit list of what was *not* examined.
+2. **The plain-English Safety Review** — for whoever has to decide and does not read code.
+   The same grade, the questions a customer actually asks, and the audit trail — every
+   sentence traceable to the technical report.
+3. **The findings ledger** — for agents and for the next audit. Stable IDs, exact
+   locations, machine-checkable, so the next run verifies the fixes instead of
+   re-deriving them.
+
+"Nothing found" always means "nothing found within the stated coverage." That coverage
+section — what was audited, what was excluded, what nobody examined — is part of the
+report, not an appendix.
+
 ## The panel
 
 | | |
@@ -183,7 +214,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 |---|---|
 | `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
 | `colorteam-auditor.md` | **Step three.** The complete drop-in runbook for the panel. |
-| `COLOR-TEAM.md` | The color definitions, versioned (v1.1) — reproducible in any report using the format. |
+| `COLOR-TEAM.md` | The color definitions, versioned (v1.2) — reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Charters, phases, rubric, and the report shape; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |
 | `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report. |
@@ -197,7 +228,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 The framework is versioned, and **every version reference stays in sync**: the
 README version line, the PDF template's version stamp, and the changelog entry
 all carry the current release version at every release. (`COLOR-TEAM.md`'s
-definitions version — currently v1.1 — is deliberately independent: it changes
+definitions version — currently v1.2 — is deliberately independent: it changes
 only when the role definitions change, so published reports stay citable against
 the version they were written under.)
 
