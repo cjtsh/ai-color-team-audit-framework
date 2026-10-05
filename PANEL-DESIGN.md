@@ -108,11 +108,17 @@ gives each specialist the full text of its own definition as its charter.
 3. *The grade is the floor.* No averaging, no trading a strong section against a
    bad one.
 4. *A demonstrated breach is an automatic block.* If Red reports **BREACH
-   DEMONSTRATED** against any declared asset, the grade is ⏔ BLOCKED — no
+   DEMONSTRATED** against any declared asset, the grade is ⛔ BLOCKED — no
    severity calibration, no rubric judgment, no weighing it against clean lanes.
    Red's win conditions (`COLOR-TEAM.md`) define what a breach is; if none is
    demonstrated, the grade is decided by the rest of the panel alone, and Red
    adds nothing to it.
+5. *A claimed control that does not hold is an automatic block.* If Blue reports a
+   control that is not present, not reachable where it matters, not effective, or
+   fails open, the grade is ⛔ BLOCKED — defeating a stated control is High by the
+   severity scale. An unpinned control is a gap judged by what it protects, and
+   holds the grade no higher than CONDITIONAL: CLEARED already requires the stated
+   defenses to be pinned by regression tests.
 
 ## Report shape — three deliverables, three audiences
 

@@ -1,4 +1,4 @@
-# The Color Team — definitions (v1.5)
+# The Color Team — definitions (v1.6)
 
 A security review performed by a named panel of specialist agents, each with one
 lens and one job. Two of the colors are borrowed from established security
@@ -96,21 +96,54 @@ offset it.
 
 ## 🔵 BLUE — the defender
 
-**Role:** defense. Instead of attacking, audit the armor. Enumerate the software's
-stated protections — whatever the Asset Declaration implies must hold:
-authentication, authorization and session handling, input validation, transaction
-or workflow integrity, secret handling, fail-closed behavior — and for each, prove
-it holds end-to-end in code, and prove a regression test pins it, so no future
-change can silently break it. An unfixed control and an untested one both count as
-gaps.
+**Role:** defense. Instead of attacking, audit the armor. For every protection the
+software claims about itself — authentication, authorization and session handling,
+input validation, transaction or workflow integrity, secret handling, fail-closed
+behavior — prove it holds, and prove it still holds after the next change. An
+unfixed control and an untested one both count as gaps. So does a control that should
+exist: check the audit plan's declared assets against the claims, and report a
+required protection that nothing claims.
 
-**Method:** control-by-control verification, test-coverage analysis, hunting the
-missing test that would let a protection quietly rot. If a remediation work order
+**Claims first.** Blue's list is not invented; it is every protection the artifact
+claims about itself — in its README, docs, comments, docstrings, configuration, and
+the audit plan. Publish the inventory. A claimed protection that is not on it is
+itself a finding.
+
+**The five tests.** Every control in the inventory is judged against all five:
+
+1. **Present** — the code that enforces it exists; file and line named.
+2. **Reachable where it matters** — it runs on every path that touches the asset it
+   protects, not just the happy path.
+3. **Effective** — it stops what it claims to stop. *"Validation exists"* is not the
+   claim; *"validation rejects X"* is.
+4. **Fail-closed** — when it errors, it denies. A control that fails open protects
+   nothing.
+5. **Pinned** — a test exists, and Blue has watched that test fail when the control
+   was broken. See below.
+
+**Break-and-watch — the demonstrated standard.** *A test that exists is not
+evidence; a test that can fail is.* Blue breaks the control in a **disposable local
+copy**, runs the suite, watches the result, and reverts. Only a red test is a pass:
+
+- **The test goes red** — pinned.
+- **The test stays green** — the finding is *a control claimed to be tested that
+  cannot fail*.
+- **The suite cannot run** (no build, no dependencies, unsupported platform) —
+  *unpinned, not demonstrated*. A gap, never a pass.
+
+**Method:** control-by-control verification, operating-effectiveness testing, hunting
+the missing test that would let a protection quietly rot. If a remediation work order
 exists, verify every item against its acceptance criteria.
 
-**Output:** a control-by-control table, then the fix ledger.
+**Output:** the claims inventory, then a control-by-control table — control, where it
+is claimed, where it is enforced, the test that pins it, the break-and-watch result —
+then the fix ledger.
 
-**Sub-verdict:** *Defenses hold* / *Defenses hold with gaps* / *Defense broken*.
+**Sub-verdict:** **DEFENSES HOLD** / **DEFENSES HOLD WITH GAPS** / **DEFENSE
+BROKEN** — computed, never chosen. Any control failing tests 1–4 makes it DEFENSE
+BROKEN; all controls passing 1–4 with some failing test 5 makes it DEFENSES HOLD
+WITH GAPS; all five on every control makes it DEFENSES HOLD. The sub-verdict is set by the
+worst control on the table, never by the average.
 
 ## 🟠 ORANGE — the critical-logic specialist
 
@@ -210,11 +243,13 @@ the other sections are.
    suggested remedy — nothing is asserted without proof attached.
 4. The panel format is presentation; the evidence standard is unchanged whatever
    the target: read-only auditing, no production side effects, no real secrets
-   handled, uncertainty is a result, and the report says what was not examined.
+   handled, uncertainty is a result, and the report says what was not examined. A
+   **disposable local copy** is not the target — running the suite there, or
+   breaking a control there and reverting it, is verification, not a side effect.
 
 ---
 
-*Color Team definitions v1.5 — part of the AI Color Team Audit Framework (this
+*Color Team definitions v1.6 — part of the AI Color Team Audit Framework (this
 repository). v1.1 generalizes the founding wording (written for a Bitcoin wallet)
 to the Asset Declaration model; role semantics are unchanged from v1. v1.2 renames
 the report grades from Green/Yellow/Red to **CLEARED / CONDITIONAL / BLOCKED**,
@@ -227,9 +262,12 @@ and not the machine it runs on, the hop rule makes the repository boundary expli
 the five win conditions are named, demonstration is defined, and Red's verdict is
 itemized per declared asset. v1.5 states that scope — the repository and its
 declared dependencies, not the machine it runs on — once, in the preamble, where
-all six colors read it, and leaves Red only the attack-specific consequences. The
-outcomes, the rubric, and the floor rule are
-all unchanged; reports published before v1.2 used the old grade names. Red and blue
+all six colors read it, and leaves Red only the attack-specific consequences. v1.6
+gives Blue a fixed five-test standard — present, reachable where it matters,
+effective, fail-closed, pinned — makes break-and-watch the demonstrated standard
+for any control claimed to be tested, and computes Blue's sub-verdict from those
+tests instead of leaving it to taste. The outcomes, the rubric, and the floor rule
+are all unchanged; reports published before v1.2 used the old grade names. Red and blue
 are established security-industry terms; orange, copper, amber, and white were
 introduced by the framework's first runs (Bitcoin Easy Signer audits, October 2026).
 This page may be reproduced in any report that uses the format; reproduce it whole

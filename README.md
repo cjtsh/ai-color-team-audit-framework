@@ -68,7 +68,7 @@ locked **before** the audit — not a score, and never an average.
 |---|---|
 | ✅ **CLEARED** | All five conditions hold: no open Critical or High; every earlier finding verified fixed, or closed by your own dated acceptance; the stated defenses held and are now pinned by regression tests; the suites passed and the artifacts were re-verified; no new Critical or High appeared. |
 | ⚠️ **CONDITIONAL** | Nothing Critical or High, but there are open Mediums beyond what you accepted, or a fix that was claimed and not verified. Honest reading: good software with work remaining. The report names the shortest path to CLEARED. |
-| ⛔ **BLOCKED** | One or more Critical or High findings are open, or Red demonstrated a breach of a declared asset. **Do not ship.** The report says exactly what and why. |
+| ⛔ **BLOCKED** | One or more Critical or High findings are open, Red demonstrated a breach of a declared asset, or a control Blue tested does not hold. **Do not ship.** The report says exactly what and why. |
 
 There is no partial credit. The grade is the **floor** of the panel, so one bad finding
 stands no matter how clean the other four lanes were. You get the answer either way — a
@@ -95,7 +95,7 @@ report, not an appendix.
 | | |
 |---|---|
 | 🔴 Red | The attacker — tries to seize, destroy, or alter the declared assets (credentials, personal or payment data, funds, control, availability — whatever your software must protect), by any path. Answers **yes or no, per crown jewel**: BREACH DEMONSTRATED or NO BREACH DEMONSTRATED, and one breach is an automatic ⛔ BLOCKED. Attacks the software, not the machine: a missing firewall is not a finding. Reads no prior conclusions, so it inherits no one's blind spots. |
-| 🔵 Blue | The defender — proves every stated protection holds and is pinned by a test that fails if anyone breaks it. |
+| 🔵 Blue | The defender — takes every protection your software claims about itself and proves it holds *and* stays held: present, on every path that matters, effective, fail-closed, and pinned by a test Blue has watched go red when the control was broken. Answers **DEFENSES HOLD / DEFENSES HOLD WITH GAPS / DEFENSE BROKEN**, worst control wins. A control that does not hold is an automatic ⛔ BLOCKED; an unpinned one caps the grade at ⚠️ CONDITIONAL. |
 | 🟠 Orange | The critical-logic specialist — the logic a wrong byte breaks irrecoverably: cryptographic math, money and authorization arithmetic, session semantics — including what changed in every dependency since the last audit. |
 | 🟤 Copper | The edge specialist — everything between the software and the edges of the system: browsers and clients, devices and drivers, transports and frozen binaries. |
 | 🟡 Amber | The supply-chain inspector — how the artifact is born: every dependency, build step, signature and download in the chain. |
@@ -118,6 +118,28 @@ party's own bug — is recorded as an exclusion, not a finding.
 **"NO BREACH DEMONSTRATED" is not a pass.** It means Red could not fail the audit,
 not that the software is good. The other four lanes can still hold the grade down on
 their own.
+
+### 🔵 Blue, in more detail
+
+**Blue audits the armor, not the attacker.** It starts from every protection your
+software claims about itself — in the README, the docs, the comments, docstrings,
+the configuration, and your audit plan — and publishes that list. A protection the
+software claims but Blue left off the list is itself a finding.
+
+**Every control faces five tests.** Is it present? Does it run on every path that
+touches the asset, not just the happy one? Does it actually stop what it claims to
+stop? When it errors, does it deny? And is it pinned?
+
+**"Pinned" means Blue broke it and watched the test go red.** A test that exists is
+not evidence; a test that can fail is. Blue does this in a disposable copy and
+reverts — never against real code, never in production. If the test stays green when
+the control is broken, the finding is *a control claimed to be tested that cannot
+fail*. If the suite cannot run at all, the control is **unpinned, not demonstrated** —
+a gap, never a pass.
+
+**A broken control is an automatic ⛔ BLOCKED. An unpinned one caps the grade at
+⚠️ CONDITIONAL.** Blue's verdict is the worst control on the table, never the
+average.
 
 ## The audit plan
 
@@ -233,7 +255,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 |---|---|
 | `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
 | `colorteam-auditor.md` | **Step three.** The complete drop-in runbook for the panel. |
-| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v1.5) and reproducible in any report using the format. |
+| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v1.6) and reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Phases, rubric, report shape, and the conversion re-checks; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |
 | `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report. |
@@ -247,7 +269,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 The framework is versioned, and **every version reference stays in sync**: the
 README version line, the PDF template's version stamp, and the changelog entry
 all carry the current release version at every release. (`COLOR-TEAM.md`'s
-definitions version — currently v1.5 — is deliberately independent: it changes
+definitions version — currently v1.6 — is deliberately independent: it changes
 only when the role definitions change, so published reports stay citable against
 the version they were written under.)
 

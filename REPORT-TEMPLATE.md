@@ -44,7 +44,9 @@ evidence and which tests pin each fix.]
 ## The panel
 
 **🔴 Red — [sub-verdict].** [2–4 sentences: what was attacked, what held, residuals with bounds.]
-**🔵 Blue — [sub-verdict].** [Controls verified, tests that pin them, coverage gaps.]
+**🔵 Blue — [sub-verdict].** [The claims inventory; for each control, present /
+reachable / effective / fail-closed, and what the break-and-watch showed. Name what is
+unpinned.]
 **🟠 Orange — [sub-verdict].** [Dependency deltas, vector results, maintenance obligations created.]
 **🟤 Copper — [sub-verdict].** [Transport/runtime evidence, device-surface notes.]
 **🟡 Amber — [sub-verdict].** [Pipeline claims verified, the one thing that matters most here.]
