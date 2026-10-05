@@ -125,7 +125,12 @@ gives each specialist the full text of its own definition as its charter.
 5. *Anything a lane leaves unproven holds the grade at CONDITIONAL.* An unpinned
    control, an invariant that is **LOGIC UNPROVEN**, an edge that is **EDGE TRUST
    UNPROVEN**, a chain link that is **UNVERIFIED**: CLEARED requires every claim to be
-   proven and pinned, and ambiguity is never resolved in the software's favor.
+   proven and pinned, and ambiguity is never resolved in the software's favor. The cap
+   applies when the unproven thing is on the path to a declared asset. Something that
+   provably cannot reach one — a dev-only tool that never runs in the build,
+   documentation, an example in a separate directory, with the exclusion demonstrated —
+   is a coverage note and does not cap. What this does not soften: an artifact whose
+   build cannot be reproduced is on that path by definition, and still caps.
 6. *The grade is computed, not calibrated.* White applies the rubric and the rulings to
    the surviving sub-verdicts and shows the arithmetic — which lane set the floor and
    which ruling bound it. The referee never raises or lowers a lane's sub-verdict, and a

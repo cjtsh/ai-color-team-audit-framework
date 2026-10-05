@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.0.1 — 2026-10-05
+
+### The CONDITIONAL cap is tied to what actually ships
+
+Ruling 5 said anything a lane leaves unproven holds the grade at ⚠️ CONDITIONAL. That is
+right for what reaches users, and noisy for what cannot: a documentation-only dependency,
+an example in its own directory, or a dev tool that never runs in the build would cap a
+whole audit over something no user can be affected by. A grade that everything gets stops
+carrying information.
+
+The cap now applies when the unproven thing is **on the path to a declared asset**. A
+thing that provably cannot reach one — with the exclusion demonstrated rather than
+asserted — is recorded in the coverage section and does not cap.
+
+What this does not soften: **an artifact whose build cannot be reproduced is on that path
+by definition, and still caps.** If you cannot reproduce what you shipped, no one can tell
+you what is in it, and "we could not check" is not "it is clean." CLEARED has to mean
+verified, or it means nothing.
+
+No definitions changed; `COLOR-TEAM.md` remains v2.0.
+
 ## 1.0.0 — 2026-10-05
 
 ### White gets a mechanical gate, and the panel is complete

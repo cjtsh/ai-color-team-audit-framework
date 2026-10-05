@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.0.0 · MIT License
+Version 1.0.1 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -67,7 +67,7 @@ locked **before** the audit — not a score, and never an average.
 | | |
 |---|---|
 | ✅ **CLEARED** | All five conditions hold: no open Critical or High; every earlier finding verified fixed, or closed by your own dated acceptance; the stated defenses held and are now pinned by regression tests; the suites passed and the artifacts were re-verified; no new Critical or High appeared. |
-| ⚠️ **CONDITIONAL** | Nothing Critical or High, but there are open Mediums beyond what you accepted, or a fix that was claimed and not verified. Honest reading: good software with work remaining. The report names the shortest path to CLEARED. |
+| ⚠️ **CONDITIONAL** | Nothing Critical or High, but there are open Mediums beyond what you accepted, a fix that was claimed and not verified, or something a lane could not establish — an unpinned control, unproven logic, unproven edge trust, an unverifiable chain link. That last clause has a limit: it applies to what can reach your shipped software. Something that provably cannot — a docs-only tool, an example nothing deploys — is written down as coverage instead. Honest reading: good software with work remaining. The report names the shortest path to CLEARED. |
 | ⛔ **BLOCKED** | One or more Critical or High findings are open — including any proven lane failure: Red demonstrated a breach, Blue found a claimed control that does not hold, Orange proved an invariant wrong, Copper proved an edge the core trusts can deceive, hang, or corrupt it, or Amber showed code you never reviewed can reach a released build without a reviewable bump. **Do not ship.** The report says exactly what and why. |
 
 There is no partial credit. The grade is the **floor** of the panel, so one bad finding
