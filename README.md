@@ -215,7 +215,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 |---|---|
 | `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
 | `colorteam-auditor.md` | **Step three.** The complete drop-in runbook for the panel. |
-| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v1.3) and reproducible in any report using the format. |
+| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v1.4) and reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Phases, rubric, report shape, and the conversion re-checks; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |
 | `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report. |
@@ -229,7 +229,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 The framework is versioned, and **every version reference stays in sync**: the
 README version line, the PDF template's version stamp, and the changelog entry
 all carry the current release version at every release. (`COLOR-TEAM.md`'s
-definitions version — currently v1.3 — is deliberately independent: it changes
+definitions version — currently v1.4 — is deliberately independent: it changes
 only when the role definitions change, so published reports stay citable against
 the version they were written under.)
 

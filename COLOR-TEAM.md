@@ -1,4 +1,4 @@
-# The Color Team — definitions (v1.3)
+# The Color Team — definitions (v1.4)
 
 A security review performed by a named panel of specialist agents, each with one
 lens and one job. Two of the colors are borrowed from established security
@@ -30,25 +30,65 @@ rewrites what a color hunts is not a Color Team audit, and must not cite this pa
 
 ## 🔴 RED — the attacker
 
+**Scope.** The repository, everything it ships, and every declared dependency. Red
+attacks *the software*, not the machine it runs on. A missing firewall, an unpatched
+operating system, a careless owner, or a third party's own flaws are not findings —
+they are outside the artifact.
+
+**The hop rule.** Every hop of a Red path must be inside the repository or a declared
+dependency. A path that needs a hop outside is out of scope: record it as an
+exclusion, with the missing hop named. It is neither a breach nor a finding.
+
 **Role:** offense. Given the software and a hostile world — malicious inputs,
 counterfeit clients and devices, hostile configuration and files, untrusted local
 processes, compromised dependencies, lying network services — find any path to the
-declared assets: stealing them, destroying them, altering them, or acting on the
-user's behalf without authorization. Hunt the full attack taxonomy against the
-declaration's domain: injection of every kind (SQL, command, path, template,
-deserialization), authentication bypass, privilege escalation, logic abuse, race
-conditions, spoofing, and memory-safety where the stack exposes it. Attack the
-newest code hardest: fixes are changes, and changes are where new holes live.
+declared assets. Work the whole attack taxonomy — injection of every kind (SQL,
+command, path, template, deserialization), authentication bypass, privilege
+escalation, logic abuse, race conditions, spoofing, and memory-safety where the stack
+exposes it — against the enumerated surface, never as a checklist. The taxonomy
+says how to attack; the surface says what to attack; the hop rule says where to stop.
+
+**Win conditions.** Red wins by demonstrating any one of these against a declared
+asset:
+
+1. **Read it** — secret material the software holds reaches someone who should not
+   have it.
+2. **Change it** — data or state is altered without authorization.
+3. **Destroy it** — data or availability is lost.
+4. **Act as the owner** — the software does something on their behalf that they did
+   not authorize.
+5. **Escape the process** — code runs with more authority than the software should
+   have.
+
+The declaration names the assets. These five say what winning means.
+
+**Surface first.** Before attacking, Red enumerates every input the artifact accepts
+and every trust boundary it crosses, and puts the list in the report. An input that
+exists and is not on that list is itself a finding.
+
+**Demonstrated means** an exact path: from an input Red can supply, to a named
+declared asset, with the code at every hop, and no hop outside the repository. A
+plausible chain Red could not close is logged as an attempt with its missing hop
+named. It is not a breach, and it does not fill the verdict.
 
 **Method:** adversarial code reading, hostile-input construction, attack-path
-tracing, abuse of every input the software accepts.
+tracing, abuse of every input the software accepts. Attack the newest code hardest:
+fixes are changes, and changes are where new holes live. Red attacks the repository's
+*use* of a dependency — the wrong call, the unvalidated argument, the trusted return
+value. A dependency's own known-bad version is Amber's lane; what changed inside it
+is Orange's.
 
 **Deliberately does not read** prior audit conclusions, so it cannot inherit the
 lead auditor's blind spots.
 
-**Output:** an attack log (attempt → outcome), then findings.
+**Output:** the surface enumeration, then an attack log in which every attempt's
+outcome is one of *demonstrated*, *not demonstrated*, *blocked by a control*, or *out
+of scope*; then findings.
 
-**Sub-verdict:** *No breach found* / *Breach found* (with the exact path).
+**Sub-verdict:** **BREACH DEMONSTRATED** / **NO BREACH DEMONSTRATED** — stated once
+for the audit and itemized per declared asset, so the owner sees which crown jewel
+fell and which held. One breach fails the whole sub-verdict; five clean assets do not
+offset it.
 
 ## 🔵 BLUE — the defender
 
@@ -170,7 +210,7 @@ the other sections are.
 
 ---
 
-*Color Team definitions v1.3 — part of the AI Color Team Audit Framework (this
+*Color Team definitions v1.4 — part of the AI Color Team Audit Framework (this
 repository). v1.1 generalizes the founding wording (written for a Bitcoin wallet)
 to the Asset Declaration model; role semantics are unchanged from v1. v1.2 renames
 the report grades from Green/Yellow/Red to **CLEARED / CONDITIONAL / BLOCKED**,
@@ -178,7 +218,10 @@ because the old names reused two of the panel's own colors — 🔴 meant both "
 the attacker" and "the worst grade." v1.3 makes this page the single home of the six
 agent definitions, which had been written out twice — here, and again as "charter
 sketches" in PANEL-DESIGN.md — and says outright that the definitions themselves are
-the standard, not a starting point. The outcomes, the rubric, and the floor rule are
+the standard, not a starting point. v1.4 tightens Red: the audit attacks the software
+and not the machine it runs on, the hop rule makes the repository boundary explicit,
+the five win conditions are named, demonstration is defined, and Red's verdict is
+itemized per declared asset. The outcomes, the rubric, and the floor rule are
 all unchanged; reports published before v1.2 used the old grade names. Red and blue
 are established security-industry terms; orange, copper, amber, and white were
 introduced by the framework's first runs (Bitcoin Easy Signer audits, October 2026).
