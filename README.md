@@ -11,6 +11,18 @@ with a grade rubric locked in writing **before** the audit begins, applied
 mechanically after, and a publication gate nothing unfair survives. The whole
 method ships as drop-in agent files: paste them into any AI coding tool and run.
 
+## Start here
+
+One agent, one file. Nothing else to hand over.
+
+| Step | Hand the AI this file | You get back |
+|---|---|---|
+| **1. The survey** — on a *different* model | **[`SURVEYOR.md`](SURVEYOR.md)** | `<repo>-audit-plan.md` |
+| **2. The audit** — the five-agent panel | **[`AGENT.md`](AGENT.md)** | the graded report |
+
+`SURVEYOR.md` contains its own answer format, so the surveyor needs no second file.
+You confirm the plan in between — that is the one human moment the framework requires.
+
 ## How it works — two steps, two sets of eyes
 
 ```mermaid
@@ -19,7 +31,7 @@ flowchart TD
     subgraph STEP1["Step 1 — the survey"]
         B["Agent one, a different model<br/>reads the repo and writes the audit plan"]
     end
-    B --> C["repo-survey.md<br/>the Asset Declaration + the scope"]
+    B --> C["repo-audit-plan.md<br/>the Asset Declaration + the scope"]
     C --> D{"You confirm it"}
     D -->|"correct it"| B
     D -->|"approved"| E
@@ -35,11 +47,8 @@ against it, the same blind spot sits on both sides of the handoff: the panel wor
 faithfully from an incomplete scope, finds nothing wrong with what it can see, and
 grades green on software nobody examined.
 
-| You are | Read |
-|---|---|
-| Agent one, running the survey | **[SURVEYOR.md](SURVEYOR.md)** |
-| The panel, running the audit | **[AGENT.md](AGENT.md)** |
-| The owner, confirming the plan | `repo-survey.md`, written in the format of **[SURVEY-TEMPLATE.md](SURVEY-TEMPLATE.md)** |
+**The handoff is one file.** The surveyor writes `<repo>-audit-plan.md`; you read
+and confirm it; the panel audits against it. Nothing else changes hands.
 
 ## The panel
 
@@ -54,9 +63,10 @@ grades green on software nobody examined.
 
 ## The audit plan
 
-The plan is written by the **survey** — one agent, a different model — and you
-confirm it before anyone audits. Its **Asset Declaration** is the crown jewels,
-ranked: what must not be stolen, destroyed, altered, or done without authorization.
+The plan is written by the **survey** — one agent, a different model — saved as
+`<repo>-audit-plan.md`, and confirmed by you before anyone audits. Its **Asset
+Declaration** is the crown jewels, ranked: what must not be stolen, destroyed,
+altered, or done without authorization.
 A wallet declares funds, keys, and the operator's decision. A web service declares
 credentials, personal and payment data, and session control. An embedded controller
 declares safety and availability. Every charter reads from that declaration, and the
@@ -81,31 +91,37 @@ are the standard.
    *different* model than the one that runs the panel. The surveyor decides what
    is in scope: if one model sets the scope and then audits it, the same blind
    spot sits on both sides of the handoff, and the audit grades green on software
-   nobody examined. Only one model available? Write the plan by hand from
-   `SURVEY-TEMPLATE.md`.
+   nobody examined. Only one model available? Copy the plan skeleton out of
+   `SURVEYOR.md` and fill it in by hand.
 
 ## Quick start
 
-**Step 1 — the survey.** Give **[SURVEYOR.md](SURVEYOR.md)** and your repository to
-an AI coding tool running a *different* model than the one that will run the audit,
-and say *"conduct a survey."* It reads the code, works out what is at stake and
-where, and writes **`repo-survey.md`** — the audit plan. It does not audit, does not
-grade, and does not invent the checking method; it reports what matters and where,
-and writes down what it did **not** examine.
+**Step 1 — the survey.** Attach **[`SURVEYOR.md`](SURVEYOR.md)** to your repository,
+hand it to an AI coding tool running a *different* model than the one that will run
+the audit, and say exactly this:
+
+> Conduct a survey of this repository.
+
+That is the whole prompt. The agent reads the code, works out what is at stake and
+where, and writes **`<repo>-audit-plan.md`** — the audit plan. It does not audit,
+does not grade, and does not invent the checking method; it reports what matters and
+where, and writes down what it did **not** examine.
 
 **Step 2 — you confirm.** Read the plan. Correct anything only you know, change the
 ranking if your priorities differ, and check the exclusions. Five minutes — and the
 one human moment the framework insists on. Once you approve it, it locks.
 
-**Step 3 — the audit.** Point **[AGENT.md](AGENT.md)** at the repository and the
-confirmed plan. The agent runs the phases: baseline → the five-agent wave → the
-referee → the graded report. Read **[PANEL-DESIGN.md](PANEL-DESIGN.md)** to see (or
-tailor) the charters and rubric; **[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** shows
-what you get; **[templates/pdf/](templates/pdf/)** generates the typeset edition.
+**Step 3 — the audit.** Hand **[`AGENT.md`](AGENT.md)** to a new agent, along with
+your repository and the confirmed `<repo>-audit-plan.md`. It runs the phases:
+baseline → the five-agent wave → the referee → the graded report. Read
+**[PANEL-DESIGN.md](PANEL-DESIGN.md)** to see (or tailor) the charters and rubric;
+**[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** shows what you get;
+**[templates/pdf/](templates/pdf/)** generates the typeset edition.
 
-Only one model available? Write `repo-survey.md` by hand from
-**[SURVEY-TEMPLATE.md](SURVEY-TEMPLATE.md)**. The surveyor is a convenience; never
-letting the audit model declare its own scope is the rule.
+Only one model available? Copy the plan skeleton out of
+**[`SURVEYOR.md`](SURVEYOR.md)** and write `<repo>-audit-plan.md` yourself. The
+surveyor is a convenience; never letting the audit model declare its own scope is
+the rule.
 
 Requires an AI coding tool that can spawn parallel sub-agents. If yours runs only
 one agent, run the colors sequentially in separate sessions — you lose structural
@@ -151,8 +167,7 @@ tool in one day, each carrying the grade its evidence supported. Full stories in
 
 | File | What it is |
 |---|---|
-| `SURVEYOR.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes the audit plan. Never the model that runs the panel. |
-| `SURVEY-TEMPLATE.md` | The survey form. Fill it in, save it as `repo-survey.md`, and it becomes the audit plan: the audit's single input. |
+| `SURVEYOR.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
 | `AGENT.md` | **Step two.** The complete drop-in runbook for the panel. |
 | `COLOR-TEAM.md` | The color definitions, versioned (v1.1) — reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Charters, phases, rubric, and the report shape; adapt to your target. |

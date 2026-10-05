@@ -16,7 +16,7 @@ A software security audit performed by AI agents in two steps:
 
 1. **The survey — agent one** (its runbook is `SURVEYOR.md`). A *different* model —
    ideally from a different vendor — reads the software before the audit and writes
-   **the audit plan** (`<repo>-survey.md`): the Asset Declaration (what is at stake,
+   **the audit plan** (`<repo>-audit-plan.md`): the Asset Declaration (what is at stake,
    ranked) and the scope (what is in, what is out and why, and what was not
    examined). The owner confirms it in one short sitting. All of this happens before
    this runbook is opened at all.
@@ -33,9 +33,9 @@ handoff: the panel works faithfully from an incomplete scope, finds nothing wron
 with what it can see, and grades green on software nobody actually examined.
 Different models — ideally from different vendors — is the only thing that breaks
 that circuit. If you have only one model, do not run the surveyor at all: the owner
-writes the plan by hand from `SURVEY-TEMPLATE.md`. The one human moment that never
-goes away: **the owner confirms the plan** — an unconfirmed plan is unverified
-scope, and a narrowed plan is a steered audit.
+copies the plan skeleton out of `SURVEYOR.md` and writes the plan by hand. The one
+human moment that never goes away: **the owner confirms the plan** — an unconfirmed
+plan is unverified scope, and a narrowed plan is a steered audit.
 
 The defining rules:
 
@@ -66,7 +66,7 @@ Before dispatching anyone:
 
 1. Identify the exact target of evaluation: repository, tag or commit, published
    artifacts. Clone fresh; never audit a dirty working tree.
-2. **Verify the audit plan** (`<repo>-survey.md`). It must already exist, be
+2. **Verify the audit plan** (`<repo>-audit-plan.md`). It must already exist, be
    owner-confirmed, and name the revision it surveyed — that is the output of step
    one (`SURVEYOR.md`), and **you never write it yourself**. If there is no
    confirmed plan, stop and send the owner back to step one: do not survey your own

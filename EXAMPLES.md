@@ -78,7 +78,7 @@ framework can do all three, its work is done.
 ![The Green report — cover](examples/v0.6.4-cover.png)
 ![The Green report — the grade page](examples/v0.6.4-grade.png)
 
-## What a survey looks like
+## What an audit plan looks like
 
 *Illustrative, not a real engagement.* The survey runs **before** the audit: one
 agent, on a different model, reads the repository and writes the audit plan. This
