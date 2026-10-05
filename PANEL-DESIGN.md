@@ -107,6 +107,12 @@ gives each specialist the full text of its own definition as its charter.
    invent owner acceptance.
 3. *The grade is the floor.* No averaging, no trading a strong section against a
    bad one.
+4. *A demonstrated breach is an automatic block.* If Red reports **BREACH
+   DEMONSTRATED** against any declared asset, the grade is ⏔ BLOCKED — no
+   severity calibration, no rubric judgment, no weighing it against clean lanes.
+   Red's win conditions (`COLOR-TEAM.md`) define what a breach is; if none is
+   demonstrated, the grade is decided by the rest of the panel alone, and Red
+   adds nothing to it.
 
 ## Report shape — three deliverables, three audiences
 

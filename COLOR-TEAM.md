@@ -1,4 +1,4 @@
-# The Color Team — definitions (v1.4)
+# The Color Team — definitions (v1.5)
 
 A security review performed by a named panel of specialist agents, each with one
 lens and one job. Two of the colors are borrowed from established security
@@ -17,6 +17,13 @@ sub-verdict — are what a Color Team audit *is*. The lanes adapt to the target 
 service's Orange is not a wallet's Orange); the colors never do. An audit that
 rewrites what a color hunts is not a Color Team audit, and must not cite this page.
 
+**The panel's scope is the repository.** Every agent works on the repository, what it
+ships, and its declared dependencies — the software, not the machine it runs on. A
+missing firewall, an unpatched operating system, a careless owner, or a third party's
+own flaws are outside the artifact and are not findings. **The hop rule:** every hop of
+any claimed path must be inside that boundary, and a chain that needs a hop outside is
+recorded as an exclusion, with the missing hop named.
+
 | Color | Agent | In one sentence |
 |---|---|---|
 | 🔴 Red | The attacker | Tries to seize, destroy, or alter the declared assets — credentials, personal or payment data, funds, control, availability, whatever was declared — by any path. |
@@ -30,14 +37,11 @@ rewrites what a color hunts is not a Color Team audit, and must not cite this pa
 
 ## 🔴 RED — the attacker
 
-**Scope.** The repository, everything it ships, and every declared dependency. Red
-attacks *the software*, not the machine it runs on. A missing firewall, an unpatched
-operating system, a careless owner, or a third party's own flaws are not findings —
-they are outside the artifact.
-
-**The hop rule.** Every hop of a Red path must be inside the repository or a declared
-dependency. A path that needs a hop outside is out of scope: record it as an
-exclusion, with the missing hop named. It is neither a breach nor a finding.
+**Scope.** Red attacks *the software*, not the machine it runs on — the boundary is
+the panel's, above. Red is the only color that attacks, so it is the only one that
+builds paths, and the only one where a hop outside the boundary can look like a
+breach. Record such a path as an exclusion with the missing hop named: neither a
+breach nor a finding.
 
 **Role:** offense. Given the software and a hostile world — malicious inputs,
 counterfeit clients and devices, hostile configuration and files, untrusted local
@@ -210,7 +214,7 @@ the other sections are.
 
 ---
 
-*Color Team definitions v1.4 — part of the AI Color Team Audit Framework (this
+*Color Team definitions v1.5 — part of the AI Color Team Audit Framework (this
 repository). v1.1 generalizes the founding wording (written for a Bitcoin wallet)
 to the Asset Declaration model; role semantics are unchanged from v1. v1.2 renames
 the report grades from Green/Yellow/Red to **CLEARED / CONDITIONAL / BLOCKED**,
@@ -221,7 +225,10 @@ sketches" in PANEL-DESIGN.md — and says outright that the definitions themselv
 the standard, not a starting point. v1.4 tightens Red: the audit attacks the software
 and not the machine it runs on, the hop rule makes the repository boundary explicit,
 the five win conditions are named, demonstration is defined, and Red's verdict is
-itemized per declared asset. The outcomes, the rubric, and the floor rule are
+itemized per declared asset. v1.5 states that scope — the repository and its
+declared dependencies, not the machine it runs on — once, in the preamble, where
+all six colors read it, and leaves Red only the attack-specific consequences. The
+outcomes, the rubric, and the floor rule are
 all unchanged; reports published before v1.2 used the old grade names. Red and blue
 are established security-industry terms; orange, copper, amber, and white were
 introduced by the framework's first runs (Bitcoin Easy Signer audits, October 2026).

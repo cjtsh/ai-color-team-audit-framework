@@ -68,7 +68,7 @@ locked **before** the audit — not a score, and never an average.
 |---|---|
 | ✅ **CLEARED** | All five conditions hold: no open Critical or High; every earlier finding verified fixed, or closed by your own dated acceptance; the stated defenses held and are now pinned by regression tests; the suites passed and the artifacts were re-verified; no new Critical or High appeared. |
 | ⚠️ **CONDITIONAL** | Nothing Critical or High, but there are open Mediums beyond what you accepted, or a fix that was claimed and not verified. Honest reading: good software with work remaining. The report names the shortest path to CLEARED. |
-| ⛔ **BLOCKED** | One or more Critical or High findings are open. **Do not ship.** The report says exactly what and why. |
+| ⛔ **BLOCKED** | One or more Critical or High findings are open, or Red demonstrated a breach of a declared asset. **Do not ship.** The report says exactly what and why. |
 
 There is no partial credit. The grade is the **floor** of the panel, so one bad finding
 stands no matter how clean the other four lanes were. You get the answer either way — a
@@ -94,12 +94,30 @@ report, not an appendix.
 
 | | |
 |---|---|
-| 🔴 Red | The attacker — tries to seize, destroy, or alter the declared assets (credentials, personal or payment data, funds, control, availability — whatever your software must protect), by any path. Reads no prior conclusions, so it inherits no one's blind spots. |
+| 🔴 Red | The attacker — tries to seize, destroy, or alter the declared assets (credentials, personal or payment data, funds, control, availability — whatever your software must protect), by any path. Answers **yes or no, per crown jewel**: BREACH DEMONSTRATED or NO BREACH DEMONSTRATED, and one breach is an automatic ⛔ BLOCKED. Attacks the software, not the machine: a missing firewall is not a finding. Reads no prior conclusions, so it inherits no one's blind spots. |
 | 🔵 Blue | The defender — proves every stated protection holds and is pinned by a test that fails if anyone breaks it. |
 | 🟠 Orange | The critical-logic specialist — the logic a wrong byte breaks irrecoverably: cryptographic math, money and authorization arithmetic, session semantics — including what changed in every dependency since the last audit. |
 | 🟤 Copper | The edge specialist — everything between the software and the edges of the system: browsers and clients, devices and drivers, transports and frozen binaries. |
 | 🟡 Amber | The supply-chain inspector — how the artifact is born: every dependency, build step, signature and download in the chain. |
 | ⚪ White | The referee — sees everything, re-derives every load-bearing claim personally, and gates what gets published. |
+
+### 🔴 Red, in more detail
+
+**Red is the only color that attacks, and the only one whose answer is yes or no.** It
+reads your code adversarially, lists every input the software accepts and every trust
+boundary it crosses, and tries to drive a hostile input all the way to a declared
+asset. It answers once per crown jewel — **BREACH DEMONSTRATED** or **NO BREACH
+DEMONSTRATED** — with the exact path and the code at every hop.
+
+**It attacks the software, not the machine.** No host or network scanning, no attacks
+against a running system, no operating-system or hardware testing, and no auditing a
+dependency's internals. Your repository and its declared dependencies are the whole
+world. A path that needs a hop outside — an unpatched OS, a missing firewall, a third
+party's own bug — is recorded as an exclusion, not a finding.
+
+**"NO BREACH DEMONSTRATED" is not a pass.** It means Red could not fail the audit,
+not that the software is good. The other four lanes can still hold the grade down on
+their own.
 
 ## The audit plan
 
@@ -215,7 +233,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 |---|---|
 | `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
 | `colorteam-auditor.md` | **Step three.** The complete drop-in runbook for the panel. |
-| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v1.4) and reproducible in any report using the format. |
+| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v1.5) and reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Phases, rubric, report shape, and the conversion re-checks; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |
 | `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report. |
@@ -229,7 +247,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 The framework is versioned, and **every version reference stays in sync**: the
 README version line, the PDF template's version stamp, and the changelog entry
 all carry the current release version at every release. (`COLOR-TEAM.md`'s
-definitions version — currently v1.4 — is deliberately independent: it changes
+definitions version — currently v1.5 — is deliberately independent: it changes
 only when the role definitions change, so published reports stay citable against
 the version they were written under.)
 
