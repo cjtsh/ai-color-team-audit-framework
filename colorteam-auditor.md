@@ -24,9 +24,9 @@ A software security audit performed by AI agents in five steps:
    at stake, ranked) and the scope (what is in, what is out and why, and what was not
    examined). All of this happens before this runbook is opened at all.
 2. **The owner signs the plan.** No AI. The owner reads it, corrects anything only
-   they know, and signs the locked-scope block with an identity and a date. Unsigned it is
-   unverified scope; once signed it locks, the auditor hashes it before the first
-   specialist runs, and the audit proceeds against it.
+   they know, and signs **section 9, at the bottom of the file**, with an identity and a
+   date. Unsigned it is unverified scope; once signed it locks, the auditor hashes it
+   before the first specialist runs, and the audit proceeds against it.
 3. **The panel — six agents.** Five specialists with one lens each, dispatched
    simultaneously and independently, plus a referee that re-derives every load-bearing
    claim and computes the grade from the rubric.
@@ -100,6 +100,9 @@ Before dispatching anyone:
    signed plan, stop and send the owner back to step one: do not survey your own
    audit. If the plan names a different revision than the one you are auditing,
    stop and have it re-surveyed — a plan for another commit is unverified scope.
+   **Read section 9 — the owner's review and sign-off — before anything else.** It
+   records what the owner changed and why; a correction the owner has already explained
+   is not a finding, and re-raising it wastes a lane.
    **The audit does not start without an owner-signed plan for this revision** —
    every charter, severity call, and report question is built from it, and it is
    locked with the rubric: it does not change after the audit begins.
@@ -114,7 +117,7 @@ Before dispatching anyone:
    |---|---|
    | **Plan file** | `<repo>-colorteam-audit-plan-<cycle>.md` |
    | **Plan SHA-256 at the start of the audit** | `<H_start>` |
-   | **Owner sign-off** | `<identity>, <YYYY-MM-DD>` |
+   | **Owner sign-off** | `<identity>, <YYYY-MM-DD> — the plan's last section` |
    | **Target revision** | `<tag / commit>` |
    | **Surveyor** | `<harness> · session <id pulled from the environment, or "not exposed by the harness"> · model <declared, or "not exposed by the harness">` |
    | **Auditor** | `<harness> · session <id pulled from the environment, or "not exposed by the harness"> · model <declared, or "not exposed by the harness">` |

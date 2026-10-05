@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.3.2 — 2026-10-05
+
+### The plan reads like a document: scope at the top, signature at the bottom
+
+The owner's sign-off sat at the end of section 0 — which is to say near the **top** of the
+plan, above the assets, the unforgivable acts, and everything else. A person told to "read
+the plan and sign it" looks at the bottom, finds nothing there, and concludes there must be
+a second file. There isn't. That misreading was the framework's fault, not the reader's,
+and it took two releases to close.
+
+- **The owner's sign-off moved to the bottom of the file**, as its own final section —
+  **`## 9. Owner review and sign-off`**. The scope stays in section 0 where it belongs.
+- **Section 9 is the owner's section.** It carries the corrections-and-notes list, answers
+  to the surveyor's questions, and the two-line signature. Corrections used to be silent
+  edits to the surveyor's text; now every change is recorded, because "the surveyor said X
+  and the owner said Y" is often the most useful line in the plan.
+- The diagram's step 2 says it plainly, and the quick start says **one file**.
+- The auditor reads section 9 during Phase 0 — a correction the owner has already
+  explained is not a finding.
+
+No definitions changed — `COLOR-TEAM.md` stays v2.4.
+
 ## 1.3.1 — 2026-10-05
 
 ### The quick start now says which file you sign

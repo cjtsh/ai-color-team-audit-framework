@@ -47,7 +47,10 @@ questions.
 **The plan opens with a locked-scope block (section 0), written out in full and not by
 reference** — a pointer to this page freezes nothing. It carries the declared assets, the
 definitions in force, the rubric as adapted to this target, the exact revision, and what
-is excluded. The owner signs it with an identity and a date, and that signature is the lock.
+is excluded. **The plan ends with the owner's review and sign-off (section 9)**, where
+the owner records what they changed and why and signs with an identity and a date. Reading
+comes between the two, and the signature covers the whole document; that signature is the
+lock.
 
 **The signature identifies; it does not publish a person.** A handle, a role, an
 organization, or a named team is a complete sign-off, and all four are better than a
@@ -64,8 +67,9 @@ audit runs against. That is the whole of what the owner agrees to.
 
 **How it is produced (two agents, five steps):** a Surveyor agent (`colorteam-surveyor.md`)
 reads the repository and writes the plan from what the code actually does; the owner
-corrects anything only they know and signs the locked-scope block; the signed
-file locks. **Phase 0 does not produce it — Phase 0 verifies** that it exists, is
+corrects anything only they know, records the corrections in section 9, and signs at the
+end; the signed file locks. **Phase 0 does not produce it — Phase 0 verifies** that it
+exists, is
 owner-signed, and names the revision being audited.
 
 **And the lock leaves a fingerprint.** Before the first specialist is dispatched, the

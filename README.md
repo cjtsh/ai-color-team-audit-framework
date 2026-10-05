@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.3.1 · MIT License
+Version 1.3.2 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -18,7 +18,7 @@ collides and you can always tell which cycle a file belongs to:
 
 | Artifact | Name | Written by |
 |---|---|---|
-| The audit plan | `<repo>-colorteam-audit-plan-<cycle>.md` | the surveyor — **you sign this** (section 0, Locked scope) |
+| The audit plan | `<repo>-colorteam-audit-plan-<cycle>.md` | the surveyor — **you review and sign this**, at the end (section 9) |
 | The scope lock | `<repo>-colorteam-audit-lock-<cycle>.md` | the auditor, before the first specialist runs — **you never sign this**; it is the signed plan's fingerprint |
 | The report | `<repo>-colorteam-audit-report-<cycle>.md` | the auditor, gated by the referee |
 | The cycle index | `<repo>-colorteam-audit-index.md` | the auditor, one row appended each cycle — never overwritten |
@@ -52,8 +52,8 @@ that name.
 
   STEP 2 - YOU REVIEW                        no AI involved
   -------------------
-  open XYZ-colorteam-audit-plan-v0.6.4.md, correct what only you know, and
-  sign section 0 — the Locked scope. That signature locks it.
+  open XYZ-colorteam-audit-plan-v0.6.4.md. Read it, comment in it, correct it.
+  Then sign the last section — Owner review and sign-off. That signature locks it.
 
                  |
                  v
@@ -149,7 +149,7 @@ model than the one that will run the audit. Paste this:
 
 ```
 Read this runbook and follow it exactly:
-https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.3.1/colorteam-surveyor.md
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.3.2/colorteam-surveyor.md
 
 Conduct a survey of this repository.
 ```
@@ -159,10 +159,12 @@ stake, where, and what it did **not** examine. It does not audit and does not gr
 
 ---
 
-**Step 2 — you sign off.** Five minutes, no AI. Open
-**`<repo>-colorteam-audit-plan-<cycle>.md`** — the one file the surveyor wrote — correct
-anything only you know, and sign **section 0, the Locked scope**, with an **identity** and
-the date. Any of these works, and **please don't use your personal name**:
+**Step 2 — you sign off.** Five minutes, no AI, and **one file**. Open
+**`<repo>-colorteam-audit-plan-<cycle>.md`** — the only file the surveyor wrote. Read it
+end to end; agents sometimes produce something that reads correctly and is still wrong, and
+this is the file the whole audit gets pinned to. Fix the body wherever it is wrong, write
+down what you changed and why in **section 9 at the bottom**, and sign there. Any of these
+works for the signature, and **please don't use your personal name**:
 
 - a handle — `@yourhandle`
 - a role — `Release Manager, v0.6.4 cycle`
@@ -170,7 +172,8 @@ the date. Any of these works, and **please don't use your personal name**:
 
 That signature is the only thing the framework asks of you, and it is what locks the
 scope. It accepts the scope and nothing else — the findings don't exist yet, so it isn't
-an endorsement of them.
+an endorsement of them. **Section 0 at the top is the scope; section 9 at the bottom is
+where you sign it.** Nothing in between needs anything from you but attention.
 
 **You sign the plan, not the lock.** `<repo>-colorteam-audit-lock-<cycle>.md` is a separate
 file that the auditor writes just before the panel starts. You never sign it and never
@@ -185,7 +188,7 @@ Paste this:
 
 ```
 Read this runbook and follow it exactly:
-https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.3.1/colorteam-auditor.md
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.3.2/colorteam-auditor.md
 
 The signed audit plan is in the repository root. Run the audit.
 ```

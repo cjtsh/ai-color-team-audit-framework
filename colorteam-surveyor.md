@@ -37,8 +37,9 @@ two halves:
 Section 0 writes out *in full, not by reference*: the declared assets, the unforgivable
 acts, the grade rubric as adapted to this target, the exact revision being audited, and
 the exclusions. A scope that can still move is not a scope, and "see `PANEL-DESIGN.md`"
-freezes nothing. The owner signs section 0 at step two; the auditor records the hash of
-the whole plan before the first specialist runs, and the referee re-checks it at the end.
+freezes nothing. The owner reviews the plan and signs it at the end of the file at step
+two; the auditor records the hash of the whole plan before the first specialist runs, and
+the referee re-checks it at the end.
 A mismatch voids the audit. **Where section 0 and the sections below it disagree, section
 0 governs** — it is the frozen statement, and the rest is the working detail it was built
 from.
@@ -112,8 +113,8 @@ a plan for a different commit is not a plan for this one.
 **Fill section 0 (Locked scope) last, and write it out in full** — the asset table, the
 unforgivable acts, the rubric as it applies here, the revision, and the exclusion and
 gap lists, copied into section 0 itself rather than pointed at from it. It is the part
-the owner signs and the part the auditor hashes, so it has to stand on its own: "see
-`PANEL-DESIGN.md`" freezes nothing, and neither does "see section 2."
+the audit is pinned to and the part the auditor hashes, so it has to stand on its own:
+"see `PANEL-DESIGN.md`" freezes nothing, and neither does "see section 2."
 
 **Stamp your own provenance before you stop.** Section 0 carries an **Agent provenance**
 block; fill it from the environment, not from memory — read your harness's session
@@ -121,9 +122,9 @@ identifier out of the environment and copy it verbatim with the variable name. I
 none, write `not exposed by the harness`. Never ask yourself which model you are; see the
 hard rules.
 
-Then stop and give it to the owner — name the file, and point them at **section 0, the
-Locked scope**, which is the part they sign. The lock file is written later by the auditor
-and is not theirs to touch.
+Then stop and give it to the owner — name the file, and point them at **section 9, Owner
+review and sign-off**, at the bottom: that is where they comment and sign. The lock file is
+written later by the auditor and is not theirs to touch.
 
 ## Hard rules
 
@@ -140,11 +141,12 @@ and is not theirs to touch.
   exposes one (copy it verbatim, with the variable name), and the model only if the
   operator told you — `not exposed by the harness` otherwise. A blank is a finding; a
   guess is a defect. The operator declares; you transcribe.
-- **The owner signs off, in writing.** The plan is not finished until the owner has read
-  it, corrected anything only they know, and signed the locked-scope block with an identity
-  and a date. An unsigned plan is unverified scope, and a narrowed plan is a steered audit.
-  Once signed the plan is frozen: nobody edits it, and an edit after the audit begins voids
-  the audit rather than adjusting it.
+- **The owner signs off, in writing, at the end of the file.** The plan is not finished
+  until the owner has read it, corrected anything only they know, and signed **section 9**
+  with an identity and a date. An unsigned plan is unverified scope, and a narrowed plan is
+  a steered audit. Once signed the plan is frozen: nobody edits it, and an edit after the
+  audit begins voids the audit rather than adjusting it. **Leave section 9 empty** — it is
+  the owner's, and anything you write there is you answering for them.
 
 ## The plan skeleton
 
@@ -159,8 +161,8 @@ notes are guidance — delete them as you go.
 <!-- Written out in full, not by reference: a pointer to another file freezes nothing.
      The auditor takes the SHA-256 of this whole file before the first specialist runs,
      and the referee re-checks it at the end. Equal hashes mean the scope never moved;
-     unequal means the audit is void. Fill this in last, then hand the plan to the owner
-     to sign. -->
+     unequal means the audit is void. Fill this in last. The owner reviews the plan and
+     signs at the end of the file — section 9. -->
 
 **Definitions in force:** Color Team definitions v<!-- x.y --> (`COLOR-TEAM.md`) — Red,
 Blue, Orange, Copper, Amber, White.
@@ -220,18 +222,9 @@ the audit is void.** Different identifiers establish different runs, not differe
 
 ---
 
-**Owner sign-off — step two, no AI.** The plan above is the scope this audit runs
-against, and no other version of it. Signing accepts that scope — nothing more, and
-nothing about the findings, which do not exist yet. Correct anything only you know
-before you sign; after it, the file is hashed and never edited.
-
-- **Signed:** <!-- identity — a handle, a role, an organization, or a team. Do NOT put a
-     personal name here; see PANEL-DESIGN.md, "The signature identifies". -->
-- **Date:** <!-- YYYY-MM-DD -->
-
-<!-- The auditor fills nothing in here. The audit lock is a separate file:
-     <repo>-colorteam-audit-lock-<cycle>.md — writing a hash into this file would change the
-     bytes it was taken over. -->
+<!-- The owner does not sign here. Their review and sign-off is the last section of this
+     file, section 9. Section 0 is the scope; the signature at the end covers the whole
+     document. -->
 
 ## 1. Target and revision
 
@@ -291,6 +284,38 @@ before you sign; after it, the file is hashed and never edited.
      which of two things is actually the more valuable. -->
 
 -
+
+## 9. Owner review and sign-off — step two, no AI
+
+<!-- This section is yours. Read the whole plan first: agents sometimes produce something
+     that reads correctly and is still wrong, and this file is what the entire audit is
+     pinned to. Correct the body above wherever it is simply wrong, and record every change
+     you make down here — a quiet edit loses the fact that you and the surveyor disagreed,
+     which is often the most useful thing on the page. Then sign the two lines at the end.
+     After that this file is hashed and never edited again. -->
+
+**Corrections and notes.** <!-- What you changed, and why; plus anything the panel should
+     know before it starts. One bullet per change, naming the section it touches. If you
+     changed nothing, write "none". -->
+
+-
+
+**Answers to the questions above.** <!-- Optional. Section 8 is what the surveyor could not
+     determine from the code alone. -->
+
+-
+
+**Sign-off.** <!-- The plan above — section 0 in particular — is the scope this audit
+     runs against, and no other version of it. Signing accepts that scope: nothing more,
+     and nothing about the findings, which do not exist yet. -->
+
+- **Signed:** <!-- identity — a handle, a role, an organization, or a team. Do NOT put a
+     personal name here; see PANEL-DESIGN.md, "The signature identifies". -->
+- **Date:** <!-- YYYY-MM-DD -->
+
+<!-- The auditor fills nothing in here. The audit lock is a separate file:
+     <repo>-colorteam-audit-lock-<cycle>.md — writing a hash into this file would change the
+     bytes it was taken over. -->
 ```
 
 ## When the surveyor is skipped

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""AI Color Team Audit Framework — typeset report generator (template v1.3.1).
+"""AI Color Team Audit Framework — typeset report generator (template v1.3.2).
 
 Produce a formal A4 PDF body from your completed report content, then merge a
 single-page A4 cover in front (see merge_cover.py). Edit everything marked
