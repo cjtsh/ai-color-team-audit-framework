@@ -11,19 +11,6 @@ with a grade rubric locked in writing **before** the audit begins, applied
 mechanically after, and a publication gate nothing unfair survives. The whole
 method ships as drop-in agent files: paste them into any AI coding tool and run.
 
-## Start here
-
-One agent, one file. Nothing else to hand over.
-
-| Step | Hand the AI this file | You get back |
-|---|---|---|
-| **1. The survey** — on a *different* model | **[`colorteam-surveyor.md`](colorteam-surveyor.md)** | `<repo>-colorteam-audit-plan.md` |
-| **2. You review and confirm** | nothing — no AI involved | `<repo>-colorteam-audit-plan.md`, confirmed |
-| **3. The audit** — the five-agent panel | **[`colorteam-auditor.md`](colorteam-auditor.md)** | the graded report |
-
-`colorteam-surveyor.md` contains its own answer format, so the surveyor needs no second file.
-You confirm the plan in between — that is the one human moment the framework requires.
-
 **Never copy these runbooks into your repository.** Hand them to the agent — attach the
 file, or paste its contents. The only file that lands in your repo is
 `<repo>-colorteam-audit-plan.md`, and it is named after your repo precisely so it
