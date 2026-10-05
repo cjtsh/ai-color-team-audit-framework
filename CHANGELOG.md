@@ -56,8 +56,6 @@ list.
 - The report-shape list in `PANEL-DESIGN.md` — broken since before 0.2.1, whose
   changelog entry claimed to have fixed it — now nests properly and starts at 1.
 - Two grade rulings rendered the stop sign as the wrong character; fixed.
-- The panel's cost note now explains *why* the wave is parallel rather than
-  selling it as speed. (Carried from 0.5.1.)
 
 ## 0.5.1 — 2026-10-05
 
