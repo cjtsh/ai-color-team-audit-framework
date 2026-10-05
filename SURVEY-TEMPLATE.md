@@ -1,24 +1,32 @@
-# ASSETS-TEMPLATE.md — your Asset Declaration
+# SURVEY-TEMPLATE.md — the survey
+
+**What this is:** the survey — the audit's single input. Its substance is the
+**Asset Declaration**: your crown jewels, ranked, and the unforgivable acts.
 
 **How this file gets written (the two-agent flow):** you should not have to
 author it from scratch. The normal flow is:
 
-1. **The Surveyor drafts it.** One AI agent (any coding tool — ideally a
-   *different* model than the one that will run the audit, so the drafter's blind
-   spots don't become the panel's) reads the repository — entry points, data
-   stores, auth surfaces, dependencies, deployment — and fills in this template
-   from what the code actually does. Give it this file plus the repo.
+1. **The Surveyor drafts it.** One AI agent running a *different* model than the
+   one that will run the audit — ideally from a different vendor — reads the
+   repository (entry points, data stores, auth surfaces, dependencies,
+   deployment) and fills in this template from what the code actually does. Give
+   it this file plus the repo. **This separation is a structural requirement, not
+   a preference:** the Surveyor decides what is even in scope, so a model that
+   drafts the declaration and then audits it carries the same blind spot on both
+   sides of the handoff, and can grade green on software nobody examined.
 2. **You confirm it.** Read the draft; correct anything the code cannot know
    (business context, contractual obligations, "the real crown jewel is X");
    re-rank if your priorities differ. This confirmation is the one human moment
    the framework insists on — an unconfirmed declaration is unverified scope,
    and a quietly narrowed declaration is a steered audit.
-3. **It locks.** Save as `ASSETS.md` in the repo root. The audit's lead agent
+3. **It locks.** Save as `SURVEY.md` in the repo root. The audit's lead agent
    reads it in Phase 0 and locks it with the grade rubric; it does not change
    after the audit begins.
 
-If you prefer, write it yourself from the blank sections below — the Surveyor is
-a convenience, your confirmation is the requirement.
+Write it yourself from the blank sections below whenever you prefer — and
+whenever you have only one model available, since the same model must not do the
+survey and then the audit. The Surveyor is a convenience; your confirmation is
+the requirement.
 
 Guidance: 3–6 assets, ranked most-valuable-first. An asset is a thing an attacker
 could steal, destroy, alter, or act upon without authorization. Be specific to

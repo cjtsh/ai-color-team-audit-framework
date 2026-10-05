@@ -10,38 +10,50 @@
 
 A software security audit performed by AI agents in two systems:
 
-1. **The Surveyor** (one agent, any tool, ideally a *different* model than the
-   panel's): reads the software before the audit and drafts the Asset Declaration
-   (`ASSETS.md`) from what the code actually does — entry points, data stores,
-   auth surfaces, dependencies, deployment. The owner confirms or corrects it in
-   one short sitting; the confirmed declaration is then locked with the rubric.
+1. **The Surveyor** (one agent, and it must be a *different* model — ideally from a
+   different vendor — than the one that runs the panel): reads the software before
+   the audit and drafts the survey (`SURVEY.md`) from what the code
+   actually does — entry points, data stores, auth surfaces, dependencies,
+   deployment. The owner confirms or corrects it in one short sitting; the
+   confirmed survey is then locked with the rubric.
 2. **The Color Team panel** (six agents): five specialists with one lens each,
    dispatched simultaneously and independently, plus a referee that verifies
    everything and gates publication.
 
 The Surveyor removes the cold-start burden from the human — most owners cannot
-write a threat-model declaration from memory, but they can confirm one in five
-minutes. Using a different model for the Surveyor adds real diversity: the
-drafter's blind spots do not become the panel's. If you have only one tool, run
-it twice in separate sessions (disclose that in the report's coverage section).
-The one human moment that never goes away: **the owner confirms the declaration** —
-an unconfirmed declaration is unverified scope, and a narrowed declaration is a
-steered audit.
+write a threat-model survey from memory, but they can confirm one in five
+minutes. **It must be a different model from the panel's, and this is not
+optional.** The Surveyor decides what is in scope. If the same model writes the
+survey and then audits against it, the same blind spot sits on both sides of
+the handoff: the panel works faithfully from an incomplete scope, finds nothing
+wrong with what it can see, and grades green on software nobody actually examined.
+Different models — ideally from different vendors — is the only thing that breaks
+that circuit. If you have only one model, do not run the Surveyor at all: have the
+owner write `SURVEY.md` by hand from `SURVEY-TEMPLATE.md`. The one human moment that
+never goes away: **the owner confirms the survey** — an unconfirmed
+survey is unverified scope, and a narrowed survey is a steered audit.
 
 The defining rules:
 
 1. **Independence is structural.** The five specialists are dispatched in one wave
    and cannot see each other's findings until the merge. The offense agent is never
    shown prior audit conclusions, so it inherits no one's blind spots.
-2. **The rubric is locked before the audit.** The grade definitions are written
+2. **The surveyor is never the auditor.** The agent that writes the
+   survey must be a different model from the one that runs the panel —
+   ideally from a different vendor, so the training data and the failure modes
+   differ too. The surveyor sets the scope; if one model sets the scope and then
+   audits it, the same blind spot sits on both sides of the handoff and the audit
+   grades green on software nobody examined. Only one model available? The owner
+   writes `SURVEY.md` by hand. Never the audit model.
+3. **The rubric is locked before the audit.** The grade definitions are written
    down before anyone looks at the code, and applied mechanically afterward — in
    neither direction.
-3. **The grade is the floor of the panel, never the average.** One red-grade
+4. **The grade is the floor of the panel, never the average.** One red-grade
    finding fails the audit no matter how glowing the other sections are.
-4. **A claim without evidence is not a finding.** Every finding needs a location
+5. **A claim without evidence is not a finding.** Every finding needs a location
    (file:line @ commit), the exact evidence, and a confidence level. "I could not
    determine X" is a result, not a failure.
-5. **The referee gates publication.** Nothing is published that the referee could
+6. **The referee gates publication.** Nothing is published that the referee could
    not personally re-derive.
 
 ## Phase 0 — Baseline (you, alone)
@@ -50,25 +62,25 @@ Before dispatching anyone:
 
 1. Identify the exact target of evaluation: repository, tag or commit, published
    artifacts. Clone fresh; never audit a dirty working tree.
-2. **Confirm the Asset Declaration** (`ASSETS.md`). Preferred flow: a Surveyor
-   agent has already read the repository and drafted it (see the two-system
-   architecture above); your job is to walk the owner through it — confirm each
+2. **Confirm the survey** (`SURVEY.md`). Preferred flow: a Surveyor
+   agent running a *different* model (see above) has already read the repository
+   and drafted it; your job is to walk the owner through it — confirm each
    ranked asset, the unforgivable acts in the owner's own words, and where the
    assets live; add anything code cannot see (business context, contractual
-   obligations). If no draft exists, become the Surveyor yourself: read the
-   entry points, data stores, auth surfaces, and dependencies, draft the
-   declaration from what the code actually does, then get the owner's
-   confirmation before proceeding. **The audit does not start without an
-   owner-confirmed declaration** — every charter, severity call, and report
-   question is built from it, and it is locked with the rubric: it does not
-   change after the audit begins.
+   obligations). **Never become the Surveyor yourself:** if no draft exists, have
+   the owner write `SURVEY.md` from `SURVEY-TEMPLATE.md` rather than let the audit
+   model declare its own scope. Then get the owner's confirmation before
+   proceeding. **The audit does not start without an owner-confirmed
+   survey** — every charter, severity call, and report question is built
+   from it, and it is locked with the rubric: it does not change after the audit
+   begins.
 3. Verify integrity yourself: recompute artifact hashes against published checksums;
    verify code signatures/notarization if the project ships binaries.
 4. Run the project's own test suites at the audited revision and record the counts.
 5. Read the project's own claims (release notes, prior findings, remediation
    records) — you will verify these, not trust them.
 6. Write the five charters (see PANEL-DESIGN.md) tailored to this target and its
-   Asset Declaration, and LOCK THE GRADE RUBRIC in writing before any agent
+   declared assets, and LOCK THE GRADE RUBRIC in writing before any agent
    examines the build.
 
 ## Phase 1 — The wave (five specialists, dispatched simultaneously)

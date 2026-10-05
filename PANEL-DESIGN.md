@@ -2,14 +2,15 @@
 
 Everything here is a starting point to adapt to your target. What must NOT be
 adapted away: independence of the wave, the pre-locked rubric, floor-of-panel
-grading, and the referee's publication gate. Those four properties are the
-framework; everything else is configuration.
+grading, the referee's publication gate, and **survey/audit model separation** —
+the model that writes the survey is never the model that runs the
+audit. Those five properties are the framework; everything else is configuration.
 
 ## Phase structure
 
 ```
 Phase 0  Baseline      — lead only: verify target/commit/artifacts, confirm the
-                         owner-confirmed Asset Declaration, run suites, read the project's claims,
+                         owner-confirmed survey, run suites, read the project's claims,
                          write charters, LOCK THE RUBRIC
 Phase 1  The wave      — five specialists dispatched simultaneously, each seeing
                          only its own charter (no cross-visibility, no priors for Red)
@@ -21,22 +22,33 @@ Phase 3½ Verification — nothing is published until the live artifact is fetch
                          and hash-matched (publish-and-verify.sh)
 ```
 
-## The Asset Declaration (Phase 0, mandatory)
+## The survey (Phase 0, mandatory)
 
-The audit's single input parameter: the target's crown jewels, ranked — what must
-not be stolen, destroyed, altered, or acted upon without authorization. Written
-before anyone examines the build, locked with the rubric, and cited in the report
-header. It parameterizes every charter, every severity call, and the central
-questions.
+The survey is the audit's single input parameter. Its content is the **Asset
+Declaration**: the target's crown jewels, ranked — what must not be stolen,
+destroyed, altered, or acted upon without authorization. Written before anyone
+examines the build, locked with the rubric, and cited in the report header. It
+parameterizes every charter, every severity call, and the central questions.
 
 **How it is produced (the two-agent architecture):** a Surveyor agent reads the
-repository and drafts the declaration from what the code actually does; the owner
-confirms or corrects it in one short sitting; the confirmed file (`ASSETS.md`)
-locks. Best practice: use a *different* model for the Surveyor than for the
-panel — cross-model diversity means the declaration's blind spots and the audit's
-blind spots don't correlate. One tool only? Run it twice in separate sessions and
-disclose that in the report's coverage section. The owner's confirmation is never
-skipped: it is the framework's defense against a steered (narrowed) declaration.
+repository and drafts the survey from what the code actually does; the owner
+confirms or corrects it in one short sitting; the confirmed file (`SURVEY.md`)
+locks.
+
+**The Surveyor must never be the model that runs the audit.** This is a structural
+requirement, not a preference. The Surveyor decides what is even in scope. If one
+model writes the survey and then audits against it, the same blind spot sits
+on both sides of the handoff: the panel works faithfully from an incomplete scope,
+finds nothing wrong with what it can see, and grades green on software nobody
+actually examined. Two different models — ideally from different vendors, so the
+training data and the failure modes differ too — is the only thing that breaks
+that circuit.
+
+If you have only one model available, skip the Surveyor: the owner writes
+`SURVEY.md` by hand from `SURVEY-TEMPLATE.md`. The Surveyor is a convenience;
+**never reusing the audit model is the rule.** The owner's confirmation is never
+skipped either — it is the framework's defense against a steered (narrowed)
+survey.
 
 Examples by domain:
 

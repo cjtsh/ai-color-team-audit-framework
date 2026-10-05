@@ -20,18 +20,18 @@ method ships as a drop-in agent file: paste it into any AI coding tool and run.
 | 🟡 Amber | The supply-chain inspector — how the artifact is born: every dependency, build step, signature and download in the chain. |
 | ⚪ White | The referee — sees everything, re-derives every load-bearing claim personally, and gates what gets published. |
 
-The audit is parameterized by an **Asset Declaration** you make before anyone
-looks at the code: what must not be stolen, destroyed, altered, or done without
-authorization — ranked. A wallet declares funds, keys, and the operator's
-decision. A web service declares credentials, personal and payment data, and
-session control. An embedded controller declares safety and availability. Every
-charter reads from that declaration. |
+The audit is parameterized by a **survey** you confirm before anyone looks at
+the code. Its **Asset Declaration** is the crown jewels, ranked: what must not
+be stolen, destroyed, altered, or done without authorization. A wallet declares
+funds, keys, and the operator's decision. A web service declares credentials,
+personal and payment data, and session control. An embedded controller declares
+safety and availability. Every charter reads from that declaration. |
 
 The lanes adapt to your stack (a web app's Orange might be auth and session logic;
 its Copper might be the browser and mobile clients). The colors — and the rules —
 are the standard.
 
-## The three rules that make it honest
+## The four rules that make it honest
 
 1. **The rubric is locked before the audit.** Green/Yellow/Red are defined in
    writing before any agent examines the build, and applied mechanically afterward.
@@ -41,16 +41,23 @@ are the standard.
 3. **The referee gates publication.** Nothing is published that one agent could
    not personally re-derive. False alarms and false clean bills of health are
    attacked with equal energy.
+4. **The surveyor is never the auditor.** The survey is drafted by a
+   *different* model than the one that runs the panel. The surveyor decides what
+   is in scope: if one model sets the scope and then audits it, the same blind
+   spot sits on both sides of the handoff, and the audit grades green on software
+   nobody examined. Only one model available? Write `SURVEY.md` yourself.
 
 ## Quick start
 
-1. **Survey:** give **[ASSETS-TEMPLATE.md](ASSETS-TEMPLATE.md)** plus your
-   repository to any AI coding tool — the *Surveyor*. It reads the code and
-   drafts your Asset Declaration: the crown jewels, ranked, and the unforgivable
-   acts in plain words. (Best practice: use a different model than the one that
-   will run the audit.)
+1. **Survey:** give **[SURVEY-TEMPLATE.md](SURVEY-TEMPLATE.md)** plus your
+   repository to an AI coding tool running a *different* model than the one that
+   will run the audit — the *Surveyor*. It reads the code and drafts your survey:
+   the crown jewels, ranked (the Asset Declaration), and the unforgivable acts in
+   plain words. This separation is required, not a preference: the model that
+   declares the scope must not be the model that audits it. Only one model
+   available? Write `SURVEY.md` yourself from the template instead.
 2. **Confirm:** read the draft, correct anything only you know, and save it as
-   `ASSETS.md` in the repo. Five minutes — and the one human moment the
+   `SURVEY.md` in the repo. Five minutes — and the one human moment the
    framework insists on.
 3. **Audit:** point **[AGENT.md](AGENT.md)** (in your AI coding tool, or dropped
    into the repo as an agents file) at the repository. The agent runs the
@@ -104,7 +111,7 @@ tool in one day, each carrying the grade its evidence supported. Full stories in
 | File | What it is |
 |---|---|
 | `AGENT.md` | **The product.** The complete drop-in runbook for any AI coding tool. |
-| `ASSETS-TEMPLATE.md` | **The one file you fill in.** Your crown jewels, ranked, and the unforgivable acts — the audit's single input, consumed in Phase 0. |
+| `SURVEY-TEMPLATE.md` | **The one file you fill in.** The survey: your crown jewels, ranked, and the unforgivable acts — the audit's single input, consumed in Phase 0. |
 | `COLOR-TEAM.md` | The color definitions, versioned (v1.1) — reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Charters, phases, rubric, and the report shape; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |
