@@ -110,12 +110,18 @@ gives each specialist the full text of its own definition as its charter.
 ## The rubric (adapt, then lock, then never touch mid-audit)
 
 - ✅ **CLEARED** — requires ALL of: zero open Critical/High (as affects the declared
-  assets for users of the audited version); every prior-cycle finding verified
-  fixed or closed by dated owner acceptance; stated defenses held and
-  regression-tested; suites passing, artifacts re-verified; no new Critical/High.
-- ⚠️ **CONDITIONAL** — no Critical/High, but open Mediums beyond owner acceptance, or
-  fix-verification gaps. Label honestly: good software with work remaining.
-- ⛔ **BLOCKED** — any open Critical/High. Do not ship; say what and why.
+  assets for users of the audited version); every prior-cycle finding verified fixed
+  or closed by dated owner acceptance; every lane's claims proven and pinned — each
+  defense present, reachable where it matters, effective, fail-closed, and held by a
+  test that can fail; suites passing, artifacts re-verified; no new Critical/High.
+- ⚠️ **CONDITIONAL** — no Critical/High, but open Mediums beyond owner acceptance,
+  fix-verification gaps, or **anything a lane leaves unproven** — an unpinned control,
+  **LOGIC UNPROVEN**, **EDGE TRUST UNPROVEN**, **CHAIN UNVERIFIED**. The cap applies
+  when the unproven thing is on the path to a declared asset; something that provably
+  cannot reach one, with the exclusion demonstrated, is a coverage note and does not
+  cap. Label honestly: good software with work remaining.
+- ⛔ **BLOCKED** — any open Critical/High, **or any lane that proved its own failure
+  state** (ruling 4). Do not ship; say what and why.
 
 **Rulings encoded from real runs (keep these):**
 

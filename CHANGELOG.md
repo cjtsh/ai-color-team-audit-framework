@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.1.4 — 2026-10-05
+
+### The rubric's authority catches up with the rubric
+
+`PANEL-DESIGN.md` → *The rubric* is the document the runbook defers to, and it was the one
+copy still carrying the pre-Blue wording: CLEARED was "stated defenses held and
+regression-tested", CONDITIONAL had no cap clause, and BLOCKED named only open
+Critical/High. The README and the operator's checklist had both moved on; the authority
+they point at had not.
+
+The three grades now match the seven rulings below them, so the runbook's "if the two ever
+disagree, `PANEL-DESIGN.md` wins" resolves to the right answer. No definitions changed —
+`COLOR-TEAM.md` stays v2.2.
+
 ## 1.1.3 — 2026-10-05
 
 ### One report, three sections
