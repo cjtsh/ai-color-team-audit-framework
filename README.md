@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.1.2 · MIT License
+Version 1.1.3 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -19,14 +19,14 @@ they cannot collide with anything and you can always tell which cycle a file bel
 |---|---|---|
 | The audit plan | `<repo>-colorteam-audit-plan.md` | the surveyor, then signed by you |
 | The scope lock | `<repo>-colorteam-audit-lock.md` | the auditor, before the first specialist runs |
-| The technical report | `<repo>-colorteam-audit-report.md` | the auditor, gated by the referee |
-| The safety review | `<repo>-colorteam-audit-safety-review.md` | the auditor, from the technical report |
-| The private full report | `<repo>-colorteam-audit-full-report.md` | the auditor; the owner's copy, never published |
+| The report | `<repo>-colorteam-audit-report.md` | the auditor, gated by the referee |
 
-The findings ledger is not a sixth file — it is the **Appendix** of the technical report,
-so there is one source of truth and nothing that can drift out of step with it. An
-`AGENT.md` in your repo is *your* instructions to your own tools; this framework
-deliberately does not use that name.
+The report is **one file with three sections** — the technical report for engineers, the
+safety review for everyone else, and the findings ledger for agents. One source of truth,
+and nothing that can drift out of step with itself. The owner also gets a private full
+report — everything, verbatim evidence — which is never published. An `AGENT.md` in your
+repo is *your* instructions to your own tools; this framework deliberately does not use
+that name.
 
 ## How it works — four steps, two sets of eyes
 
@@ -65,9 +65,10 @@ deliberately does not use that name.
 
   STEP 4 - THE REPORT                        the referee gates what may go out
   -------------------
-  XYZ-colorteam-audit-report.md              the technical report  - for engineers
-      its appendix is the findings ledger                          - for agents
-  XYZ-colorteam-audit-safety-review.md       the safety review     - for everyone else
+  XYZ-colorteam-audit-report.md              one report, three sections
+      the technical report   - for engineers
+      the safety review      - for everyone else
+      the findings ledger    - for agents
 ```
 
 **Step 1 runs on a different model than steps 3 and 4, and that is the point.** The
@@ -351,10 +352,11 @@ evidence: each lane's sub-verdict and the grade computed from them. Read
 
 **Step 4 — the report.** The same agent writes it, and the referee is the gate: every
 load-bearing claim is re-derived before anything goes out, and the referee decides
-whether it may go out at all. You get **`<repo>-colorteam-audit-report.md`** — the
-technical report, for engineers, with the findings ledger as its appendix — and
-**`<repo>-colorteam-audit-safety-review.md`**, the plain-English layer for everyone
-else. **[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** shows what you get;
+whether it may go out at all. You get **`<repo>-colorteam-audit-report.md`** — one file
+carrying three sections: the technical report for engineers, the plain-English safety
+review for everyone else, and the findings ledger for agents.
+**[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** and
+**[SAFETY-REVIEW-TEMPLATE.md](SAFETY-REVIEW-TEMPLATE.md)** are the section templates;
 **[templates/pdf/](templates/pdf/)** generates the typeset edition.
 
 Only one model available? Copy the plan skeleton out of
@@ -413,10 +415,10 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 |---|---|
 | `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
 | `colorteam-auditor.md` | **Steps three and four.** The drop-in runbook for the panel and for the report it produces; it names the framework files it needs. |
-| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v2.1) and reproducible in any report using the format. |
+| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v2.2) and reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Phases, rubric, report shape, and the conversion re-checks; adapt to your target. |
-| `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix — writes to `<repo>-colorteam-audit-report.md`. |
-| `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report — writes to `<repo>-colorteam-audit-safety-review.md`. |
+| `REPORT-TEMPLATE.md` | The report's engineer section — the public technical report skeleton, with the findings ledger as its appendix. |
+| `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report. Written into the same report, as its decision-maker section. |
 | `templates/publish-and-verify.sh` | The anti-"already done" tool: commit, push, poll, fetch, and hash-compare in one invocation. Nothing is published until it says VERIFIED. |
 | `templates/pdf/` | A ReportLab generator for the typeset report edition. |
 | `EXAMPLES.md` | The worked case studies, plus an illustrative audit plan. |
@@ -427,7 +429,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 The framework is versioned, and **every version reference stays in sync**: the
 README version line, the PDF template's version stamp, and the changelog entry
 all carry the current release version at every release. (`COLOR-TEAM.md`'s
-definitions version — currently v2.1 — is deliberately independent: it changes
+definitions version — currently v2.2 — is deliberately independent: it changes
 only when the role definitions change, so published reports stay citable against
 the version they were written under.)
 

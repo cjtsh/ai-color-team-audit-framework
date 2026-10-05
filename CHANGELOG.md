@@ -1,8 +1,32 @@
 # Changelog
 
+## 1.1.3 — 2026-10-05
+
+### One report, three sections
+
+1.1.2 named the report and then split it in two, inventing a separate published document
+called `<repo>-colorteam-audit-safety-review.md`. That was not the design and it is
+reverted. The report was always **one file with three sections** — the technical report
+for engineers, the safety review for everyone else, and the findings ledger for agents —
+and it is `<repo>-colorteam-audit-report.md`.
+
+`SAFETY-REVIEW-TEMPLATE.md` is a section template, not a document template. The naming
+convention now covers the three artifacts that exist: the plan, the scope lock, and the
+report. The owner's private full report — everything, verbatim evidence — is still never
+published.
+
+White's charter in `COLOR-TEAM.md` said the three sections were "assembled from the
+technical report" and never said they land in one file, which is what let 1.1.2 read them
+as three documents. The definitions now say so, and the footer and the README's version
+reference follow: `COLOR-TEAM.md` moves to **v2.2**.
+
 ## 1.1.2 — 2026-10-05
 
 ### The report has a name, and it is step four
+
+> **Superseded by 1.1.3.** The two-file split described below was wrong and has been
+> reverted — the report is one file, `<repo>-colorteam-audit-report.md`, with three
+> sections. The naming table here records what 1.1.2 shipped, not the current convention.
 
 The flow diagram showed three steps and ended at "the graded report" — an unnamed
 artifact, produced by a step that had already been counted. Step 3 now ends where the

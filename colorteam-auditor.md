@@ -30,10 +30,10 @@ A software security audit performed by AI agents in four steps:
 3. **The panel — six agents.** Five specialists with one lens each, dispatched
    simultaneously and independently, plus a referee that re-derives every load-bearing
    claim and computes the grade from the rubric.
-4. **The report.** Phase 3 of this runbook: the technical report to
-   `<repo>-colorteam-audit-report.md` with the findings ledger as its Appendix, and the
-   plain-English safety review to `<repo>-colorteam-audit-safety-review.md`. The
-   referee's gate decides what may go out before either is written.
+4. **The report.** Phase 3 of this runbook: one file,
+   `<repo>-colorteam-audit-report.md`, carrying three sections — the technical report for
+   engineers, the plain-English safety review for everyone else, and the findings ledger
+   for agents. The referee's gate decides what may go out before it is written.
 
 The plan removes the cold-start burden from the human — most owners cannot write a
 threat-model declaration from memory, but they can check one and sign it in five

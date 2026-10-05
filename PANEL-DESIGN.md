@@ -19,7 +19,7 @@ Phase 1  The wave      — five specialists dispatched in parallel, each in its 
                          cross-visibility, no priors for Red)
 Phase 2  The referee   — White re-derives load-bearing claims, merges the ledger,
                          calibrates severity, applies the rubric mechanically, gates
-Phase 3  Consolidation — lead applies the grade, writes the three deliverables
+Phase 3  Consolidation — lead applies the grade, writes the report's sections
                          (safety review + technical report + ledger)
 Phase 3½ Verification — nothing is published until the live artifact is fetched
                          and hash-matched (publish-and-verify.sh)
@@ -166,28 +166,26 @@ gives each specialist the full text of its own definition as its charter.
    not a finding to be weighed and it is never resolved in the software's favor. Regrade
    against a re-signed plan or not at all.
 
-## Report shape — three deliverables, three audiences
+## Report shape — one report, three sections, three audiences
 
-Every engagement produces three deliverables, one per audience — written in this order:
+Every engagement produces **one report**, `<repo>-colorteam-audit-report.md`, carrying
+three sections, one per audience, written in this order:
 
 1. **The technical report** — for the engineers and the next auditor (the source of truth;
-   everything else translates from it). Written to `<repo>-colorteam-audit-report.md`.
+   everything else translates from it).
 2. **The plain-English Safety Review** (`SAFETY-REVIEW-TEMPLATE.md`) — for the decision-maker:
    verdict, the questions they actually ask, the team in layman's words, the trail with
-   severity badges. Translate from the technical report; never exceed it. Written to
-   `<repo>-colorteam-audit-safety-review.md`.
+   severity badges. Translate from the technical report; never exceed it.
 3. **The findings ledger** — for agents and future audits (stable IDs, exact locations,
-   machine-checkable). It is the **Appendix** of the technical report, not a separate
-   file, so there is one source of truth and nothing that can drift out of step with it.
-
-Every artifact this framework writes is named `<repo>-colorteam-audit-<what>.md`. The
-private full report — everything, verbatim evidence, for the owner alone — is
-`<repo>-colorteam-audit-full-report.md`, and it never goes out.
+   machine-checkable). It is the report's Appendix.
 
 The three are assembled from the technical report, each translating from the one before
 it and never exceeding it. White owns what they must contain and whether they may go
 out, including the coverage section — a report that does not say where the audit
 stopped is claiming more than it did.
+
+The one thing that does not go in it is the owner's private full report — everything,
+verbatim evidence — which is never published.
 
 **The technical report contains:**
 

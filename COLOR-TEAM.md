@@ -1,4 +1,4 @@
-# The Color Team — definitions (v2.1)
+# The Color Team — definitions (v2.2)
 
 A security review performed by a named panel of specialist agents, each with one
 lens and one job. Two of the colors are borrowed from established security
@@ -384,7 +384,7 @@ behind it has no standard behind it either.
 **The publication decision is computed from conditions, not felt:**
 
 - **PUBLISH** — every load-bearing claim confirmed or corrected; the grade follows from
-  the rulings; the three deliverables are complete and consistent.
+  the rulings; the report's three sections are complete and consistent.
 - **PUBLISH WITH STATED GAPS** — a claim could not be re-derived. It is named in the
   coverage section, and the grade is held no higher than that gap allows. The report
   goes out; the gaps go with it.
@@ -393,9 +393,9 @@ behind it has no standard behind it either.
   evidence is missing. Fix it, then re-run White.
 
 **Report generation.** White owns what the report must contain and whether it may go
-out — not its prose. White issues the mandatory facts; the three deliverables are
-assembled from the technical report in this order, each translating from the one before
-it and never exceeding it:
+out — not its prose. White issues the mandatory facts; they land in **one report**,
+`<repo>-colorteam-audit-report.md`, carrying three sections assembled from the technical
+report in this order, each translating from the one before it and never exceeding it:
 
 1. **The technical report** — for engineers and the next auditor; the source of truth.
 2. **The plain-English Safety Review** — for the decision-maker. White checks that
@@ -463,7 +463,7 @@ the other sections are.
 
 ---
 
-*Color Team definitions v2.1 — part of the AI Color Team Audit Framework (this
+*Color Team definitions v2.2 — part of the AI Color Team Audit Framework (this
 repository). v1.1 generalizes the founding wording (written for a Bitcoin wallet)
 to the Asset Declaration model; role semantics are unchanged from v1. v1.2 renames
 the report grades from Green/Yellow/Red to **CLEARED / CONDITIONAL / BLOCKED**,
@@ -501,7 +501,10 @@ standard, a demonstrated-evidence rule, and an outcome that follows from tests r
 than from taste. v2.1 makes the lock real: the owner signs the plan, the auditor
 hashes it before the first specialist runs, the referee re-hashes it at the end, and a
 mismatch voids the audit rather than grading it — a scope that can still move is not a
-scope. The outcomes, the rubric, and the floor rule are all unchanged; reports
+scope. v2.2 says where the report's three sections go: one file, so the technical report,
+the plain-English safety review, and the findings ledger cannot drift apart or be taken
+for three documents. The outcomes, the rubric, and the floor rule are all unchanged;
+reports
 published before v1.2 used the old grade names. Red and blue are established
 security-industry terms; orange, copper, amber, and white were introduced by the
 framework's first runs (Bitcoin Easy Signer audits, October 2026). This page may be
