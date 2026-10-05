@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.1.9 — 2026-10-05
+
+### The signature accepts a scope, not results
+
+1.1.8 took the personal name out of the sign-off but left the attestation in the first
+person — *"I have read this plan… and lock it"* — which reads wrong the moment an
+organization, a team, or a role signs. The wording is now identity-neutral, and it says
+out loud what the signature actually is.
+
+- Signing accepts the **scope** the audit runs against, and nothing else. The findings do
+  not exist yet, so the signature cannot be an endorsement of them.
+- No first-person wording is left anywhere in the sign-off path.
+
+No definitions changed — `COLOR-TEAM.md` stays v2.2.
+
 ## 1.1.8 — 2026-10-05
 
 ### The sign-off identifies; it does not publish a person

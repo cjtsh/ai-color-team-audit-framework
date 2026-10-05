@@ -54,6 +54,10 @@ accepted is a scope the auditor chose, which is the one thing this structure exi
 prevent. The plan and the lock are local working files; the published report carries the
 hashes and the sign-off identity, never a person unless the signer put one there.
 
+**What the signature means: the scope, not the results.** The findings are produced after
+the signature, so signing cannot be an endorsement of them — it accepts the scope the
+audit runs against. That is the whole of what the owner agrees to.
+
 **How it is produced (two agents, four steps):** a Surveyor agent (`colorteam-surveyor.md`)
 reads the repository and writes the plan from what the code actually does; the owner
 corrects anything only they know and signs the locked-scope block; the signed

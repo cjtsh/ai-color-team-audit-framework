@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.1.8 · MIT License
+Version 1.1.9 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -126,7 +126,7 @@ model than the one that will run the audit. Paste this:
 
 ```
 Read this runbook and follow it exactly:
-https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.8/colorteam-surveyor.md
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.9/colorteam-surveyor.md
 
 Conduct a survey of this repository.
 ```
@@ -145,9 +145,10 @@ works, and **please don't use your personal name**:
 - an organization or a team — `Acme Security`, `the <project> maintainers`
 
 That signature is the only thing the framework asks of you, and it is what locks the
-scope. The lock is a fingerprint, not a padlock: the plan is hashed before the panel
-starts and re-hashed when it ends, so any edit shows up as a mismatch — and a mismatch
-voids the audit rather than grading it.
+scope. It accepts the scope and nothing else — the findings don't exist yet, so it isn't
+an endorsement of them. The lock is a fingerprint, not a padlock: the plan is hashed
+before the panel starts and re-hashed when it ends, so any edit shows up as a mismatch —
+and a mismatch voids the audit rather than grading it.
 
 ---
 
@@ -156,7 +157,7 @@ Paste this:
 
 ```
 Read this runbook and follow it exactly:
-https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.8/colorteam-auditor.md
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.9/colorteam-auditor.md
 
 The signed audit plan is in the repository root. Run the audit.
 ```

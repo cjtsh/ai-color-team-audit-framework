@@ -179,8 +179,10 @@ grade:
 
 ---
 
-**Owner sign-off — step two, no AI.** I have read this plan, corrected anything only I
-know, and lock it. The audit runs against the scope above and no other version of it.
+**Owner sign-off — step two, no AI.** The plan above is the scope this audit runs
+against, and no other version of it. Signing accepts that scope — nothing more, and
+nothing about the findings, which do not exist yet. Correct anything only you know
+before you sign; after it, the file is hashed and never edited.
 
 - **Signed:** <!-- identity — a handle, a role, an organization, or a team. Do NOT put a
      personal name here; see PANEL-DESIGN.md, "The signature identifies". -->
