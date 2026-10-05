@@ -122,7 +122,8 @@ The White referee receives all five reports plus your baseline, and must:
    bills of health with equal energy.
 2. Merge the specialists' independently-assigned finding IDs into one final ledger
    (their numbers will collide — that is expected; the referee fixes the numbering).
-3. Calibrate severities with one line of reasoning each.
+3. Calibrate each finding's severity with one line of reasoning. Severities are
+   calibrated; the **grade** is not — it is computed from the rubric and the rulings.
 4. Apply the locked rubric mechanically. Two known traps:
    - **Rubric tension:** if the CLEARED conditions and the CONDITIONAL conditions
      can both be read to apply, resolve so that every clause of the rubric is
@@ -131,8 +132,10 @@ The White referee receives all five reports plus your baseline, and must:
      dated owner acceptance. Never infer acceptance from documentation that
      predates the finding.
 5. List the facts that MUST appear in the public report (the publication
-   requirements), and issue the gate verdict: publish / publish with edits /
-   do not publish.
+   requirements), and issue the gate verdict — **PUBLISH** / **PUBLISH WITH STATED
+   GAPS** / **DO NOT PUBLISH** — computed from the conditions in `COLOR-TEAM.md`,
+   never chosen. Record a dissent if the outcome is wrong, but never adjust the grade
+   to match it.
 
 ## Phase 3 — Consolidation and reports (you)
 

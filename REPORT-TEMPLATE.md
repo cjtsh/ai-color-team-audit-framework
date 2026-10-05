@@ -56,7 +56,9 @@ to exhibit, and the version-identity result.]
 **🟡 Amber — [sub-verdict], or NOT APPLICABLE with the reason.** [The chain
 inventory; per link: named / pinned / real / read / matched, with the evidence, and
 anything marked UNVERIFIED — plus the residual-risk inventory.]
-**⚪ White — [the gate].** [What was re-derived; corrections made; the grade ruling; publication requirements.]
+**⚪ White — [PUBLISH / PUBLISH WITH STATED GAPS / DO NOT PUBLISH].** [What was
+re-derived and held, what was corrected, what stayed unverifiable, the computed grade
+with the lane that set the floor, any dissent, and the mandatory facts.]
 
 ## What this audit did not do
 

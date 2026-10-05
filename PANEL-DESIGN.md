@@ -126,6 +126,11 @@ gives each specialist the full text of its own definition as its charter.
    control, an invariant that is **LOGIC UNPROVEN**, an edge that is **EDGE TRUST
    UNPROVEN**, a chain link that is **UNVERIFIED**: CLEARED requires every claim to be
    proven and pinned, and ambiguity is never resolved in the software's favor.
+6. *The grade is computed, not calibrated.* White applies the rubric and the rulings to
+   the surviving sub-verdicts and shows the arithmetic — which lane set the floor and
+   which ruling bound it. The referee never raises or lowers a lane's sub-verdict, and a
+   disagreement with the outcome is recorded as a dissent while the grade stands: a
+   referee with discretion over the floor has made the floor optional.
 
 ## Report shape — three deliverables, three audiences
 
@@ -138,6 +143,11 @@ Every engagement produces three deliverables, one per audience — written in th
    severity badges. Translate from the technical report; never exceed it.
 3. **The findings ledger** — for agents and future audits (stable IDs, exact locations,
    machine-checkable).
+
+The three are assembled from the technical report, each translating from the one before
+it and never exceeding it. White owns what they must contain and whether they may go
+out, including the coverage section — a report that does not say where the audit
+stopped is claiming more than it did.
 
 **The technical report contains:**
 

@@ -54,7 +54,7 @@ the end; the final grade is the *lowest* score on the team.
 | [ORANGE · The logic specialist] | … | … |
 | [COPPER · The edge specialist] | … | … |
 | [AMBER · The supply inspector] | … | … |
-| [WHITE · The referee] | [distrust everyone; only the referee approves the grade] | [result] |
+| [WHITE · The referee] | [distrust everyone; the referee computes the grade and gates publication] | [result] |
 
 ## The audit trail
 

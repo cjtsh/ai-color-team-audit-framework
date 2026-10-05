@@ -99,7 +99,7 @@ report, not an appendix.
 | 🟠 Orange | The critical-logic specialist — the logic that enforces an invariant: *"signatures verify"*, *"amounts sum"*, *"a nonce never repeats"*. Proves each one against a definition of correct that lives **outside your code** — a specification, official test vectors, an independent reference implementation, the mathematics — because your code's own comments cannot corroborate your code. Answers **LOGIC PROVEN / LOGIC UNPROVEN / LOGIC WRONG**, worst invariant wins. Wrong logic is an automatic ⛔ BLOCKED; unproven logic caps the grade at ⚠️ CONDITIONAL. |
 | 🟤 Copper | The edge specialist — everything the core **trusts but does not control**: clients, transports, devices and drivers, host runtimes, frozen binaries. Assumes each is hostile or broken — it lies, dies, stalls, repeats, or gets substituted — and asks what your code does when its edge betrays it. Answers **EDGE TRUST HOLDS / EDGE TRUST UNPROVEN / EDGE TRUST BROKEN**, per interface, one broken interface failing the lane. Broken trust is an automatic ⛔ BLOCKED; unproven trust caps the grade at ⚠️ CONDITIONAL. Where there is no edge at all it reports **NOT APPLICABLE** — never a clean bill of health. |
 | 🟡 Amber | The supply-chain inspector — every step that turns source you wrote into an artifact someone runs: dependencies and their transitive closure, the build and the secrets it can see, packaging, signing, publication, and whether a published version can change under you. Answers **CHAIN HOLDS / CHAIN UNVERIFIED / CHAIN BROKEN**, worst link wins. Broken chain is an automatic ⛔ BLOCKED; an unverifiable link caps the grade at ⚠️ CONDITIONAL. A package that installs cleanly is not proof of legitimacy — that is exactly what a squatter provides. |
-| ⚪ White | The referee — sees everything, re-derives every load-bearing claim personally, and gates what gets published. |
+| ⚪ White | The referee — sees everything and re-derives every claim the verdict rests on, whether it's a finding or a clean bill of health. Computes the grade from the rubric instead of choosing it, has no power to raise or lower a lane's sub-verdict, and answers **PUBLISH / PUBLISH WITH STATED GAPS / DO NOT PUBLISH**. Also owns the coverage section, because a report that doesn't say where it stopped is claiming more than it did. |
 
 ### 🔴 Red, in more detail
 
@@ -232,6 +232,38 @@ writes **UNVERIFIED** against that link and says what would close it.
 **CHAIN BROKEN is an automatic ⛔ BLOCKED. CHAIN UNVERIFIED caps the grade at
 ⚠️ CONDITIONAL.** The verdict is per link, and the worst link wins.
 
+### ⚪ White, in more detail
+
+**White is not a sixth opinion — it is the gate.** It re-derives the claims the verdict
+rests on, merges the five lanes into one ledger, applies the rubric mechanically, and
+decides whether the report may be published. It does not hunt for findings, set the
+rubric, change a sub-verdict, or soften a finding for its audience.
+
+**"Load-bearing" is mechanical, not chosen.** A claim is load-bearing when it determined
+a sub-verdict or the grade. And a lane that reported nothing is making a claim too —
+*"I found nothing"* — which gets re-derived with the same energy, because a false clean
+bill of health is more dangerous than a false alarm.
+
+**Every re-derived claim lands in the record as CONFIRMED, CORRECTED, or
+UNVERIFIABLE**, with the file or command White used. Nothing is published on the
+strength of an unverifiable claim: a finding that can't be reproduced doesn't stand as a
+finding, and a lane that can't be reproduced doesn't stand as clean.
+
+**White calibrates severities. It does not calibrate the grade.** The grade is computed
+from the rubric and the rulings, with the arithmetic shown — which lane set the floor,
+which ruling bound it. White cannot raise or lower a lane's sub-verdict; if it disagrees
+with the outcome, the disagreement is recorded as a dissent and the grade stands. A
+referee with discretion over the floor has made the floor optional.
+
+**The publication decision is computed too:** **PUBLISH** (claims confirmed, grade
+follows, deliverables consistent), **PUBLISH WITH STATED GAPS** (something couldn't be
+re-derived — it's named in the coverage section and the grade is held no higher than it
+allows), or **DO NOT PUBLISH** (a contradiction, a sub-verdict that doesn't survive its
+own claims, or a missing piece of evidence).
+
+**White owns the coverage section** — what wasn't examined, what couldn't be
+established, what was out of scope.
+
 ## The audit plan
 
 The plan is written by the **survey** — one agent, a different model — saved as
@@ -257,7 +289,8 @@ are the standard.
    fails the audit no matter how glowing the rest.
 3. **The referee gates publication.** Nothing is published that one agent could
    not personally re-derive. False alarms and false clean bills of health are
-   attacked with equal energy.
+   attacked with equal energy, and the referee computes the grade from the rubric
+   rather than choosing it.
 4. **The surveyor is never the auditor.** The audit plan is drafted by a
    *different* model than the one that runs the panel. The surveyor decides what
    is in scope: if one model sets the scope and then audits it, the same blind
@@ -346,7 +379,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 |---|---|
 | `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
 | `colorteam-auditor.md` | **Step three.** The complete drop-in runbook for the panel. |
-| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v1.9) and reproducible in any report using the format. |
+| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v2.0) and reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Phases, rubric, report shape, and the conversion re-checks; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |
 | `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report. |
@@ -360,7 +393,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 The framework is versioned, and **every version reference stays in sync**: the
 README version line, the PDF template's version stamp, and the changelog entry
 all carry the current release version at every release. (`COLOR-TEAM.md`'s
-definitions version — currently v1.9 — is deliberately independent: it changes
+definitions version — currently v2.0 — is deliberately independent: it changes
 only when the role definitions change, so published reports stay citable against
 the version they were written under.)
 

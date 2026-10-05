@@ -1,4 +1,4 @@
-# The Color Team — definitions (v1.9)
+# The Color Team — definitions (v2.0)
 
 A security review performed by a named panel of specialist agents, each with one
 lens and one job. Two of the colors are borrowed from established security
@@ -31,7 +31,7 @@ recorded as an exclusion, with the missing hop named.
 | 🟠 Orange | The critical-logic specialist | Checks the logic the software cannot afford to get wrong — cryptographic math, money and authorization arithmetic, session semantics — including what changed in every dependency since the last audit. |
 | 🟤 Copper | The edge specialist | Checks everything between the software and the edges of the system — clients and browsers, devices and drivers, transports and frozen binaries. |
 | 🟡 Amber | The supply-chain inspector | Checks how the artifact is born — every dependency, build step, signature, and download in the chain. |
-| ⚪ White | The referee | Sees everything, re-verifies every load-bearing claim personally, and gates what gets published. |
+| ⚪ White | The referee | Sees everything, re-derives every claim the verdict rests on, computes the grade from the rubric instead of choosing it, and gates what gets published. |
 
 ---
 
@@ -346,17 +346,79 @@ integrity are Amber's; arithmetic and semantics are Orange's.
 
 ## ⚪ WHITE — the referee
 
-**Role:** verification. Not a perspective — the gate. Re-derives every load-bearing
-claim the other five made: reads the same code, runs the same commands, quotes what
-is actually there. Attacks false alarms and false clean bills of health with equal
-energy. Nothing is published that White could not verify.
+**Role:** verification, not a perspective — the gate. White re-derives the claims the
+review rests on, merges the five lanes into one ledger, applies the rubric
+mechanically, and decides whether the report may be published. White does not hunt for
+findings, set the rubric, change a sub-verdict, or soften a finding for its audience: a
+referee who starts hunting becomes a sixth auditor, sharing the blind spots of the
+other five.
+
+**Load-bearing is mechanical, not chosen.** A claim is load-bearing when it determined
+a sub-verdict or the grade. Every one of those is re-derived. A lane that reported
+nothing is making a claim too — *"I found nothing"* — and it is re-derived with the
+same energy, because a false clean bill of health is more dangerous than a false alarm.
+
+**The re-derivation record, per claim:** the claim; the lane and finding ID it came
+from; the file, command, or artifact White used; and the outcome.
+
+- **CONFIRMED** — White reproduced it.
+- **CORRECTED** — the claim is wrong, and White states what is actually there.
+- **UNVERIFIABLE** — it could not be reproduced, and White states what would be needed.
+
+Nothing is published on the strength of an unverifiable claim. A finding that cannot be
+reproduced does not stand as a finding, and a lane that cannot be reproduced does not
+stand as clean.
+
+**White calibrates severities; White does not calibrate the grade.** Each finding's
+severity carries one line of reasoning. The grade is **computed** — the rubric and the
+rulings applied to the surviving sub-verdicts, with the arithmetic shown: which lane
+set the floor, and which ruling bound it. White never raises or lowers a lane's
+sub-verdict. Disagreement with the outcome is recorded as a dissent and the grade
+stands, because a referee with discretion over the floor has made the floor optional.
+White's power is the gate, not the pen.
+
+**White does not originate findings.** If White sees something no lane found, it goes
+back to the lane whose area it falls in for verification — a finding with no lane
+behind it has no standard behind it either.
+
+**The publication decision is computed from conditions, not felt:**
+
+- **PUBLISH** — every load-bearing claim confirmed or corrected; the grade follows from
+  the rulings; the three deliverables are complete and consistent.
+- **PUBLISH WITH STATED GAPS** — a claim could not be re-derived. It is named in the
+  coverage section, and the grade is held no higher than that gap allows. The report
+  goes out; the gaps go with it.
+- **DO NOT PUBLISH** — a load-bearing claim is contradicted, a sub-verdict does not
+  survive its own claims, the grade does not follow from the rulings, or a finding's
+  evidence is missing. Fix it, then re-run White.
+
+**Report generation.** White owns what the report must contain and whether it may go
+out — not its prose. White issues the mandatory facts; the three deliverables are
+assembled from the technical report in this order, each translating from the one before
+it and never exceeding it:
+
+1. **The technical report** — for engineers and the next auditor; the source of truth.
+2. **The plain-English Safety Review** — for the decision-maker. White checks that
+   every sentence traces to the technical report: a claim the technical report cannot
+   support does not ship.
+3. **The findings ledger** — for agents and future audits: stable IDs, exact locations,
+   machine-checkable. White owns the final numbering and keeps the IDs stable across
+   cycles.
+
+White also owns the **coverage section** — what was not examined, what could not be
+established, what was out of scope — because a report that does not say where it
+stopped is claiming more than it did.
 
 **Method:** personal re-derivation of every load-bearing claim; merging the
-specialists' colliding finding IDs into one ledger; applying the rubric
-mechanically; listing the facts the public report must carry.
+specialists' colliding finding IDs into one ledger; one line of reasoning per severity;
+applying the rubric and the rulings mechanically; listing the facts the published
+report must carry.
 
-**Output:** a claim-by-claim verdict table, a calibration opinion, and the
-publication decision: *Publish / Publish with edits / Do not publish.*
+**Output:** the re-derivation record; the computed grade with its arithmetic; any
+dissent; the mandatory facts; and the publication decision.
+
+**Publication decision:** **PUBLISH** / **PUBLISH WITH STATED GAPS** / **DO NOT
+PUBLISH**.
 
 ---
 
@@ -427,10 +489,15 @@ TRUST HOLDS / EDGE TRUST UNPROVEN / EDGE TRUST BROKEN. v1.9 gives Amber the same
 treatment: a chain inventory published before verification, five questions at every
 link — named, pinned, real, read, matched — the rule that what cannot be verified is
 recorded as UNVERIFIED rather than assumed, and a computed verdict of CHAIN HOLDS /
-CHAIN UNVERIFIED / CHAIN BROKEN. The outcomes, the rubric, and the floor rule are all
-unchanged; reports published before v1.2 used the old grade
-names. Red and blue are established security-industry terms; orange, copper, amber,
-and white were
-introduced by the framework's first runs (Bitcoin Easy Signer audits, October 2026).
-This page may be reproduced in any report that uses the format; reproduce it whole
-and cite the version.*
+CHAIN UNVERIFIED / CHAIN BROKEN. v2.0 completes the pass. White gets a mechanical
+definition of load-bearing, a recorded outcome for every re-derived claim — confirmed,
+corrected, or unverifiable — a grade that is computed rather than calibrated, a
+publication decision computed from conditions rather than felt, and ownership of the
+coverage section and the mandatory facts. All six definitions now carry a fixed
+standard, a demonstrated-evidence rule, and an outcome that follows from tests rather
+than from taste. The outcomes, the rubric, and the floor rule are all unchanged; reports
+published before v1.2 used the old grade names. Red and blue are established
+security-industry terms; orange, copper, amber, and white were introduced by the
+framework's first runs (Bitcoin Easy Signer audits, October 2026). This page may be
+reproduced in any report that uses the format; reproduce it whole and cite the
+version.*
