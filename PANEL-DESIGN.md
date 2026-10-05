@@ -23,13 +23,17 @@ Phase 3  Consolidation — lead applies the grade, writes the report's sections
                          (safety review + technical report + ledger)
 Phase 3½ Verification — nothing is published until the live artifact is fetched
                          and hash-matched (publish-and-verify.sh)
+Phase 4  The next cycle — when the grade is BLOCKED or CONDITIONAL: the report names
+                         what to fix; fix it, cut a new revision, and run the audit
+                         again. Each cycle keeps its own plan, lock, and report, and
+                         appends one row to the index.
 ```
 
 ## The audit plan (produced before Phase 0, mandatory)
 
-The audit's single input parameter is **the audit plan** (`<repo>-colorteam-audit-plan.md`),
-produced by the survey — step one, which runs *before* this runbook is opened
-at all. It has two halves:
+The audit's single input parameter is **the audit plan**
+(`<repo>-colorteam-audit-plan-<cycle>.md`), produced by the survey — step one, which runs
+*before* this runbook is opened at all. It has two halves:
 
 - **The Asset Declaration** — the target's crown jewels, ranked: what must not be
   stolen, destroyed, altered, or acted upon without authorization.
@@ -58,7 +62,7 @@ hashes and the sign-off identity, never a person unless the signer put one there
 the signature, so signing cannot be an endorsement of them — it accepts the scope the
 audit runs against. That is the whole of what the owner agrees to.
 
-**How it is produced (two agents, four steps):** a Surveyor agent (`colorteam-surveyor.md`)
+**How it is produced (two agents, five steps):** a Surveyor agent (`colorteam-surveyor.md`)
 reads the repository and writes the plan from what the code actually does; the owner
 corrects anything only they know and signs the locked-scope block; the signed
 file locks. **Phase 0 does not produce it — Phase 0 verifies** that it exists, is
@@ -67,12 +71,12 @@ owner-signed, and names the revision being audited.
 **And the lock leaves a fingerprint.** Before the first specialist is dispatched, the
 auditor computes the SHA-256 of the signed plan and records it — with the plan's filename,
 the target revision, and the sign-off date — in a companion file
-`<repo>-colorteam-audit-lock.md`, never inside the plan itself, because writing the hash
-into the file would change the bytes it was taken over. The referee re-hashes the plan at
-the end and compares. Equal hashes mean the scope never moved and the panel graded what it
-said it graded. Unequal means the plan and the findings describe different audits: the
-audit is **void**, the publication decision is **DO NOT PUBLISH**, and there is no grade
-to argue about. Both hashes appear in the report.
+`<repo>-colorteam-audit-lock-<cycle>.md`, never inside the plan itself, because writing the
+hash into the file would change the bytes it was taken over. The referee re-hashes the plan
+at the end and compares. Equal hashes mean the scope never moved and the panel graded what
+it said it graded. Unequal means the plan and the findings describe different audits: the
+audit is **void**, the publication decision is **DO NOT PUBLISH**, and there is no grade to
+argue about. Both hashes appear in the report.
 
 **Two hashes prove the scope did not move during the audit; they do not prove when it was
 written relative to the findings**, because one operator holds both. Closing that gap takes
@@ -96,10 +100,10 @@ examined. Two different models — ideally from different vendors, so the traini
 data and the failure modes differ too — is the only thing that breaks that circuit.
 
 If you have only one model available, skip the Surveyor: the owner writes
-`<repo>-colorteam-audit-plan.md` by hand using the skeleton in `colorteam-surveyor.md`. The Surveyor is a
-convenience; **never reusing the audit model is the rule.** The owner's
-sign-off is never skipped either — it is the framework's defense against a
-steered (narrowed) plan.
+`<repo>-colorteam-audit-plan-<cycle>.md` by hand using the skeleton in
+`colorteam-surveyor.md`. The Surveyor is a convenience; **never reusing the audit model is
+the rule.** The owner's sign-off is never skipped either — it is the framework's defense
+against a steered (narrowed) plan.
 
 Examples by domain:
 
@@ -190,11 +194,18 @@ gives each specialist the full text of its own definition as its charter.
    longer describe the same audit: **DO NOT PUBLISH**, no grade, no partial credit. It is
    not a finding to be weighed and it is never resolved in the software's favor. Regrade
    against a re-signed plan or not at all.
+8. *Every prior finding is accounted for.* The fix ledger is a round trip, not a summary.
+   Cycle N's report cites cycle N−1's report file and its SHA-256, and the referee
+   enumerates the prior report's ledger and confirms that **every ID it carried appears
+   in this cycle's ledger** — not merely that the fixes listed are genuine. A prior
+   finding absent from the ledger is itself a finding, and a grade reached by letting one
+   drop is not earned. The scope lock proves the scope did not move *within* a cycle; only
+   this check proves the ledger did not shrink *between* cycles.
 
 ## Report shape — one report, three sections, three audiences
 
-Every engagement produces **one report**, `<repo>-colorteam-audit-report.md`, carrying
-three sections, one per audience, written in this order:
+Every engagement produces **one report**, `<repo>-colorteam-audit-report-<cycle>.md`,
+carrying three sections, one per audience, written in this order:
 
 1. **The technical report** — for the engineers and the next auditor (the source of truth;
    everything else translates from it).
@@ -230,7 +241,29 @@ verbatim evidence — which is never published.
 
 ## Conversion re-checks
 
-When a cycle ends CONDITIONAL with a defined conversion path, the follow-up is a light re-check, not a full audit: Phase 0 baseline on the new version → a delta-scoped wave covering only the domains the delta touches (unchanged domains carry over by VERIFIED blob-identity, never assumption) → the referee rules the conversion criterion met *by execution* (a demonstrated fix, a machine-enforced gate that actually ran) and that the delta introduced no new Critical/High. Grade converts if and only if both hold.
+When a cycle ends CONDITIONAL with a defined conversion path, the follow-up is a light
+re-check, not a full audit: Phase 0 baseline on the new version → a delta-scoped wave
+covering only the domains the delta touches (unchanged domains carry over by VERIFIED
+blob-identity, never assumption) → the referee rules the conversion criterion met *by
+execution* (a demonstrated fix, a machine-enforced gate that actually ran) and that the
+delta introduced no new Critical/High. Grade converts if and only if both hold. A light
+re-check is a lighter audit, not a footnote to the previous one: it still writes its own
+plan, its own lock, and its own report file, and it still appends its own row to the index.
+
+## The cycle index
+
+The audit is a loop, and the loop needs a scoreboard. Every engagement produces **one
+report per cycle** and **one index across cycles**: `<repo>-colorteam-audit-index.md`, in
+the repository root, appended at the end of each cycle and never overwritten. One row per
+cycle — the revision, the date, the grade, the auditor, and which prior findings remain
+open — so the arc is visible in a single file instead of scattered across N reports that
+may not even survive each other.
+
+The index is not decoration. A framework that produces a BLOCKED report and stops has told
+you what is wrong and left you there. The index is the record that the previous cycle's
+findings were fixed and the grade moved — or that they were not, and it did not.
+
+It is gated with the report: it may not claim a grade the report did not earn.
 
 ## Why the wave cannot be a checklist, and what it costs
 

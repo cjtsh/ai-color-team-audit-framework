@@ -1,9 +1,9 @@
 # Report Template — public technical report (Color Team)
 
-> This is the engineer/expert layer — the **first of the report's three sections**.
-> The decision-maker section is `SAFETY-REVIEW-TEMPLATE.md`; both go into **one file**,
-> `<repo>-colorteam-audit-report.md`, whose Appendix is the findings ledger. Write each
-> section for its own reader; each audience reads only its own.
+> This is the engineer/expert layer — the **first of the report's three sections**. The
+> decision-maker section is `SAFETY-REVIEW-TEMPLATE.md`; both go into **one file**,
+> `<repo>-colorteam-audit-report-<cycle>.md`, whose Appendix is the findings ledger. Write
+> each section for its own reader; each audience reads only its own.
 
 Replace bracketed values. Keep the structure and the honesty; the format is part of
 the standard. Delete any section that genuinely has no content — never invent any.
@@ -17,9 +17,10 @@ the standard. Delete any section that genuinely has no content — never invent 
 | **Version examined** | Tag `[tag]`, commit `[full SHA]`, published [date] |
 | **Assets declared** | [The crown jewels this audit protected, ranked — e.g., user credentials, personal and payment data, session control; or funds, key material, operator approval] |
 | **Auditor** | [Who] — a five-specialist Color Team panel plus a referee; asset declaration, charters and grade rules locked in writing **before** the build was examined |
-| **Prior audit** | [Prior cycle summary, or "first audit"] |
+| **Cycle** | `[<cycle>]` — this file is `<repo>-colorteam-audit-report-[<cycle>].md` |
+| **Prior audit** | [Prior cycle: report `<repo>-colorteam-audit-report-[<prior cycle>].md`, SHA-256 `[hash]`, grade `[grade]` — or "first audit"] |
 | **Verification** | [What was independently re-derived: artifact hashes, signatures/notarization, test suites re-run, etc.] |
-| **Scope lock** | Plan `[<repo>-colorteam-audit-plan.md]`, SHA-256 `[H_start]` before the first agent ran and `[H_end]` at the end — [equal: the scope never moved / **MISMATCH: the audit is void and this report must not be published**]. Owner-signed [identity, date — a handle, a role, or an organization, never a personal name]. [Hash published before the panel ran at [where] / order not witnessed.] |
+| **Scope lock** | Plan `[<repo>-colorteam-audit-plan-<cycle>.md]`, SHA-256 `[H_start]` before the first agent ran and `[H_end]` at the end — [equal: the scope never moved / **MISMATCH: the audit is void and this report must not be published**]. Owner-signed [identity, date — a handle, a role, or an organization, never a personal name]. [Hash published before the panel ran at [where] / order not witnessed.] |
 
 ## The grade: [✅ CLEARED / ⚠️ CONDITIONAL / ⛔ BLOCKED] — [one-line reason]
 
@@ -42,7 +43,12 @@ rule applies: if any clause of the rubric could be read to bind, it binds.]
 ## The prior audit's findings: [status summary]
 
 [Fix ledger: every prior-cycle finding → verified fixed / partially / open, with
-evidence and which tests pin each fix.]
+evidence and which tests pin each fix. **Every ID the prior report carried must appear
+here.** The ledger is a round trip, not a summary: the referee enumerates the prior
+report's ledger, hashes the file cited in the header, and confirms each ID is accounted
+for. A prior finding missing from this ledger is itself a finding — checking only that
+the fixes listed are genuine is half a check, and the missing half is where a grade gets
+quietly improved.]
 
 ## The panel
 
@@ -70,9 +76,10 @@ with the lane that set the floor, any dissent, and the mandatory facts.]
 
 ## Appendix — findings ledger
 
-[Prior-cycle IDs → status at this commit. New findings: final IDs (fixed by the
-referee after the specialists' independent counts collided), severity, one-line
-claim each, exact locations where publishable.]
+[Prior-cycle IDs → status at this commit — all of them, checked one by one against the
+prior report cited in the header. New findings: final IDs (fixed by the referee after the
+specialists' independent counts collided), severity, one-line claim each, exact locations
+where publishable.]
 
 ---
 

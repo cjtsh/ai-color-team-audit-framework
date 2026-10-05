@@ -1,8 +1,8 @@
 # Safety Review Template — the plain-English layer
 
 > This is a **section of the report**, not a separate document. Write it into
-> `<repo>-colorteam-audit-report.md`, after the technical report. It is the second of the
-> report's three sections; the findings ledger is the third.
+> `<repo>-colorteam-audit-report-<cycle>.md`, after the technical report. It is the second
+> of the report's three sections; the findings ledger is the third.
 
 Every audit produced under this framework has **two audiences**: the engineer who
 must verify the evidence, and the person who must decide whether to trust the

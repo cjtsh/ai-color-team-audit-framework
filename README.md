@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.1.9 · MIT License
+Version 1.2.0 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -13,14 +13,21 @@ method ships as drop-in agent files: hand them to any AI coding tool and run.
 
 **Point the agent at the runbooks — never copy them into your repository.** A tagged URL
 or an attached file both work. The framework's *own artifacts* are different: they **are**
-written into your repo, named after it, so they cannot collide with anything and you can
-always tell which cycle a file belongs to:
+written into your repo, named after it and after the revision they cover, so nothing
+collides and you can always tell which cycle a file belongs to:
 
 | Artifact | Name | Written by |
 |---|---|---|
-| The audit plan | `<repo>-colorteam-audit-plan.md` | the surveyor, then signed by you |
-| The scope lock | `<repo>-colorteam-audit-lock.md` | the auditor, before the first specialist runs |
-| The report | `<repo>-colorteam-audit-report.md` | the auditor, gated by the referee |
+| The audit plan | `<repo>-colorteam-audit-plan-<cycle>.md` | the surveyor, then signed by you |
+| The scope lock | `<repo>-colorteam-audit-lock-<cycle>.md` | the auditor, before the first specialist runs |
+| The report | `<repo>-colorteam-audit-report-<cycle>.md` | the auditor, gated by the referee |
+| The cycle index | `<repo>-colorteam-audit-index.md` | the auditor, one row appended each cycle — never overwritten |
+
+`<cycle>` is the revision being audited: its release tag (`v0.6.4`), or the short commit
+when the target has none. A repository called `payments-api` audited at `v0.6.4` gets
+`payments-api-colorteam-audit-report-v0.6.4.md`. **The cycle suffix is what makes a second
+audit possible** — without it, cycle two silently replaces cycle one's plan, lock, and
+report.
 
 The report is **one file with three sections** — the technical report for engineers, the
 safety review for everyone else, and the findings ledger for agents. One source of truth,
@@ -29,7 +36,7 @@ report — everything, verbatim evidence — which is never published. An `AGENT
 repo is *your* instructions to your own tools; this framework deliberately does not use
 that name.
 
-## How it works — four steps, two sets of eyes
+## How it works — five steps, two sets of eyes
 
 ```
   STEP 1 - THE SURVEY                        agent one   (model A)
@@ -38,14 +45,14 @@ that name.
   say: "Conduct a survey of this repository."
                  |
                  v
-  XYZ-colorteam-audit-plan.md                written into your repo root
+  XYZ-colorteam-audit-plan-v0.6.4.md         written into your repo root
 
                  |
                  v
 
   STEP 2 - YOU REVIEW                        no AI involved
   -------------------
-  read XYZ-colorteam-audit-plan.md, fix what only you know, sign it.
+  read XYZ-colorteam-audit-plan-v0.6.4.md, fix what only you know, sign it.
   It locks.
 
                  |
@@ -53,7 +60,7 @@ that name.
 
   STEP 3 - THE AUDIT                         agent two   (model B, must differ from A)
   ------------------
-  colorteam-auditor.md   +   your repo   +   XYZ-colorteam-audit-plan.md
+  colorteam-auditor.md  +  your repo  +  XYZ-colorteam-audit-plan-v0.6.4.md
   baseline -> the five lanes -> the referee
                  |
                  v
@@ -66,10 +73,25 @@ that name.
 
   STEP 4 - THE REPORT                        the referee gates what may go out
   -------------------
-  XYZ-colorteam-audit-report.md              one report, three sections
+  XYZ-colorteam-audit-report-v0.6.4.md       one report, three sections
       the technical report   - for engineers
       the safety review      - for everyone else
       the findings ledger    - for agents
+
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  STEP 5 - THE IMPROVEMENT LOOP              not CLEARED is not the end
+  -----------------------------
+  The report names every open finding, the evidence for it, and the
+  shortest path to CLEARED. Hand it to your agent, fix the code, cut a
+  new revision, and run the audit again.
+
+      v0.6.4   BLOCKED        ->  fix what the report named
+      v0.6.5   CONDITIONAL    ->  fix the rest
+      v0.6.6   CLEARED        earned by execution, not by asking
+
+  Every cycle keeps its own plan, lock, and report. The index holds the
+  whole arc in one file, so improvement is a record and not a story.
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 
 **Step 1 runs on a different model than steps 3 and 4, and that is the point.** The
@@ -78,10 +100,10 @@ against it, the same blind spot sits on both sides of the handoff: the panel wor
 faithfully from an incomplete scope, finds nothing wrong with what it can see, and
 grades it CLEARED on software nobody examined.
 
-**The handoff is one file.** The surveyor writes `<repo>-colorteam-audit-plan.md`; you read
-it, correct it, and sign it; the panel audits against it. Nothing else changes hands, and
-nothing else is asked of you — signing happens in the same sitting as reading, and the
-hashing is the agents' job.
+**The handoff is one file.** The surveyor writes `<repo>-colorteam-audit-plan-<cycle>.md`;
+you read it, correct it, and sign it; the panel audits against it. Nothing else changes
+hands, and nothing else is asked of you — signing happens in the same sitting as reading,
+and the hashing is the agents' job.
 
 ## What you get at the end
 
@@ -116,8 +138,9 @@ report, not an appendix.
 
 ## Quick start
 
-Four steps. Two are prompts you paste **exactly as they are** — nothing in them needs
-editing. One is you, for five minutes.
+Four steps to a report, then a fifth that repeats them until you pass. Two of the steps
+are prompts you paste **exactly as they are** — nothing in them needs editing. One is
+you, for five minutes.
 
 ---
 
@@ -126,13 +149,13 @@ model than the one that will run the audit. Paste this:
 
 ```
 Read this runbook and follow it exactly:
-https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.9/colorteam-surveyor.md
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.2.0/colorteam-surveyor.md
 
 Conduct a survey of this repository.
 ```
 
-It writes **`<repo>-colorteam-audit-plan.md`** into your repo root: what is at stake,
-where, and what it did **not** examine. It does not audit and does not grade.
+It writes **`<repo>-colorteam-audit-plan-<cycle>.md`** into your repo root: what is at
+stake, where, and what it did **not** examine. It does not audit and does not grade.
 
 ---
 
@@ -157,7 +180,7 @@ Paste this:
 
 ```
 Read this runbook and follow it exactly:
-https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.9/colorteam-auditor.md
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.2.0/colorteam-auditor.md
 
 The signed audit plan is in the repository root. Run the audit.
 ```
@@ -167,10 +190,21 @@ from a clean context.
 
 ---
 
-**Step 4 — the report.** The same agent writes **`<repo>-colorteam-audit-report.md`**
-into your repo root: one file with three sections — the technical report for engineers,
-the plain-English safety review for everyone else, and the findings ledger for agents.
-The referee re-derives every load-bearing claim and decides whether it may go out at all.
+**Step 4 — the report.** The same agent writes
+**`<repo>-colorteam-audit-report-<cycle>.md`** into your repo root: one file with three
+sections — the technical report for engineers, the plain-English safety review for everyone
+else, and the findings ledger for agents. The referee re-derives every load-bearing claim
+and decides whether it may go out at all.
+
+---
+
+**Step 5 — the improvement loop.** A grade that is not CLEARED is a to-do list, not a
+verdict on you. The report names every open finding, the evidence behind it, and the
+shortest path to CLEARED. Hand it to your agent, fix what it named, cut a new revision,
+and run steps 1–4 again against that revision. Each cycle keeps its own plan, lock, and
+report, and appends one row to **`<repo>-colorteam-audit-index.md`** — the arc, in one
+file. A CONDITIONAL with a defined path gets a *light re-check* rather than a full
+audit, so the second pass costs less than the first.
 
 ---
 
@@ -370,14 +404,13 @@ established, what was out of scope.
 ## The audit plan
 
 The plan is written by the **survey** — one agent, a different model — saved as
-`<repo>-colorteam-audit-plan.md`, and signed off by you before anyone audits. Its **Asset
-Declaration** is the crown jewels, ranked: what must not be stolen, destroyed,
-altered, or done without authorization.
-A wallet declares funds, keys, and the operator's decision. A web service declares
-credentials, personal and payment data, and session control. An embedded controller
-declares safety and availability. Every charter reads from that declaration, and the
-plan's scope section records what the audit covers, what it deliberately leaves out,
-and what the surveyor never examined.
+`<repo>-colorteam-audit-plan-<cycle>.md`, and signed off by you before anyone audits. Its
+**Asset Declaration** is the crown jewels, ranked: what must not be stolen, destroyed,
+altered, or done without authorization. A wallet declares funds, keys, and the operator's
+decision. A web service declares credentials, personal and payment data, and session
+control. An embedded controller declares safety and availability. Every charter reads from
+that declaration, and the plan's scope section records what the audit covers, what it
+deliberately leaves out, and what the surveyor never examined.
 
 The lanes adapt to your stack (a web app's Orange might be auth and session logic;
 its Copper might be the browser and mobile clients). The colors — and the rules —
@@ -415,7 +448,8 @@ cannot be sweetened.
 ## Worked examples (real audits, real grades)
 
 The framework was born in production: three audits of a real Bitcoin-inheritance
-tool in one day, each carrying the grade its evidence supported. Full stories in
+tool in one day, each carrying the grade its evidence supported — exactly the loop
+step 5 describes, and what the cycle index records. Full stories in
 [EXAMPLES.md](EXAMPLES.md); the shape of the arc:
 
 | Cycle | What happened | Grade |
@@ -444,9 +478,9 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 
 | File | What it is |
 |---|---|
-| `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
-| `colorteam-auditor.md` | **Steps three and four.** The drop-in runbook for the panel and for the report it produces; it names the framework files it needs. |
-| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v2.2) and reproducible in any report using the format. |
+| `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan-<cycle>.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
+| `colorteam-auditor.md` | **Steps three, four, and five.** The drop-in runbook for the panel, for the report, and for the cycle that follows; it names the framework files it needs. |
+| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v2.3) and reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Phases, rubric, report shape, and the conversion re-checks; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The report's engineer section — the public technical report skeleton, with the findings ledger as its appendix. |
 | `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report. Written into the same report, as its decision-maker section. |
@@ -460,7 +494,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 The framework is versioned, and **every version reference stays in sync**: the
 README version line, the PDF template's version stamp, and the changelog entry
 all carry the current release version at every release. (`COLOR-TEAM.md`'s
-definitions version — currently v2.2 — is deliberately independent: it changes
+definitions version — currently v2.3 — is deliberately independent: it changes
 only when the role definitions change, so published reports stay citable against
 the version they were written under.)
 

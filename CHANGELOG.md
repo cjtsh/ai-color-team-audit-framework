@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.2.0 — 2026-10-05
+
+### The audit becomes a loop, and every cycle keeps its own files
+
+The framework was always built for re-auditing — the fix ledger, the stable finding IDs,
+the conversion re-check — but the artifacts were not. Every cycle wrote the same three
+filenames, so cycle two silently replaced cycle one's plan, lock, and report. The three
+published audits of one product only worked as a series because the reports were renamed
+by hand.
+
+- **The cycle is in the filename.** `<repo>-colorteam-audit-plan-<cycle>.md`, and the same
+  for the lock and the report. `<cycle>` is the revision being audited — the tag, or the
+  short commit when there is none. Cycle two no longer destroys cycle one.
+- **A cycle index.** `<repo>-colorteam-audit-index.md`: one row per cycle, appended and
+  never overwritten — the revision, the date, the grade, the auditor, and what is still
+  open. The improvement is a record, not a story.
+- **A fifth step, in the diagram and the quick start.** BLOCKED and CONDITIONAL are to-do
+  lists. The report names what to fix and the shortest path to CLEARED; you fix it, cut a
+  new revision, and run again.
+- **The fix ledger is a round trip (ruling 8).** Cycle N cites cycle N−1's report file and
+  hash, and the referee confirms every ID the prior report carried is accounted for. A
+  prior finding missing from the ledger is itself a finding.
+- **A stale claim corrected:** the README said the artifact names let you tell which cycle
+  a file belongs to. They did not. Now they do.
+- **Two stale sign-off wordings corrected:** the surveyor and auditor runbooks still asked
+  for "a name and a date" after 1.1.8 removed personal names.
+
+Definitions changed: `COLOR-TEAM.md` → **v2.3** (White owns the cycle index and checks the
+ledger both ways).
+
 ## 1.1.9 — 2026-10-05
 
 ### The signature accepts a scope, not results

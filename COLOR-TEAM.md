@@ -1,4 +1,4 @@
-# The Color Team — definitions (v2.2)
+# The Color Team — definitions (v2.3)
 
 A security review performed by a named panel of specialist agents, each with one
 lens and one job. Two of the colors are borrowed from established security
@@ -392,10 +392,11 @@ behind it has no standard behind it either.
   survive its own claims, the grade does not follow from the rulings, or a finding's
   evidence is missing. Fix it, then re-run White.
 
-**Report generation.** White owns what the report must contain and whether it may go
-out — not its prose. White issues the mandatory facts; they land in **one report**,
-`<repo>-colorteam-audit-report.md`, carrying three sections assembled from the technical
-report in this order, each translating from the one before it and never exceeding it:
+**Report generation.** White owns what the report must contain and whether it may go out —
+not its prose. White issues the mandatory facts; they land in **one report**,
+`<repo>-colorteam-audit-report-<cycle>.md`, carrying three sections assembled from the
+technical report in this order, each translating from the one before it and never exceeding
+it:
 
 1. **The technical report** — for engineers and the next auditor; the source of truth.
 2. **The plain-English Safety Review** — for the decision-maker. White checks that
@@ -404,10 +405,20 @@ report in this order, each translating from the one before it and never exceedin
 3. **The findings ledger** — for agents and future audits: stable IDs, exact locations,
    machine-checkable. White owns the final numbering and keeps the IDs stable across
    cycles.
+4. **The cycle index** — `<repo>-colorteam-audit-index.md`, one row per cycle, appended
+   and never overwritten. White gates it with the report: it may not claim a grade the
+   report did not earn.
 
 White also owns the **coverage section** — what was not examined, what could not be
 established, what was out of scope — because a report that does not say where it
 stopped is claiming more than it did.
+
+**White checks the ledger both ways.** Cycle N's report cites cycle N−1's report file and
+its hash; White enumerates the prior report's ledger and confirms that every ID it carried
+is accounted for in this cycle's — verified fixed, partially fixed, open, or closed by
+dated owner acceptance. A prior finding absent from the ledger is itself a finding.
+Checking only that the fixes listed are genuine is half a check, and the missing half is
+where a grade gets quietly improved.
 
 **Method:** personal re-derivation of every load-bearing claim; merging the
 specialists' colliding finding IDs into one ledger; one line of reasoning per severity;
@@ -463,7 +474,7 @@ the other sections are.
 
 ---
 
-*Color Team definitions v2.2 — part of the AI Color Team Audit Framework (this
+*Color Team definitions v2.3 — part of the AI Color Team Audit Framework (this
 repository). v1.1 generalizes the founding wording (written for a Bitcoin wallet)
 to the Asset Declaration model; role semantics are unchanged from v1. v1.2 renames
 the report grades from Green/Yellow/Red to **CLEARED / CONDITIONAL / BLOCKED**,
@@ -501,10 +512,13 @@ standard, a demonstrated-evidence rule, and an outcome that follows from tests r
 than from taste. v2.1 makes the lock real: the owner signs the plan, the auditor
 hashes it before the first specialist runs, the referee re-hashes it at the end, and a
 mismatch voids the audit rather than grading it — a scope that can still move is not a
-scope. v2.2 says where the report's three sections go: one file, so the technical report,
-the plain-English safety review, and the findings ledger cannot drift apart or be taken
-for three documents. The outcomes, the rubric, and the floor rule are all unchanged;
-reports
+scope. v2.2 puts the report's three sections in one file, so the technical report, the
+plain-English safety review, and the findings ledger cannot drift apart or be taken for
+three documents. v2.3 makes the audit a loop with a record: the cycle is in every
+artifact's name so a later cycle cannot erase an earlier one, White keeps a cycle index
+that outlives every report, and the fix ledger is checked both ways — every ID the prior
+report carried must be accounted for, because a prior finding that quietly disappears is
+itself a finding. The outcomes, the rubric, and the floor rule are all unchanged; reports
 published before v1.2 used the old grade names. Red and blue are established
 security-industry terms; orange, copper, amber, and white were introduced by the
 framework's first runs (Bitcoin Easy Signer audits, October 2026). This page may be

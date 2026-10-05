@@ -4,6 +4,10 @@ Real audits run with this framework, with their real grades — including the on
 that were not CLEARED. Evidence beats marketing; every link below is a complete,
 public, citable report.
 
+> These runs predate the cycle naming convention (1.2.0); their reports were filed by
+> hand under `releases/`. The content is unchanged, and the arc they show is exactly what
+> the cycle index now records automatically.
+
 ## Bitcoin Easy Signer (October 2026)
 
 A macOS application that guides non-technical operators (spouses, trustees,

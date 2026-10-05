@@ -16,24 +16,31 @@
 
 ## What you are running
 
-A software security audit performed by AI agents in four steps:
+A software security audit performed by AI agents in five steps:
 
 1. **The survey — agent one** (its runbook is `colorteam-surveyor.md`). A *different* model —
-   ideally from a different vendor — reads the software before the audit and writes
-   **the audit plan** (`<repo>-colorteam-audit-plan.md`): the Asset Declaration (what is at stake,
-   ranked) and the scope (what is in, what is out and why, and what was not
+   ideally from a different vendor — reads the software before the audit and writes **the
+   audit plan** (`<repo>-colorteam-audit-plan-<cycle>.md`): the Asset Declaration (what is
+   at stake, ranked) and the scope (what is in, what is out and why, and what was not
    examined). All of this happens before this runbook is opened at all.
 2. **The owner signs the plan.** No AI. The owner reads it, corrects anything only
-   they know, and signs the locked-scope block with a name and a date. Unsigned it is
+   they know, and signs the locked-scope block with an identity and a date. Unsigned it is
    unverified scope; once signed it locks, the auditor hashes it before the first
    specialist runs, and the audit proceeds against it.
 3. **The panel — six agents.** Five specialists with one lens each, dispatched
    simultaneously and independently, plus a referee that re-derives every load-bearing
    claim and computes the grade from the rubric.
 4. **The report.** Phase 3 of this runbook: one file,
-   `<repo>-colorteam-audit-report.md`, carrying three sections — the technical report for
-   engineers, the plain-English safety review for everyone else, and the findings ledger
-   for agents. The referee's gate decides what may go out before it is written.
+   `<repo>-colorteam-audit-report-<cycle>.md`, carrying three sections — the technical
+   report for engineers, the plain-English safety review for everyone else, and the findings
+   ledger for agents. The referee's gate decides what may go out before it is written.
+5. **The next cycle — the improvement loop.** A grade that is not CLEARED is a to-do
+   list, not a verdict on the owner. The report names every open finding, the evidence
+   behind it, and the shortest path to CLEARED; the owner fixes what it named, cuts a new
+   revision, and the audit runs again against that revision. Each cycle keeps its own
+   plan, lock, and report, and appends one row to `<repo>-colorteam-audit-index.md` — the
+   file that survives every cycle and shows the arc. A CONDITIONAL with a defined
+   conversion path gets a light re-check; see **Conversion re-checks** below.
 
 The plan removes the cold-start burden from the human — most owners cannot write a
 threat-model declaration from memory, but they can check one and sign it in five
@@ -87,8 +94,8 @@ Before dispatching anyone:
 
 1. Identify the exact target of evaluation: repository, tag or commit, published
    artifacts. Clone fresh; never audit a dirty working tree.
-2. **Verify the audit plan** (`<repo>-colorteam-audit-plan.md`). It must already exist, be
-   owner-signed, and name the revision it surveyed — that is the output of step
+2. **Verify the audit plan** (`<repo>-colorteam-audit-plan-<cycle>.md`). It must already
+   exist, be owner-signed, and name the revision it surveyed — that is the output of step
    one (`colorteam-surveyor.md`), and **you never write it yourself**. If there is no
    signed plan, stop and send the owner back to step one: do not survey your own
    audit. If the plan names a different revision than the one you are auditing,
@@ -97,15 +104,15 @@ Before dispatching anyone:
    every charter, severity call, and report question is built from it, and it is
    locked with the rubric: it does not change after the audit begins.
 3. **Lock the scope.** Compute the SHA-256 of the owner-signed plan file and write
-   `<repo>-colorteam-audit-lock.md` beside it — never inside the plan, because writing
-   the hash there would change the bytes it was taken over:
+   `<repo>-colorteam-audit-lock-<cycle>.md` beside it — never inside the plan, because
+   writing the hash there would change the bytes it was taken over:
 
    ```markdown
    # Audit lock — <repository>
 
    | | |
    |---|---|
-   | **Plan file** | `<repo>-colorteam-audit-plan.md` |
+   | **Plan file** | `<repo>-colorteam-audit-plan-<cycle>.md` |
    | **Plan SHA-256 at the start of the audit** | `<H_start>` |
    | **Owner sign-off** | `<identity>, <YYYY-MM-DD>` |
    | **Target revision** | `<tag / commit>` |
@@ -196,11 +203,11 @@ The White referee receives all five reports plus your baseline, and must:
      which ruling bound it. A disagreement with the outcome is a recorded dissent,
      and the grade stands.
 6. **Re-hash the audit plan and compare it to the lock.** SHA-256 the plan file now,
-   check it against the start hash in `<repo>-colorteam-audit-lock.md`, and append the
-   end hash there. Equal hashes mean the scope never moved and the panel graded what it
-   said it graded. Unequal — the plan changed, the lock is missing, or either hash
-   cannot be produced — means the audit is **void**: **DO NOT PUBLISH**, no grade, and
-   it is not a finding to be weighed. Either way both hashes go in the report.
+   check it against the start hash in `<repo>-colorteam-audit-lock-<cycle>.md`, and append
+   the end hash there. Equal hashes mean the scope never moved and the panel graded what it
+   said it graded. Unequal — the plan changed, the lock is missing, or either hash cannot be
+   produced — means the audit is **void**: **DO NOT PUBLISH**, no grade, and it is not a
+   finding to be weighed. Either way both hashes go in the report.
 7. Own the **coverage section** — a report that does not say where the audit stopped is
    claiming more than it did — and list the facts that MUST appear in the public report
    (the publication requirements). Issue the gate verdict — **PUBLISH** / **PUBLISH
@@ -223,8 +230,15 @@ The White referee receives all five reports plus your baseline, and must:
    technical report — translate, never exceed.
 4. Write the private full report (everything, verbatim evidence) for the owner.
 5. If a prior audit's findings exist, carry their IDs forward in one continuous
-   ledger so fixes are trackable across cycles.
-6. Publish only what the referee's gate allows, carrying every mandatory fact.
+   ledger so fixes are trackable across cycles. **All of them** — enumerate the prior
+   report's ledger by ID and account for every one, whether that is verified fixed,
+   partially fixed, still open, or closed by dated owner acceptance. The round trip is
+   ruling 8 in `PANEL-DESIGN.md`: a prior finding absent from this ledger is itself a
+   finding.
+6. Append this cycle's row to `<repo>-colorteam-audit-index.md`: the revision, the date,
+   the grade, the auditor, and the prior findings still open. Add a row; never rewrite
+   an earlier one — the index is the only artifact that outlives a cycle.
+7. Publish only what the referee's gate allows, carrying every mandatory fact.
 
 ## Phase 3½ — Publication verification (non-negotiable)
 
@@ -252,7 +266,9 @@ code identity — say so explicitly in the report) → the referee verifies the
 conversion criterion was met *by execution, not acceptance* and that the delta
 introduced no new Critical/High. Grade converts if and only if both hold.
 Unchanged specialists' prior verdicts carry forward only when byte-identity of
-the relevant code is verified (blob hashes), never assumed.
+the relevant code is verified (blob hashes), never assumed. A conversion re-check is a
+lighter audit, not a footnote to the previous one: it writes its own plan, its own lock,
+and its own report file, and it appends its own index row.
 
 ## Anti-injection rules (for every agent in the panel)
 
@@ -268,7 +284,7 @@ the relevant code is verified (blob hashes), never assumed.
 
 ## The grade rubric (adapt numbers/conditions to the target, then lock)
 
-**`PANEL-DESIGN.md` → *The rubric* is the authority, with the seven rulings that bind
+**`PANEL-DESIGN.md` → *The rubric* is the authority, with the eight rulings that bind
 it. What follows is the operational checklist, because the referee must be able to apply
 the triggers without opening a second document. If the two ever disagree,
 `PANEL-DESIGN.md` wins.**
