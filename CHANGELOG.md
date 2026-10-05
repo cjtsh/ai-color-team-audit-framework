@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.1.1 — 2026-10-05
+
+### The runbooks catch up with the panel they run
+
+`colorteam-auditor.md` carried its own copy of the grade rubric, and the copy stopped
+being updated at v1.6. It knew about open Critical/High findings and nothing else: none of
+the five automatic blocks from rulings 4, none of the CONDITIONAL cap from ruling 5, and
+it never named a single color or cited `PANEL-DESIGN.md`. A Red breach demonstrated with
+no Critical/High finding would have graded CLEARED or CONDITIONAL under the file the
+operator actually executes. `PANEL-DESIGN.md` is now named as the authority, the runbook
+keeps the operational checklist, and where the two disagree the authority wins.
+
+Also in the auditor: the charters are the `COLOR-TEAM.md` definitions reproduced whole
+rather than "suggested" sketches, which is the wording v1.3 retired; the hard rules grant
+the **disposable local copy** that makes Blue's break-and-watch legal and stop
+contradicting Phase 0's instruction to run the suite; the header names the framework files
+the runbook needs instead of claiming the target repository is enough; and Phase 2 asks
+for White's artifacts — the mechanical definition of load-bearing, the per-claim
+CONFIRMED / CORRECTED / UNVERIFIABLE record, and the coverage section — rather than only
+the verbs.
+
+In `colorteam-surveyor.md`, the locked-scope block is now actually written out in full.
+Sections 1 through 8 are working detail; section 0 is the frozen statement and governs if
+they disagree. The block the owner signs now contains the asset table, the unforgivable
+acts, the rubric, the revision, and the exclusion and gap lists, instead of three "repeat
+section N" pointers.
+
+No definitions changed; `COLOR-TEAM.md` stays v2.1.
+
 ## 1.1.0 — 2026-10-05
 
 ### The scope is frozen, and the lock has a fingerprint

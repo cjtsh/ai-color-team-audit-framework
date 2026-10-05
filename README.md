@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.1.0 · MIT License
+Version 1.1.1 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -385,7 +385,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 | File | What it is |
 |---|---|
 | `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
-| `colorteam-auditor.md` | **Step three.** The complete drop-in runbook for the panel. |
+| `colorteam-auditor.md` | **Step three.** The drop-in runbook for the panel; it names the framework files it needs. |
 | `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v2.1) and reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Phases, rubric, report shape, and the conversion re-checks; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |

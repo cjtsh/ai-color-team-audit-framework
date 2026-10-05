@@ -14,7 +14,7 @@ the standard. Delete any section that genuinely has no content — never invent 
 |---|---|
 | **Version examined** | Tag `[tag]`, commit `[full SHA]`, published [date] |
 | **Assets declared** | [The crown jewels this audit protected, ranked — e.g., user credentials, personal and payment data, session control; or funds, key material, operator approval] |
-| **Auditor** | [Who] — a five-agent Color Team panel plus a referee; asset declaration, charters and grade rules locked in writing **before** the build was examined |
+| **Auditor** | [Who] — a five-specialist Color Team panel plus a referee; asset declaration, charters and grade rules locked in writing **before** the build was examined |
 | **Prior audit** | [Prior cycle summary, or "first audit"] |
 | **Verification** | [What was independently re-derived: artifact hashes, signatures/notarization, test suites re-run, etc.] |
 | **Scope lock** | Plan `[<repo>-colorteam-audit-plan.md]`, SHA-256 `[H_start]` before the first agent ran and `[H_end]` at the end — [equal: the scope never moved / **MISMATCH: the audit is void and this report must not be published**]. Owner-signed [name, date]. [Hash published before the panel ran at [where] / order not witnessed.] |

@@ -1,9 +1,12 @@
 # colorteam-auditor.md — step three: the audit
 
-> You are the lead auditor of a Color Team audit panel. This file is your complete
-> runbook. It is project-agnostic: paste it into any AI coding agent (ZCode, Claude
-> Code, Cursor, Copilot, or a plain system prompt) together with the target
-> repository, and execute it as written. Do not skip phases. Do not soften findings.
+> You are the lead auditor of a Color Team audit panel. This file is your runbook. It is
+> project-agnostic: paste it into any AI coding agent (ZCode, Claude Code, Cursor,
+> Copilot, or a plain system prompt) together with the target repository and the
+> framework files it names — `COLOR-TEAM.md` (the six charters), `PANEL-DESIGN.md` (the
+> rubric, the rulings and the phase structure), `REPORT-TEMPLATE.md`,
+> `SAFETY-REVIEW-TEMPLATE.md`, and the plan written by `colorteam-surveyor.md` — then
+> execute it as written. Do not skip phases. Do not soften findings.
 > The grade is defined before the audit starts and earned, never granted.
 >
 > **You are step three.** Step one — the survey — has already happened, on a different
@@ -118,17 +121,22 @@ Before dispatching anyone:
 5. Run the project's own test suites at the audited revision and record the counts.
 6. Read the project's own claims (release notes, prior findings, remediation
    records) — you will verify these, not trust them.
-7. Write the five charters (see COLOR-TEAM.md) tailored to this target and its
-   audit plan, mapping each lane onto the plan's declared assets and scope, and LOCK
-   THE GRADE RUBRIC in writing before any agent examines the build.
+7. Assemble the five charters: **the full text of each definition from
+   `COLOR-TEAM.md`**, plus the target-specific wrapper — the plan's declared assets and
+   scope, the baseline facts, the hard rules, and the output format. The definitions
+   are the standard and are not adapted; the *lanes* bend to the target, the colors do
+   not (see `PANEL-DESIGN.md` → *The charters*). Then LOCK THE GRADE RUBRIC in writing
+   before any agent examines the build.
 
 ## Phase 1 — The wave (five specialists, dispatched simultaneously)
 
 Dispatch all five as parallel sub-agents, each receiving ONLY its own charter, the
-baseline facts, the hard rules, and the output format. Suggested charters are in
-COLOR-TEAM.md; adapt the technical lanes to the target (the colors, not the lanes,
-are the standard). Each returns findings with stable IDs, evidence, and a
-sub-verdict. Cap each report's length so the panel stays readable.
+baseline facts, the hard rules, and the output format. Each charter is one color's
+definition from `COLOR-TEAM.md`, reproduced whole; the technical lanes are adapted to
+the target, the colors are not. Each returns findings with stable IDs, evidence, and
+its own sub-verdict — Red, Blue, Orange, Copper and Amber each have a fixed
+vocabulary, and the referee applies them mechanically. Cap each report's length so the
+panel stays readable.
 
 **One fresh context per specialist — that is the rule, not the timing.** Five lanes
 walked in order inside a single session is not a wave; it is one agent auditing with
@@ -138,9 +146,13 @@ coverage section. Either way, no specialist sees another's output before the ref
 merges them.
 
 Hard rules for every agent (include verbatim in each charter):
-- Read-only. No commits, pushes, tags, releases, workflow dispatches, installs.
+- Read-only. No commits, pushes, tags, releases, workflow dispatches. **No installs
+  outside a disposable local copy** — you will need one to run the suite.
 - No real secrets or credentials, no production-network side effects. Synthetic
   and test-vector data only.
+- **A disposable local copy is not the target.** Running the project's suite there, or
+  breaking a control there and reverting it, is verification, not a side effect. That
+  is what makes Blue's break-and-watch legal.
 - Uncertainty is a result: state what you could not determine and why.
 - If a category is clean, say "nothing found" explicitly.
 
@@ -148,31 +160,47 @@ Hard rules for every agent (include verbatim in each charter):
 
 The White referee receives all five reports plus your baseline, and must:
 
-1. Re-derive the load-bearing claims personally (read the same code, run the same
-   commands, quote what is actually there). Attack false alarms and false clean
-   bills of health with equal energy.
-2. Merge the specialists' independently-assigned finding IDs into one final ledger
+1. Re-derive every load-bearing claim personally (read the same code, run the same
+   commands, quote what is actually there), and attack false alarms and false clean
+   bills of health with equal energy. **Load-bearing is mechanical, not a judgment
+   call: a claim is load-bearing when it determined a sub-verdict or the grade.** A
+   lane that reported nothing is making a claim too — *"I found nothing"* — and it is
+   re-derived with the same energy, because a false clean bill of health is more
+   dangerous than a false alarm.
+2. Keep **the re-derivation record**: for every claim, the lane and finding ID, the
+   file, command or artifact you used, and the outcome — **CONFIRMED**,
+   **CORRECTED**, or **UNVERIFIABLE**. Nothing is published on the strength of an
+   unverifiable claim.
+3. Merge the specialists' independently-assigned finding IDs into one final ledger
    (their numbers will collide — that is expected; the referee fixes the numbering).
-3. Calibrate each finding's severity with one line of reasoning. Severities are
+   The referee **originates no findings of its own**: a new observation goes back to
+   the lane whose area it falls in, or it does not go in.
+4. Calibrate each finding's severity with one line of reasoning. Severities are
    calibrated; the **grade** is not — it is computed from the rubric and the rulings.
-4. Apply the locked rubric mechanically. Two known traps:
+   The referee never raises or lowers a lane's sub-verdict.
+5. Apply the locked rubric mechanically — see *The grade rubric* below for the
+   operational checklist, and `PANEL-DESIGN.md` → *The rubric* for the rulings in
+   full. Three known traps:
    - **Rubric tension:** if the CLEARED conditions and the CONDITIONAL conditions
      can both be read to apply, resolve so that every clause of the rubric is
      reachable — ambiguity is never resolved in CLEARED's favor.
    - **Invented acceptance:** an open finding can only be closed by written,
      dated owner acceptance. Never infer acceptance from documentation that
      predates the finding.
-5. **Re-hash the audit plan and compare it to the lock.** SHA-256 the plan file now,
+   - **Quiet cherry-picking:** show the arithmetic — which lane set the floor, and
+     which ruling bound it. A disagreement with the outcome is a recorded dissent,
+     and the grade stands.
+6. **Re-hash the audit plan and compare it to the lock.** SHA-256 the plan file now,
    check it against the start hash in `<repo>-colorteam-audit-lock.md`, and append the
    end hash there. Equal hashes mean the scope never moved and the panel graded what it
    said it graded. Unequal — the plan changed, the lock is missing, or either hash
    cannot be produced — means the audit is **void**: **DO NOT PUBLISH**, no grade, and
    it is not a finding to be weighed. Either way both hashes go in the report.
-6. List the facts that MUST appear in the public report (the publication
-   requirements), and issue the gate verdict — **PUBLISH** / **PUBLISH WITH STATED
-   GAPS** / **DO NOT PUBLISH** — computed from the conditions in `COLOR-TEAM.md`,
-   never chosen. Record a dissent if the outcome is wrong, but never adjust the grade
-   to match it.
+7. Own the **coverage section** — a report that does not say where the audit stopped is
+   claiming more than it did — and list the facts that MUST appear in the public report
+   (the publication requirements). Issue the gate verdict — **PUBLISH** / **PUBLISH
+   WITH STATED GAPS** / **DO NOT PUBLISH** — computed from the conditions in
+   `COLOR-TEAM.md`, never chosen.
 
 ## Phase 3 — Consolidation and reports (you)
 
@@ -235,13 +263,41 @@ the relevant code is verified (blob hashes), never assumed.
 
 ## The grade rubric (adapt numbers/conditions to the target, then lock)
 
+**`PANEL-DESIGN.md` → *The rubric* is the authority, with the seven rulings that bind
+it. What follows is the operational checklist, because the referee must be able to apply
+the triggers without opening a second document. If the two ever disagree,
+`PANEL-DESIGN.md` wins.**
+
 - ✅ **CLEARED** — ship-ready on the audited scope. Requires ALL: zero open
   Critical/High; every prior-cycle finding verified fixed or closed by dated owner
-  acceptance; stated defenses held and regression-tested; suites passing and
-  artifacts verified; no new Critical/High.
-- ⚠️ **CONDITIONAL** — no Critical/High, but open Mediums beyond owner acceptance, or
-  fix-verification gaps. Honest label: good software with work remaining.
-- ⛔ **BLOCKED** — any open Critical/High. Do not ship. Say exactly what and why.
+  acceptance; every lane's claims proven and pinned — each defense present, reachable
+  where it matters, effective, fail-closed, and held by a test that can fail; suites
+  passing and artifacts verified; no new Critical/High.
+- ⚠️ **CONDITIONAL** — no Critical/High, but open Mediums beyond owner acceptance,
+  fix-verification gaps, or **anything a lane leaves unproven** — an unpinned control,
+  **LOGIC UNPROVEN**, **EDGE TRUST UNPROVEN**, **CHAIN UNVERIFIED**. Honest label: good
+  software with work remaining. The cap applies when the unproven thing is on the path
+  to a declared asset; something that provably cannot reach one, with the exclusion
+  demonstrated, is a coverage note and does not cap.
+- ⛔ **BLOCKED** — any open Critical/High, **or any lane that proved its own failure
+  state**. That block takes no severity calibration, no rubric judgment, and no weighing
+  against clean lanes:
+
+  | Lane | Its failure state | What it means |
+  |---|---|---|
+  | 🔴 Red | **BREACH DEMONSTRATED** | against any declared asset |
+  | 🔵 Blue | a claimed control that does not hold | not present, not reachable where it matters, not effective, or fails open |
+  | 🟠 Orange | **LOGIC WRONG** | against a named invariant |
+  | 🟤 Copper | **EDGE TRUST BROKEN** | at a named interface |
+  | 🟡 Amber | **CHAIN BROKEN** | at a named link |
+
+  A lane that does not prove its failure state forces nothing, and the grade is then
+  decided by the rest of the panel. A scope-hash mismatch is not in this table at all:
+  it **voids the audit** — DO NOT PUBLISH, no grade, no partial credit.
+
+**The grade is the floor, never the average.** No trading a strong section against a bad
+one. Each lane's own definition in `COLOR-TEAM.md` says what its failure state means and
+what demonstrates it, within that lane's area of expertise.
 
 Severity scale (parameterized by the Asset Declaration): **Critical** = can seize,
 destroy, or alter the declared assets, or act on the user's behalf without

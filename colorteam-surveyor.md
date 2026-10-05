@@ -1,6 +1,6 @@
 # colorteam-surveyor.md — step one: the survey
 
-> **You are the Surveyor — step one of three, and the first of the two AI agents.**
+> **You are the Surveyor — step one of three, and the first agent to run.**
 > You run *before* the audit, on a different model than the one that will run it
 > (ideally a different vendor). Your job: read a repository and write **the audit
 > plan** — what is at stake, what is in scope, what is out, and what you did not
@@ -18,18 +18,21 @@ fill in is at the bottom of this file, in **The plan skeleton**.
 `payments-api-colorteam-audit-plan.md` for a repository called `payments-api`. Create it; never
 overwrite a file the repository already has.
 
-It has two halves:
+**It opens with a locked-scope block** (section 0 of the skeleton below), and then has
+two halves:
 
 - **The Asset Declaration** — the crown jewels, ranked, and the unforgivable acts in
   plain words.
 - **The scope** — what is in, what is out and why, and what you did not examine.
 
-**And it opens with a locked-scope block** (section 0 of the skeleton below). That block
-writes out *in full, not by reference*: the declared assets, the definitions in force, the
-grade rubric as adapted to this target, the exact revision being audited, and what is
-excluded. A scope that can still move is not a scope. The owner signs it at step two; the
-auditor records the hash of the whole plan before the first specialist runs, and the
-referee re-checks it at the end. A mismatch voids the audit.
+Section 0 writes out *in full, not by reference*: the declared assets, the unforgivable
+acts, the grade rubric as adapted to this target, the exact revision being audited, and
+the exclusions. A scope that can still move is not a scope, and "see `PANEL-DESIGN.md`"
+freezes nothing. The owner signs section 0 at step two; the auditor records the hash of
+the whole plan before the first specialist runs, and the referee re-checks it at the end.
+A mismatch voids the audit. **Where section 0 and the sections below it disagree, section
+0 governs** — it is the frozen statement, and the rest is the working detail it was built
+from.
 
 Everything downstream is built from it: the specialists' charters, every severity
 call, and the report's central questions. A bad plan cannot be rescued by a good
@@ -97,10 +100,11 @@ Fill in **The plan skeleton** below and save it as `<repo>-colorteam-audit-plan.
 target repository's root. **Name the exact revision** (tag or commit) you surveyed —
 a plan for a different commit is not a plan for this one.
 
-**Fill section 0 (Locked scope) last, and write it out in full** — the declared assets,
-the rubric as it applies here, the revision, the exclusions. It is the part the owner
-signs and the part the auditor hashes, so it has to stand on its own: "see
-`PANEL-DESIGN.md`" freezes nothing.
+**Fill section 0 (Locked scope) last, and write it out in full** — the asset table, the
+unforgivable acts, the rubric as it applies here, the revision, and the exclusion and
+gap lists, copied into section 0 itself rather than pointed at from it. It is the part
+the owner signs and the part the auditor hashes, so it has to stand on its own: "see
+`PANEL-DESIGN.md`" freezes nothing, and neither does "see section 2."
 
 Then stop and give it to the owner.
 
@@ -138,7 +142,20 @@ guidance — delete them as you go.
 **Definitions in force:** Color Team definitions v<!-- x.y --> (`COLOR-TEAM.md`) — Red,
 Blue, Orange, Copper, Amber, White.
 
-**Declared assets, and what must not happen to them:** <!-- repeat section 2, verbatim -->
+**Declared assets, and what must not happen to them:** <!-- the same table as section 2,
+     copied here in full — never "see section 2" -->
+
+| Rank | Asset | What must NOT happen to it |
+|---|---|---|
+| 1 | | |
+| 2 | | |
+| 3 | | |
+
+**The unforgivable acts, in plain words:** <!-- the same one or two worst outcomes as
+     section 3 -->
+
+1.
+2.
 
 **The rubric as adapted to this target** — these conditions, and no others, decide the
 grade:
@@ -149,9 +166,12 @@ grade:
 | ⚠️ CONDITIONAL | |
 | ⛔ BLOCKED | |
 
-**Target revision:** <!-- repeat section 1: tag or commit hash -->
+**Target revision:** <!-- the same tag or commit hash as section 1 -->
 
-**Out of scope:** <!-- repeat section 6, one line each -->
+**Out of scope:** <!-- the same list as section 6, one line each -->
+
+**Not examined:** <!-- the same list as section 7, one line each — the gap list the
+     report's coverage section is built from -->
 
 **Excluded by demonstration:** <!-- Anything a lane could not verify that provably cannot
      reach a shipped artifact, with the demonstration. See PANEL-DESIGN.md ruling 5.
