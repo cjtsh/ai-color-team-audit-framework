@@ -1,5 +1,64 @@
 # Changelog
 
+## 0.6.0 — 2026-10-05
+
+### Red and Blue stop being advisory
+
+Until now the panel produced six sub-verdicts that did not connect to the grade. A
+report could print "no breach found" and "defenses hold" and still end ⛔ BLOCKED
+with nothing explaining why that is not a contradiction — and the reverse: a
+sub-verdict that sounded clean while the lane behind it had proved nothing.
+
+Red and Blue are now the two colors that can decide the grade by themselves.
+
+**Red is contained, and binary.** Red attacks the repository, everything it ships,
+and every declared dependency — *not* the machine it runs on. A missing firewall is
+not a finding; "get root" is in scope only as *this software escaping its own
+process*. Every hop of a claimed path must be inside that boundary, and a path that
+needs a hop outside is recorded as an exclusion with the missing hop named. Its win
+conditions are five verbs applied to the declared assets — read it, change it,
+destroy it, act as the owner, escape the process — and its verdict is **BREACH
+DEMONSTRATED / NO BREACH DEMONSTRATED**, itemized per declared asset. One breach
+fails the whole sub-verdict; five clean assets do not offset it. A demonstrated
+breach is an automatic ⛔ BLOCKED (`PANEL-DESIGN.md` ruling 4).
+
+**Blue gets a standard instead of a lens.** It starts from every protection the
+artifact claims about itself, publishes that inventory, and judges each control on
+five tests: present, reachable where it matters, effective, fail-closed, and
+pinned. *A test that exists is not evidence; a test that can fail is* — so Blue
+breaks the control in a disposable copy, runs the suite, and watches. A test that
+stays green is itself the finding; a suite that will not run is a gap, never a
+pass. The sub-verdict is computed from the tests, and the worst control on the
+table wins: **DEFENSES HOLD / DEFENSES HOLD WITH GAPS / DEFENSE BROKEN**. A
+control that does not hold is an automatic ⛔ BLOCKED; an unpinned one caps the
+grade at ⚠️ CONDITIONAL (`PANEL-DESIGN.md` ruling 5). Rule 4's read-only
+requirement gained the disposable-local-copy carve-out that check needs.
+
+### The six definitions get one home
+
+`COLOR-TEAM.md` and `PANEL-DESIGN.md` both defined the six agents, in different
+words (17–53% shared vocabulary) and with opposite instructions: `COLOR-TEAM.md` is
+frozen and citable, while `PANEL-DESIGN.md` opens by telling the reader to adapt
+everything in it. `COLOR-TEAM.md` now owns the definitions — it is the file whose
+whole subject is "what the six agents are," and published audits already cite it
+whole — and `PANEL-DESIGN.md` keeps a pointer. Each entry is now
+Role / Method / Output / Sub-verdict. `COLOR-TEAM.md` is v1.6.
+
+The "must not be adapted away" list previously protected five process properties
+but **not the six lenses**, so a charter could be rewritten into something
+toothless while still citing the standard. The definitions themselves now lead that
+list.
+
+### Also
+
+- The README defines the three grades and the three deliverables for the first
+  time, and gains **🔴 Red, in more detail** and **🔵 Blue, in more detail**.
+- The report-shape list in `PANEL-DESIGN.md` — broken since before 0.2.1, whose
+  changelog entry claimed to have fixed it — now nests properly and starts at 1.
+- Two grade rulings rendered the stop sign as the wrong character; fixed.
+- The panel's cost note now explains *why* the wave is parallel rather than
+  selling it as speed. (Carried from 0.5.1.)
+
 ## 0.5.1 — 2026-10-05
 
 ### The parallel wave is explained, and stops being sold as a speed purchase
