@@ -5,46 +5,50 @@
 > Code, Cursor, Copilot, or a plain system prompt) together with the target
 > repository, and execute it as written. Do not skip phases. Do not soften findings.
 > The grade is defined before the audit starts and earned, never granted.
+>
+> **You are step two.** Step one — the survey — has already happened, on a different
+> model, and produced the audit plan you will audit against. If it has not, stop and
+> send the owner back to `SURVEYOR.md`.
 
 ## What you are running
 
-A software security audit performed by AI agents in two systems:
+A software security audit performed by AI agents in two steps:
 
-1. **The Surveyor** (one agent, and it must be a *different* model — ideally from a
-   different vendor — than the one that runs the panel): reads the software before
-   the audit and drafts the survey (`SURVEY.md`) from what the code
-   actually does — entry points, data stores, auth surfaces, dependencies,
-   deployment. The owner confirms or corrects it in one short sitting; the
-   confirmed survey is then locked with the rubric.
-2. **The Color Team panel** (six agents): five specialists with one lens each,
-   dispatched simultaneously and independently, plus a referee that verifies
-   everything and gates publication.
+1. **The survey — agent one** (its runbook is `SURVEYOR.md`). A *different* model —
+   ideally from a different vendor — reads the software before the audit and writes
+   **the audit plan** (`<repo>-survey.md`): the Asset Declaration (what is at stake,
+   ranked) and the scope (what is in, what is out and why, and what was not
+   examined). The owner confirms it in one short sitting. All of this happens before
+   this runbook is opened at all.
+2. **The panel — six agents.** Five specialists with one lens each, dispatched
+   simultaneously and independently, plus a referee that verifies everything and
+   gates publication.
 
-The Surveyor removes the cold-start burden from the human — most owners cannot
-write a threat-model survey from memory, but they can confirm one in five
-minutes. **It must be a different model from the panel's, and this is not
-optional.** The Surveyor decides what is in scope. If the same model writes the
-survey and then audits against it, the same blind spot sits on both sides of
-the handoff: the panel works faithfully from an incomplete scope, finds nothing
-wrong with what it can see, and grades green on software nobody actually examined.
+The plan removes the cold-start burden from the human — most owners cannot write a
+threat-model declaration from memory, but they can confirm one in five minutes.
+**The surveyor must be a different model from the panel's, and this is not
+optional.** The surveyor decides what is in scope. If the same model writes the
+plan and then audits against it, the same blind spot sits on both sides of the
+handoff: the panel works faithfully from an incomplete scope, finds nothing wrong
+with what it can see, and grades green on software nobody actually examined.
 Different models — ideally from different vendors — is the only thing that breaks
-that circuit. If you have only one model, do not run the Surveyor at all: have the
-owner write `SURVEY.md` by hand from `SURVEY-TEMPLATE.md`. The one human moment that
-never goes away: **the owner confirms the survey** — an unconfirmed
-survey is unverified scope, and a narrowed survey is a steered audit.
+that circuit. If you have only one model, do not run the surveyor at all: the owner
+writes the plan by hand from `SURVEY-TEMPLATE.md`. The one human moment that never
+goes away: **the owner confirms the plan** — an unconfirmed plan is unverified
+scope, and a narrowed plan is a steered audit.
 
 The defining rules:
 
 1. **Independence is structural.** The five specialists are dispatched in one wave
    and cannot see each other's findings until the merge. The offense agent is never
    shown prior audit conclusions, so it inherits no one's blind spots.
-2. **The surveyor is never the auditor.** The agent that writes the
-   survey must be a different model from the one that runs the panel —
-   ideally from a different vendor, so the training data and the failure modes
-   differ too. The surveyor sets the scope; if one model sets the scope and then
-   audits it, the same blind spot sits on both sides of the handoff and the audit
-   grades green on software nobody examined. Only one model available? The owner
-   writes `SURVEY.md` by hand. Never the audit model.
+2. **The surveyor is never the auditor.** The agent that writes the audit plan
+   must be a different model from the one that runs the panel — ideally from a
+   different vendor, so the training data and the failure modes differ too. The
+   surveyor sets the scope; if one model sets the scope and then audits it, the
+   same blind spot sits on both sides of the handoff and the audit grades green on
+   software nobody examined. Only one model available? The owner writes the plan by
+   hand. Never the audit model.
 3. **The rubric is locked before the audit.** The grade definitions are written
    down before anyone looks at the code, and applied mechanically afterward — in
    neither direction.
@@ -62,26 +66,23 @@ Before dispatching anyone:
 
 1. Identify the exact target of evaluation: repository, tag or commit, published
    artifacts. Clone fresh; never audit a dirty working tree.
-2. **Confirm the survey** (`SURVEY.md`). Preferred flow: a Surveyor
-   agent running a *different* model (see above) has already read the repository
-   and drafted it; your job is to walk the owner through it — confirm each
-   ranked asset, the unforgivable acts in the owner's own words, and where the
-   assets live; add anything code cannot see (business context, contractual
-   obligations). **Never become the Surveyor yourself:** if no draft exists, have
-   the owner write `SURVEY.md` from `SURVEY-TEMPLATE.md` rather than let the audit
-   model declare its own scope. Then get the owner's confirmation before
-   proceeding. **The audit does not start without an owner-confirmed
-   survey** — every charter, severity call, and report question is built
-   from it, and it is locked with the rubric: it does not change after the audit
-   begins.
+2. **Verify the audit plan** (`<repo>-survey.md`). It must already exist, be
+   owner-confirmed, and name the revision it surveyed — that is the output of step
+   one (`SURVEYOR.md`), and **you never write it yourself**. If there is no
+   confirmed plan, stop and send the owner back to step one: do not survey your own
+   audit. If the plan names a different revision than the one you are auditing,
+   stop and have it re-surveyed — a plan for another commit is unverified scope.
+   **The audit does not start without an owner-confirmed plan for this revision** —
+   every charter, severity call, and report question is built from it, and it is
+   locked with the rubric: it does not change after the audit begins.
 3. Verify integrity yourself: recompute artifact hashes against published checksums;
    verify code signatures/notarization if the project ships binaries.
 4. Run the project's own test suites at the audited revision and record the counts.
 5. Read the project's own claims (release notes, prior findings, remediation
    records) — you will verify these, not trust them.
 6. Write the five charters (see PANEL-DESIGN.md) tailored to this target and its
-   declared assets, and LOCK THE GRADE RUBRIC in writing before any agent
-   examines the build.
+   audit plan, mapping each lane onto the plan's declared assets and scope, and LOCK
+   THE GRADE RUBRIC in writing before any agent examines the build.
 
 ## Phase 1 — The wave (five specialists, dispatched simultaneously)
 

@@ -9,7 +9,39 @@ Maintained by **Bitseeker LLC**.
 Five specialist AI agents and a White referee independently audit your software —
 with a grade rubric locked in writing **before** the audit begins, applied
 mechanically after, and a publication gate nothing unfair survives. The whole
-method ships as a drop-in agent file: paste it into any AI coding tool and run.
+method ships as drop-in agent files: paste them into any AI coding tool and run.
+
+## How it works — two steps, two sets of eyes
+
+```mermaid
+flowchart TD
+    A["Your repository"] --> B
+    subgraph STEP1["Step 1 — the survey"]
+        B["Agent one, a different model<br/>reads the repo and writes the audit plan"]
+    end
+    B --> C["repo-survey.md<br/>the Asset Declaration + the scope"]
+    C --> D{"You confirm it"}
+    D -->|"correct it"| B
+    D -->|"approved"| E
+    subgraph STEP2["Step 2 — the audit"]
+        E["Five specialists, in one wave<br/>🔴 attacker · 🔵 defender · 🟠 critical logic<br/>🟤 edges · 🟡 supply chain"] --> F["⚪ White referee<br/>re-derives every claim, sets the grade"]
+    end
+    F --> G["The report<br/>grade · fixes · honest coverage"]
+```
+
+**Step 1 runs on a different model than step 2, and that is the point.** The
+surveyor decides what is even in scope. If one model writes the plan and then audits
+against it, the same blind spot sits on both sides of the handoff: the panel works
+faithfully from an incomplete scope, finds nothing wrong with what it can see, and
+grades green on software nobody examined.
+
+| You are | Read |
+|---|---|
+| Agent one, running the survey | **[SURVEYOR.md](SURVEYOR.md)** |
+| The panel, running the audit | **[AGENT.md](AGENT.md)** |
+| The owner, confirming the plan | `repo-survey.md`, written in the format of **[SURVEY-TEMPLATE.md](SURVEY-TEMPLATE.md)** |
+
+## The panel
 
 | | |
 |---|---|
@@ -20,12 +52,16 @@ method ships as a drop-in agent file: paste it into any AI coding tool and run.
 | 🟡 Amber | The supply-chain inspector — how the artifact is born: every dependency, build step, signature and download in the chain. |
 | ⚪ White | The referee — sees everything, re-derives every load-bearing claim personally, and gates what gets published. |
 
-The audit is parameterized by a **survey** you confirm before anyone looks at
-the code. Its **Asset Declaration** is the crown jewels, ranked: what must not
-be stolen, destroyed, altered, or done without authorization. A wallet declares
-funds, keys, and the operator's decision. A web service declares credentials,
-personal and payment data, and session control. An embedded controller declares
-safety and availability. Every charter reads from that declaration. |
+## The audit plan
+
+The plan is written by the **survey** — one agent, a different model — and you
+confirm it before anyone audits. Its **Asset Declaration** is the crown jewels,
+ranked: what must not be stolen, destroyed, altered, or done without authorization.
+A wallet declares funds, keys, and the operator's decision. A web service declares
+credentials, personal and payment data, and session control. An embedded controller
+declares safety and availability. Every charter reads from that declaration, and the
+plan's scope section records what the audit covers, what it deliberately leaves out,
+and what the surveyor never examined.
 
 The lanes adapt to your stack (a web app's Orange might be auth and session logic;
 its Copper might be the browser and mobile clients). The colors — and the rules —
@@ -41,30 +77,35 @@ are the standard.
 3. **The referee gates publication.** Nothing is published that one agent could
    not personally re-derive. False alarms and false clean bills of health are
    attacked with equal energy.
-4. **The surveyor is never the auditor.** The survey is drafted by a
+4. **The surveyor is never the auditor.** The audit plan is drafted by a
    *different* model than the one that runs the panel. The surveyor decides what
    is in scope: if one model sets the scope and then audits it, the same blind
    spot sits on both sides of the handoff, and the audit grades green on software
-   nobody examined. Only one model available? Write `SURVEY.md` yourself.
+   nobody examined. Only one model available? Write the plan by hand from
+   `SURVEY-TEMPLATE.md`.
 
 ## Quick start
 
-1. **Survey:** give **[SURVEY-TEMPLATE.md](SURVEY-TEMPLATE.md)** plus your
-   repository to an AI coding tool running a *different* model than the one that
-   will run the audit — the *Surveyor*. It reads the code and drafts your survey:
-   the crown jewels, ranked (the Asset Declaration), and the unforgivable acts in
-   plain words. This separation is required, not a preference: the model that
-   declares the scope must not be the model that audits it. Only one model
-   available? Write `SURVEY.md` yourself from the template instead.
-2. **Confirm:** read the draft, correct anything only you know, and save it as
-   `SURVEY.md` in the repo. Five minutes — and the one human moment the
-   framework insists on.
-3. **Audit:** point **[AGENT.md](AGENT.md)** (in your AI coding tool, or dropped
-   into the repo as an agents file) at the repository. The agent runs the
-   phases: baseline → the five-agent wave → the referee → the graded report.
-   Read **[PANEL-DESIGN.md](PANEL-DESIGN.md)** to see (or tailor) the charters
-   and rubric; **[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** shows what you get;
-   **[templates/pdf/](templates/pdf/)** generates the typeset edition.
+**Step 1 — the survey.** Give **[SURVEYOR.md](SURVEYOR.md)** and your repository to
+an AI coding tool running a *different* model than the one that will run the audit,
+and say *"conduct a survey."* It reads the code, works out what is at stake and
+where, and writes **`repo-survey.md`** — the audit plan. It does not audit, does not
+grade, and does not invent the checking method; it reports what matters and where,
+and writes down what it did **not** examine.
+
+**Step 2 — you confirm.** Read the plan. Correct anything only you know, change the
+ranking if your priorities differ, and check the exclusions. Five minutes — and the
+one human moment the framework insists on. Once you approve it, it locks.
+
+**Step 3 — the audit.** Point **[AGENT.md](AGENT.md)** at the repository and the
+confirmed plan. The agent runs the phases: baseline → the five-agent wave → the
+referee → the graded report. Read **[PANEL-DESIGN.md](PANEL-DESIGN.md)** to see (or
+tailor) the charters and rubric; **[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** shows
+what you get; **[templates/pdf/](templates/pdf/)** generates the typeset edition.
+
+Only one model available? Write `repo-survey.md` by hand from
+**[SURVEY-TEMPLATE.md](SURVEY-TEMPLATE.md)**. The surveyor is a convenience; never
+letting the audit model declare its own scope is the rule.
 
 Requires an AI coding tool that can spawn parallel sub-agents. If yours runs only
 one agent, run the colors sequentially in separate sessions — you lose structural
@@ -110,15 +151,16 @@ tool in one day, each carrying the grade its evidence supported. Full stories in
 
 | File | What it is |
 |---|---|
-| `AGENT.md` | **The product.** The complete drop-in runbook for any AI coding tool. |
-| `SURVEY-TEMPLATE.md` | **The one file you fill in.** The survey: your crown jewels, ranked, and the unforgivable acts — the audit's single input, consumed in Phase 0. |
+| `SURVEYOR.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes the audit plan. Never the model that runs the panel. |
+| `SURVEY-TEMPLATE.md` | The survey form. Fill it in, save it as `repo-survey.md`, and it becomes the audit plan: the audit's single input. |
+| `AGENT.md` | **Step two.** The complete drop-in runbook for the panel. |
 | `COLOR-TEAM.md` | The color definitions, versioned (v1.1) — reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Charters, phases, rubric, and the report shape; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |
 | `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report. |
 | `templates/publish-and-verify.sh` | The anti-"already done" tool: commit, push, poll, fetch, and hash-compare in one invocation. Nothing is published until it says VERIFIED. |
 | `templates/pdf/` | A ReportLab generator for the typeset report edition. |
-| `EXAMPLES.md` | The worked case studies. |
+| `EXAMPLES.md` | The worked case studies, plus an illustrative audit plan. |
 | `CHANGELOG.md` | Version history. |
 
 ## Contributing and versioning

@@ -78,6 +78,50 @@ framework can do all three, its work is done.
 ![The Green report — cover](examples/v0.6.4-cover.png)
 ![The Green report — the grade page](examples/v0.6.4-grade.png)
 
+## What a survey looks like
+
+*Illustrative, not a real engagement.* The survey runs **before** the audit: one
+agent, on a different model, reads the repository and writes the audit plan. This
+is a filled-in plan for a database-backed web service — the same five colors, and
+a completely different hunt from the Bitcoin wallet above.
+
+> **1. Target and revision:** `example/payments-api` @ `a1b2c3d`, surveyed
+> 2026-10-01.
+>
+> **2. Declared assets (ranked):** (1) User credentials and session control — must
+> not be stolen, forged, or replayed. (2) Stored personal and payment data — must
+> not be extracted via injection or broken access control, or silently altered.
+> (3) Administrative access — must not be reachable through privilege escalation.
+> (4) Service availability — must not be degradable by unauthenticated actions.
+>
+> **3. Unforgivable acts:** (1) "An attacker reads or modifies the customer
+> database without a valid account." (2) "An attacker becomes admin without
+> stealing a credential."
+>
+> **4. Where they live:** PostgreSQL reached through SQLAlchemy (`app/models/`);
+> session tokens issued in `app/auth/` and stored in Redis; card data handled by
+> `app/billing/`; admin endpoints under `app/admin/`; browser client in `web/`.
+>
+> **5. In scope:** the API service, the browser client, the schema and migrations,
+> the release pipeline.
+>
+> **6. Out of scope, and why:** the static marketing site (separate deployment,
+> shares no code); the mobile app (not yet released).
+>
+> **7. Not examined, and why:** the managed database provider's own configuration —
+> the client code can be read, the server cannot; `migrations/` was opened only far
+> enough to confirm the schema matches the models.
+
+With that one page the panel maps itself: Red hunts injection-to-extraction and
+privilege-escalation paths against assets 2–3; Blue demands parameterization and
+access-control proofs with regression tests; Orange takes `app/auth/` session and
+token logic; Copper takes the `web/` client; Amber takes the dependency chain — and
+the report's central questions become the two unforgivable acts.
+
+For contrast, the founding run — a Bitcoin wallet — declared: funds; key material;
+the operator's approval of a transaction. Same five colors, completely different
+hunt.
+
 ---
 
 Ran a Color Team audit with this framework — whatever grade you got? Open a PR
