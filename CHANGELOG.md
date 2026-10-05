@@ -1,5 +1,40 @@
 # Changelog
 
+## 1.3.0 — 2026-10-05
+
+### The agents are named — and the naming is a declaration, not a verification
+
+The published report said `Auditor: [Who]`. Free text, unsigned, and nothing anywhere
+recorded the surveyor at all — so "six agents, three reports" was indistinguishable from
+"one agent, three runs," and the framework's oldest rule (the surveyor is never the
+auditor) was an honour system with no check behind it.
+
+- **A provenance block in three places.** The plan's section 0, the lock, and the report's
+  header all carry the same shape: **harness** (required), **session identifier** (pulled
+  from the environment, verbatim, with the variable name), **model** (declared by the
+  operator, optional), and **who declared it**.
+- **Never ask the agent what it is.** An agent asked for its model names its harness or
+  invents something. The surveyor runbook now forbids introspection outright: the operator
+  declares, the agent transcribes. `not exposed by the harness` is a valid value; a blank
+  is a finding and a guess is a defect.
+- **The session identifiers are compared (ruling 9).** The surveyor's is stamped into the
+  signed plan, the auditor's into the report, and the referee compares them — **identical
+  identifiers mean one run did both jobs, so the independence rule is broken and the audit
+  is void**, mechanically, exactly like a scope-lock mismatch. This is the first thing in
+  the framework that turns rule 4 from a request into a check.
+- **What it does not do:** it proves different *runs*, not different *models* — two
+  sessions can be the same model, so it does not buy a second vendor's opinion. It remains
+  forgeable in principle, though a wrong session ID contradicts the harness's own store
+  while a wrong model name contradicts nothing. Provenance, not proof — the same limit the
+  scope lock has.
+- **The referee may not reject a report over it.** Most harnesses expose no session and no
+  model; a rule that cannot be followed is not a rule. Unknown is recorded, never punished.
+
+Multi-vendor runs and their reconciliation rule remain deferred (see the 1.2.0 cycle work).
+
+Definitions changed: `COLOR-TEAM.md` → **v2.4** (rule 5, and White tests the independence
+claim).
+
 ## 1.2.0 — 2026-10-05
 
 ### The audit becomes a loop, and every cycle keeps its own files

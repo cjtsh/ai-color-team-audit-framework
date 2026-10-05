@@ -115,6 +115,12 @@ gap lists, copied into section 0 itself rather than pointed at from it. It is th
 the owner signs and the part the auditor hashes, so it has to stand on its own: "see
 `PANEL-DESIGN.md`" freezes nothing, and neither does "see section 2."
 
+**Stamp your own provenance before you stop.** Section 0 carries an **Agent provenance**
+block; fill it from the environment, not from memory — read your harness's session
+identifier out of the environment and copy it verbatim with the variable name. If there is
+none, write `not exposed by the harness`. Never ask yourself which model you are; see the
+hard rules.
+
 Then stop and give it to the owner.
 
 ## Hard rules
@@ -126,6 +132,12 @@ Then stop and give it to the owner.
   live systems.
 - **Evidence, not vibes.** Every claim about the repository carries a location
   (`file:line @ commit`). "I could not determine X" is a result — write it down.
+- **Never try to determine which model you are.** An agent asked what it is answers with
+  its harness or invents something, and a self-description is never evidence. Record the
+  harness you are running in (you know that), the session identifier if the environment
+  exposes one (copy it verbatim, with the variable name), and the model only if the
+  operator told you — `not exposed by the harness` otherwise. A blank is a finding; a
+  guess is a defect. The operator declares; you transcribe.
 - **The owner signs off, in writing.** The plan is not finished until the owner has read
   it, corrected anything only they know, and signed the locked-scope block with an identity
   and a date. An unsigned plan is unverified scope, and a narrowed plan is a steered audit.
@@ -185,6 +197,24 @@ grade:
 **Excluded by demonstration:** <!-- Anything a lane could not verify that provably cannot
      reach a shipped artifact, with the demonstration. See PANEL-DESIGN.md ruling 5.
      Leave empty if there is nothing to exclude. -->
+
+**Agent provenance — who ran this, and how you know.** Fill this from the environment,
+never from memory. The harness is required. The session identifier is pulled, not typed:
+read it out of the environment and copy it verbatim with the variable name. If the harness
+exposes none, write `not exposed by the harness` — that is a valid value, and leaving the
+field blank is not. The model is declared by the operator if they know it; never ask
+yourself, and never guess. See `PANEL-DESIGN.md` ruling 9.
+
+| | |
+|---|---|
+| **Surveyor — harness** | <!-- the tool this ran in --> |
+| **Surveyor — session ID** | <!-- pulled from the environment, verbatim, with the variable name — or "not exposed by the harness" --> |
+| **Surveyor — model** | <!-- declared by the operator, or "not exposed by the harness". Never a guess. --> |
+| **Declared by** | <!-- who asserts the three lines above: a handle, a role, or an organization --> |
+
+The auditor records its own provenance in the report. The referee compares the two session
+identifiers: **identical means one run did both jobs, the independence rule is broken, and
+the audit is void.** Different identifiers establish different runs, not different models.
 
 ---
 

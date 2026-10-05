@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.2.0 · MIT License
+Version 1.3.0 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -149,7 +149,7 @@ model than the one that will run the audit. Paste this:
 
 ```
 Read this runbook and follow it exactly:
-https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.2.0/colorteam-surveyor.md
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.3.0/colorteam-surveyor.md
 
 Conduct a survey of this repository.
 ```
@@ -180,7 +180,7 @@ Paste this:
 
 ```
 Read this runbook and follow it exactly:
-https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.2.0/colorteam-auditor.md
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.3.0/colorteam-auditor.md
 
 The signed audit plan is in the repository root. Run the audit.
 ```
@@ -416,7 +416,7 @@ The lanes adapt to your stack (a web app's Orange might be auth and session logi
 its Copper might be the browser and mobile clients). The colors — and the rules —
 are the standard.
 
-## The four rules that make it honest
+## The five rules that make it honest
 
 1. **The rubric is locked before the audit, and the lock is hashed.** CLEARED/
    CONDITIONAL/BLOCKED are defined in writing before any agent examines the build, and
@@ -435,6 +435,19 @@ are the standard.
    spot sits on both sides of the handoff, and the audit grades it CLEARED on software
    nobody examined. Only one model available? Copy the plan skeleton out of
    `colorteam-surveyor.md` and fill it in by hand.
+5. **Both agents are named, and the naming is a declaration the operator makes — not the
+   AI.** Ask an agent what model it is and it will name its harness or invent something, so
+   the framework never asks. Instead the surveyor and the auditor are each recorded in the
+   plan, the lock, and the report by **harness, session identifier, and model** — every
+   line labelled with who declared it. The session identifier is *read out of the
+   environment*, not typed from memory; if the harness exposes none, the report says
+   `not exposed by the harness`, because a blank is a finding and a guess is a defect. Then
+   the referee compares the two sessions: **identical, and one run did both jobs — rule 4
+   is broken and the audit is void.** Different sessions prove different runs, not
+   different models, and the report says so. Nothing here is proof — it is provenance, the
+   same limit the scope lock has. But it converts an anonymous `Auditor: [Who]` into a
+   statement somebody signed, and it makes "did one agent run this three times?" a question
+   with an answer.
 
 ## What this is not
 
@@ -480,7 +493,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 |---|---|
 | `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan-<cycle>.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
 | `colorteam-auditor.md` | **Steps three, four, and five.** The drop-in runbook for the panel, for the report, and for the cycle that follows; it names the framework files it needs. |
-| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v2.3) and reproducible in any report using the format. |
+| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v2.4) and reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Phases, rubric, report shape, and the conversion re-checks; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The report's engineer section — the public technical report skeleton, with the findings ledger as its appendix. |
 | `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report. Written into the same report, as its decision-maker section. |
@@ -494,7 +507,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 The framework is versioned, and **every version reference stays in sync**: the
 README version line, the PDF template's version stamp, and the changelog entry
 all carry the current release version at every release. (`COLOR-TEAM.md`'s
-definitions version — currently v2.3 — is deliberately independent: it changes
+definitions version — currently v2.4 — is deliberately independent: it changes
 only when the role definitions change, so published reports stay citable against
 the version they were written under.)
 

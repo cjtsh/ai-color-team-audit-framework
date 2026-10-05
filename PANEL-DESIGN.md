@@ -201,6 +201,19 @@ gives each specialist the full text of its own definition as its charter.
    finding absent from the ledger is itself a finding, and a grade reached by letting one
    drop is not earned. The scope lock proves the scope did not move *within* a cycle; only
    this check proves the ledger did not shrink *between* cycles.
+9. *Identity is a declaration, not a verification.* Every report names both agents — the
+   surveyor and the auditor — and every field carries its source. The harness is required;
+   the model is optional and declared, because an agent asked what it is answers with its
+   harness or invents an answer, and self-description is never evidence. A session
+   identifier is pulled from the environment and copied verbatim. `not exposed by the
+   harness` is a valid value, a blank field is a finding, and a guessed model name is a
+   defect. One mechanical check is available: the surveyor's session identifier is stamped
+   into the signed plan and the auditor's into the report, and **identical identifiers mean
+   one run did both jobs — the independence rule is broken and the audit is void**, exactly
+   as a scope-lock mismatch is. Different identifiers establish different runs, not
+   different models, and the referee says which of the two it has. The referee never
+   rejects a report because a harness exposed no session or no model, and never presents a
+   declared identity as a verified one.
 
 ## Report shape — one report, three sections, three audiences
 

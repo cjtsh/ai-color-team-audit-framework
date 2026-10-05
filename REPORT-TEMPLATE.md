@@ -17,6 +17,9 @@ the standard. Delete any section that genuinely has no content — never invent 
 | **Version examined** | Tag `[tag]`, commit `[full SHA]`, published [date] |
 | **Assets declared** | [The crown jewels this audit protected, ranked — e.g., user credentials, personal and payment data, session control; or funds, key material, operator approval] |
 | **Auditor** | [Who] — a five-specialist Color Team panel plus a referee; asset declaration, charters and grade rules locked in writing **before** the build was examined |
+| **Surveyor** | Harness `[tool]` · session `[ID pulled from the environment with the variable name, or "not exposed by the harness"]` · model `[declared by [who], or "not exposed by the harness"]` |
+| **Auditor identity** | Harness `[tool]` · session `[ID, or "not exposed by the harness"]` · model `[declared, or "not exposed by the harness"]` |
+| **Independence** | Surveyor and auditor ran in different sessions: **`[yes / no / cannot be determined]`** — [the two session identifiers differ / both read "not exposed by the harness", so independence rests on the operator's declaration / **the identifiers are identical: one run did both, the independence rule is broken, and this audit is void — DO NOT PUBLISH**] |
 | **Cycle** | `[<cycle>]` — this file is `<repo>-colorteam-audit-report-[<cycle>].md` |
 | **Prior audit** | [Prior cycle: report `<repo>-colorteam-audit-report-[<prior cycle>].md`, SHA-256 `[hash]`, grade `[grade]` — or "first audit"] |
 | **Verification** | [What was independently re-derived: artifact hashes, signatures/notarization, test suites re-run, etc.] |

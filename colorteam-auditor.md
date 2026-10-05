@@ -116,7 +116,9 @@ Before dispatching anyone:
    | **Plan SHA-256 at the start of the audit** | `<H_start>` |
    | **Owner sign-off** | `<identity>, <YYYY-MM-DD>` |
    | **Target revision** | `<tag / commit>` |
-   | **Auditor** | `<model/tool>` |
+   | **Surveyor** | `<harness> · session <id pulled from the environment, or "not exposed by the harness"> · model <declared, or "not exposed by the harness">` |
+   | **Auditor** | `<harness> · session <id pulled from the environment, or "not exposed by the harness"> · model <declared, or "not exposed by the harness">` |
+   | **Same session for both?** | `<no / cannot be determined / YES — the independence rule is broken and the audit is void>` |
    | **Locked at** | `<ISO 8601 timestamp>` |
    | **Published before the panel ran** | `<commit, gist, issue, or public chain — or "not published, order unwitnessed">` |
    | **Plan SHA-256 at the end of the audit** | `<H_end, filled by the referee>` |
@@ -124,6 +126,12 @@ Before dispatching anyone:
    The referee re-hashes the plan file at the end and compares. Equal hashes mean the
    scope never moved. Unequal means the audit is void: **DO NOT PUBLISH**.
    ```
+
+   Copy the surveyor's provenance line out of the plan's section 0 **verbatim**, and read
+   your own session identifier out of the environment the same way. A blank provenance
+   field in the plan is a finding you carry into the report — it is never a reason to
+   refuse the audit, because most harnesses expose nothing and a rule that cannot be
+   followed is not a rule.
 
    This happens **before the first specialist is dispatched** — a lock taken after the
    panel has run proves nothing. From here the plan is never edited, and nothing but the
@@ -208,7 +216,14 @@ The White referee receives all five reports plus your baseline, and must:
    said it graded. Unequal — the plan changed, the lock is missing, or either hash cannot be
    produced — means the audit is **void**: **DO NOT PUBLISH**, no grade, and it is not a
    finding to be weighed. Either way both hashes go in the report.
-7. Own the **coverage section** — a report that does not say where the audit stopped is
+7. **Compare the two session identifiers.** The surveyor's is in the signed plan; yours is
+   in the lock. Identical identifiers mean a single run did both jobs — rule 4 is broken
+   and the audit is **void**: **DO NOT PUBLISH**, no grade, exactly as a scope-lock
+   mismatch. Different identifiers establish different runs, not different models: say
+   which of the two you have, and never present a declared model name as verified. If
+   either side reads `not exposed by the harness`, record that and move on — independence
+   then rests on the operator's declaration, and the report says so.
+8. Own the **coverage section** — a report that does not say where the audit stopped is
    claiming more than it did — and list the facts that MUST appear in the public report
    (the publication requirements). Issue the gate verdict — **PUBLISH** / **PUBLISH
    WITH STATED GAPS** / **DO NOT PUBLISH** — computed from the conditions in

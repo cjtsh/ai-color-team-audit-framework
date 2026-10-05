@@ -1,4 +1,4 @@
-# The Color Team — definitions (v2.3)
+# The Color Team — definitions (v2.4)
 
 A security review performed by a named panel of specialist agents, each with one
 lens and one job. Two of the colors are borrowed from established security
@@ -420,6 +420,14 @@ dated owner acceptance. A prior finding absent from the ledger is itself a findi
 Checking only that the fixes listed are genuine is half a check, and the missing half is
 where a grade gets quietly improved.
 
+**White also tests the independence claim.** The surveyor's session identifier is in the
+signed plan and the auditor's is in the report; White compares them and records which of
+the three cases holds — different sessions, both unexposed, or identical. Identical
+identifiers mean one run wrote both and rule 4 is broken: the audit is **void**, not
+graded. White never treats a declared model name as verified, and never rejects a report
+because a harness exposed no session or no model — most do not, and a rule that cannot be
+followed is not a rule.
+
 **Method:** personal re-derivation of every load-bearing claim; merging the
 specialists' colliding finding IDs into one ledger; one line of reasoning per severity;
 applying the rubric and the rulings mechanically; listing the facts the published
@@ -471,10 +479,18 @@ the other sections are.
    handled, uncertainty is a result, and the report says what was not examined. A
    **disposable local copy** is not the target — running the suite there, or
    breaking a control there and reverting it, is verification, not a side effect.
+5. Both agents are identified in the artifacts, and the identification is a declaration by
+   a person. The report names the surveyor and the auditor — harness, session identifier,
+   and model — each line labelled with who stated it, because an agent cannot say what it
+   is and the operator can. A session identifier is read out of the environment, not
+   recalled. A missing value is written as `not exposed by the harness`; a blank is a
+   finding and a guess is a defect. The surveyor's identifier is stamped into the signed
+   plan and the auditor's into the report, and if the two are identical then one run did
+   both jobs: the independence rule is broken and the audit is void.
 
 ---
 
-*Color Team definitions v2.3 — part of the AI Color Team Audit Framework (this
+*Color Team definitions v2.4 — part of the AI Color Team Audit Framework (this
 repository). v1.1 generalizes the founding wording (written for a Bitcoin wallet)
 to the Asset Declaration model; role semantics are unchanged from v1. v1.2 renames
 the report grades from Green/Yellow/Red to **CLEARED / CONDITIONAL / BLOCKED**,
@@ -518,7 +534,12 @@ three documents. v2.3 makes the audit a loop with a record: the cycle is in ever
 artifact's name so a later cycle cannot erase an earlier one, White keeps a cycle index
 that outlives every report, and the fix ledger is checked both ways — every ID the prior
 report carried must be accounted for, because a prior finding that quietly disappears is
-itself a finding. The outcomes, the rubric, and the floor rule are all unchanged; reports
+itself a finding. v2.4 makes the agents nameable without pretending the naming is proof:
+the surveyor and the auditor are each recorded by harness, session identifier, and model,
+every line labelled with who declared it, because an agent cannot say what it is and the
+operator can — and the two session identifiers are compared, so "one agent ran three
+times" is now a mechanical check rather than an honour system. The outcomes, the rubric,
+and the floor rule are all unchanged; reports
 published before v1.2 used the old grade names. Red and blue are established
 security-industry terms; orange, copper, amber, and white were introduced by the
 framework's first runs (Bitcoin Easy Signer audits, October 2026). This page may be
