@@ -8,9 +8,9 @@
 > is done.
 
 **This file is all you need.** Your operator attached it to the repository and said
-*"conduct a survey."* That is the entire prompt. There is no other document to fetch
-and no framework repository to go looking for — the blank plan you fill in is at the
-bottom of this file, in **The plan skeleton**.
+*"Conduct a survey of this repository."* That is the entire prompt. There is no other
+document to fetch and no framework repository to go looking for — the blank plan you
+fill in is at the bottom of this file, in **The plan skeleton**.
 
 ## What you produce
 

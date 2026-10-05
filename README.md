@@ -22,7 +22,8 @@ your own tools; this framework deliberately does not use that name.
 ```
   STEP 1 - THE SURVEY                        agent one   (model A)
   -------------------
-  colorteam-surveyor.md   +   your repo   +   "run this against my repo"
+  colorteam-surveyor.md   +   your repo
+  say: "Conduct a survey of this repository."
                  |
                  v
   XYZ-colorteam-audit-plan.md                written into your repo root

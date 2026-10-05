@@ -25,7 +25,7 @@ Phase 3½ Verification — nothing is published until the live artifact is fetch
 ## The audit plan (produced before Phase 0, mandatory)
 
 The audit's single input parameter is **the audit plan** (`<repo>-colorteam-audit-plan.md`),
-produced by the survey — a separate step that runs *before* this runbook is opened
+produced by the survey — step one, which runs *before* this runbook is opened
 at all. It has two halves:
 
 - **The Asset Declaration** — the target's crown jewels, ranked: what must not be
@@ -37,7 +37,7 @@ Written before anyone examines the build, locked with the rubric, and cited in t
 report header. It parameterizes every charter, every severity call, and the central
 questions.
 
-**How it is produced (the two-agent architecture):** a Surveyor agent (`colorteam-surveyor.md`)
+**How it is produced (two agents, three steps):** a Surveyor agent (`colorteam-surveyor.md`)
 reads the repository and writes the plan from what the code actually does; the owner
 confirms or corrects it in one short sitting; the confirmed file locks. **Phase 0
 does not produce it — Phase 0 verifies** that it exists, is owner-confirmed, and
