@@ -47,7 +47,9 @@ evidence and which tests pin each fix.]
 **🔵 Blue — [sub-verdict].** [The claims inventory; for each control, present /
 reachable / effective / fail-closed, and what the break-and-watch showed. Name what is
 unpinned.]
-**🟠 Orange — [sub-verdict].** [Dependency deltas, vector results, maintenance obligations created.]
+**🟠 Orange — [sub-verdict].** [The invariant list; for each: the oracle, the
+independently-derived expectation, and the execution result — plus the dependency deltas
+and the maintenance obligations created.]
 **🟤 Copper — [sub-verdict].** [Transport/runtime evidence, device-surface notes.]
 **🟡 Amber — [sub-verdict].** [Pipeline claims verified, the one thing that matters most here.]
 **⚪ White — [the gate].** [What was re-derived; corrections made; the grade ruling; publication requirements.]

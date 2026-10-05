@@ -68,7 +68,7 @@ locked **before** the audit — not a score, and never an average.
 |---|---|
 | ✅ **CLEARED** | All five conditions hold: no open Critical or High; every earlier finding verified fixed, or closed by your own dated acceptance; the stated defenses held and are now pinned by regression tests; the suites passed and the artifacts were re-verified; no new Critical or High appeared. |
 | ⚠️ **CONDITIONAL** | Nothing Critical or High, but there are open Mediums beyond what you accepted, or a fix that was claimed and not verified. Honest reading: good software with work remaining. The report names the shortest path to CLEARED. |
-| ⛔ **BLOCKED** | One or more Critical or High findings are open, Red demonstrated a breach of a declared asset, or a control Blue tested does not hold. **Do not ship.** The report says exactly what and why. |
+| ⛔ **BLOCKED** | One or more Critical or High findings are open, Red demonstrated a breach of a declared asset, a control Blue tested does not hold, or Orange proved a critical invariant wrong. **Do not ship.** The report says exactly what and why. |
 
 There is no partial credit. The grade is the **floor** of the panel, so one bad finding
 stands no matter how clean the other four lanes were. You get the answer either way — a
@@ -96,7 +96,7 @@ report, not an appendix.
 |---|---|
 | 🔴 Red | The attacker — tries to seize, destroy, or alter the declared assets (credentials, personal or payment data, funds, control, availability — whatever your software must protect), by any path. Answers **yes or no, per crown jewel**: BREACH DEMONSTRATED or NO BREACH DEMONSTRATED, and one breach is an automatic ⛔ BLOCKED. Attacks the software, not the machine: a missing firewall is not a finding. Reads no prior conclusions, so it inherits no one's blind spots. |
 | 🔵 Blue | The defender — takes every protection your software claims about itself and proves it holds *and* stays held: present, on every path that matters, effective, fail-closed, and pinned by a test Blue has watched go red when the control was broken. Answers **DEFENSES HOLD / DEFENSES HOLD WITH GAPS / DEFENSE BROKEN**, worst control wins. A control that does not hold is an automatic ⛔ BLOCKED; an unpinned one caps the grade at ⚠️ CONDITIONAL. |
-| 🟠 Orange | The critical-logic specialist — the logic a wrong byte breaks irrecoverably: cryptographic math, money and authorization arithmetic, session semantics — including what changed in every dependency since the last audit. |
+| 🟠 Orange | The critical-logic specialist — the logic that enforces an invariant: *"signatures verify"*, *"amounts sum"*, *"a nonce never repeats"*. Proves each one against a definition of correct that lives **outside your code** — a specification, official test vectors, an independent reference implementation, the mathematics — because your code's own comments cannot corroborate your code. Answers **LOGIC PROVEN / LOGIC UNPROVEN / LOGIC WRONG**, worst invariant wins. Wrong logic is an automatic ⛔ BLOCKED; unproven logic caps the grade at ⚠️ CONDITIONAL. |
 | 🟤 Copper | The edge specialist — everything between the software and the edges of the system: browsers and clients, devices and drivers, transports and frozen binaries. |
 | 🟡 Amber | The supply-chain inspector — how the artifact is born: every dependency, build step, signature and download in the chain. |
 | ⚪ White | The referee — sees everything, re-derives every load-bearing claim personally, and gates what gets published. |
@@ -140,6 +140,36 @@ a gap, never a pass.
 **A broken control is an automatic ⛔ BLOCKED. An unpinned one caps the grade at
 ⚠️ CONDITIONAL.** Blue's verdict is the worst control on the table, never the
 average.
+
+### 🟠 Orange, in more detail
+
+**Orange starts from what must always be true** — not from the files. The invariants
+the software depends on: every signature verifies, amounts sum, a nonce never repeats, a
+session cannot be replayed, the balance never goes negative. It publishes that list
+first. A critical path with no written-down invariant is itself a finding, because if
+nobody ever said what correct means, nobody can say the code is correct.
+
+**The problem Orange exists to solve: AI-generated code looks right.** Reading it and
+deciding it seems fine is exactly the test it was built to pass. So Orange is not
+allowed to decide anything by reading. Every invariant must be checked against a
+definition of correct that lives **outside your implementation** — a specification,
+published test vectors, an independent reference implementation, or the mathematics,
+written out and shown.
+
+**Your code's own comments are not evidence.** An implementation and a comment written
+by the same model come from the same source, so they cannot corroborate each other.
+Neither can its own docs, its own tests, or "it looks right".
+
+**Orange writes down the expected answer before reading the implementation**, then runs
+the code against it — and exercises the boundaries AI code tends to miss: zero, one,
+negative, maximum, exactly-at-limit, just-over-limit, empty, duplicate, replayed,
+out-of-order, non-canonical encodings. It also reads the diff of every critical
+dependency, because a changelog is the dependency author's claim, not evidence. With no
+previous audit there is no delta, and Orange says so.
+
+**LOGIC WRONG is an automatic ⛔ BLOCKED. LOGIC UNPROVEN caps the grade at
+⚠️ CONDITIONAL** — "we could not establish it" is never CLEARED, and the report has to
+say which it was.
 
 ## The audit plan
 
@@ -255,7 +285,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 |---|---|
 | `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
 | `colorteam-auditor.md` | **Step three.** The complete drop-in runbook for the panel. |
-| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v1.6) and reproducible in any report using the format. |
+| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v1.7) and reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Phases, rubric, report shape, and the conversion re-checks; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |
 | `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report. |
@@ -269,7 +299,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 The framework is versioned, and **every version reference stays in sync**: the
 README version line, the PDF template's version stamp, and the changelog entry
 all carry the current release version at every release. (`COLOR-TEAM.md`'s
-definitions version — currently v1.6 — is deliberately independent: it changes
+definitions version — currently v1.7 — is deliberately independent: it changes
 only when the role definitions change, so published reports stay citable against
 the version they were written under.)
 

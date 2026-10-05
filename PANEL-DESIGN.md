@@ -119,6 +119,12 @@ gives each specialist the full text of its own definition as its charter.
    severity scale. An unpinned control is a gap judged by what it protects, and
    holds the grade no higher than CONDITIONAL: CLEARED already requires the stated
    defenses to be pinned by regression tests.
+6. *Critical logic that is demonstrably wrong is an automatic block.* If Orange
+   reports **LOGIC WRONG** against a named invariant, the grade is ⛔ BLOCKED — clean
+   defensive coding cannot compensate for computing a declared asset's arithmetic
+   incorrectly. An invariant that is **LOGIC UNPROVEN** holds the grade no higher
+   than CONDITIONAL: CLEARED requires the critical logic to be proven, and ambiguity
+   is never resolved in the software's favor.
 
 ## Report shape — three deliverables, three audiences
 
