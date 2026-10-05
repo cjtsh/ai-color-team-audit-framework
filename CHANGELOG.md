@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.1.7 — 2026-10-05
+
+### The quick start moved above the fold
+
+It was the second-to-last section of the README, which is where a quick start goes to die.
+It now sits directly after *What you get at the end* and immediately before *The panel* —
+what you receive, how to get it, then what does the work. Each of the four steps is its own
+visual block, separated by a horizontal rule.
+
+- Quick start moved from below *The four rules* to above *The panel*.
+- The four steps no longer run together as consecutive paragraphs.
+- The two copy-paste prompts point at this tag.
+
+No definitions changed — `COLOR-TEAM.md` stays v2.2.
+
 ## 1.1.6 — 2026-10-05
 
 ### The quick start you can actually follow

@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.1.6 · MIT License
+Version 1.1.7 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -113,6 +113,70 @@ Then the report's three sections, written in this order:
 "Nothing found" always means "nothing found within the stated coverage." That coverage
 section — what was audited, what was excluded, what nobody examined — is part of the
 report, not an appendix.
+
+## Quick start
+
+Four steps. Two are prompts you paste **exactly as they are** — nothing in them needs
+editing. One is you, for five minutes.
+
+---
+
+**Step 1 — the survey.** In your repository, open a fresh agent running a *different*
+model than the one that will run the audit. Paste this:
+
+```
+Read this runbook and follow it exactly:
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.7/colorteam-surveyor.md
+
+Conduct a survey of this repository.
+```
+
+It writes **`<repo>-colorteam-audit-plan.md`** into your repo root: what is at stake,
+where, and what it did **not** examine. It does not audit and does not grade.
+
+---
+
+**Step 2 — you sign off.** Five minutes, no AI. Read the plan, correct what only you
+know, and add your name and date to the locked-scope block. That signature is the only
+thing the framework asks of you, and it is what locks the scope: from there the plan is
+hashed and never edited.
+
+---
+
+**Step 3 — the audit.** Open a new agent — the second model — in the same repository.
+Paste this:
+
+```
+Read this runbook and follow it exactly:
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.7/colorteam-auditor.md
+
+The signed audit plan is in the repository root. Run the audit.
+```
+
+It runs baseline → the five-specialist wave → the referee, each specialist starting
+from a clean context.
+
+---
+
+**Step 4 — the report.** The same agent writes **`<repo>-colorteam-audit-report.md`**
+into your repo root: one file with three sections — the technical report for engineers,
+the plain-English safety review for everyone else, and the findings ledger for agents.
+The referee re-derives every load-bearing claim and decides whether it may go out at all.
+
+---
+
+*An attached runbook works as well as the URL, but pin it to a tag, never to `main` — the
+report has to name which version of the definitions was in force. You need a tool that
+spawns parallel sub-agents; without one, run each color as its own fresh session and say
+so in the report's coverage section. If you have only one model, write the plan yourself
+from the skeleton in **[`colorteam-surveyor.md`](colorteam-surveyor.md)** — never let the
+audit model declare its own scope.*
+
+The six definitions are in **[COLOR-TEAM.md](COLOR-TEAM.md)**; the phases and the rubric
+in **[PANEL-DESIGN.md](PANEL-DESIGN.md)**; the report's section templates in
+**[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** and
+**[SAFETY-REVIEW-TEMPLATE.md](SAFETY-REVIEW-TEMPLATE.md)**; the typeset edition in
+**[templates/pdf/](templates/pdf/)**.
 
 ## The panel
 
@@ -323,61 +387,6 @@ are the standard.
    spot sits on both sides of the handoff, and the audit grades it CLEARED on software
    nobody examined. Only one model available? Copy the plan skeleton out of
    `colorteam-surveyor.md` and fill it in by hand.
-
-## Quick start
-
-Four steps. Two are prompts you paste **exactly as they are** — nothing in them needs
-editing. One is you, for five minutes.
-
-**Step 1 — the survey.** In your repository, open a fresh agent running a *different*
-model than the one that will run the audit. Paste this:
-
-```
-Read this runbook and follow it exactly:
-https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.6/colorteam-surveyor.md
-
-Conduct a survey of this repository.
-```
-
-It writes **`<repo>-colorteam-audit-plan.md`** into your repo root: what is at stake,
-where, and what it did **not** examine. It does not audit and does not grade.
-
-**Step 2 — you sign off.** Five minutes, no AI. Read the plan, correct what only you
-know, and add your name and date to the locked-scope block. That signature is the only
-thing the framework asks of you, and it is what locks the scope: from there the plan is
-hashed and never edited.
-
-**Step 3 — the audit.** Open a new agent — the second model — in the same repository.
-Paste this:
-
-```
-Read this runbook and follow it exactly:
-https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.6/colorteam-auditor.md
-
-The signed audit plan is in the repository root. Run the audit.
-```
-
-It runs baseline → the five-specialist wave → the referee, each specialist starting
-from a clean context.
-
-**Step 4 — the report.** The same agent writes **`<repo>-colorteam-audit-report.md`**
-into your repo root: one file with three sections — the technical report for engineers,
-the plain-English safety review for everyone else, and the findings ledger for agents.
-The referee re-derives every load-bearing claim and decides whether it may go out at all.
-
-*An attached runbook works as well as the URL, but pin it to a tag, never to `main` — the
-report has to name which version of the definitions was in force. You need a tool that
-spawns parallel sub-agents; without one, run each color as its own fresh session and say
-so in the report's coverage section. If you have only one model, write the plan yourself
-from the skeleton in **[`colorteam-surveyor.md`](colorteam-surveyor.md)** — never let the
-audit model declare its own scope.*
-
-The six definitions are in **[COLOR-TEAM.md](COLOR-TEAM.md)**; the phases and the rubric
-in **[PANEL-DESIGN.md](PANEL-DESIGN.md)**; the report's section templates in
-**[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** and
-**[SAFETY-REVIEW-TEMPLATE.md](SAFETY-REVIEW-TEMPLATE.md)**; the typeset edition in
-**[templates/pdf/](templates/pdf/)**.
-
 
 ## What this is not
 
