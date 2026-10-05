@@ -1,4 +1,4 @@
-# The Color Team — definitions (v1.7)
+# The Color Team — definitions (v1.8)
 
 A security review performed by a named panel of specialist agents, each with one
 lens and one job. Two of the colors are borrowed from established security
@@ -217,18 +217,64 @@ invariant fails the whole sub-verdict; the rest do not offset it.
 
 ## 🟤 COPPER — the edge specialist
 
-**Role:** the boundary layer. Everything between the core software and the outside
-world, chosen by the Asset Declaration: browser and native clients, mobile and
-desktop runtimes, hardware devices and their drivers and transports, embedded and
-frozen binaries — and the counterfeit-component question for each (can a fake edge
-device or client deceive the core?).
+**Role:** the boundary layer — everything the core **trusts but does not control**.
+Not "the parts outside the repository": what the core depends on and cannot see,
+verify, or replace. Clients (browser, native, mobile), transports and whatever
+answers at the other end, devices and their drivers, the host runtime surface the
+software leans on, and frozen or adopted binaries shipped but not built here.
 
-**Method:** boundary code review, binary inspection, loader-resolution experiments,
-runtime verification on real machines where possible.
+**Applicability first.** Copper's universe comes from the audit plan's declared
+assets: for each one, does the core trust it without controlling it? If that is false
+everywhere, Copper reports **NOT APPLICABLE** — with the reason and what it examined
+to reach that conclusion — in the coverage section, never as a clean verdict. A lane
+with no subject contributes nothing to the grade, and the report must show that it
+contributed nothing. "Edges sound" is not an available answer to an empty lane.
 
-**Output:** edge findings with runtime evidence where it could be obtained.
+**Every edge is assumed hostile or broken.** Copper is not auditing the browser or
+the device; it is auditing what the core does when its edge betrays it. Five
+behaviours, at every interface:
 
-**Sub-verdict:** *Edges sound* / *Gaps found*.
+1. **Lies** — returns a value the core did not earn: forged, downgraded, out of range,
+   wrong type, or from a different party than the core believes.
+2. **Dies** — disconnects, closes, or returns nothing mid-operation.
+3. **Stalls** — hangs, or answers arbitrarily slowly.
+4. **Repeats** — replays a previously valid message, or delivers it out of order.
+5. **Is substituted** — a different implementation is in its place: a counterfeit
+   device, a patched client, an older binary, a swapped library.
+
+The core passes an interface only if it survives all five.
+
+**Version identity.** For every edge: how does the core know *which* version, vendor,
+or build it is talking to — and can it tell at all? If it cannot, that is the
+counterfeit finding, and it is a first-class result, never a footnote.
+
+**Evidence, or it did not happen.** Every edge Copper names carries the exact artifact
+— path, binary hash, version string, wire format — and the exact observation:
+disassembly address, loader resolution, constructed message, captured traffic, or the
+test that shows it. "Reviewed the client" is not an observation. Where there is no
+source to read — a frozen binary, a device, a third-party service — Copper gives the
+hash and the tool and **states plainly what it could not establish**. The shared
+evidence standard applies unchanged: a test that exists is not evidence; a test that
+can fail is. Runtime verification where it can be obtained; where it cannot, say so
+rather than imply it. Copper never runs against production or real user data.
+
+**Method:** boundary code review, binary inspection with hashes and addresses,
+loader-resolution experiments, adversarial interface construction, runtime
+verification on disposable machines where possible.
+
+**Output:** the applicability finding; then, per edge interface, the artifact
+examined, the outcomes of the five behaviours, and the version-identity result; then
+the fix ledger.
+
+**Sub-verdict:** **EDGE TRUST HOLDS** / **EDGE TRUST UNPROVEN** / **EDGE TRUST
+BROKEN** — computed, never chosen, and itemized per interface. The core can be
+deceived, hung, or corrupted at a named interface → EDGE TRUST BROKEN. An interface
+that could not be established — no evidence of what the edge does, no version
+identity, no runtime verification where one was needed, or nothing pinning the
+behaviour → EDGE TRUST UNPROVEN. Every interface surviving all five behaviours, with
+evidence, and pinned → EDGE TRUST HOLDS. One broken interface fails the whole
+sub-verdict; four clean interfaces do not offset it. **NOT APPLICABLE is not a
+sub-verdict** — it is a coverage statement.
 
 ## 🟡 AMBER — the supply-chain inspector
 
@@ -321,9 +367,14 @@ tests instead of leaving it to taste. v1.7 gives Orange the same treatment: an
 invariant list published before testing, the oracle rule — correctness established
 from outside the implementation, because a model's code and a model's comments
 cannot corroborate each other — and a computed verdict of LOGIC PROVEN / LOGIC
-UNPROVEN / LOGIC WRONG. The outcomes, the rubric, and the floor rule
-are all unchanged; reports published before v1.2 used the old grade names. Red and blue
-are established security-industry terms; orange, copper, amber, and white were
+UNPROVEN / LOGIC WRONG. v1.8 gives Copper the same treatment: the edge is everything
+the core trusts but does not control, NOT APPLICABLE is a real answer instead of a
+clean bill of health, every edge is assumed hostile or broken across five behaviours,
+evidence means a named artifact and a named observation, and the verdict is EDGE
+TRUST HOLDS / EDGE TRUST UNPROVEN / EDGE TRUST BROKEN. The outcomes, the rubric, and
+the floor rule are all unchanged; reports published before v1.2 used the old grade
+names. Red and blue are established security-industry terms; orange, copper, amber,
+and white were
 introduced by the framework's first runs (Bitcoin Easy Signer audits, October 2026).
 This page may be reproduced in any report that uses the format; reproduce it whole
 and cite the version.*

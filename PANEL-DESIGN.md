@@ -107,23 +107,23 @@ gives each specialist the full text of its own definition as its charter.
    invent owner acceptance.
 3. *The grade is the floor.* No averaging, no trading a strong section against a
    bad one.
-4. *A demonstrated breach is an automatic block.* If Red reports **BREACH
-   DEMONSTRATED** against any declared asset, the grade is ⛔ BLOCKED — no
-   severity calibration, no rubric judgment, no weighing it against clean lanes.
-   Red's win conditions (`COLOR-TEAM.md`) define what a breach is; if none is
-   demonstrated, the grade is decided by the rest of the panel alone, and Red
-   adds nothing to it.
-5. *A claimed control that does not hold is an automatic block.* If Blue reports a
-   control that is not present, not reachable where it matters, not effective, or
-   fails open, the grade is ⛔ BLOCKED — defeating a stated control is High by the
-   severity scale. An unpinned control is a gap judged by what it protects, and
-   holds the grade no higher than CONDITIONAL: CLEARED already requires the stated
-   defenses to be pinned by regression tests.
-6. *Critical logic that is demonstrably wrong is an automatic block.* If Orange
-   reports **LOGIC WRONG** against a named invariant, the grade is ⛔ BLOCKED — clean
-   defensive coding cannot compensate for computing a declared asset's arithmetic
-   incorrectly. An invariant that is **LOGIC UNPROVEN** holds the grade no higher
-   than CONDITIONAL: CLEARED requires the critical logic to be proven, and ambiguity
+4. *A lane that proves its own failure state forces a block.* The grade is ⛔
+   BLOCKED — no severity calibration, no rubric judgment, no weighing it against
+   clean lanes — when a lane proves:
+
+   - **Red** — **BREACH DEMONSTRATED** against any declared asset.
+   - **Blue** — a claimed control that is not present, not reachable where it
+     matters, not effective, or fails open.
+   - **Orange** — **LOGIC WRONG** against a named invariant.
+   - **Copper** — **EDGE TRUST BROKEN** at a named interface.
+
+   Each lane's own definition in `COLOR-TEAM.md` says what its failure state means
+   and what demonstrates it, within that lane's area of expertise. A lane that does
+   not prove its failure state forces nothing, and the grade is then decided by the
+   rest of the panel.
+5. *Anything a lane leaves unproven holds the grade at CONDITIONAL.* An unpinned
+   control, an invariant that is **LOGIC UNPROVEN**, an edge that is **EDGE TRUST
+   UNPROVEN**: CLEARED requires every claim to be proven and pinned, and ambiguity
    is never resolved in the software's favor.
 
 ## Report shape — three deliverables, three audiences

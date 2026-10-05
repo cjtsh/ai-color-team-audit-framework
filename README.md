@@ -68,7 +68,7 @@ locked **before** the audit — not a score, and never an average.
 |---|---|
 | ✅ **CLEARED** | All five conditions hold: no open Critical or High; every earlier finding verified fixed, or closed by your own dated acceptance; the stated defenses held and are now pinned by regression tests; the suites passed and the artifacts were re-verified; no new Critical or High appeared. |
 | ⚠️ **CONDITIONAL** | Nothing Critical or High, but there are open Mediums beyond what you accepted, or a fix that was claimed and not verified. Honest reading: good software with work remaining. The report names the shortest path to CLEARED. |
-| ⛔ **BLOCKED** | One or more Critical or High findings are open, Red demonstrated a breach of a declared asset, a control Blue tested does not hold, or Orange proved a critical invariant wrong. **Do not ship.** The report says exactly what and why. |
+| ⛔ **BLOCKED** | One or more Critical or High findings are open — including any proven lane failure: Red demonstrated a breach, Blue found a claimed control that does not hold, Orange proved an invariant wrong, or Copper proved an edge the core trusts can deceive, hang, or corrupt it. **Do not ship.** The report says exactly what and why. |
 
 There is no partial credit. The grade is the **floor** of the panel, so one bad finding
 stands no matter how clean the other four lanes were. You get the answer either way — a
@@ -97,7 +97,7 @@ report, not an appendix.
 | 🔴 Red | The attacker — tries to seize, destroy, or alter the declared assets (credentials, personal or payment data, funds, control, availability — whatever your software must protect), by any path. Answers **yes or no, per crown jewel**: BREACH DEMONSTRATED or NO BREACH DEMONSTRATED, and one breach is an automatic ⛔ BLOCKED. Attacks the software, not the machine: a missing firewall is not a finding. Reads no prior conclusions, so it inherits no one's blind spots. |
 | 🔵 Blue | The defender — takes every protection your software claims about itself and proves it holds *and* stays held: present, on every path that matters, effective, fail-closed, and pinned by a test Blue has watched go red when the control was broken. Answers **DEFENSES HOLD / DEFENSES HOLD WITH GAPS / DEFENSE BROKEN**, worst control wins. A control that does not hold is an automatic ⛔ BLOCKED; an unpinned one caps the grade at ⚠️ CONDITIONAL. |
 | 🟠 Orange | The critical-logic specialist — the logic that enforces an invariant: *"signatures verify"*, *"amounts sum"*, *"a nonce never repeats"*. Proves each one against a definition of correct that lives **outside your code** — a specification, official test vectors, an independent reference implementation, the mathematics — because your code's own comments cannot corroborate your code. Answers **LOGIC PROVEN / LOGIC UNPROVEN / LOGIC WRONG**, worst invariant wins. Wrong logic is an automatic ⛔ BLOCKED; unproven logic caps the grade at ⚠️ CONDITIONAL. |
-| 🟤 Copper | The edge specialist — everything between the software and the edges of the system: browsers and clients, devices and drivers, transports and frozen binaries. |
+| 🟤 Copper | The edge specialist — everything the core **trusts but does not control**: clients, transports, devices and drivers, host runtimes, frozen binaries. Assumes each is hostile or broken — it lies, dies, stalls, repeats, or gets substituted — and asks what your code does when its edge betrays it. Answers **EDGE TRUST HOLDS / EDGE TRUST UNPROVEN / EDGE TRUST BROKEN**, per interface, one broken interface failing the lane. Broken trust is an automatic ⛔ BLOCKED; unproven trust caps the grade at ⚠️ CONDITIONAL. Where there is no edge at all it reports **NOT APPLICABLE** — never a clean bill of health. |
 | 🟡 Amber | The supply-chain inspector — how the artifact is born: every dependency, build step, signature and download in the chain. |
 | ⚪ White | The referee — sees everything, re-derives every load-bearing claim personally, and gates what gets published. |
 
@@ -170,6 +170,37 @@ previous audit there is no delta, and Orange says so.
 **LOGIC WRONG is an automatic ⛔ BLOCKED. LOGIC UNPROVEN caps the grade at
 ⚠️ CONDITIONAL** — "we could not establish it" is never CLEARED, and the report has to
 say which it was.
+
+### 🟤 Copper, in more detail
+
+**Copper covers what the core trusts but does not control.** Not "the parts outside the
+repo" — what the core depends on and cannot see, verify, or replace: clients, the
+transports and whatever answers at the other end, devices and drivers, the host runtime
+it leans on, and frozen or adopted binaries shipped but not built here.
+
+**If there is no edge, Copper says NOT APPLICABLE**, with the reason, in the coverage
+section — never *"edges sound."* A lane with nothing to look at contributes nothing to
+the grade, and the report has to show that it contributed nothing.
+
+**Copper assumes the edge is hostile or broken.** It is not auditing your browser; it is
+auditing what your code does when the browser lies to it. Five behaviours at every
+interface: the edge **lies** (returns a value the core did not earn), **dies**
+(disconnects mid-operation), **stalls** (hangs or answers arbitrarily slowly),
+**repeats** (replays or reorders), or **gets substituted** (counterfeit device, patched
+client, older binary). The core passes only if it survives all five.
+
+**Version identity is a first-class check:** how does the core know which version or
+vendor it is talking to — and can it tell at all? If it cannot, that is the counterfeit
+finding.
+
+**Evidence, or it did not happen.** Every edge comes with the exact artifact — path,
+binary hash, version string, wire format — and the exact observation. *"Reviewed the
+client"* is not an observation. With no source to read, Copper gives the hash and the
+tool and states plainly what it could not establish.
+
+**EDGE TRUST BROKEN is an automatic ⛔ BLOCKED. EDGE TRUST UNPROVEN caps the grade at
+⚠️ CONDITIONAL.** The verdict is itemized per interface, and one broken interface
+fails the whole lane.
 
 ## The audit plan
 
@@ -285,7 +316,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 |---|---|
 | `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
 | `colorteam-auditor.md` | **Step three.** The complete drop-in runbook for the panel. |
-| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v1.7) and reproducible in any report using the format. |
+| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v1.8) and reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Phases, rubric, report shape, and the conversion re-checks; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |
 | `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report. |
@@ -299,7 +330,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 The framework is versioned, and **every version reference stays in sync**: the
 README version line, the PDF template's version stamp, and the changelog entry
 all carry the current release version at every release. (`COLOR-TEAM.md`'s
-definitions version — currently v1.7 — is deliberately independent: it changes
+definitions version — currently v1.8 — is deliberately independent: it changes
 only when the role definitions change, so published reports stay citable against
 the version they were written under.)
 
