@@ -1,5 +1,49 @@
 # Changelog
 
+## 1.0.0 — 2026-10-05
+
+### White gets a mechanical gate, and the panel is complete
+
+White was the last lane to be treated, and it had the same three holes the other five had,
+plus one of its own: "every load-bearing claim" was a scope White chose for itself, the
+re-derivation left no record, and a "calibration opinion" let the referee decide the grade
+— which quietly made the floor rule optional.
+
+**"Load-bearing" is now mechanical.** A claim is load-bearing when it determined a
+sub-verdict or the grade, and every one of those is re-derived. A lane that reported
+nothing is making a claim too — *"I found nothing"* — and it is re-derived with the same
+energy, because a false clean bill of health is more dangerous than a false alarm.
+
+**Every re-derived claim is recorded** as **CONFIRMED**, **CORRECTED**, or
+**UNVERIFIABLE**, with the file or command White used. Nothing is published on the
+strength of an unverifiable claim: a finding that cannot be reproduced does not stand as a
+finding, and a lane that cannot be reproduced does not stand as clean.
+
+**White calibrates severities; White does not calibrate the grade.** The grade is computed
+from the rubric and the rulings with the arithmetic shown — which lane set the floor,
+which ruling bound it. The referee never raises or lowers a lane's sub-verdict, and a
+disagreement is recorded as a dissent while the grade stands. A referee with discretion
+over the floor has made the floor optional.
+
+**The publication decision is computed too:** PUBLISH / PUBLISH WITH STATED GAPS / DO NOT
+PUBLISH. The old middle state, "publish with edits," was a judgment call with no
+conditions attached; each new state is defined by what is true of the work.
+
+**White does not originate findings**, and now owns the coverage section and the facts the
+published report must carry, plus the final finding numbering — kept stable across cycles.
+
+**Ruling 6** was added: *the grade is computed, not calibrated.*
+
+`COLOR-TEAM.md` is **v2.0**. All six definitions — five specialists and the referee — now
+carry the same three things: a scope derived from the target instead of chosen by the
+agent, a demonstrated-evidence rule, and an outcome computed from tests rather than
+chosen. That is what the whole 0.x series was building toward, and why this is 1.0.0.
+
+**Also settled here:** every lane's failure state forces a ⛔ BLOCKED (ruling 4), and
+anything a lane leaves unproven holds the grade at ⚠️ CONDITIONAL (ruling 5) — including a
+chain link that is UNVERIFIED. That last clause is the strictest rule in the framework:
+software that cannot reproduce its own build cannot reach CLEARED. It is deliberate.
+
 ## 0.9.0 — 2026-10-05
 
 ### Amber gets a defined chain, and the fifth lane joins the merged ruling

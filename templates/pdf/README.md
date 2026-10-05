@@ -45,6 +45,6 @@ identical facts.
 
 ## Version
 
-Template v0.9.0 — extracted from the generator that produced the public PDF
+Template v1.0.0 — extracted from the generator that produced the public PDF
 editions of the Bitcoin Easy Signer audits (October 2026). MIT-licensed; adapt
 freely.
