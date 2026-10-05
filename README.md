@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.1.4 · MIT License
+Version 1.1.5 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -84,7 +84,7 @@ hashing is the agents' job.
 
 ## What you get at the end
 
-A grade, and three documents. The grade is one of three words, decided by the rubric you
+A grade, and one report. The grade is one of three words, decided by the rubric you
 locked **before** the audit — not a score, and never an average.
 
 | | |
@@ -97,7 +97,7 @@ There is no partial credit. The grade is the **floor** of the panel, so one bad 
 stands no matter how clean the other four lanes were. You get the answer either way — a
 BLOCKED report still tells you what held, what did not, and what to fix first.
 
-Then, written in this order:
+Then the report's three sections, written in this order:
 
 1. **The technical report** — for engineers and the next auditor. The grade and the
    reasoning, each color's findings with file-and-line evidence, the referee's rulings on

@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.1.5 — 2026-10-05
+
+### One report, and a timestamp if you want one
+
+The 1.1.3 revert left one line behind: the README still promised "a grade, and three
+documents." It is a grade and **one report**, carrying three sections.
+
+The lock's honest limit now names its own remedy. Two hashes prove the scope did not move,
+but not when it was written, because one operator holds both. If you want a timestamp no
+one can rewrite — including the operator — a public blockchain will hold the plan's hash
+before the run, or the report's hash after, memorialised with a time that depends on no
+one's word. The framework does not build this and does not need it; it is there for anyone
+who wants the order of events provable to a third party.
+
+No definitions changed — `COLOR-TEAM.md` stays v2.2.
+
 ## 1.1.4 — 2026-10-05
 
 ### The rubric's authority catches up with the rubric

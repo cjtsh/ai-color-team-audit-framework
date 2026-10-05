@@ -111,7 +111,7 @@ Before dispatching anyone:
    | **Target revision** | `<tag / commit>` |
    | **Auditor** | `<model/tool>` |
    | **Locked at** | `<ISO 8601 timestamp>` |
-   | **Published before the panel ran** | `<where, or "not published — order unwitnessed">` |
+   | **Published before the panel ran** | `<commit, gist, issue, or public chain — or "not published, order unwitnessed">` |
    | **Plan SHA-256 at the end of the audit** | `<H_end, filled by the referee>` |
 
    The referee re-hashes the plan file at the end and compares. Equal hashes mean the

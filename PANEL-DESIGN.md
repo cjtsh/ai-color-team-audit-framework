@@ -68,6 +68,12 @@ commit, a gist, an issue comment. It is optional and it takes one line. **The ow
 nothing new either way:** they already read and check the plan; signing it is the same
 sitting, and the hashing is the agents' job.
 
+**If you want a timestamp no one can rewrite — including the operator**, a public
+blockchain is one place to put it: the plan's hash before the run, or the report's hash
+after, written into a transaction and memorialised with a time that depends on no one's
+word. The framework does not build this and does not need it. It is there for anyone who
+wants the order of events provable to a third party.
+
 **The Surveyor must never be the model that runs the audit.** This is a structural
 requirement, not a preference. The Surveyor decides what is even in scope. If one
 model writes the plan and then audits against it, the same blind spot sits on both
