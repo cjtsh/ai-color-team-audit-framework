@@ -1,5 +1,48 @@
 # Changelog
 
+## 0.3.0 — 2026-10-05
+
+Two steps, two runbooks, and the model that writes the plan can no longer be the
+model that audits it.
+
+- **Survey/audit model separation is a structural rule, not a best practice.**
+  The agent that writes the audit plan must be a *different* model from the one
+  that runs the panel — ideally from a different vendor, so the training data and
+  the failure modes differ too. The old escape hatch ("one tool? run it twice in
+  separate sessions") is gone: with one model available the owner writes the plan
+  by hand. Stated in AGENT.md (defining rule 2), PANEL-DESIGN.md (the five
+  non-negotiable properties), README.md (the four honesty rules and the quick
+  start), and SURVEYOR.md.
+- **New: `SURVEYOR.md`** — step one's drop-in runbook, addressed to the surveyor
+  agent. Inventory the repository *before* triaging it; rank 3–6 declared assets;
+  write three separate scope lists (in scope / out of scope with reasons /
+  **not examined, with reasons**); name the exact revision surveyed. The surveyor
+  sets *what matters and where* — it never invents how the checking is done, and
+  it never grades.
+- **The survey is two files, not one.** `SURVEY-TEMPLATE.md` was three documents
+  in one: owner instructions, a blank form, and worked examples that would have
+  been saved into *every* plan, including an embedded controller's. It is now the
+  blank 8-section form only, with all guidance in HTML comments (invisible when
+  rendered on GitHub, legible to the agent filling it). The worked example moved
+  to EXAMPLES.md.
+- **The output has a name: `<repo>-survey.md` — the audit plan.** Its first half
+  is the Asset Declaration (the ranked crown jewels and the unforgivable acts);
+  its second is the scope. PANEL-DESIGN.md now calls it the audit plan
+  throughout. ("Asset Declaration" stays the name of the plan's contents —
+  COLOR-TEAM.md defines it and is versioned independently.)
+- **Renamed:** `ASSETS-TEMPLATE.md` → `SURVEY-TEMPLATE.md`, `ASSETS.md` →
+  `SURVEY.md`. The step is the survey; the audit plan is what it produces.
+- **AGENT.md is explicitly step two.** Its Phase 0 no longer *confirms* a
+  declaration — it **verifies the audit plan**: it must already exist, be
+  owner-confirmed, and name the revision being audited. Two hard stop conditions:
+  no confirmed plan, or a plan that names a different revision. "You never write
+  it yourself" is stated outright.
+- **README gains the two-step flowchart** (Mermaid, renders as a diagram on
+  GitHub), a "which file do you need" table so nobody opens the wrong runbook,
+  and a rewritten three-step quick start.
+- **Fixed:** the stray trailing pipe in README.md that 0.2.1 claimed to have
+  fixed and had not.
+
 ## 0.2.1 — 2026-10-02
 
 Independent review pass over 0.2.0 (13 findings, SHIP AFTER FIXES) — all fixed:
