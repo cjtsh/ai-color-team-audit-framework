@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.1.2 — 2026-10-05
+
+### The report has a name, and it is step four
+
+The flow diagram showed three steps and ended at "the graded report" — an unnamed
+artifact, produced by a step that had already been counted. Step 3 now ends where the
+audit actually ends: each lane's sub-verdict and the grade computed from them. Step 4 is
+the report, and it is named.
+
+Every artifact the framework writes now follows one convention,
+`<repo>-colorteam-audit-<what>.md`:
+
+| Artifact | Name |
+|---|---|
+| The audit plan | `<repo>-colorteam-audit-plan.md` |
+| The scope lock | `<repo>-colorteam-audit-lock.md` |
+| The technical report | `<repo>-colorteam-audit-report.md` |
+| The safety review | `<repo>-colorteam-audit-safety-review.md` |
+| The private full report | `<repo>-colorteam-audit-full-report.md` |
+
+The findings ledger is not a sixth file: it is the Appendix of the technical report, so
+there is one source of truth and nothing that can drift out of step with it.
+
+`colorteam-surveyor.md` and `colorteam-auditor.md` now say four steps, and the README
+naming paragraph no longer claims the plan is the only file that lands in your repo.
+
 ## 1.1.1 — 2026-10-05
 
 ### The runbooks catch up with the panel they run

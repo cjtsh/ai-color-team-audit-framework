@@ -45,7 +45,7 @@ reference** — a pointer to this page freezes nothing. It carries the declared 
 definitions in force, the rubric as adapted to this target, the exact revision, and what
 is excluded. The owner signs it with a name and a date, and that signature is the lock.
 
-**How it is produced (two agents, three steps):** a Surveyor agent (`colorteam-surveyor.md`)
+**How it is produced (two agents, four steps):** a Surveyor agent (`colorteam-surveyor.md`)
 reads the repository and writes the plan from what the code actually does; the owner
 corrects anything only they know and signs the locked-scope block; the signed
 file locks. **Phase 0 does not produce it — Phase 0 verifies** that it exists, is
@@ -171,12 +171,18 @@ gives each specialist the full text of its own definition as its charter.
 Every engagement produces three deliverables, one per audience — written in this order:
 
 1. **The technical report** — for the engineers and the next auditor (the source of truth;
-   everything else translates from it).
+   everything else translates from it). Written to `<repo>-colorteam-audit-report.md`.
 2. **The plain-English Safety Review** (`SAFETY-REVIEW-TEMPLATE.md`) — for the decision-maker:
    verdict, the questions they actually ask, the team in layman's words, the trail with
-   severity badges. Translate from the technical report; never exceed it.
+   severity badges. Translate from the technical report; never exceed it. Written to
+   `<repo>-colorteam-audit-safety-review.md`.
 3. **The findings ledger** — for agents and future audits (stable IDs, exact locations,
-   machine-checkable).
+   machine-checkable). It is the **Appendix** of the technical report, not a separate
+   file, so there is one source of truth and nothing that can drift out of step with it.
+
+Every artifact this framework writes is named `<repo>-colorteam-audit-<what>.md`. The
+private full report — everything, verbatim evidence, for the owner alone — is
+`<repo>-colorteam-audit-full-report.md`, and it never goes out.
 
 The three are assembled from the technical report, each translating from the one before
 it and never exceeding it. White owns what they must contain and whether they may go

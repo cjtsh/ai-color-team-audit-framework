@@ -1,5 +1,9 @@
 # Safety Review Template — the plain-English layer
 
+> Write it to **`<repo>-colorteam-audit-safety-review.md`**, beside
+> `<repo>-colorteam-audit-report.md`. It is the second of the two published documents;
+> the technical report is the first, and the findings ledger is that report's Appendix.
+
 Every audit produced under this framework has **two audiences**: the engineer who
 must verify the evidence, and the person who must decide whether to trust the
 software. The technical report serves the first. This template serves the second —

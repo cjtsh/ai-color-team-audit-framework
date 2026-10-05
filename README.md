@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.1.1 · MIT License
+Version 1.1.2 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -12,12 +12,23 @@ mechanically after, and a publication gate nothing unfair survives. The whole
 method ships as drop-in agent files: paste them into any AI coding tool and run.
 
 **Never copy these runbooks into your repository.** Hand them to the agent — attach the
-file, or paste its contents. The only file that lands in your repo is
-`<repo>-colorteam-audit-plan.md`, and it is named after your repo precisely so it
-cannot collide with anything. An `AGENT.md` in your repo is *your* instructions to
-your own tools; this framework deliberately does not use that name.
+file, or paste its contents. The framework's own artifacts are named after your repo, so
+they cannot collide with anything and you can always tell which cycle a file belongs to:
 
-## How it works — three steps, two sets of eyes
+| Artifact | Name | Written by |
+|---|---|---|
+| The audit plan | `<repo>-colorteam-audit-plan.md` | the surveyor, then signed by you |
+| The scope lock | `<repo>-colorteam-audit-lock.md` | the auditor, before the first specialist runs |
+| The technical report | `<repo>-colorteam-audit-report.md` | the auditor, gated by the referee |
+| The safety review | `<repo>-colorteam-audit-safety-review.md` | the auditor, from the technical report |
+| The private full report | `<repo>-colorteam-audit-full-report.md` | the auditor; the owner's copy, never published |
+
+The findings ledger is not a sixth file — it is the **Appendix** of the technical report,
+so there is one source of truth and nothing that can drift out of step with it. An
+`AGENT.md` in your repo is *your* instructions to your own tools; this framework
+deliberately does not use that name.
+
+## How it works — four steps, two sets of eyes
 
 ```
   STEP 1 - THE SURVEY                        agent one   (model A)
@@ -42,15 +53,24 @@ your own tools; this framework deliberately does not use that name.
   STEP 3 - THE AUDIT                         agent two   (model B, must differ from A)
   ------------------
   colorteam-auditor.md   +   your repo   +   XYZ-colorteam-audit-plan.md
+  baseline -> the five lanes -> the referee
                  |
                  v
-  the graded report
-      the technical report   -  for engineers
-      the safety review      -  for everyone else
-      the findings ledger    -  for agents
+  the sub-verdicts, and the grade computed from them
+      the findings   -  stable IDs, evidence, calibrated severities
+      the grade      -  CLEARED / CONDITIONAL / BLOCKED, and the ruling that set it
+
+                 |
+                 v
+
+  STEP 4 - THE REPORT                        the referee gates what may go out
+  -------------------
+  XYZ-colorteam-audit-report.md              the technical report  - for engineers
+      its appendix is the findings ledger                          - for agents
+  XYZ-colorteam-audit-safety-review.md       the safety review     - for everyone else
 ```
 
-**Step 1 runs on a different model than step 3, and that is the point.** The
+**Step 1 runs on a different model than steps 3 and 4, and that is the point.** The
 surveyor decides what is even in scope. If one model writes the plan and then audits
 against it, the same blind spot sits on both sides of the handoff: the panel works
 faithfully from an incomplete scope, finds nothing wrong with what it can see, and
@@ -324,10 +344,17 @@ is the only thing asked of you, and it is the same sitting as reading the plan.
 
 **Step 3 — the audit.** Hand **[`colorteam-auditor.md`](colorteam-auditor.md)** to a new agent, along with
 your repository and the signed `<repo>-colorteam-audit-plan.md`. It runs the phases:
-baseline → the five-agent wave → the referee → the graded report. Read
+baseline → the five-specialist wave → the referee. The output of this step is the
+evidence: each lane's sub-verdict and the grade computed from them. Read
 **[COLOR-TEAM.md](COLOR-TEAM.md)** for the six agent definitions, and
-**[PANEL-DESIGN.md](PANEL-DESIGN.md)** for the phases and rubric;
-**[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** shows what you get;
+**[PANEL-DESIGN.md](PANEL-DESIGN.md)** for the phases and rubric.
+
+**Step 4 — the report.** The same agent writes it, and the referee is the gate: every
+load-bearing claim is re-derived before anything goes out, and the referee decides
+whether it may go out at all. You get **`<repo>-colorteam-audit-report.md`** — the
+technical report, for engineers, with the findings ledger as its appendix — and
+**`<repo>-colorteam-audit-safety-review.md`**, the plain-English layer for everyone
+else. **[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** shows what you get;
 **[templates/pdf/](templates/pdf/)** generates the typeset edition.
 
 Only one model available? Copy the plan skeleton out of
@@ -385,11 +412,11 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 | File | What it is |
 |---|---|
 | `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
-| `colorteam-auditor.md` | **Step three.** The drop-in runbook for the panel; it names the framework files it needs. |
+| `colorteam-auditor.md` | **Steps three and four.** The drop-in runbook for the panel and for the report it produces; it names the framework files it needs. |
 | `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v2.1) and reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Phases, rubric, report shape, and the conversion re-checks; adapt to your target. |
-| `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |
-| `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report. |
+| `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix — writes to `<repo>-colorteam-audit-report.md`. |
+| `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report — writes to `<repo>-colorteam-audit-safety-review.md`. |
 | `templates/publish-and-verify.sh` | The anti-"already done" tool: commit, push, poll, fetch, and hash-compare in one invocation. Nothing is published until it says VERIFIED. |
 | `templates/pdf/` | A ReportLab generator for the typeset report edition. |
 | `EXAMPLES.md` | The worked case studies, plus an illustrative audit plan. |

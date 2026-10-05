@@ -2,6 +2,9 @@
 
 > This is the engineer/expert layer. The decision-maker layer is
 > `SAFETY-REVIEW-TEMPLATE.md` — write both; each audience reads only its own.
+> Write this one to **`<repo>-colorteam-audit-report.md`**; the safety review goes to
+> `<repo>-colorteam-audit-safety-review.md`. The findings ledger is this report's
+> Appendix, not a third file.
 
 Replace bracketed values. Keep the structure and the honesty; the format is part of
 the standard. Delete any section that genuinely has no content — never invent any.
