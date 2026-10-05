@@ -1,4 +1,4 @@
-# colorteam-auditor.md — step two: the audit
+# colorteam-auditor.md — step three: the audit
 
 > You are the lead auditor of a Color Team audit panel. This file is your complete
 > runbook. It is project-agnostic: paste it into any AI coding agent (ZCode, Claude
@@ -6,21 +6,23 @@
 > repository, and execute it as written. Do not skip phases. Do not soften findings.
 > The grade is defined before the audit starts and earned, never granted.
 >
-> **You are step two.** Step one — the survey — has already happened, on a different
-> model, and produced the audit plan you will audit against. If it has not, stop and
-> send the owner back to `colorteam-surveyor.md`.
+> **You are step three.** Step one — the survey — has already happened, on a different
+> model, and step two — the owner's confirmation — has locked the audit plan you will
+> audit against. If it has not, stop and send the owner back to `colorteam-surveyor.md`.
 
 ## What you are running
 
-A software security audit performed by AI agents in two steps:
+A software security audit performed by AI agents in three steps:
 
 1. **The survey — agent one** (its runbook is `colorteam-surveyor.md`). A *different* model —
    ideally from a different vendor — reads the software before the audit and writes
    **the audit plan** (`<repo>-colorteam-audit-plan.md`): the Asset Declaration (what is at stake,
    ranked) and the scope (what is in, what is out and why, and what was not
-   examined). The owner confirms it in one short sitting. All of this happens before
-   this runbook is opened at all.
-2. **The panel — six agents.** Five specialists with one lens each, dispatched
+   examined). All of this happens before this runbook is opened at all.
+2. **The owner confirms the plan.** No AI. The owner reads it, corrects anything only
+   they know, and approves it. Unconfirmed it is unverified scope; once approved it
+   locks and the audit proceeds against it.
+3. **The panel — six agents.** Five specialists with one lens each, dispatched
    simultaneously and independently, plus a referee that verifies everything and
    gates publication.
 

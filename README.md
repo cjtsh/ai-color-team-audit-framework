@@ -49,7 +49,7 @@ your own tools; this framework deliberately does not use that name.
       the findings ledger    -  for agents
 ```
 
-**Step 1 runs on a different model than step 2, and that is the point.** The
+**Step 1 runs on a different model than step 3, and that is the point.** The
 surveyor decides what is even in scope. If one model writes the plan and then audits
 against it, the same blind spot sits on both sides of the handoff: the panel works
 faithfully from an incomplete scope, finds nothing wrong with what it can see, and
@@ -176,7 +176,7 @@ tool in one day, each carrying the grade its evidence supported. Full stories in
 | File | What it is |
 |---|---|
 | `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
-| `colorteam-auditor.md` | **Step two.** The complete drop-in runbook for the panel. |
+| `colorteam-auditor.md` | **Step three.** The complete drop-in runbook for the panel. |
 | `COLOR-TEAM.md` | The color definitions, versioned (v1.1) — reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Charters, phases, rubric, and the report shape; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |
