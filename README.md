@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.1.7 · MIT License
+Version 1.1.8 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -126,7 +126,7 @@ model than the one that will run the audit. Paste this:
 
 ```
 Read this runbook and follow it exactly:
-https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.7/colorteam-surveyor.md
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.8/colorteam-surveyor.md
 
 Conduct a survey of this repository.
 ```
@@ -137,9 +137,17 @@ where, and what it did **not** examine. It does not audit and does not grade.
 ---
 
 **Step 2 — you sign off.** Five minutes, no AI. Read the plan, correct what only you
-know, and add your name and date to the locked-scope block. That signature is the only
-thing the framework asks of you, and it is what locks the scope: from there the plan is
-hashed and never edited.
+know, and sign the locked-scope block with an **identity** and the date. Any of these
+works, and **please don't use your personal name**:
+
+- a handle — `@yourhandle`
+- a role — `Release Manager, v0.6.4 cycle`
+- an organization or a team — `Acme Security`, `the <project> maintainers`
+
+That signature is the only thing the framework asks of you, and it is what locks the
+scope. The lock is a fingerprint, not a padlock: the plan is hashed before the panel
+starts and re-hashed when it ends, so any edit shows up as a mismatch — and a mismatch
+voids the audit rather than grading it.
 
 ---
 
@@ -148,7 +156,7 @@ Paste this:
 
 ```
 Read this runbook and follow it exactly:
-https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.7/colorteam-auditor.md
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.1.8/colorteam-auditor.md
 
 The signed audit plan is in the repository root. Run the audit.
 ```
@@ -171,6 +179,12 @@ spawns parallel sub-agents; without one, run each color as its own fresh session
 so in the report's coverage section. If you have only one model, write the plan yourself
 from the skeleton in **[`colorteam-surveyor.md`](colorteam-surveyor.md)** — never let the
 audit model declare its own scope.*
+
+*Neither the plan nor the lock file is published: the report carries the hashes and the
+sign-off identity, never a person unless you put one there. The one limit those hashes
+cannot close is order: one operator holds both, so a deliberately forged sequence would
+survive. Publishing the hash alone — a gist, an issue comment, no plan attached — closes
+it, and is optional.*
 
 The six definitions are in **[COLOR-TEAM.md](COLOR-TEAM.md)**; the phases and the rubric
 in **[PANEL-DESIGN.md](PANEL-DESIGN.md)**; the report's section templates in

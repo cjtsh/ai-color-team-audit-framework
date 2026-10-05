@@ -107,7 +107,7 @@ Before dispatching anyone:
    |---|---|
    | **Plan file** | `<repo>-colorteam-audit-plan.md` |
    | **Plan SHA-256 at the start of the audit** | `<H_start>` |
-   | **Owner sign-off** | `<name>, <YYYY-MM-DD>` |
+   | **Owner sign-off** | `<identity>, <YYYY-MM-DD>` |
    | **Target revision** | `<tag / commit>` |
    | **Auditor** | `<model/tool>` |
    | **Locked at** | `<ISO 8601 timestamp>` |

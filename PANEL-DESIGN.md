@@ -43,7 +43,16 @@ questions.
 **The plan opens with a locked-scope block (section 0), written out in full and not by
 reference** — a pointer to this page freezes nothing. It carries the declared assets, the
 definitions in force, the rubric as adapted to this target, the exact revision, and what
-is excluded. The owner signs it with a name and a date, and that signature is the lock.
+is excluded. The owner signs it with an identity and a date, and that signature is the lock.
+
+**The signature identifies; it does not publish a person.** A handle, a role, an
+organization, or a named team is a complete sign-off, and all four are better than a
+personal name: nothing in the lock needs an individual's legal identity, and a published
+name is a disclosure nobody asked for. What is *not* a sign-off is a blank, an
+"anonymous", or the surveyor, the auditor, or the operator of either — a scope nobody
+accepted is a scope the auditor chose, which is the one thing this structure exists to
+prevent. The plan and the lock are local working files; the published report carries the
+hashes and the sign-off identity, never a person unless the signer put one there.
 
 **How it is produced (two agents, four steps):** a Surveyor agent (`colorteam-surveyor.md`)
 reads the repository and writes the plan from what the code actually does; the owner

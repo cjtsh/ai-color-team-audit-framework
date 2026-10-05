@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.1.8 — 2026-10-05
+
+### The sign-off identifies; it does not publish a person
+
+The framework asked the owner for "your name and date", and the published report carried
+`Owner-signed [name, date]`. Nothing in the lock needs an individual's legal identity, and
+a published name is a disclosure nobody was asked about. The default is now the opposite,
+stated out loud.
+
+- A **handle**, a **role**, an **organization**, or a **named team** are all complete
+  signatures, and the docs say plainly: please don't use your personal name. A blank, an
+  "anonymous", or a sign-off from the surveyor, the auditor, or their operator is still
+  not a sign-off — a scope nobody accepted is a scope the auditor chose.
+- The plan and the lock are local working files. The published report carries the hashes
+  and the sign-off identity, not a person.
+- Quick start step 2 now says what *"locks the scope"* actually means: the plan is hashed
+  before the panel starts and re-hashed at the end, so an edit shows up as a mismatch, and
+  a mismatch voids the audit rather than grading it. A fingerprint, not a padlock — and
+  the honest limit, that one operator holds both hashes, is stated with its remedy:
+  publish the hash, not the plan.
+
+No definitions changed — `COLOR-TEAM.md` stays v2.2.
+
 ## 1.1.7 — 2026-10-05
 
 ### The quick start moved above the fold

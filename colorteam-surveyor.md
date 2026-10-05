@@ -182,7 +182,8 @@ grade:
 **Owner sign-off — step two, no AI.** I have read this plan, corrected anything only I
 know, and lock it. The audit runs against the scope above and no other version of it.
 
-- **Signed:** <!-- owner name -->
+- **Signed:** <!-- identity — a handle, a role, an organization, or a team. Do NOT put a
+     personal name here; see PANEL-DESIGN.md, "The signature identifies". -->
 - **Date:** <!-- YYYY-MM-DD -->
 
 <!-- The auditor fills nothing in here. The audit lock is a separate file:
