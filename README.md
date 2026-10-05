@@ -4,6 +4,8 @@
 
 Version 0.2.1 · MIT License
 
+Maintained by **Bitseeker LLC**.
+
 Five specialist AI agents and a White referee independently audit your software —
 with a grade rubric locked in writing **before** the audit begins, applied
 mechanically after, and a publication gate nothing unfair survives. The whole
