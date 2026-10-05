@@ -1,4 +1,4 @@
-# SURVEYOR.md — step one: the survey
+# colorteam-surveyor.md — step one: the survey
 
 > **You are the Surveyor — the first of two agents.** You run *before* the audit, on
 > a different model than the one that will run it (ideally a different vendor). Your
@@ -13,8 +13,8 @@ bottom of this file, in **The plan skeleton**.
 
 ## What you produce
 
-**One new file: `<repo>-audit-plan.md`**, saved in the target repository's root —
-`payments-api-audit-plan.md` for a repository called `payments-api`. Create it; never
+**One new file: `<repo>-colorteam-audit-plan.md`**, saved in the target repository's root —
+`payments-api-colorteam-audit-plan.md` for a repository called `payments-api`. Create it; never
 overwrite a file the repository already has.
 
 It has two halves:
@@ -31,7 +31,7 @@ entire reason you are a different model.
 ## What you are not
 
 - **You are not the auditor.** Never dispatch the five specialists, never write their
-  charters, never run the panel. That happens in Phase 0 of `AUDITOR.md`, after you are
+  charters, never run the panel. That happens in Phase 0 of `colorteam-auditor.md`, after you are
   finished and the owner has confirmed your plan.
 - **You do not invent the checking method.** You report *what matters and where*. The
   framework already knows *how*: once you say "the session tokens in `app/auth/` are
@@ -85,7 +85,7 @@ Ranking means excluding. Every exclusion is a scope decision and belongs in Phas
 
 ### Phase D — Write the plan
 
-Fill in **The plan skeleton** below and save it as `<repo>-audit-plan.md` in the
+Fill in **The plan skeleton** below and save it as `<repo>-colorteam-audit-plan.md` in the
 target repository's root. **Name the exact revision** (tag or commit) you surveyed —
 a plan for a different commit is not a plan for this one.
 
@@ -105,7 +105,7 @@ Then stop and give it to the owner.
 
 ## The plan skeleton
 
-Copy this into `<repo>-audit-plan.md` and fill it in. The `<!-- … -->` notes are
+Copy this into `<repo>-colorteam-audit-plan.md` and fill it in. The `<!-- … -->` notes are
 guidance — delete them as you go.
 
 ```markdown

@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 0.3.0 · MIT License
+Version 0.4.0 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -17,15 +17,15 @@ One agent, one file. Nothing else to hand over.
 
 | Step | Hand the AI this file | You get back |
 |---|---|---|
-| **1. The survey** — on a *different* model | **[`SURVEYOR.md`](SURVEYOR.md)** | `<repo>-audit-plan.md` |
-| **2. The audit** — the five-agent panel | **[`AUDITOR.md`](AUDITOR.md)** | the graded report |
+| **1. The survey** — on a *different* model | **[`colorteam-surveyor.md`](colorteam-surveyor.md)** | `<repo>-colorteam-audit-plan.md` |
+| **2. The audit** — the five-agent panel | **[`colorteam-auditor.md`](colorteam-auditor.md)** | the graded report |
 
-`SURVEYOR.md` contains its own answer format, so the surveyor needs no second file.
+`colorteam-surveyor.md` contains its own answer format, so the surveyor needs no second file.
 You confirm the plan in between — that is the one human moment the framework requires.
 
 **Never copy these runbooks into your repository.** Hand them to the agent — attach the
 file, or paste its contents. The only file that lands in your repo is
-`<repo>-audit-plan.md`, and it is named after your repo precisely so it cannot collide
+`<repo>-colorteam-audit-plan.md`, and it is named after your repo precisely so it cannot collide
 with anything. An `AGENT.md` in your repo is *your* instructions to your own tools;
 this framework deliberately does not use that name.
 
@@ -37,7 +37,7 @@ flowchart TD
     subgraph STEP1["Step 1 — the survey"]
         B["Agent one, a different model<br/>reads the repo and writes the audit plan"]
     end
-    B --> C["repo-audit-plan.md<br/>the Asset Declaration + the scope"]
+    B --> C["repo-colorteam-audit-plan.md<br/>the Asset Declaration + the scope"]
     C --> D{"You confirm it"}
     D -->|"correct it"| B
     D -->|"approved"| E
@@ -53,7 +53,7 @@ against it, the same blind spot sits on both sides of the handoff: the panel wor
 faithfully from an incomplete scope, finds nothing wrong with what it can see, and
 grades green on software nobody examined.
 
-**The handoff is one file.** The surveyor writes `<repo>-audit-plan.md`; you read
+**The handoff is one file.** The surveyor writes `<repo>-colorteam-audit-plan.md`; you read
 and confirm it; the panel audits against it. Nothing else changes hands.
 
 ## The panel
@@ -70,7 +70,7 @@ and confirm it; the panel audits against it. Nothing else changes hands.
 ## The audit plan
 
 The plan is written by the **survey** — one agent, a different model — saved as
-`<repo>-audit-plan.md`, and confirmed by you before anyone audits. Its **Asset
+`<repo>-colorteam-audit-plan.md`, and confirmed by you before anyone audits. Its **Asset
 Declaration** is the crown jewels, ranked: what must not be stolen, destroyed,
 altered, or done without authorization.
 A wallet declares funds, keys, and the operator's decision. A web service declares
@@ -98,18 +98,18 @@ are the standard.
    is in scope: if one model sets the scope and then audits it, the same blind
    spot sits on both sides of the handoff, and the audit grades green on software
    nobody examined. Only one model available? Copy the plan skeleton out of
-   `SURVEYOR.md` and fill it in by hand.
+   `colorteam-surveyor.md` and fill it in by hand.
 
 ## Quick start
 
-**Step 1 — the survey.** Attach **[`SURVEYOR.md`](SURVEYOR.md)** to your repository,
+**Step 1 — the survey.** Attach **[`colorteam-surveyor.md`](colorteam-surveyor.md)** to your repository,
 hand it to an AI coding tool running a *different* model than the one that will run
 the audit, and say exactly this:
 
 > Conduct a survey of this repository.
 
 That is the whole prompt. The agent reads the code, works out what is at stake and
-where, and writes **`<repo>-audit-plan.md`** — the audit plan. It does not audit,
+where, and writes **`<repo>-colorteam-audit-plan.md`** — the audit plan. It does not audit,
 does not grade, and does not invent the checking method; it reports what matters and
 where, and writes down what it did **not** examine.
 
@@ -117,15 +117,15 @@ where, and writes down what it did **not** examine.
 ranking if your priorities differ, and check the exclusions. Five minutes — and the
 one human moment the framework insists on. Once you approve it, it locks.
 
-**Step 3 — the audit.** Hand **[`AUDITOR.md`](AUDITOR.md)** to a new agent, along with
-your repository and the confirmed `<repo>-audit-plan.md`. It runs the phases:
+**Step 3 — the audit.** Hand **[`colorteam-auditor.md`](colorteam-auditor.md)** to a new agent, along with
+your repository and the confirmed `<repo>-colorteam-audit-plan.md`. It runs the phases:
 baseline → the five-agent wave → the referee → the graded report. Read
 **[PANEL-DESIGN.md](PANEL-DESIGN.md)** to see (or tailor) the charters and rubric;
 **[REPORT-TEMPLATE.md](REPORT-TEMPLATE.md)** shows what you get;
 **[templates/pdf/](templates/pdf/)** generates the typeset edition.
 
 Only one model available? Copy the plan skeleton out of
-**[`SURVEYOR.md`](SURVEYOR.md)** and write `<repo>-audit-plan.md` yourself. The
+**[`colorteam-surveyor.md`](colorteam-surveyor.md)** and write `<repo>-colorteam-audit-plan.md` yourself. The
 surveyor is a convenience; never letting the audit model declare its own scope is
 the rule.
 
@@ -173,8 +173,8 @@ tool in one day, each carrying the grade its evidence supported. Full stories in
 
 | File | What it is |
 |---|---|
-| `SURVEYOR.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
-| `AUDITOR.md` | **Step two.** The complete drop-in runbook for the panel. |
+| `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
+| `colorteam-auditor.md` | **Step two.** The complete drop-in runbook for the panel. |
 | `COLOR-TEAM.md` | The color definitions, versioned (v1.1) — reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Charters, phases, rubric, and the report shape; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |

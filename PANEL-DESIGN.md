@@ -24,7 +24,7 @@ Phase 3½ Verification — nothing is published until the live artifact is fetch
 
 ## The audit plan (produced before Phase 0, mandatory)
 
-The audit's single input parameter is **the audit plan** (`<repo>-audit-plan.md`),
+The audit's single input parameter is **the audit plan** (`<repo>-colorteam-audit-plan.md`),
 produced by the survey — a separate step that runs *before* this runbook is opened
 at all. It has two halves:
 
@@ -37,7 +37,7 @@ Written before anyone examines the build, locked with the rubric, and cited in t
 report header. It parameterizes every charter, every severity call, and the central
 questions.
 
-**How it is produced (the two-agent architecture):** a Surveyor agent (`SURVEYOR.md`)
+**How it is produced (the two-agent architecture):** a Surveyor agent (`colorteam-surveyor.md`)
 reads the repository and writes the plan from what the code actually does; the owner
 confirms or corrects it in one short sitting; the confirmed file locks. **Phase 0
 does not produce it — Phase 0 verifies** that it exists, is owner-confirmed, and
@@ -52,7 +52,7 @@ examined. Two different models — ideally from different vendors, so the traini
 data and the failure modes differ too — is the only thing that breaks that circuit.
 
 If you have only one model available, skip the Surveyor: the owner writes
-`<repo>-audit-plan.md` by hand using the skeleton in `SURVEYOR.md`. The Surveyor is a
+`<repo>-colorteam-audit-plan.md` by hand using the skeleton in `colorteam-surveyor.md`. The Surveyor is a
 convenience; **never reusing the audit model is the rule.** The owner's
 confirmation is never skipped either — it is the framework's defense against a
 steered (narrowed) plan.

@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.4.0 — 2026-10-05
+
+Every file that crosses into your repository is now named after the framework,
+because the old names were too generic to survive contact with a real one.
+
+`AGENT.md` is a live convention — coding tools read it as *"instructions for working
+on this repo"* — so shipping a runbook under that name risked overwriting a target
+repo's own file. `SURVEYOR.md` and `AUDITOR.md` had the same problem at a smaller
+scale.
+
+- **`SURVEYOR.md` → `colorteam-surveyor.md`** — step one: the survey.
+- **`AGENT.md` → `colorteam-auditor.md`** — step two: the audit panel's runbook.
+- **`<repo>-audit-plan.md` → `<repo>-colorteam-audit-plan.md`** — the one file that
+  lands in your repository. It now says what produced it six months later.
+- **The README states outright that neither runbook is ever copied into a target
+  repo.** Hand them to the agent — attach the file, or paste its contents.
+
+Only the two runbooks and the plan file change. `COLOR-TEAM.md`, `PANEL-DESIGN.md`,
+`REPORT-TEMPLATE.md`, `SAFETY-REVIEW-TEMPLATE.md` and `EXAMPLES.md` never leave the
+framework repo, so their names are unchanged.
+
 ## 0.3.0 — 2026-10-05
 
 Two steps, two runbooks, and the model that writes the plan can no longer be the
