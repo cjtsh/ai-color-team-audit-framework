@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.3.1 — 2026-10-05
+
+### The quick start now says which file you sign
+
+The diagram said "read the plan … sign it" and the quick start said "read the plan" without
+naming the file at all — so the one action the framework asks of the owner was the one
+action whose file was left implicit. The artifact table made it worse: it listed a *lock*
+file the owner never signs.
+
+- The quick start names it: **`<repo>-colorteam-audit-plan-<cycle>.md`, section 0, the
+  Locked scope.**
+- The diagram says the same.
+- The artifact table now marks the plan "**you sign this**" and the lock "**you never sign
+  this**; it is the signed plan's fingerprint."
+- The quick start says outright: **you sign the plan, not the lock** — the lock is written
+  later by the auditor.
+- The surveyor runbook tells the surveyor to name the file and point the owner at section 0.
+
+No definitions changed — `COLOR-TEAM.md` stays v2.4.
+
 ## 1.3.0 — 2026-10-05
 
 ### The agents are named — and the naming is a declaration, not a verification

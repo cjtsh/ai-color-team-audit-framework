@@ -121,7 +121,9 @@ identifier out of the environment and copy it verbatim with the variable name. I
 none, write `not exposed by the harness`. Never ask yourself which model you are; see the
 hard rules.
 
-Then stop and give it to the owner.
+Then stop and give it to the owner — name the file, and point them at **section 0, the
+Locked scope**, which is the part they sign. The lock file is written later by the auditor
+and is not theirs to touch.
 
 ## Hard rules
 
