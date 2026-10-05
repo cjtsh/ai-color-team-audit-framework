@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 0.4.0 · MIT License
+Version 0.4.1 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -18,33 +18,47 @@ One agent, one file. Nothing else to hand over.
 | Step | Hand the AI this file | You get back |
 |---|---|---|
 | **1. The survey** — on a *different* model | **[`colorteam-surveyor.md`](colorteam-surveyor.md)** | `<repo>-colorteam-audit-plan.md` |
-| **2. The audit** — the five-agent panel | **[`colorteam-auditor.md`](colorteam-auditor.md)** | the graded report |
+| **2. You review and confirm** | nothing — no AI involved | the confirmed plan |
+| **3. The audit** — the five-agent panel | **[`colorteam-auditor.md`](colorteam-auditor.md)** | the graded report |
 
 `colorteam-surveyor.md` contains its own answer format, so the surveyor needs no second file.
 You confirm the plan in between — that is the one human moment the framework requires.
 
 **Never copy these runbooks into your repository.** Hand them to the agent — attach the
 file, or paste its contents. The only file that lands in your repo is
-`<repo>-colorteam-audit-plan.md`, and it is named after your repo precisely so it cannot collide
-with anything. An `AGENT.md` in your repo is *your* instructions to your own tools;
-this framework deliberately does not use that name.
+`<repo>-colorteam-audit-plan.md`, and it is named after your repo precisely so it
+cannot collide with anything. An `AGENT.md` in your repo is *your* instructions to
+your own tools; this framework deliberately does not use that name.
 
-## How it works — two steps, two sets of eyes
+## How it works — three steps, two sets of eyes
 
-```mermaid
-flowchart TD
-    A["Your repository"] --> B
-    subgraph STEP1["Step 1 — the survey"]
-        B["Agent one, a different model<br/>reads the repo and writes the audit plan"]
-    end
-    B --> C["repo-colorteam-audit-plan.md<br/>the Asset Declaration + the scope"]
-    C --> D{"You confirm it"}
-    D -->|"correct it"| B
-    D -->|"approved"| E
-    subgraph STEP2["Step 2 — the audit"]
-        E["Five specialists, in one wave<br/>🔴 attacker · 🔵 defender · 🟠 critical logic<br/>🟤 edges · 🟡 supply chain"] --> F["⚪ White referee<br/>re-derives every claim, sets the grade"]
-    end
-    F --> G["The report<br/>grade · fixes · honest coverage"]
+```
+  STEP 1 - THE SURVEY                        agent one   (model A)
+  -------------------
+  colorteam-surveyor.md   +   your repo   +   "run this against my repo"
+                 |
+                 v
+  XYZ-colorteam-audit-plan.md                written into your repo root
+
+                 |
+                 v
+
+  STEP 2 - YOU REVIEW                        no AI involved
+  -------------------
+  read it, fix what only you know, confirm it.   It locks.
+
+                 |
+                 v
+
+  STEP 3 - THE AUDIT                         agent two   (model B, must differ from A)
+  ------------------
+  colorteam-auditor.md   +   your repo   +   the confirmed plan
+                 |
+                 v
+  the graded report
+      the technical report   -  for engineers
+      the safety review      -  for everyone else
+      the findings ledger    -  for agents
 ```
 
 **Step 1 runs on a different model than step 2, and that is the point.** The

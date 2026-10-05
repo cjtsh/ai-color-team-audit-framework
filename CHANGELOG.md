@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.1 — 2026-10-05
+
+The README flowchart is now plain text, and it shows **three** steps rather than two —
+the human review was previously buried inside it as a decision box.
+
+- The Mermaid diagram (which GitHub renders as boxes) is replaced with ASCII, so the
+  flow is readable in any editor, in a terminal, and in a diff.
+- Every handoff is now explicit: what you hand over, to whom, and what comes back at
+  each of the three steps — survey, human review, audit.
+- The "Start here" table gained the same third row.
+
 ## 0.4.0 — 2026-10-05
 
 Every file that crosses into your repository is now named after the framework,
