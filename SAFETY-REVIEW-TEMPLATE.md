@@ -16,7 +16,7 @@ cannot be supported by the technical report, it does not go in the safety review
 
 **[Product] [version] · [date] · reviewed by [auditor]**
 
-## [VERDICT BOX: GREEN / YELLOW / RED — the grade carried over from the technical report / what it means in one line]
+## [VERDICT BOX: CLEARED / CONDITIONAL / BLOCKED — the grade carried over from the technical report / what it means in one line]
 
 This review was written for [the person this software is actually for]. Every
 statement here is drawn from — and can be checked against — [N] full technical

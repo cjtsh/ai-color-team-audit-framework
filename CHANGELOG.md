@@ -1,5 +1,40 @@
 # Changelog
 
+## 0.5.0 — 2026-10-05
+
+### The report grades are renamed — a vocabulary change, not a logic change
+
+The old grade names reused two of the panel's own colors: 🔴 meant both "Red, the
+attacker" and "the worst grade," and 🟡 meant both "Amber, the supply-chain
+inspector" and "the middling grade." A single report printed the same symbol twice,
+meaning opposite things.
+
+| Was | Now | Means |
+|---|---|---|
+| 🟢 Green | ✅ **CLEARED** | zero open Critical/High; defenses proven and test-pinned; suites passing; artifacts re-verified |
+| 🟡 Yellow | ⚠️ **CONDITIONAL** | no Critical/High, but open Mediums past owner acceptance, or fix-verification gaps |
+| 🔴 Red | ⛔ **BLOCKED** | an open Critical/High — do not ship |
+
+- The rubric conditions, the thresholds, the **"grade is the floor of the panel,
+  never the average"** rule, and the referee's *publish / publish with edits / do not
+  publish* gate are **unchanged**. That gate concerns the report; the grade concerns
+  the software. They stay separate vocabularies.
+- `COLOR-TEAM.md` goes to **v1.2** with the same note.
+- Reports published before 0.5.0 used the old names; the three outcomes map one-to-one.
+
+### Three steps, not two
+
+The process is now counted the same way everywhere. Previously the README called it
+two steps and buried the owner's review inside the flow; several pages disagreed.
+
+- **Step 1 — the survey** (`colorteam-surveyor.md`) → `<repo>-colorteam-audit-plan.md`.
+- **Step 2 — the owner confirms the plan.** No AI.
+- **Step 3 — the audit** (`colorteam-auditor.md`) → the graded report.
+- The surveyor's one-sentence prompt is now identical everywhere: *"Conduct a survey
+  of this repository."*
+- Removed the README "Start here" table, which contradicted the flowchart.
+- The README flowchart is plain ASCII, readable in any editor.
+
 ## 0.4.1 — 2026-10-05
 
 The README flowchart is now plain text, and it shows **three** steps rather than two —

@@ -32,7 +32,7 @@ threat-model declaration from memory, but they can confirm one in five minutes.
 optional.** The surveyor decides what is in scope. If the same model writes the
 plan and then audits against it, the same blind spot sits on both sides of the
 handoff: the panel works faithfully from an incomplete scope, finds nothing wrong
-with what it can see, and grades green on software nobody actually examined.
+with what it can see, and grades it CLEARED on software nobody actually examined.
 Different models — ideally from different vendors — is the only thing that breaks
 that circuit. If you have only one model, do not run the surveyor at all: the owner
 copies the plan skeleton out of `colorteam-surveyor.md` and writes the plan by hand. The one
@@ -48,7 +48,7 @@ The defining rules:
    must be a different model from the one that runs the panel — ideally from a
    different vendor, so the training data and the failure modes differ too. The
    surveyor sets the scope; if one model sets the scope and then audits it, the
-   same blind spot sits on both sides of the handoff and the audit grades green on
+   same blind spot sits on both sides of the handoff and the audit grades it CLEARED on
    software nobody examined. Only one model available? The owner writes the plan by
    hand. Never the audit model.
 3. **The rubric is locked before the audit.** The grade definitions are written
@@ -112,9 +112,9 @@ The White referee receives all five reports plus your baseline, and must:
    (their numbers will collide — that is expected; the referee fixes the numbering).
 3. Calibrate severities with one line of reasoning each.
 4. Apply the locked rubric mechanically. Two known traps:
-   - **Rubric tension:** if the green conditions and the yellow conditions can both
-     be read to apply, resolve so that every clause of the rubric is reachable —
-     ambiguity is never resolved in green's favor.
+   - **Rubric tension:** if the CLEARED conditions and the CONDITIONAL conditions
+     can both be read to apply, resolve so that every clause of the rubric is
+     reachable — ambiguity is never resolved in CLEARED's favor.
    - **Invented acceptance:** an open finding can only be closed by written,
      dated owner acceptance. Never infer acceptance from documentation that
      predates the finding.
@@ -126,7 +126,7 @@ The White referee receives all five reports plus your baseline, and must:
 
 1. Apply the referee's grade. Do not negotiate with it.
 2. Write the public report in REPORT-TEMPLATE.md's shape: human summary first
-   (grade, the four questions or their equivalent, the path forward if not green),
+   (grade, the four questions or their equivalent, the path forward if not CLEARED),
    then each agent's section under its own name and sub-verdict, the referee's
    verification summary, the full findings ledger, and an honest coverage section.
 3. **Write the plain-English Safety Review** from the completed technical report,
@@ -157,9 +157,9 @@ URL returning 200 is not publication; only HTTP 200 + byte-identical hash is.
 - If verification fails, say so and stop. A broken link reported honestly beats
   a working link claimed falsely.
 
-## Conversion re-checks (when a prior cycle ended YELLOW)
+## Conversion re-checks (when a prior cycle ended CONDITIONAL)
 
-A YELLOW grade with a defined conversion path (fix the open item, then
+A CONDITIONAL grade with a defined conversion path (fix the open item, then
 demonstrate it) does not require a full re-audit. Run a **light conversion
 re-check**: Phase 0 baseline on the new version → a delta-scoped wave (the
 specialists whose domains the delta touches; unchanging domains carry over by
@@ -183,13 +183,13 @@ the relevant code is verified (blob hashes), never assumed.
 
 ## The grade rubric (adapt numbers/conditions to the target, then lock)
 
-- 🟢 **GREEN** — ship-ready on the audited scope. Requires ALL: zero open
+- ✅ **CLEARED** — ship-ready on the audited scope. Requires ALL: zero open
   Critical/High; every prior-cycle finding verified fixed or closed by dated owner
-  acceptance; stated defenses held and regression-tested; suites green and
+  acceptance; stated defenses held and regression-tested; suites passing and
   artifacts verified; no new Critical/High.
-- 🟡 **YELLOW** — no Critical/High, but open Mediums beyond owner acceptance, or
+- ⚠️ **CONDITIONAL** — no Critical/High, but open Mediums beyond owner acceptance, or
   fix-verification gaps. Honest label: good software with work remaining.
-- 🔴 **RED** — any open Critical/High. Do not ship. Say exactly what and why.
+- ⛔ **BLOCKED** — any open Critical/High. Do not ship. Say exactly what and why.
 
 Severity scale (parameterized by the Asset Declaration): **Critical** = can seize,
 destroy, or alter the declared assets, or act on the user's behalf without
@@ -209,6 +209,6 @@ claims otherwise, the report — not the software — is defective.
 ## Provenance
 
 First real-world runs: the Bitcoin Easy Signer audits, October 2026 (see
-EXAMPLES.md) — including a full panel run that graded its own sponsor Yellow on a
-process finding with all five green conditions otherwise met. That report is the
+EXAMPLES.md) — including a full panel run that graded its own sponsor CONDITIONAL on a
+process finding with all five CLEARED conditions otherwise met. That report is the
 format's proof that the grade cannot be sweetened.

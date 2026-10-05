@@ -18,10 +18,10 @@ the standard. Delete any section that genuinely has no content — never invent 
 | **Prior audit** | [Prior cycle summary, or "first audit"] |
 | **Verification** | [What was independently re-derived: artifact hashes, signatures/notarization, test suites re-run, etc.] |
 
-## The grade: [🟢 Green / 🟡 Yellow / 🔴 Red] — [one-line reason]
+## The grade: [✅ CLEARED / ⚠️ CONDITIONAL / ⛔ BLOCKED] — [one-line reason]
 
-[If not green: the finding(s) holding the grade, stated plainly with severity and
-the exact path to green. If green: what was verified to earn it. The rubric tension
+[If not CLEARED: the finding(s) holding the grade, stated plainly with severity and
+the exact path to CLEARED. If CLEARED: what was verified to earn it. The rubric tension
 rule applies: if any clause of the rubric could be read to bind, it binds.]
 
 ## The four questions that matter

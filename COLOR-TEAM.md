@@ -1,4 +1,4 @@
-# The Color Team — definitions (v1.1)
+# The Color Team — definitions (v1.2)
 
 A security review performed by a named panel of specialist agents, each with one
 lens and one job. Two of the colors are borrowed from established security
@@ -115,10 +115,10 @@ publication decision: *Publish / Publish with edits / Do not publish.*
 ## How the grades combine
 
 Each agent's sub-verdict prints in the report under its own name and color. The
-overall grade — Green / Yellow / Red — is defined in writing **before** the audit
-begins (see `PANEL-DESIGN.md`), and is the **floor** of the panel, never the
-average: a single Red-grade finding fails the review no matter how strong the
-other sections are.
+overall grade — CLEARED / CONDITIONAL / BLOCKED — is defined in writing **before**
+the audit begins (see `PANEL-DESIGN.md`), and is the **floor** of the panel, never
+the average: a single BLOCKED-grade finding fails the review no matter how strong
+the other sections are.
 
 ## The rules that make it honest
 
@@ -134,9 +134,13 @@ other sections are.
 
 ---
 
-*Color Team definitions v1.1 — part of the AI Color Team Audit Framework (this
+*Color Team definitions v1.2 — part of the AI Color Team Audit Framework (this
 repository). v1.1 generalizes the founding wording (written for a Bitcoin wallet)
-to the Asset Declaration model; role semantics are unchanged from v1. Red and blue
+to the Asset Declaration model; role semantics are unchanged from v1. v1.2 renames
+the report grades from Green/Yellow/Red to **CLEARED / CONDITIONAL / BLOCKED**,
+because the old names reused two of the panel's own colors — 🔴 meant both "Red,
+the attacker" and "the worst grade." The outcomes, the rubric, and the floor rule
+are all unchanged; reports published before v1.2 used the old names. Red and blue
 are established security-industry terms; orange, copper, amber, and white were
 introduced by the framework's first runs (Bitcoin Easy Signer audits, October
 2026). This page may be reproduced in any report that uses the format; reproduce

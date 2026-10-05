@@ -47,7 +47,7 @@ names the revision being audited.
 requirement, not a preference. The Surveyor decides what is even in scope. If one
 model writes the plan and then audits against it, the same blind spot sits on both
 sides of the handoff: the panel works faithfully from an incomplete scope, finds
-nothing wrong with what it can see, and grades green on software nobody actually
+nothing wrong with what it can see, and grades it CLEARED on software nobody actually
 examined. Two different models — ideally from different vendors, so the training
 data and the failure modes differ too — is the only thing that breaks that circuit.
 
@@ -134,21 +134,21 @@ issue the gate: *publish / publish with edits / do not publish.*
 
 ## The rubric (adapt, then lock, then never touch mid-audit)
 
-- 🟢 **GREEN** — requires ALL of: zero open Critical/High (as affects the declared
+- ✅ **CLEARED** — requires ALL of: zero open Critical/High (as affects the declared
   assets for users of the audited version); every prior-cycle finding verified
   fixed or closed by dated owner acceptance; stated defenses held and
-  regression-tested; suites green, artifacts re-verified; no new Critical/High.
-- 🟡 **YELLOW** — no Critical/High, but open Mediums beyond owner acceptance, or
+  regression-tested; suites passing, artifacts re-verified; no new Critical/High.
+- ⚠️ **CONDITIONAL** — no Critical/High, but open Mediums beyond owner acceptance, or
   fix-verification gaps. Label honestly: good software with work remaining.
-- 🔴 **RED** — any open Critical/High. Do not ship; say what and why.
+- ⛔ **BLOCKED** — any open Critical/High. Do not ship; say what and why.
 
 **Rulings encoded from real runs (keep these):**
 
-1. *Every clause of the rubric must be reachable.* If the green list and the yellow
-   clause can both be read to apply, resolve so yellow can bind — ambiguity is
-   never resolved in green's favor. (First encoded after the v0.6.3 Bitcoin Easy
-   Signer ruling: five green conditions met, one open Medium held the grade at
-   Yellow.)
+1. *Every clause of the rubric must be reachable.* If the CLEARED list and the
+   CONDITIONAL clause can both be read to apply, resolve so CONDITIONAL can bind —
+   ambiguity is never resolved in CLEARED's favor. (First encoded after the v0.6.3
+   Bitcoin Easy Signer ruling: five CLEARED conditions met, one open Medium held the
+   grade at CONDITIONAL.)
 2. *Acceptance must be written, dated, and post-date the finding.* A documented
    procedure is not acceptance of a risk; disclosure is not acceptance; never
    invent owner acceptance.
@@ -169,7 +169,7 @@ Every engagement produces three deliverables, one per audience — written in th
 
 The technical report contains: grade and why; the four questions (or the target's
    equivalent: can it do the unforgivable thing? can it leak the unspeakable thing?
-   can anyone act invisibly? what to fix first?); the path forward if not green.
+   can anyone act invisibly? what to fix first?); the path forward if not CLEARED.
 2. **The fix ledger:** prior findings → status at this commit, with evidence.
 3. **The color sections:** each agent's charter summary, what it did, findings,
    sub-verdict — named, in language a non-engineer can follow.
@@ -183,7 +183,7 @@ The technical report contains: grade and why; the four questions (or the target'
 
 ## Conversion re-checks
 
-When a cycle ends YELLOW with a defined conversion path, the follow-up is a light re-check, not a full audit: Phase 0 baseline on the new version → a delta-scoped wave covering only the domains the delta touches (unchanged domains carry over by VERIFIED blob-identity, never assumption) → the referee rules the conversion criterion met *by execution* (a demonstrated fix, a machine-enforced gate that actually ran) and that the delta introduced no new Critical/High. Grade converts if and only if both hold.
+When a cycle ends CONDITIONAL with a defined conversion path, the follow-up is a light re-check, not a full audit: Phase 0 baseline on the new version → a delta-scoped wave covering only the domains the delta touches (unchanged domains carry over by VERIFIED blob-identity, never assumption) → the referee rules the conversion criterion met *by execution* (a demonstrated fix, a machine-enforced gate that actually ran) and that the delta introduced no new Critical/High. Grade converts if and only if both hold.
 
 ## Cost note
 

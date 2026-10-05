@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""AI Color Team Audit Framework — typeset report generator (template v0.4.1).
+"""AI Color Team Audit Framework — typeset report generator (template v0.5.0).
 
 Produce a formal A4 PDF body from your completed report content, then merge a
 single-page A4 cover in front (see merge_cover.py). Edit everything marked
@@ -170,8 +170,8 @@ story = []
 # Example skeleton (replace wholesale):
 story.append(Paragraph("<b>The Grade</b>", S["h1"]))
 story.append(HRFlowable(width="100%", thickness=1.1, color=ACCENT, spaceBefore=1, spaceAfter=10))
-story.append(Paragraph("[One paragraph: the grade and why — if not green, the finding "
-                       "that holds it and the exact path to green.]", S["body"]))
+story.append(Paragraph("[One paragraph: the grade and why — if not CLEARED, the finding "
+                       "that holds it and the exact path to CLEARED.]", S["body"]))
 story.append(Spacer(1, 4))
 story.append(callout_row([("N", "stat one"), ("N", "stat two"),
                           ("N", "stat three"), ("N", "stat four")]))

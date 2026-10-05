@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 0.4.1 · MIT License
+Version 0.5.0 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -54,7 +54,7 @@ your own tools; this framework deliberately does not use that name.
 surveyor decides what is even in scope. If one model writes the plan and then audits
 against it, the same blind spot sits on both sides of the handoff: the panel works
 faithfully from an incomplete scope, finds nothing wrong with what it can see, and
-grades green on software nobody examined.
+grades it CLEARED on software nobody examined.
 
 **The handoff is one file.** The surveyor writes `<repo>-colorteam-audit-plan.md`; you read
 and confirm it; the panel audits against it. Nothing else changes hands.
@@ -88,9 +88,9 @@ are the standard.
 
 ## The four rules that make it honest
 
-1. **The rubric is locked before the audit.** Green/Yellow/Red are defined in
+1. **The rubric is locked before the audit.** CLEARED/CONDITIONAL/BLOCKED are defined in
    writing before any agent examines the build, and applied mechanically afterward.
-   Ambiguity is never resolved in green's favor.
+   Ambiguity is never resolved in CLEARED's favor.
 2. **The grade is the floor of the panel, never the average.** One bad finding
    fails the audit no matter how glowing the rest.
 3. **The referee gates publication.** Nothing is published that one agent could
@@ -99,7 +99,7 @@ are the standard.
 4. **The surveyor is never the auditor.** The audit plan is drafted by a
    *different* model than the one that runs the panel. The surveyor decides what
    is in scope: if one model sets the scope and then audits it, the same blind
-   spot sits on both sides of the handoff, and the audit grades green on software
+   spot sits on both sides of the handoff, and the audit grades it CLEARED on software
    nobody examined. Only one model available? Copy the plan skeleton out of
    `colorteam-surveyor.md` and fill it in by hand.
 
@@ -141,7 +141,7 @@ independence, so say so in the report's coverage section.
 Not a guarantee, not a certification, and not a replacement for a qualified human
 security engineer. An audit is evidence about one revision on one day; "no finding"
 means "none found within the stated coverage." The framework's own first full run
-graded its sponsor **Yellow** on a process finding with every green condition
+graded its sponsor **CONDITIONAL** on a process finding with every CLEARED condition
 otherwise met — that report is linked below, and it is the best evidence the grade
 cannot be sweetened.
 
@@ -154,12 +154,13 @@ tool in one day, each carrying the grade its evidence supported. Full stories in
 | Cycle | What happened | Grade |
 |---|---|---|
 | v0.6.2 | [Classic audit](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.2.md) — 25 findings, none critical, every remedy written down | findings → fix them |
-| v0.6.3 | [First full Color Team run](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.3.md) — all 25 fixed and regression-pinned; one process gap remained | 🟡 Yellow |
-| v0.6.4 | [The conversion run](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.4.md) — the release published itself through its own automated gates | 🟢 Green |
+| v0.6.3 | [First full Color Team run](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.3.md) — all 25 fixed and regression-pinned; one process gap remained | ⚠️ Conditional |
+| v0.6.4 | [The conversion run](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.4.md) — the release published itself through its own automated gates | ✅ Cleared |
 
-![A Green report produced by this framework — the grade page](examples/v0.6.4-grade.png)
+![A CLEARED report produced by this framework — the grade page](examples/v0.6.4-grade.png)
 
-*The grade page of the v0.6.4 report (typeset edition). Full PDF:
+*The grade page of the v0.6.4 report (typeset edition). Typeset before the grades
+were renamed — the outcome is now called **CLEARED**. Full PDF:
 [bitcoineasysigner.com/audits/ZAI-Security-Audit-v0.6.4.pdf](https://bitcoineasysigner.com/audits/ZAI-Security-Audit-v0.6.4.pdf).*
 
 - **[Bitcoin Easy Signer v0.6.2 — classic single-lead audit](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.2.md)**
@@ -167,9 +168,9 @@ tool in one day, each carrying the grade its evidence supported. Full stories in
   and the supply-chain gap that became the next cycle's headline fix.
 - **[Bitcoin Easy Signer v0.6.3 — the first full Color Team run](https://github.com/cjtsh/bitcoin-easy-multisig-signer/blob/main/releases/AUDIT-ZAI-0.6.3.md)**
   All 22 actionable prior findings (of 25 total) verified fixed, no breach found, cryptography re-proven
-  against official test vectors — graded **Yellow** because the release was
+  against official test vectors — graded **CONDITIONAL** because the release was
   published through a manual path that bypassed the project's own new automated
-  gates. The grade, the reasoning, and the one-step path to green are all in the
+  gates. The grade, the reasoning, and the one-step path to CLEARED are all in the
   report. A [typeset PDF edition](https://cjtsh.github.io/bitcoin-easy-multisig-signer/audits/ZAI-Security-Audit-v0.6.3.pdf) is also published.
 
 ## Repository contents

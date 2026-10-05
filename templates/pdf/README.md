@@ -32,7 +32,8 @@ identical facts.
 - Cover: restrained — kicker, product name as the hero, one-paragraph summary,
   document ID footer. No emoji (ReportLab cannot render them).
 - Grade honesty on the cover: the summary line states the actual grade and, if not
-  green, the one-line reason. A green-washed cover is a defective deliverable.
+  CLEARED, the one-line reason. A cover that overstates the grade is a defective
+  deliverable.
 - Tables: dark header row, white text, hairline grid, alternating stripes; every
   cell a wrapped paragraph; widths computed from available width.
 - The panel table carries a narrow color-swatch column — the one place the five
@@ -44,6 +45,6 @@ identical facts.
 
 ## Version
 
-Template v0.4.1 — extracted from the generator that produced the public PDF
+Template v0.5.0 — extracted from the generator that produced the public PDF
 editions of the Bitcoin Easy Signer audits (October 2026). MIT-licensed; adapt
 freely.
