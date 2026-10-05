@@ -18,10 +18,16 @@ One agent, one file. Nothing else to hand over.
 | Step | Hand the AI this file | You get back |
 |---|---|---|
 | **1. The survey** — on a *different* model | **[`SURVEYOR.md`](SURVEYOR.md)** | `<repo>-audit-plan.md` |
-| **2. The audit** — the five-agent panel | **[`AGENT.md`](AGENT.md)** | the graded report |
+| **2. The audit** — the five-agent panel | **[`AUDITOR.md`](AUDITOR.md)** | the graded report |
 
 `SURVEYOR.md` contains its own answer format, so the surveyor needs no second file.
 You confirm the plan in between — that is the one human moment the framework requires.
+
+**Never copy these runbooks into your repository.** Hand them to the agent — attach the
+file, or paste its contents. The only file that lands in your repo is
+`<repo>-audit-plan.md`, and it is named after your repo precisely so it cannot collide
+with anything. An `AGENT.md` in your repo is *your* instructions to your own tools;
+this framework deliberately does not use that name.
 
 ## How it works — two steps, two sets of eyes
 
@@ -111,7 +117,7 @@ where, and writes down what it did **not** examine.
 ranking if your priorities differ, and check the exclusions. Five minutes — and the
 one human moment the framework insists on. Once you approve it, it locks.
 
-**Step 3 — the audit.** Hand **[`AGENT.md`](AGENT.md)** to a new agent, along with
+**Step 3 — the audit.** Hand **[`AUDITOR.md`](AUDITOR.md)** to a new agent, along with
 your repository and the confirmed `<repo>-audit-plan.md`. It runs the phases:
 baseline → the five-agent wave → the referee → the graded report. Read
 **[PANEL-DESIGN.md](PANEL-DESIGN.md)** to see (or tailor) the charters and rubric;
@@ -168,7 +174,7 @@ tool in one day, each carrying the grade its evidence supported. Full stories in
 | File | What it is |
 |---|---|
 | `SURVEYOR.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
-| `AGENT.md` | **Step two.** The complete drop-in runbook for the panel. |
+| `AUDITOR.md` | **Step two.** The complete drop-in runbook for the panel. |
 | `COLOR-TEAM.md` | The color definitions, versioned (v1.1) — reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Charters, phases, rubric, and the report shape; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |

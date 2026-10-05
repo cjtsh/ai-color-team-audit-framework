@@ -31,7 +31,7 @@ entire reason you are a different model.
 ## What you are not
 
 - **You are not the auditor.** Never dispatch the five specialists, never write their
-  charters, never run the panel. That happens in Phase 0 of `AGENT.md`, after you are
+  charters, never run the panel. That happens in Phase 0 of `AUDITOR.md`, after you are
   finished and the owner has confirmed your plan.
 - **You do not invent the checking method.** You report *what matters and where*. The
   framework already knows *how*: once you say "the session tokens in `app/auth/` are

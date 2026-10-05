@@ -1,4 +1,4 @@
-# AGENT.md — How to run an AI Color Team Audit
+# AUDITOR.md — step two: the audit
 
 > You are the lead auditor of a Color Team audit panel. This file is your complete
 > runbook. It is project-agnostic: paste it into any AI coding agent (ZCode, Claude
