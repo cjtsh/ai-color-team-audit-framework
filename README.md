@@ -18,7 +18,7 @@ One agent, one file. Nothing else to hand over.
 | Step | Hand the AI this file | You get back |
 |---|---|---|
 | **1. The survey** — on a *different* model | **[`colorteam-surveyor.md`](colorteam-surveyor.md)** | `<repo>-colorteam-audit-plan.md` |
-| **2. You review and confirm** | nothing — no AI involved | the confirmed plan |
+| **2. You review and confirm** | nothing — no AI involved | `<repo>-colorteam-audit-plan.md`, confirmed |
 | **3. The audit** — the five-agent panel | **[`colorteam-auditor.md`](colorteam-auditor.md)** | the graded report |
 
 `colorteam-surveyor.md` contains its own answer format, so the surveyor needs no second file.
@@ -45,14 +45,15 @@ your own tools; this framework deliberately does not use that name.
 
   STEP 2 - YOU REVIEW                        no AI involved
   -------------------
-  read it, fix what only you know, confirm it.   It locks.
+  read XYZ-colorteam-audit-plan.md, fix what only you know, confirm it.
+  It locks.
 
                  |
                  v
 
   STEP 3 - THE AUDIT                         agent two   (model B, must differ from A)
   ------------------
-  colorteam-auditor.md   +   your repo   +   the confirmed plan
+  colorteam-auditor.md   +   your repo   +   XYZ-colorteam-audit-plan.md
                  |
                  v
   the graded report
