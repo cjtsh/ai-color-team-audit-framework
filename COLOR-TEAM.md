@@ -1,4 +1,4 @@
-# The Color Team — definitions (v1.8)
+# The Color Team — definitions (v1.9)
 
 A security review performed by a named panel of specialist agents, each with one
 lens and one job. Two of the colors are borrowed from established security
@@ -278,19 +278,71 @@ sub-verdict** — it is a coverage statement.
 
 ## 🟡 AMBER — the supply-chain inspector
 
-**Role:** how the artifact is born. Every dependency and its lock (hash-pinned
-end-to-end or not), the CI pipeline's step order and secret handling, build scripts,
-code signing and notarization verified on the actual published artifact, the
-software bill of materials, and the guards that keep a published version immutable.
-The standing question: could compromised upstream code reach a released build
-without a deliberate, reviewable version bump?
+**Role:** the chain — every step that turns source the owner wrote into an artifact
+someone runs. Dependencies and their transitive closure, the build (CI configuration,
+build scripts, toolchain, base images), the secrets those steps can see, packaging,
+signing and notarization, the publication channel, and the immutability of what was
+published. Amber's standing question: **could code the owner never reviewed reach a
+released artifact without a deliberate, reviewable version bump?** Not the language
+ecosystem's own security, not the host machine, not the registry's reputation — the
+chain this artifact actually travelled.
 
-**Method:** workflow and lock-file audit, artifact re-hashing, signature and
-platform verification, tamper-path analysis.
+**The chain inventory first.** Amber publishes the list before verifying: every link,
+with its exact version and hash — dependency, build step, secret, signing identity,
+publication channel. An artifact that reaches a user through a step the inventory does
+not list is itself a finding. So is an empty inventory, which is a claim to check
+rather than a clean result.
 
-**Output:** claim-by-claim verification and a residual-risk inventory.
+**The five questions, at every link.** A link passes only if all five are answered with
+evidence:
 
-**Sub-verdict:** *Chain holds* / *Chain gaps*.
+1. **Named** — it is on the chain inventory.
+2. **Pinned** — it resolves to an immutable identity: a content hash in a lockfile, a
+   fixed action or runner version, a base image digest, a signed tag. "Latest" is not a
+   pin, and a version range is not a pin.
+3. **Real** — it is the project it claims to be, at the version claimed, established
+   from the registry and the project's own history rather than from the import
+   statement. Generators emit dependencies from statistical association, and an
+   attacker-registered squatter installs perfectly cleanly. **A package that installs
+   cleanly is not proof of legitimacy — that is exactly what a squatter provides.**
+4. **Read** — Amber has inspected what the link does *at that pinned version*: the
+   dependency's code, the workflow's actual configuration, the build script. A name, a
+   description, or a download count is not an inspection.
+5. **Matched** — the published artifact corresponds to the sources on the inventory:
+   rebuilt and re-hashed where the chain allows it, or the difference named and
+   explained. Amber re-downloads what was published and re-hashes it — the audited
+   artifact and the published artifact are the same bytes, or that is the finding.
+
+**What cannot be verified is recorded, never assumed.** Where a link cannot be
+established — no lockfile, a dependency with no readable source, a build that cannot be
+reproduced, a signature with no key to check it, a hosted build that cannot be
+inspected — Amber writes **UNVERIFIED** against that link and states what would be
+needed to close it. The shared evidence standard applies unchanged: a test that exists
+is not evidence; a test that can fail is. Amber does not install dependencies or run the
+build on a machine holding real credentials; it reads the pinned sources and re-hashes
+what was published.
+
+**Method:** lock-file and workflow audit, registry and provenance lookups, artifact
+re-hashing, signature and platform verification, tamper-path analysis from a dependency
+to a released byte.
+
+**Output:** the chain inventory; then, per link, the five answers with their evidence
+and any UNVERIFIED marks; then the residual-risk inventory — what remains true after
+the mitigations, stated rather than left implied.
+
+**Sub-verdict:** **CHAIN HOLDS** / **CHAIN UNVERIFIED** / **CHAIN BROKEN** — computed,
+never chosen, itemized per link, worst link wins. Code the owner never reviewed can
+reach a released artifact without a reviewable bump, at a named link → CHAIN BROKEN. A
+link that could not be established → CHAIN UNVERIFIED. Every link named, pinned, real,
+read and matched, with evidence → CHAIN HOLDS. **NOT APPLICABLE** — no dependencies, no
+build, nothing published — is a coverage statement, not a sub-verdict, and the report
+must show why the lane had no subject.
+
+**The seam with Orange.** Both read dependencies, and they ask different questions.
+Amber asks *is this the real project, at this exact version, and did it get into the
+build on purpose?* Orange asks *does the code inside this critical dependency compute
+the right answer, and what changed since the last audit?* Identity, provenance and
+integrity are Amber's; arithmetic and semantics are Orange's.
 
 ## ⚪ WHITE — the referee
 
@@ -371,8 +423,12 @@ UNPROVEN / LOGIC WRONG. v1.8 gives Copper the same treatment: the edge is everyt
 the core trusts but does not control, NOT APPLICABLE is a real answer instead of a
 clean bill of health, every edge is assumed hostile or broken across five behaviours,
 evidence means a named artifact and a named observation, and the verdict is EDGE
-TRUST HOLDS / EDGE TRUST UNPROVEN / EDGE TRUST BROKEN. The outcomes, the rubric, and
-the floor rule are all unchanged; reports published before v1.2 used the old grade
+TRUST HOLDS / EDGE TRUST UNPROVEN / EDGE TRUST BROKEN. v1.9 gives Amber the same
+treatment: a chain inventory published before verification, five questions at every
+link — named, pinned, real, read, matched — the rule that what cannot be verified is
+recorded as UNVERIFIED rather than assumed, and a computed verdict of CHAIN HOLDS /
+CHAIN UNVERIFIED / CHAIN BROKEN. The outcomes, the rubric, and the floor rule are all
+unchanged; reports published before v1.2 used the old grade
 names. Red and blue are established security-industry terms; orange, copper, amber,
 and white were
 introduced by the framework's first runs (Bitcoin Easy Signer audits, October 2026).

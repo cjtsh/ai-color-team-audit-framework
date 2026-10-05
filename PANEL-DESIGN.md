@@ -116,6 +116,7 @@ gives each specialist the full text of its own definition as its charter.
      matters, not effective, or fails open.
    - **Orange** — **LOGIC WRONG** against a named invariant.
    - **Copper** — **EDGE TRUST BROKEN** at a named interface.
+   - **Amber** — **CHAIN BROKEN** at a named link.
 
    Each lane's own definition in `COLOR-TEAM.md` says what its failure state means
    and what demonstrates it, within that lane's area of expertise. A lane that does
@@ -123,8 +124,8 @@ gives each specialist the full text of its own definition as its charter.
    rest of the panel.
 5. *Anything a lane leaves unproven holds the grade at CONDITIONAL.* An unpinned
    control, an invariant that is **LOGIC UNPROVEN**, an edge that is **EDGE TRUST
-   UNPROVEN**: CLEARED requires every claim to be proven and pinned, and ambiguity
-   is never resolved in the software's favor.
+   UNPROVEN**, a chain link that is **UNVERIFIED**: CLEARED requires every claim to be
+   proven and pinned, and ambiguity is never resolved in the software's favor.
 
 ## Report shape — three deliverables, three audiences
 

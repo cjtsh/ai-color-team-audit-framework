@@ -68,7 +68,7 @@ locked **before** the audit — not a score, and never an average.
 |---|---|
 | ✅ **CLEARED** | All five conditions hold: no open Critical or High; every earlier finding verified fixed, or closed by your own dated acceptance; the stated defenses held and are now pinned by regression tests; the suites passed and the artifacts were re-verified; no new Critical or High appeared. |
 | ⚠️ **CONDITIONAL** | Nothing Critical or High, but there are open Mediums beyond what you accepted, or a fix that was claimed and not verified. Honest reading: good software with work remaining. The report names the shortest path to CLEARED. |
-| ⛔ **BLOCKED** | One or more Critical or High findings are open — including any proven lane failure: Red demonstrated a breach, Blue found a claimed control that does not hold, Orange proved an invariant wrong, or Copper proved an edge the core trusts can deceive, hang, or corrupt it. **Do not ship.** The report says exactly what and why. |
+| ⛔ **BLOCKED** | One or more Critical or High findings are open — including any proven lane failure: Red demonstrated a breach, Blue found a claimed control that does not hold, Orange proved an invariant wrong, Copper proved an edge the core trusts can deceive, hang, or corrupt it, or Amber showed code you never reviewed can reach a released build without a reviewable bump. **Do not ship.** The report says exactly what and why. |
 
 There is no partial credit. The grade is the **floor** of the panel, so one bad finding
 stands no matter how clean the other four lanes were. You get the answer either way — a
@@ -98,7 +98,7 @@ report, not an appendix.
 | 🔵 Blue | The defender — takes every protection your software claims about itself and proves it holds *and* stays held: present, on every path that matters, effective, fail-closed, and pinned by a test Blue has watched go red when the control was broken. Answers **DEFENSES HOLD / DEFENSES HOLD WITH GAPS / DEFENSE BROKEN**, worst control wins. A control that does not hold is an automatic ⛔ BLOCKED; an unpinned one caps the grade at ⚠️ CONDITIONAL. |
 | 🟠 Orange | The critical-logic specialist — the logic that enforces an invariant: *"signatures verify"*, *"amounts sum"*, *"a nonce never repeats"*. Proves each one against a definition of correct that lives **outside your code** — a specification, official test vectors, an independent reference implementation, the mathematics — because your code's own comments cannot corroborate your code. Answers **LOGIC PROVEN / LOGIC UNPROVEN / LOGIC WRONG**, worst invariant wins. Wrong logic is an automatic ⛔ BLOCKED; unproven logic caps the grade at ⚠️ CONDITIONAL. |
 | 🟤 Copper | The edge specialist — everything the core **trusts but does not control**: clients, transports, devices and drivers, host runtimes, frozen binaries. Assumes each is hostile or broken — it lies, dies, stalls, repeats, or gets substituted — and asks what your code does when its edge betrays it. Answers **EDGE TRUST HOLDS / EDGE TRUST UNPROVEN / EDGE TRUST BROKEN**, per interface, one broken interface failing the lane. Broken trust is an automatic ⛔ BLOCKED; unproven trust caps the grade at ⚠️ CONDITIONAL. Where there is no edge at all it reports **NOT APPLICABLE** — never a clean bill of health. |
-| 🟡 Amber | The supply-chain inspector — how the artifact is born: every dependency, build step, signature and download in the chain. |
+| 🟡 Amber | The supply-chain inspector — every step that turns source you wrote into an artifact someone runs: dependencies and their transitive closure, the build and the secrets it can see, packaging, signing, publication, and whether a published version can change under you. Answers **CHAIN HOLDS / CHAIN UNVERIFIED / CHAIN BROKEN**, worst link wins. Broken chain is an automatic ⛔ BLOCKED; an unverifiable link caps the grade at ⚠️ CONDITIONAL. A package that installs cleanly is not proof of legitimacy — that is exactly what a squatter provides. |
 | ⚪ White | The referee — sees everything, re-derives every load-bearing claim personally, and gates what gets published. |
 
 ### 🔴 Red, in more detail
@@ -201,6 +201,36 @@ tool and states plainly what it could not establish.
 **EDGE TRUST BROKEN is an automatic ⛔ BLOCKED. EDGE TRUST UNPROVEN caps the grade at
 ⚠️ CONDITIONAL.** The verdict is itemized per interface, and one broken interface
 fails the whole lane.
+
+### 🟡 Amber, in more detail
+
+**Amber covers the chain** — every step that turns source you wrote into an artifact
+someone runs: dependencies and their transitive closure, the build and the secrets it
+can see, packaging, signing, publication, and whether a published version can change
+under you.
+
+**The standing question:** could code you never reviewed reach a released artifact
+without a deliberate, reviewable version bump? Not the ecosystem's security, not your
+machine, not the registry's reputation — the chain *this* artifact actually travelled.
+
+**Amber publishes the chain inventory before verifying.** Every link with its exact
+version and hash. An artifact that reaches a user through a step that isn't on the list
+is itself a finding — and so is an empty inventory.
+
+**Five questions at every link:** **Named** (it's on the inventory), **Pinned** (a
+content hash, a fixed action version, a digest, a signed tag — "latest" is not a pin),
+**Real** (it is the project it claims to be, at the version claimed, established from
+the registry rather than the import statement — a package that installs cleanly is not
+proof of legitimacy, because that is exactly what a squatter provides), **Read** (Amber
+inspected what it actually does at that pinned version), and **Matched** (the published
+artifact is the one that was audited — re-downloaded and re-hashed).
+
+**What cannot be verified is recorded, never assumed.** No lockfile, no readable
+dependency source, a build that can't be reproduced, a signature with no key: Amber
+writes **UNVERIFIED** against that link and says what would close it.
+
+**CHAIN BROKEN is an automatic ⛔ BLOCKED. CHAIN UNVERIFIED caps the grade at
+⚠️ CONDITIONAL.** The verdict is per link, and the worst link wins.
 
 ## The audit plan
 
@@ -316,7 +346,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 |---|---|
 | `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
 | `colorteam-auditor.md` | **Step three.** The complete drop-in runbook for the panel. |
-| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v1.8) and reproducible in any report using the format. |
+| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v1.9) and reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Phases, rubric, report shape, and the conversion re-checks; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |
 | `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report. |
@@ -330,7 +360,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 The framework is versioned, and **every version reference stays in sync**: the
 README version line, the PDF template's version stamp, and the changelog entry
 all carry the current release version at every release. (`COLOR-TEAM.md`'s
-definitions version — currently v1.8 — is deliberately independent: it changes
+definitions version — currently v1.9 — is deliberately independent: it changes
 only when the role definitions change, so published reports stay citable against
 the version they were written under.)
 

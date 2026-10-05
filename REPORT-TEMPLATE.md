@@ -53,7 +53,9 @@ and the maintenance obligations created.]
 **🟤 Copper — [sub-verdict], or NOT APPLICABLE with the reason.** [Per edge
 interface: the artifact examined, the outcomes of the five behaviours it was assumed
 to exhibit, and the version-identity result.]
-**🟡 Amber — [sub-verdict].** [Pipeline claims verified, the one thing that matters most here.]
+**🟡 Amber — [sub-verdict], or NOT APPLICABLE with the reason.** [The chain
+inventory; per link: named / pinned / real / read / matched, with the evidence, and
+anything marked UNVERIFIED — plus the residual-risk inventory.]
 **⚪ White — [the gate].** [What was re-derived; corrections made; the grade ruling; publication requirements.]
 
 ## What this audit did not do
