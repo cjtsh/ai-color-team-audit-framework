@@ -7,7 +7,7 @@
 > The grade is defined before the audit starts and earned, never granted.
 >
 > **You are step three.** Step one — the survey — has already happened, on a different
-> model, and step two — the owner's confirmation — has locked the audit plan you will
+> model, and step two — the owner's sign-off — has locked the audit plan you will
 > audit against. If it has not, stop and send the owner back to `colorteam-surveyor.md`.
 
 ## What you are running
@@ -19,15 +19,17 @@ A software security audit performed by AI agents in three steps:
    **the audit plan** (`<repo>-colorteam-audit-plan.md`): the Asset Declaration (what is at stake,
    ranked) and the scope (what is in, what is out and why, and what was not
    examined). All of this happens before this runbook is opened at all.
-2. **The owner confirms the plan.** No AI. The owner reads it, corrects anything only
-   they know, and approves it. Unconfirmed it is unverified scope; once approved it
-   locks and the audit proceeds against it.
+2. **The owner signs the plan.** No AI. The owner reads it, corrects anything only
+   they know, and signs the locked-scope block with a name and a date. Unsigned it is
+   unverified scope; once signed it locks, the auditor hashes it before the first
+   specialist runs, and the audit proceeds against it.
 3. **The panel — six agents.** Five specialists with one lens each, dispatched
    simultaneously and independently, plus a referee that verifies everything and
    gates publication.
 
 The plan removes the cold-start burden from the human — most owners cannot write a
-threat-model declaration from memory, but they can confirm one in five minutes.
+threat-model declaration from memory, but they can check one and sign it in five
+minutes.
 **The surveyor must be a different model from the panel's, and this is not
 optional.** The surveyor decides what is in scope. If the same model writes the
 plan and then audits against it, the same blind spot sits on both sides of the
@@ -36,7 +38,7 @@ with what it can see, and grades it CLEARED on software nobody actually examined
 Different models — ideally from different vendors — is the only thing that breaks
 that circuit. If you have only one model, do not run the surveyor at all: the owner
 copies the plan skeleton out of `colorteam-surveyor.md` and writes the plan by hand. The one
-human moment that never goes away: **the owner confirms the plan** — an unconfirmed
+human moment that never goes away: **the owner signs the plan** — an unsigned
 plan is unverified scope, and a narrowed plan is a steered audit.
 
 The defining rules:
@@ -56,9 +58,13 @@ The defining rules:
    same blind spot sits on both sides of the handoff and the audit grades it CLEARED on
    software nobody examined. Only one model available? The owner writes the plan by
    hand. Never the audit model.
-3. **The rubric is locked before the audit.** The grade definitions are written
-   down before anyone looks at the code, and applied mechanically afterward — in
-   neither direction.
+3. **The rubric is locked before the audit, and the lock is hashed.** The grade
+   definitions are written down before anyone looks at the code, and applied
+   mechanically afterward — in neither direction. They live in the owner-signed audit
+   plan, and that plan is hashed before the first specialist runs and re-hashed by the
+   referee at the end. Equal hashes mean the scope never moved. Unequal means the
+   findings and the scope no longer describe the same audit: **DO NOT PUBLISH**, no
+   grade, no partial credit.
 4. **The grade is the floor of the panel, never the average.** One red-grade
    finding fails the audit no matter how glowing the other sections are.
 5. **A claim without evidence is not a finding.** Every finding needs a location
@@ -74,20 +80,45 @@ Before dispatching anyone:
 1. Identify the exact target of evaluation: repository, tag or commit, published
    artifacts. Clone fresh; never audit a dirty working tree.
 2. **Verify the audit plan** (`<repo>-colorteam-audit-plan.md`). It must already exist, be
-   owner-confirmed, and name the revision it surveyed — that is the output of step
+   owner-signed, and name the revision it surveyed — that is the output of step
    one (`colorteam-surveyor.md`), and **you never write it yourself**. If there is no
-   confirmed plan, stop and send the owner back to step one: do not survey your own
+   signed plan, stop and send the owner back to step one: do not survey your own
    audit. If the plan names a different revision than the one you are auditing,
    stop and have it re-surveyed — a plan for another commit is unverified scope.
-   **The audit does not start without an owner-confirmed plan for this revision** —
+   **The audit does not start without an owner-signed plan for this revision** —
    every charter, severity call, and report question is built from it, and it is
    locked with the rubric: it does not change after the audit begins.
-3. Verify integrity yourself: recompute artifact hashes against published checksums;
+3. **Lock the scope.** Compute the SHA-256 of the owner-signed plan file and write
+   `<repo>-colorteam-audit-lock.md` beside it — never inside the plan, because writing
+   the hash there would change the bytes it was taken over:
+
+   ```markdown
+   # Audit lock — <repository>
+
+   | | |
+   |---|---|
+   | **Plan file** | `<repo>-colorteam-audit-plan.md` |
+   | **Plan SHA-256 at the start of the audit** | `<H_start>` |
+   | **Owner sign-off** | `<name>, <YYYY-MM-DD>` |
+   | **Target revision** | `<tag / commit>` |
+   | **Auditor** | `<model/tool>` |
+   | **Locked at** | `<ISO 8601 timestamp>` |
+   | **Published before the panel ran** | `<where, or "not published — order unwitnessed">` |
+   | **Plan SHA-256 at the end of the audit** | `<H_end, filled by the referee>` |
+
+   The referee re-hashes the plan file at the end and compares. Equal hashes mean the
+   scope never moved. Unequal means the audit is void: **DO NOT PUBLISH**.
+   ```
+
+   This happens **before the first specialist is dispatched** — a lock taken after the
+   panel has run proves nothing. From here the plan is never edited, and nothing but the
+   referee re-hashes it.
+4. Verify integrity yourself: recompute artifact hashes against published checksums;
    verify code signatures/notarization if the project ships binaries.
-4. Run the project's own test suites at the audited revision and record the counts.
-5. Read the project's own claims (release notes, prior findings, remediation
+5. Run the project's own test suites at the audited revision and record the counts.
+6. Read the project's own claims (release notes, prior findings, remediation
    records) — you will verify these, not trust them.
-6. Write the five charters (see COLOR-TEAM.md) tailored to this target and its
+7. Write the five charters (see COLOR-TEAM.md) tailored to this target and its
    audit plan, mapping each lane onto the plan's declared assets and scope, and LOCK
    THE GRADE RUBRIC in writing before any agent examines the build.
 
@@ -131,7 +162,13 @@ The White referee receives all five reports plus your baseline, and must:
    - **Invented acceptance:** an open finding can only be closed by written,
      dated owner acceptance. Never infer acceptance from documentation that
      predates the finding.
-5. List the facts that MUST appear in the public report (the publication
+5. **Re-hash the audit plan and compare it to the lock.** SHA-256 the plan file now,
+   check it against the start hash in `<repo>-colorteam-audit-lock.md`, and append the
+   end hash there. Equal hashes mean the scope never moved and the panel graded what it
+   said it graded. Unequal — the plan changed, the lock is missing, or either hash
+   cannot be produced — means the audit is **void**: **DO NOT PUBLISH**, no grade, and
+   it is not a finding to be weighed. Either way both hashes go in the report.
+6. List the facts that MUST appear in the public report (the publication
    requirements), and issue the gate verdict — **PUBLISH** / **PUBLISH WITH STATED
    GAPS** / **DO NOT PUBLISH** — computed from the conditions in `COLOR-TEAM.md`,
    never chosen. Record a dissent if the outcome is wrong, but never adjust the grade

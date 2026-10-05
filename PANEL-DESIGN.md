@@ -12,7 +12,7 @@ the framework; everything else is configuration.
 
 ```
 Phase 0  Baseline      — lead only: verify target/commit/artifacts, verify the
-                         owner-confirmed audit plan (stop if absent), run suites,
+                         owner-signed audit plan (stop if absent), run suites,
                          read the project's claims, write charters, LOCK THE RUBRIC
 Phase 1  The wave      — five specialists dispatched in parallel, each in its own
                          fresh context and seeing only its own charter (no
@@ -40,11 +40,33 @@ Written before anyone examines the build, locked with the rubric, and cited in t
 report header. It parameterizes every charter, every severity call, and the central
 questions.
 
+**The plan opens with a locked-scope block (section 0), written out in full and not by
+reference** — a pointer to this page freezes nothing. It carries the declared assets, the
+definitions in force, the rubric as adapted to this target, the exact revision, and what
+is excluded. The owner signs it with a name and a date, and that signature is the lock.
+
 **How it is produced (two agents, three steps):** a Surveyor agent (`colorteam-surveyor.md`)
 reads the repository and writes the plan from what the code actually does; the owner
-confirms or corrects it in one short sitting; the confirmed file locks. **Phase 0
-does not produce it — Phase 0 verifies** that it exists, is owner-confirmed, and
-names the revision being audited.
+corrects anything only they know and signs the locked-scope block; the signed
+file locks. **Phase 0 does not produce it — Phase 0 verifies** that it exists, is
+owner-signed, and names the revision being audited.
+
+**And the lock leaves a fingerprint.** Before the first specialist is dispatched, the
+auditor computes the SHA-256 of the signed plan and records it — with the plan's filename,
+the target revision, and the sign-off date — in a companion file
+`<repo>-colorteam-audit-lock.md`, never inside the plan itself, because writing the hash
+into the file would change the bytes it was taken over. The referee re-hashes the plan at
+the end and compares. Equal hashes mean the scope never moved and the panel graded what it
+said it graded. Unequal means the plan and the findings describe different audits: the
+audit is **void**, the publication decision is **DO NOT PUBLISH**, and there is no grade
+to argue about. Both hashes appear in the report.
+
+**Two hashes prove the scope did not move during the audit; they do not prove when it was
+written relative to the findings**, because one operator holds both. Closing that gap takes
+one thing outside that operator's control: publishing the hash before the panel runs — a
+commit, a gist, an issue comment. It is optional and it takes one line. **The owner does
+nothing new either way:** they already read and check the plan; signing it is the same
+sitting, and the hashing is the agents' job.
 
 **The Surveyor must never be the model that runs the audit.** This is a structural
 requirement, not a preference. The Surveyor decides what is even in scope. If one
@@ -57,7 +79,7 @@ data and the failure modes differ too — is the only thing that breaks that cir
 If you have only one model available, skip the Surveyor: the owner writes
 `<repo>-colorteam-audit-plan.md` by hand using the skeleton in `colorteam-surveyor.md`. The Surveyor is a
 convenience; **never reusing the audit model is the rule.** The owner's
-confirmation is never skipped either — it is the framework's defense against a
+sign-off is never skipped either — it is the framework's defense against a
 steered (narrowed) plan.
 
 Examples by domain:
@@ -136,6 +158,13 @@ gives each specialist the full text of its own definition as its charter.
    which ruling bound it. The referee never raises or lowers a lane's sub-verdict, and a
    disagreement with the outcome is recorded as a dissent while the grade stands: a
    referee with discretion over the floor has made the floor optional.
+7. *A drifted scope voids the audit.* The signed plan is hashed before the first
+   specialist runs and re-hashed by the referee at the end, and both hashes are printed in
+   the report. Equal hashes mean the scope never moved. Unequal — a plan edited mid-audit,
+   a missing lock, a hash that cannot be produced — means the findings and the scope no
+   longer describe the same audit: **DO NOT PUBLISH**, no grade, no partial credit. It is
+   not a finding to be weighed and it is never resolved in the software's favor. Regrade
+   against a re-signed plan or not at all.
 
 ## Report shape — three deliverables, three audiences
 

@@ -33,7 +33,7 @@ your own tools; this framework deliberately does not use that name.
 
   STEP 2 - YOU REVIEW                        no AI involved
   -------------------
-  read XYZ-colorteam-audit-plan.md, fix what only you know, confirm it.
+  read XYZ-colorteam-audit-plan.md, fix what only you know, sign it.
   It locks.
 
                  |
@@ -57,7 +57,9 @@ faithfully from an incomplete scope, finds nothing wrong with what it can see, a
 grades it CLEARED on software nobody examined.
 
 **The handoff is one file.** The surveyor writes `<repo>-colorteam-audit-plan.md`; you read
-and confirm it; the panel audits against it. Nothing else changes hands.
+it, correct it, and sign it; the panel audits against it. Nothing else changes hands, and
+nothing else is asked of you — signing happens in the same sitting as reading, and the
+hashing is the agents' job.
 
 ## What you get at the end
 
@@ -267,7 +269,7 @@ established, what was out of scope.
 ## The audit plan
 
 The plan is written by the **survey** — one agent, a different model — saved as
-`<repo>-colorteam-audit-plan.md`, and confirmed by you before anyone audits. Its **Asset
+`<repo>-colorteam-audit-plan.md`, and signed off by you before anyone audits. Its **Asset
 Declaration** is the crown jewels, ranked: what must not be stolen, destroyed,
 altered, or done without authorization.
 A wallet declares funds, keys, and the operator's decision. A web service declares
@@ -282,9 +284,11 @@ are the standard.
 
 ## The four rules that make it honest
 
-1. **The rubric is locked before the audit.** CLEARED/CONDITIONAL/BLOCKED are defined in
-   writing before any agent examines the build, and applied mechanically afterward.
-   Ambiguity is never resolved in CLEARED's favor.
+1. **The rubric is locked before the audit, and the lock is hashed.** CLEARED/
+   CONDITIONAL/BLOCKED are defined in writing before any agent examines the build, and
+   applied mechanically afterward. Ambiguity is never resolved in CLEARED's favor. The
+   plan that carries them is signed by you and hashed before the first agent runs; the
+   referee re-hashes it at the end, and a mismatch voids the audit instead of grading it.
 2. **The grade is the floor of the panel, never the average.** One bad finding
    fails the audit no matter how glowing the rest.
 3. **The referee gates publication.** Nothing is published that one agent could
@@ -311,12 +315,15 @@ where, and writes **`<repo>-colorteam-audit-plan.md`** — the audit plan. It do
 does not grade, and does not invent the checking method; it reports what matters and
 where, and writes down what it did **not** examine.
 
-**Step 2 — you confirm.** Read the plan. Correct anything only you know, change the
-ranking if your priorities differ, and check the exclusions. Five minutes — and the
-one human moment the framework insists on. Once you approve it, it locks.
+**Step 2 — you sign off.** Read the plan. Correct anything only you know, change the
+ranking if your priorities differ, and check the exclusions. Five minutes — and the one
+human moment the framework insists on. Add your name and the date to the locked-scope
+block and it locks: from that signature on the file is hashed and never edited, so the
+audit cannot quietly drift to a different scope than the one you approved. That signature
+is the only thing asked of you, and it is the same sitting as reading the plan.
 
 **Step 3 — the audit.** Hand **[`colorteam-auditor.md`](colorteam-auditor.md)** to a new agent, along with
-your repository and the confirmed `<repo>-colorteam-audit-plan.md`. It runs the phases:
+your repository and the signed `<repo>-colorteam-audit-plan.md`. It runs the phases:
 baseline → the five-agent wave → the referee → the graded report. Read
 **[COLOR-TEAM.md](COLOR-TEAM.md)** for the six agent definitions, and
 **[PANEL-DESIGN.md](PANEL-DESIGN.md)** for the phases and rubric;
@@ -379,7 +386,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 |---|---|
 | `colorteam-surveyor.md` | **Step one.** The drop-in runbook for the surveyor — the agent that reads your repository and writes `<repo>-colorteam-audit-plan.md`. Self-contained: the plan skeleton is inside it. Never the model that runs the panel. |
 | `colorteam-auditor.md` | **Step three.** The complete drop-in runbook for the panel. |
-| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v2.0) and reproducible in any report using the format. |
+| `COLOR-TEAM.md` | **The six agent definitions — the standard, not a starting point.** Versioned (v2.1) and reproducible in any report using the format. |
 | `PANEL-DESIGN.md` | Phases, rubric, report shape, and the conversion re-checks; adapt to your target. |
 | `REPORT-TEMPLATE.md` | The public technical report skeleton with the agentic appendix. |
 | `SAFETY-REVIEW-TEMPLATE.md` | The plain-English layer: verdict, the four customer questions, the review team, and the audit trail with layman severity badges — every sentence traceable to the technical report. |
@@ -393,7 +400,7 @@ were renamed — the outcome is now called **CLEARED**. Full PDF:
 The framework is versioned, and **every version reference stays in sync**: the
 README version line, the PDF template's version stamp, and the changelog entry
 all carry the current release version at every release. (`COLOR-TEAM.md`'s
-definitions version — currently v2.0 — is deliberately independent: it changes
+definitions version — currently v2.1 — is deliberately independent: it changes
 only when the role definitions change, so published reports stay citable against
 the version they were written under.)
 

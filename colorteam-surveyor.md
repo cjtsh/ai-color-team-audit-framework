@@ -24,6 +24,13 @@ It has two halves:
   plain words.
 - **The scope** — what is in, what is out and why, and what you did not examine.
 
+**And it opens with a locked-scope block** (section 0 of the skeleton below). That block
+writes out *in full, not by reference*: the declared assets, the definitions in force, the
+grade rubric as adapted to this target, the exact revision being audited, and what is
+excluded. A scope that can still move is not a scope. The owner signs it at step two; the
+auditor records the hash of the whole plan before the first specialist runs, and the
+referee re-checks it at the end. A mismatch voids the audit.
+
 Everything downstream is built from it: the specialists' charters, every severity
 call, and the report's central questions. A bad plan cannot be rescued by a good
 panel, because the panel only ever sees what the plan put in front of it. That is the
@@ -33,7 +40,7 @@ entire reason you are a different model.
 
 - **You are not the auditor.** Never dispatch the five specialists, never write their
   charters, never run the panel. That happens in Phase 0 of `colorteam-auditor.md`, after you are
-  finished and the owner has confirmed your plan.
+  finished and the owner has signed your plan.
 - **You do not invent the checking method.** You report *what matters and where*. The
   framework already knows *how*: once you say "the session tokens in `app/auth/` are
   load-bearing," the panel knows what that implies. Invent a test plan of your own and
@@ -90,6 +97,11 @@ Fill in **The plan skeleton** below and save it as `<repo>-colorteam-audit-plan.
 target repository's root. **Name the exact revision** (tag or commit) you surveyed —
 a plan for a different commit is not a plan for this one.
 
+**Fill section 0 (Locked scope) last, and write it out in full** — the declared assets,
+the rubric as it applies here, the revision, the exclusions. It is the part the owner
+signs and the part the auditor hashes, so it has to stand on its own: "see
+`PANEL-DESIGN.md`" freezes nothing.
+
 Then stop and give it to the owner.
 
 ## Hard rules
@@ -101,8 +113,11 @@ Then stop and give it to the owner.
   live systems.
 - **Evidence, not vibes.** Every claim about the repository carries a location
   (`file:line @ commit`). "I could not determine X" is a result — write it down.
-- **The owner confirms.** The plan is not finished until the owner has read it and said
-  so. An unconfirmed plan is unverified scope, and a narrowed plan is a steered audit.
+- **The owner signs off, in writing.** The plan is not finished until the owner has read
+  it, corrected anything only they know, and signed the locked-scope block with a name
+  and a date. An unsigned plan is unverified scope, and a narrowed plan is a steered
+  audit. Once signed the plan is frozen: nobody edits it, and an edit after the audit
+  begins voids the audit rather than adjusting it.
 
 ## The plan skeleton
 
@@ -111,6 +126,48 @@ guidance — delete them as you go.
 
 ```markdown
 # Audit plan — <repository>
+
+## 0. Locked scope
+
+<!-- Written out in full, not by reference: a pointer to another file freezes nothing.
+     The auditor takes the SHA-256 of this whole file before the first specialist runs,
+     and the referee re-checks it at the end. Equal hashes mean the scope never moved;
+     unequal means the audit is void. Fill this in last, then hand the plan to the owner
+     to sign. -->
+
+**Definitions in force:** Color Team definitions v<!-- x.y --> (`COLOR-TEAM.md`) — Red,
+Blue, Orange, Copper, Amber, White.
+
+**Declared assets, and what must not happen to them:** <!-- repeat section 2, verbatim -->
+
+**The rubric as adapted to this target** — these conditions, and no others, decide the
+grade:
+
+| Grade | Conditions that must hold here |
+|---|---|
+| ✅ CLEARED | |
+| ⚠️ CONDITIONAL | |
+| ⛔ BLOCKED | |
+
+**Target revision:** <!-- repeat section 1: tag or commit hash -->
+
+**Out of scope:** <!-- repeat section 6, one line each -->
+
+**Excluded by demonstration:** <!-- Anything a lane could not verify that provably cannot
+     reach a shipped artifact, with the demonstration. See PANEL-DESIGN.md ruling 5.
+     Leave empty if there is nothing to exclude. -->
+
+---
+
+**Owner sign-off — step two, no AI.** I have read this plan, corrected anything only I
+know, and lock it. The audit runs against the scope above and no other version of it.
+
+- **Signed:** <!-- owner name -->
+- **Date:** <!-- YYYY-MM-DD -->
+
+<!-- The auditor fills nothing in here. The audit lock is a separate file:
+     <repo>-colorteam-audit-lock.md — writing a hash into this file would change the
+     bytes it was taken over. -->
 
 ## 1. Target and revision
 
@@ -176,5 +233,6 @@ guidance — delete them as you go.
 
 If only one model is available, do not run this step: the owner copies **The plan
 skeleton** above and fills it in by hand. The surveyor is a convenience. **Never
-letting the audit model declare its own scope is the rule.** The owner's confirmation
-is never skipped either.
+letting the audit model declare its own scope is the rule.** The owner's sign-off is
+never skipped either: the plan still gets a dated signature and a hash before the audit
+runs.

@@ -1,4 +1,4 @@
-# The Color Team — definitions (v2.0)
+# The Color Team — definitions (v2.1)
 
 A security review performed by a named panel of specialist agents, each with one
 lens and one job. Two of the colors are borrowed from established security
@@ -447,7 +447,10 @@ the other sections are.
 
 1. The Asset Declaration, the six definitions on this page, and the grade
    definitions are written before the build is examined and do not change
-   afterward.
+   afterward. The plan that carries them is signed by the owner, hashed before the
+   first agent examines the build, and re-hashed by the referee at the end: equal
+   hashes mean the scope never moved, and a mismatch voids the audit rather than
+   grading it.
 2. The five specialists work independently and do not see each other's findings
    until the panel merge; the referee sees everything.
 3. Every finding carries a stable ID, exact file and line, evidence, and a
@@ -495,7 +498,10 @@ corrected, or unverifiable — a grade that is computed rather than calibrated, 
 publication decision computed from conditions rather than felt, and ownership of the
 coverage section and the mandatory facts. All six definitions now carry a fixed
 standard, a demonstrated-evidence rule, and an outcome that follows from tests rather
-than from taste. The outcomes, the rubric, and the floor rule are all unchanged; reports
+than from taste. v2.1 makes the lock real: the owner signs the plan, the auditor
+hashes it before the first specialist runs, the referee re-hashes it at the end, and a
+mismatch voids the audit rather than grading it — a scope that can still move is not a
+scope. The outcomes, the rubric, and the floor rule are all unchanged; reports
 published before v1.2 used the old grade names. Red and blue are established
 security-industry terms; orange, copper, amber, and white were introduced by the
 framework's first runs (Bitcoin Easy Signer audits, October 2026). This page may be
