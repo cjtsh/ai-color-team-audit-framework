@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.1.0 — 2026-10-05
+
+### The scope is frozen, and the lock has a fingerprint
+
+Every audit already claimed its rubric and scope were locked before anyone looked at the
+build. Nothing proved it. The plan could be narrowed after the fact — and a hash held only
+by the person who could drift the scope proves nothing either.
+
+The plan now opens with a **Locked-scope block** (section 0) written out in full — the
+declared assets, the definitions in force, the rubric as adapted to this target, the exact
+revision, and the exclusions — ending in a dated owner signature. Before the first
+specialist is dispatched, the auditor takes the SHA-256 of that signed file and records it
+in a companion `<repo>-colorteam-audit-lock.md`; the referee re-hashes the plan at the end
+and appends the end hash.
+
+Equal hashes mean the scope never moved. Unequal means the plan and the findings describe
+different audits, and the audit is **void**: DO NOT PUBLISH, no grade, no partial credit
+(`PANEL-DESIGN.md` ruling 7). The lock is never written into the plan itself, because that
+would change the bytes it was taken over.
+
+The owner is asked for nothing new: signing is the same sitting as reading the plan, and
+the hashing is the agents' job. Publishing the hash before the panel runs — a commit, a
+gist, an issue comment — stays optional, and closes the one gap two hashes cannot: they
+show that the scope did not move, not when it was written relative to the findings.
+
+Definitions in `COLOR-TEAM.md` move to **v2.1**; rule 1 now carries the lock.
+
 ## 1.0.1 — 2026-10-05
 
 ### The CONDITIONAL cap is tied to what actually ships

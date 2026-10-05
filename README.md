@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.0.1 · MIT License
+Version 1.1.0 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
