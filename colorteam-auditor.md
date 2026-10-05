@@ -87,7 +87,7 @@ Before dispatching anyone:
 4. Run the project's own test suites at the audited revision and record the counts.
 5. Read the project's own claims (release notes, prior findings, remediation
    records) — you will verify these, not trust them.
-6. Write the five charters (see PANEL-DESIGN.md) tailored to this target and its
+6. Write the five charters (see COLOR-TEAM.md) tailored to this target and its
    audit plan, mapping each lane onto the plan's declared assets and scope, and LOCK
    THE GRADE RUBRIC in writing before any agent examines the build.
 
@@ -95,7 +95,7 @@ Before dispatching anyone:
 
 Dispatch all five as parallel sub-agents, each receiving ONLY its own charter, the
 baseline facts, the hard rules, and the output format. Suggested charters are in
-PANEL-DESIGN.md; adapt the technical lanes to the target (the colors, not the lanes,
+COLOR-TEAM.md; adapt the technical lanes to the target (the colors, not the lanes,
 are the standard). Each returns findings with stable IDs, evidence, and a
 sub-verdict. Cap each report's length so the panel stays readable.
 

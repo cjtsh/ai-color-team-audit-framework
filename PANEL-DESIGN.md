@@ -1,11 +1,12 @@
-# Panel Design — charters, phases, rubric, report shape
+# Panel Design — phases, rubric, report shape
 
 Everything here is a starting point to adapt to your target. What must NOT be
-adapted away: independence of the wave (a fresh context per specialist), the
-pre-locked rubric, floor-of-panel grading, the referee's publication gate, and
-**survey/audit model separation** — the model that writes the audit plan is never
-the model that runs the audit. Those five properties are the framework; everything
-else is configuration.
+adapted away: **the six agent definitions themselves** — they are the standard, they
+live in `COLOR-TEAM.md`, and you adapt the lanes, never the colors — independence of
+the wave (a fresh context per specialist), the pre-locked rubric, floor-of-panel
+grading, the referee's publication gate, and **survey/audit model separation** — the
+model that writes the audit plan is never the model that runs the audit. Those are
+the framework; everything else is configuration.
 
 ## Phase structure
 
@@ -77,62 +78,12 @@ signing devices; for a web service it is the browser client and native apps; for
 infrastructure it is agents and edges. Say in the report which lanes you mapped
 where.
 
-## Charter sketches (adapt lanes, keep the colors)
+## The charters
 
-**🔴 Red — offense.** You are an attacker. Given the software and a hostile world,
-find any path to the declared assets: seizing, destroying, or altering them, or
-acting on the user's behalf without authorization. Hunt the full attack taxonomy
-against the declaration's domain — injection of every kind (SQL, command, path,
-template, deserialization), authentication bypass, privilege escalation, logic
-abuse, race conditions, spoofing, memory-safety where the stack exposes it. Attack
-the newest code hardest: fixes are changes, and changes are where new holes live.
-You do NOT read prior audit conclusions. Output: attack log (attempt → outcome),
-findings, sub-verdict: *No breach found / Breach found (with the path).*
-
-*Would this find a zero-day-style SQL injection or a root-access bug?* Against a
-declared asset of "data integrity and privilege boundaries," yes — Red's charter
-becomes exactly that hunt (unsanitized query construction → extraction or
-escalation paths; Blue's becomes parameterization and least-privilege controls
-plus the regression tests pinning them; Orange's becomes the auth/session logic).
-Agent audits read code adversarially and run the target's own tests; they
-complement, and do not replace, fuzzers and dynamic scanners — a thorough target
-runs both and says so in the coverage section.
-
-**🔵 Blue — defense.** Audit the armor, not the attacks. For every stated control,
-prove it holds end-to-end in code AND is pinned by a regression test that fails if
-anyone breaks it. An unfixed control and an untested one both count as gaps. If a
-remediation work order exists, verify every item against its acceptance criteria.
-Output: control-by-control table, fix ledger, sub-verdict: *Defenses hold /
-hold with gaps / broken.*
-
-**🟠 Orange — critical logic.** The logic your target cannot afford to get wrong,
-chosen by the Asset Declaration (for a wallet: signatures, derivation, encoding,
-transaction semantics; for a web app: auth tokens, session logic, authorization
-arithmetic; for a data platform: query and privilege semantics). Diff every
-dependency against its last-audited version — upgrades fix old bugs and quietly
-change behavior. Validate primitives against official test vectors and standards
-where they exist. Output: delta tables, vector results, sub-verdict: *Sound as
-used / defects found (reachable?).*.
-
-**🟤 Copper — edges & endpoints.** Everything between the core and the outside
-world, chosen by the Asset Declaration: the browser and native clients, mobile
-and desktop runtimes, devices, drivers and transports, embedded and frozen
-binaries — and the counterfeit-component question for each. Verify loader and
-client behavior on real machines where possible. Output: edge findings with
-runtime evidence where possible, sub-verdict: *Edges sound / gaps found.*
-
-**🟡 Amber — supply chain & pipeline.** How the artifact is born: dependencies and
-lockfiles (hash-pinned end to end?), CI step order and secret scoping, build
-scripts, signing/notarization verified on the actual published artifact, SBOM
-accuracy, release immutability. Always ask: could compromised upstream code reach a
-released build without a deliberate version bump? Output: claim-by-claim
-verification, residual-risk inventory, sub-verdict: *Chain holds / chain gaps.*
-
-**⚪ White — the referee.** Not a perspective; the gate. Re-derive every
-load-bearing claim personally. Attack false alarms and clean bills of health with
-equal energy. Merge the specialists' colliding finding IDs into the final ledger.
-Apply the rubric mechanically. List the mandatory facts for the public report and
-issue the gate: *publish / publish with edits / do not publish.*
+The six agent definitions live in **[COLOR-TEAM.md](COLOR-TEAM.md)** — role, method,
+output, and sub-verdict for each. That page is the standard, not a sketch, and it is
+not adapted: the lanes bend to your target (see above), the colors do not. Phase 1
+gives each specialist the full text of its own definition as its charter.
 
 ## The rubric (adapt, then lock, then never touch mid-audit)
 
