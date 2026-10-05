@@ -463,7 +463,7 @@ the other sections are.
 
 ---
 
-*Color Team definitions v1.7 — part of the AI Color Team Audit Framework (this
+*Color Team definitions v2.1 — part of the AI Color Team Audit Framework (this
 repository). v1.1 generalizes the founding wording (written for a Bitcoin wallet)
 to the Asset Declaration model; role semantics are unchanged from v1. v1.2 renames
 the report grades from Green/Yellow/Red to **CLEARED / CONDITIONAL / BLOCKED**,
