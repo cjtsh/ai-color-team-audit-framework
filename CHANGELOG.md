@@ -1,5 +1,57 @@
 # Changelog
 
+## 0.8.0 — 2026-10-05
+
+### Copper gets a defined edge, and the rulings get merged
+
+Copper had the mirror of Blue's problem, in the worst possible place. Its scope was
+**self-chosen** — "the boundary layer" — so a repository with no browser, no device and
+no frozen binary still received a clean **"Edges sound."** That is a review that never
+happened, printed as reassurance, which is the exact failure this framework exists to
+catch. The lane also stated its methods as tools ("binary inspection",
+"loader-resolution experiments") rather than as evidence, and the question that matters
+most to it — *can a fake edge device or client deceive the core?* — sat in a
+parenthetical. The sub-verdict (*"Edges sound" / "Gaps found"*) was a judgment call.
+
+**The edge is now defined:** everything the core trusts but does not control. Not "the
+parts outside the repo" — what the core depends on and cannot see, verify, or replace.
+That makes Copper's scope derived rather than chosen.
+
+**NOT APPLICABLE is a real answer.** A lane with no subject reports it, with the reason,
+in the coverage section. It contributes nothing to the grade, and the report must show
+that it contributed nothing.
+
+**Every edge is assumed hostile or broken:** it **lies** (returns a value the core did
+not earn), **dies** (disconnects mid-operation), **stalls** (hangs or answers
+arbitrarily slowly), **repeats** (replays or reorders), or **gets substituted**
+(counterfeit device, patched client, older binary). The core passes an interface only
+if it survives all five. Copper is not auditing the browser; it is auditing what the
+core does when its edge betrays it.
+
+**Version identity** is promoted from a parenthetical to a first-class check: how does
+the core know which version, vendor, or build it is talking to, and can it tell at all?
+If it cannot, that is the counterfeit finding.
+
+**Evidence, or it did not happen.** Every edge carries a named artifact — path, binary
+hash, version string, wire format — and a named observation. "Reviewed the client" is
+not an observation. Where there is no source to read, Copper gives the hash and the tool
+and states plainly what it could not establish. It reuses the shared standard rather
+than restating it: a test that exists is not evidence; a test that can fail is.
+
+**The verdict is computed:** EDGE TRUST HOLDS / EDGE TRUST UNPROVEN / EDGE TRUST
+BROKEN, itemized per interface, one broken interface failing the lane.
+
+**The rulings were merged.** `PANEL-DESIGN.md` rulings 4, 5 and 6 were the same rule
+written out three times — *a lane that proves its own failure state forces a block* —
+each also repeating the same sentence about unproven work capping the grade. They are
+now one ruling with the four lane failure states as a list, plus one ruling for the
+unproven case. Shared logic is stated once; what each failure state *means* stays in
+that lane's own definition in `COLOR-TEAM.md`, inside its own confinement. Amber and
+White now join a list instead of adding rulings 7 and 8.
+
+`COLOR-TEAM.md` is v1.8. Red, Blue and Orange are unchanged in substance: their failure
+states still force a block, and are now stated once instead of three times.
+
 ## 0.7.0 — 2026-10-05
 
 ### Orange gets an oracle, because reading the code is the test it was built to pass
