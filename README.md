@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.4.0 (draft on framework-v1.4-finite-risk-audit) · MIT License
+Version 1.5.0 (draft on framework-v1.4-finite-risk-audit) · MIT License
 
 Maintained by **Bitseeker LLC**.
 
