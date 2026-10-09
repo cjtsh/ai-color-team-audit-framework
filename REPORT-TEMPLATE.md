@@ -5,6 +5,8 @@
 > `<repo>-colorteam-audit-report-<cycle>.md`, whose Appendix is the findings ledger. Write
 > each section for its own reader; each audience reads only its own.
 
+**Mandatory companion artifact (framework v1.5):** publish `<repo>-colorteam-security-statement-<cycle>.md`, a separate one-page, nontechnical, release-specific security statement. The referee must cross-check its grade, source commit, actual tested artifacts and hashes, release readiness, audit provenance, coverage, and outstanding findings against this report. Missing or unverifiable information is labeled honestly, never invented. This statement is not a certification, a malware-free guarantee, or an endorsement by a human firm. Record its path/link in the report. A BLOCKED audit must be plainly marked BLOCKED in the companion statement.
+
 Replace bracketed values. Keep the structure and the honesty; the format is part of
 the standard. Delete any section that genuinely has no content — never invent any.
 

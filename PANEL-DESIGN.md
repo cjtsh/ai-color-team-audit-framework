@@ -8,6 +8,14 @@ grading, the referee's publication gate, and **survey/audit model separation** â
 model that writes the audit plan is never the model that runs the audit. Those are
 the framework; everything else is configuration.
 
+## Bounded assurance and release readiness (framework v1.4)
+
+The scope is finite but adversarial testing remains open-minded within it. Each material requirement states the asset, attacker capability, controlled boundary, forbidden outcome, and verifiable evidence. The panel may discover new attacks against these requirements at any time; it must not invent unbounded new assurance obligations during an audit. A demonstrated in-scope exploit or broken protective control still blocks regardless of severity averaging. A material unverified in-scope property may be CONDITIONAL only with a named reachable path and a bounded verification task. The abstract inability to prove absolute security is not a grade cap.
+
+Distinguish **software audit grade** from **release authorization**. Source, bundled dependency, hardware interface, build scripts and workflow permissions that can affect official artifacts are auditable. External service takeover or stolen administrator credentials without a repository-controlled enabling path are explicit trust assumptions. Operational controls such as GitHub tag rulesets and environment settings must be checked where feasible and reported separately as verified, unverified, or missing; missing material release controls can prevent publication even when the software code audit is CLEARED. A framework revision does not retroactively clear any earlier BLOCKED finding.
+
+The referee closes the audit once the signed requirements, tests, and substantiated leads are adjudicated. Novel demonstrable attacks remain findings; speculative new requirements go into a future signed cycle. The report must distinguish demonstrated failures, bounded evidence gaps, external assumptions, and release-readiness gates.
+
 ## Phase structure
 
 ```

@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.3.2 · MIT License
+Version 1.5.0 (draft on framework-v1.4-finite-risk-audit) · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -21,6 +21,7 @@ collides and you can always tell which cycle a file belongs to:
 | The audit plan | `<repo>-colorteam-audit-plan-<cycle>.md` | the surveyor — **you review and sign this**, at the end (section 9) |
 | The scope lock | `<repo>-colorteam-audit-lock-<cycle>.md` | the auditor, before the first specialist runs — **you never sign this**; it is the signed plan's fingerprint |
 | The report | `<repo>-colorteam-audit-report-<cycle>.md` | the auditor, gated by the referee |
+| Public Security Statement | `<repo>-colorteam-security-statement-<cycle>.md` | auditor, after findings; White verifies every claim; one-page website-ready summary |
 | The cycle index | `<repo>-colorteam-audit-index.md` | the auditor, one row appended each cycle — never overwritten |
 
 `<cycle>` is the revision being audited: its release tag (`v0.6.4`), or the short commit

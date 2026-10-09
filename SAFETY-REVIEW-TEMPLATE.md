@@ -14,7 +14,15 @@ Fill it in from the completed technical report. Every sentence must trace to a
 finding or verified fact in that report — translate, never exceed. If a claim
 cannot be supported by the technical report, it does not go in the safety review.
 
----
+## Companion public statement — required (framework v1.5)
+
+In addition to this full safety-review section, produce a standalone, one-page `<repo>-colorteam-security-statement-<cycle>.md` suitable for an official website. It is a **mandatory audited deliverable**, not a promotional claim. Use this structure: **What was reviewed** (exact version, source commit, named artifacts/hashes and date); **Who reviewed it** (actual AI models/tools, independence and human-review status); **What we checked** (money/authorization path, secrets, devices, dependencies, release integrity, as applicable); **What we found** (grade, material findings, unresolved limitations, release readiness); **What you should verify yourself** (official download and available hash/signature, on-device transaction details); **Read the evidence** (technical report and official release links). Say plainly when a control, binary, or device was not checked. Include the statement below in meaning, not necessarily verbatim:
+
+> This review was carried out using AI agents and the tools identified in the audit record. We made a good-faith effort to examine the stated security risks and document what we found. An audit can reduce uncertainty, but cannot guarantee that software contains no bugs, malware, or vulnerabilities. Please review the findings and verify the official download and transaction details before using it. Trust, but verify.
+
+Never imply a human audit firm or independent certification; do not use 'superintelligence,' 'best available,' '100% safe,' 'approved,' or 'cannot be hacked' without evidence that supports the specific assertion. A BLOCKED result is prominent, not softened. White checks the standalone statement against the technical report before publication.
+
+------
 
 # [Product] — Plain-English Safety Review
 

@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.5.0 — 2026-10-09 (proposed)
+
+### Mandatory one-page public security statement, with honest AI provenance
+
+The owner-signed audit plan now requires a separate, release-specific Public Security Statement. The auditor prepares it after the technical report; White cross-checks every claim against actual evidence. The statement identifies the version and artifacts examined, findings and gaps, whether the release is ready, and practical user verification steps. It describes the actual AI agents/tools used, any human involvement, and the limits of an agentic review. It does not imply human-firm endorsement, superintelligence, 'best available' tooling, or a guarantee of safety. BLOCKED and unverified releases remain visibly labeled. This extends the proposed v1.4 finite-scope changes; it does not certify any software or create a release tag.
+
+## 1.4.0 — 2026-10-09 (proposed)
+
+### Finite, risk-grounded audit contracts without weakening exploit detection
+
+Earlier scope and grading language could turn speculative external compromises and unbounded unknowns into recurring audit obligations, especially around build and release pipelines. This revision separates demonstrable repository-controlled failure paths from external trust assumptions, requires bounded acceptance evidence for each material requirement, and introduces an explicit audit stop condition. It does **not** excuse reachable CI publication bypasses, compromised bundled code, unauthorized Bitcoin transactions, or missing material release controls.
+
+- Surveyor writes a finite, testable threat contract and distinguishes external assumptions from exploitable repository-controlled paths.
+- Auditor and referee require reproducible failure evidence for BLOCKED and a named, bounded, asset-reachable evidence gap for CONDITIONAL.
+- Report distinguishes software audit grade from release authorization and independently verified platform controls.
+- No automatic grandfathering or retroactive clearance of Bitcoin Easy Signer or any previous audit.
+
+This is a proposed framework change on a review branch; no release tag has been created.
+
 ## 1.3.2 — 2026-10-05
 
 ### The plan reads like a document: scope at the top, signature at the bottom

@@ -64,6 +64,20 @@ entire reason you are a different model.
   tests; nobody can say who wrote `lib/`; it has not been touched in three years — are
   exactly what the plan exists to record.
 
+## Finite, threat-grounded scope (framework v1.4)
+
+The plan is a **finite security contract**, not an invitation to enumerate every imaginable compromise. Inventory broadly, then select testable requirements. For every in-scope threat, record: (1) protected asset and plausible attacker starting capability; (2) repository-controlled entry point and trust boundary; (3) concrete prohibited outcome; (4) observable acceptance test or evidence; (5) exclusions and assumptions; and (6) what result would block release. Rank by impact and plausible reachability. Keep application, dependency, device, and release-artifact integrity in scope when they can affect the shipped software.
+
+Do not promote a conjecture into a mandatory test merely because it is conceivable. A compromised GitHub platform, stolen owner credentials, or malicious host is an **external assumption** unless repository-controlled code or permissions create a reachable exploit under the declared attacker capabilities. Conversely, an untrusted contributor or branch exploiting a permissive workflow to publish an official artifact **is** in scope when the repository or its configured permissions enable that path. Never exclude an actual reachable attack merely by naming an external component. Document external controls (for example tag rulesets, environment protection, least-privilege tokens), identify whether they were independently verified, and record unverified material controls as explicit residual risk or release-readiness gates.
+
+Set an explicit evidence budget and stop condition: the audit ends after the locked requirements, regression tests, named interfaces, and justified high-impact leads have been evaluated and all findings classified. New leads must be triaged against the signed scope; they do not silently enlarge it. A material new reachable vulnerability is always recorded and can block the current audit; a new *requirement* needs an owner-approved new scope/revision. Do not limit adversarial creativity inside the boundaries or suppress a demonstrated exploit. A missing proof of universal safety is not itself a finding.
+
+## Mandatory public assurance deliverable (framework v1.5)
+
+The signed plan must specify a **one-page, release-specific Public Security Statement** as a mandatory output of the audit, alongside the existing technical report, plain-English safety review, and findings ledger. The statement is not written or endorsed by the surveyor: the auditor generates it *after* testing, from independently supported results, and the White referee checks every claim. Include a public audience (nontechnical users, advisers, trustees), the product/version/commit, exact tested release artifacts and hashes where available, audit date, grade and release readiness, protected assets and tested controls, major findings and unresolved gaps, coverage limits, operator safety checks, and links to the full report and official downloads. If binaries were not verified, explicitly say so. A BLOCKED or unpublished build must never be described as approved or safe to deploy.
+
+Require a candid AI provenance statement: identify the actual AI agents/models and vendors when known, whether different-model independence was verified or only declared, and any human review performed. Call the process **AI-assisted or agentic security review**, not human-firm certification or verified superintelligence. Do not assert that tools were 'the best available' without a defensible comparison; describe the tools actually used and that the team selected them in good faith. No claims of perfect security, guaranteed absence of malware, unhackability, or endorsement by an outside accounting/security firm. Use calm, helpful language and the principle **trust but verify**; give concrete verification actions. These are communication requirements, not permission to soften findings.
+
 ## Procedure
 
 ### Phase A — Inventory (before you decide anything)
