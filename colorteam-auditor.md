@@ -22,6 +22,12 @@ For CONDITIONAL, identify the exact material property that could not be verified
 
 After all locked requirements and justified reachable leads have been evaluated, issue the verdict. A newly discovered material exploit remains actionable even late in the run; speculative variations do not restart the audit indefinitely. New scope requires a newly owner-signed plan. Preserve the five independent lanes, referee, locked rubric, and worst-demonstrated-failure rule.
 
+## Mandatory release-specific Public Security Statement (framework v1.5)
+
+After the technical report and plain-English safety review are finalized, generate `<repo>-colorteam-security-statement-<cycle>.md` as a **separate one-page public artifact**. The signed audit plan must have declared it mandatory; if omitted, mark reporting incomplete and do not represent the audit package as complete. White checks that every factual claim matches the report and that grade, tested revision, published binary identity, release readiness, and outstanding risks are identical. Never manufacture a download hash, device test, external attestation, human reviewer, model identity, or certification. A draft or BLOCKED build must be clearly labeled, with no invitation to rely on it for live funds. If release artifacts were not independently matched to audited source, state that limitation prominently.
+
+Describe the review as agentic/AI-performed using the models and tools actually recorded, with declared versus independently verified independence clearly distinguished. Explain that the review represents good-faith, evidence-based testing within a defined scope, not a guarantee that software is free of bugs, malware, or exploitable defects. Do not claim 'artificial superintelligence,' 'best tools available,' or third-party firm endorsement without independently established evidence. Invite users to trust but verify: obtain files from the official source, compare the release's published hashes/signatures where supported, and independently confirm transaction details on their hardware devices. Friendly wording must not conceal material limitations.
+
 ## What you are running
 
 A software security audit performed by AI agents in five steps:
