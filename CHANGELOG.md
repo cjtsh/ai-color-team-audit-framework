@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.4.0 — 2026-10-09 (proposed)
+
+### Finite, risk-grounded audit contracts without weakening exploit detection
+
+Earlier scope and grading language could turn speculative external compromises and unbounded unknowns into recurring audit obligations, especially around build and release pipelines. This revision separates demonstrable repository-controlled failure paths from external trust assumptions, requires bounded acceptance evidence for each material requirement, and introduces an explicit audit stop condition. It does **not** excuse reachable CI publication bypasses, compromised bundled code, unauthorized Bitcoin transactions, or missing material release controls.
+
+- Surveyor writes a finite, testable threat contract and distinguishes external assumptions from exploitable repository-controlled paths.
+- Auditor and referee require reproducible failure evidence for BLOCKED and a named, bounded, asset-reachable evidence gap for CONDITIONAL.
+- Report distinguishes software audit grade from release authorization and independently verified platform controls.
+- No automatic grandfathering or retroactive clearance of Bitcoin Easy Signer or any previous audit.
+
+This is a proposed framework change on a review branch; no release tag has been created.
+
 ## 1.3.2 — 2026-10-05
 
 ### The plan reads like a document: scope at the top, signature at the bottom
