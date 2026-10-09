@@ -64,6 +64,14 @@ entire reason you are a different model.
   tests; nobody can say who wrote `lib/`; it has not been touched in three years — are
   exactly what the plan exists to record.
 
+## Finite, threat-grounded scope (framework v1.4)
+
+The plan is a **finite security contract**, not an invitation to enumerate every imaginable compromise. Inventory broadly, then select testable requirements. For every in-scope threat, record: (1) protected asset and plausible attacker starting capability; (2) repository-controlled entry point and trust boundary; (3) concrete prohibited outcome; (4) observable acceptance test or evidence; (5) exclusions and assumptions; and (6) what result would block release. Rank by impact and plausible reachability. Keep application, dependency, device, and release-artifact integrity in scope when they can affect the shipped software.
+
+Do not promote a conjecture into a mandatory test merely because it is conceivable. A compromised GitHub platform, stolen owner credentials, or malicious host is an **external assumption** unless repository-controlled code or permissions create a reachable exploit under the declared attacker capabilities. Conversely, an untrusted contributor or branch exploiting a permissive workflow to publish an official artifact **is** in scope when the repository or its configured permissions enable that path. Never exclude an actual reachable attack merely by naming an external component. Document external controls (for example tag rulesets, environment protection, least-privilege tokens), identify whether they were independently verified, and record unverified material controls as explicit residual risk or release-readiness gates.
+
+Set an explicit evidence budget and stop condition: the audit ends after the locked requirements, regression tests, named interfaces, and justified high-impact leads have been evaluated and all findings classified. New leads must be triaged against the signed scope; they do not silently enlarge it. A material new reachable vulnerability is always recorded and can block the current audit; a new *requirement* needs an owner-approved new scope/revision. Do not limit adversarial creativity inside the boundaries or suppress a demonstrated exploit. A missing proof of universal safety is not itself a finding.
+
 ## Procedure
 
 ### Phase A — Inventory (before you decide anything)
