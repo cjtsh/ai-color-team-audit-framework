@@ -72,6 +72,12 @@ Do not promote a conjecture into a mandatory test merely because it is conceivab
 
 Set an explicit evidence budget and stop condition: the audit ends after the locked requirements, regression tests, named interfaces, and justified high-impact leads have been evaluated and all findings classified. New leads must be triaged against the signed scope; they do not silently enlarge it. A material new reachable vulnerability is always recorded and can block the current audit; a new *requirement* needs an owner-approved new scope/revision. Do not limit adversarial creativity inside the boundaries or suppress a demonstrated exploit. A missing proof of universal safety is not itself a finding.
 
+## Mandatory public assurance deliverable (framework v1.5)
+
+The signed plan must specify a **one-page, release-specific Public Security Statement** as a mandatory output of the audit, alongside the existing technical report, plain-English safety review, and findings ledger. The statement is not written or endorsed by the surveyor: the auditor generates it *after* testing, from independently supported results, and the White referee checks every claim. Include a public audience (nontechnical users, advisers, trustees), the product/version/commit, exact tested release artifacts and hashes where available, audit date, grade and release readiness, protected assets and tested controls, major findings and unresolved gaps, coverage limits, operator safety checks, and links to the full report and official downloads. If binaries were not verified, explicitly say so. A BLOCKED or unpublished build must never be described as approved or safe to deploy.
+
+Require a candid AI provenance statement: identify the actual AI agents/models and vendors when known, whether different-model independence was verified or only declared, and any human review performed. Call the process **AI-assisted or agentic security review**, not human-firm certification or verified superintelligence. Do not assert that tools were 'the best available' without a defensible comparison; describe the tools actually used and that the team selected them in good faith. No claims of perfect security, guaranteed absence of malware, unhackability, or endorsement by an outside accounting/security firm. Use calm, helpful language and the principle **trust but verify**; give concrete verification actions. These are communication requirements, not permission to soften findings.
+
 ## Procedure
 
 ### Phase A — Inventory (before you decide anything)
