@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.0 — 2026-10-09 (proposed)
+
+### Mandatory one-page public security statement, with honest AI provenance
+
+The owner-signed audit plan now requires a separate, release-specific Public Security Statement. The auditor prepares it after the technical report; White cross-checks every claim against actual evidence. The statement identifies the version and artifacts examined, findings and gaps, whether the release is ready, and practical user verification steps. It describes the actual AI agents/tools used, any human involvement, and the limits of an agentic review. It does not imply human-firm endorsement, superintelligence, 'best available' tooling, or a guarantee of safety. BLOCKED and unverified releases remain visibly labeled. This extends the proposed v1.4 finite-scope changes; it does not certify any software or create a release tag.
+
 ## 1.4.0 — 2026-10-09 (proposed)
 
 ### Finite, risk-grounded audit contracts without weakening exploit detection
