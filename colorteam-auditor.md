@@ -14,6 +14,14 @@
 > will audit against. If it has not, stop and send the owner back to
 > `colorteam-surveyor.md`.
 
+## Finite-scope adjudication (framework v1.4)
+
+Treat the signed plan as a finite set of security requirements and attacker starting capabilities, **not** a command to prove that no future attack can exist. A BLOCKED finding requires a specific violated requirement or material security invariant, evidence of an actual reachable failure under the declared trust boundary, and a reproducible path or independently checkable proof. A demonstrated broken release control is as real as a demonstrated signing defect. Do not downgrade a real exploit merely because it involves CI, a dependency, or a device.
+
+For CONDITIONAL, identify the exact material property that could not be verified, why it can reach a declared asset, and the bounded evidence needed to resolve it. Generic unknowns, theoretical owner-account takeover, or hypothetical GitHub platform compromise without a repository-controlled path are documented assumptions, **not** automatic grade caps. External release controls that materially protect published artifacts require explicit verification or an honest release-readiness limitation. Never equate passing tests with proof of absolute safety.
+
+After all locked requirements and justified reachable leads have been evaluated, issue the verdict. A newly discovered material exploit remains actionable even late in the run; speculative variations do not restart the audit indefinitely. New scope requires a newly owner-signed plan. Preserve the five independent lanes, referee, locked rubric, and worst-demonstrated-failure rule.
+
 ## What you are running
 
 A software security audit performed by AI agents in five steps:
