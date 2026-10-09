@@ -327,11 +327,12 @@ the triggers without opening a second document. If the two ever disagree,
   where it matters, effective, fail-closed, and held by a test that can fail; suites
   passing and artifacts verified; no new Critical/High.
 - ⚠️ **CONDITIONAL** — no Critical/High, but open Mediums beyond owner acceptance,
-  fix-verification gaps, or **anything a lane leaves unproven** — an unpinned control,
-  **LOGIC UNPROVEN**, **EDGE TRUST UNPROVEN**, **CHAIN UNVERIFIED**. Honest label: good
-  software with work remaining. The cap applies when the unproven thing is on the path
-  to a declared asset; something that provably cannot reach one, with the exclusion
-  demonstrated, is a coverage note and does not cap.
+  fix-verification gaps, or a **material, reachable in-scope property** that a lane
+  cannot establish — such as an unpinned control, **LOGIC UNPROVEN**, **EDGE TRUST
+  UNPROVEN**, or **CHAIN UNVERIFIED**. Name the path to a declared asset and a bounded
+  evidence task that would resolve the gap. Generic unknowns, external assumptions
+  without a repository-controlled path, and properties proven unable to reach a declared
+  asset are coverage notes and do not cap. Honest label: good software with work remaining.
 - ⛔ **BLOCKED** — any open Critical/High, **or any lane that proved its own failure
   state**. That block takes no severity calibration, no rubric judgment, and no weighing
   against clean lanes:

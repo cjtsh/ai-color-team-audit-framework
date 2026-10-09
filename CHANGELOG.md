@@ -1,23 +1,24 @@
 # Changelog
 
-## 1.5.0 — 2026-10-09 (proposed)
+## 1.5.0 — 2026-10-09
 
-### Mandatory one-page public security statement, with honest AI provenance
+Version 1.5.0 consolidates the finite, risk-grounded audit scope introduced in the v1.4 work and adds a mandatory public security statement for each audited release. The v1.4 changes were not released as a separate tag; they are included here.
 
-The owner-signed audit plan now requires a separate, release-specific Public Security Statement. The auditor prepares it after the technical report; White cross-checks every claim against actual evidence. The statement identifies the version and artifacts examined, findings and gaps, whether the release is ready, and practical user verification steps. It describes the actual AI agents/tools used, any human involvement, and the limits of an agentic review. It does not imply human-firm endorsement, superintelligence, 'best available' tooling, or a guarantee of safety. BLOCKED and unverified releases remain visibly labeled. This extends the proposed v1.4 finite-scope changes; it does not certify any software or create a release tag.
+### Why the methodology changed
 
-## 1.4.0 — 2026-10-09 (proposed)
+The v1.3.x methodology did not set a sufficiently firm boundary or stop condition for audit requirements. Speculative external compromises and open-ended unknowns could be carried forward as new audit obligations, leaving the work without a practical endpoint. This was a flaw in the audit method: it does not establish that software examined under v1.3.x was exploitable, and it does not change any earlier audit grade or finding.
 
-### Finite, risk-grounded audit contracts without weakening exploit detection
+### Finite, risk-grounded audit contracts
 
-Earlier scope and grading language could turn speculative external compromises and unbounded unknowns into recurring audit obligations, especially around build and release pipelines. This revision separates demonstrable repository-controlled failure paths from external trust assumptions, requires bounded acceptance evidence for each material requirement, and introduces an explicit audit stop condition. It does **not** excuse reachable CI publication bypasses, compromised bundled code, unauthorized Bitcoin transactions, or missing material release controls.
+The surveyor now defines material requirements using the protected asset, attacker capability, in-scope boundary, prohibited outcome, and verifiable evidence. The auditor and referee distinguish demonstrated failures, bounded evidence gaps, external assumptions, and release-readiness gates. A demonstrated in-scope exploit or broken control still blocks. Conditional findings require a named, reachable property and bounded verification task. The referee closes the cycle after signed requirements, tests, and substantiated leads are adjudicated; new demonstrated attacks remain findings, while speculative new requirements need a future signed scope.
 
-- Surveyor writes a finite, testable threat contract and distinguishes external assumptions from exploitable repository-controlled paths.
-- Auditor and referee require reproducible failure evidence for BLOCKED and a named, bounded, asset-reachable evidence gap for CONDITIONAL.
-- Report distinguishes software audit grade from release authorization and independently verified platform controls.
-- No automatic grandfathering or retroactive clearance of Bitcoin Easy Signer or any previous audit.
+These boundaries do not excuse reachable CI publication bypasses, compromised bundled code, unauthorized transactions, or missing material release controls. Audit grade remains distinct from release authorization, and the method makes no claim of absolute security.
 
-This is a proposed framework change on a review branch; no release tag has been created.
+### Mandatory public security statement and honest AI provenance
+
+Each audit plan requires a separate, release-specific, one-page Public Security Statement. The auditor prepares it after testing, and the White referee checks its claims against the technical report and evidence. It identifies the reviewed version and artifacts, actual AI agents and tools, human involvement, findings and gaps, release readiness, coverage limits, practical user checks, and links to evidence and official downloads. It must not imply human-firm endorsement, superintelligence, 'best available' tooling, or guaranteed safety. BLOCKED and unverified releases remain visibly labeled.
+
+This framework release documents an audit method. It does not certify any software, retroactively clear prior audits, or guarantee that software is free of bugs, malware, or vulnerabilities.
 
 ## 1.3.2 — 2026-10-05
 

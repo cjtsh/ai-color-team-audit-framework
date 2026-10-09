@@ -150,11 +150,13 @@ gives each specialist the full text of its own definition as its charter.
   defense present, reachable where it matters, effective, fail-closed, and held by a
   test that can fail; suites passing, artifacts re-verified; no new Critical/High.
 - ⚠️ **CONDITIONAL** — no Critical/High, but open Mediums beyond owner acceptance,
-  fix-verification gaps, or **anything a lane leaves unproven** — an unpinned control,
-  **LOGIC UNPROVEN**, **EDGE TRUST UNPROVEN**, **CHAIN UNVERIFIED**. The cap applies
-  when the unproven thing is on the path to a declared asset; something that provably
-  cannot reach one, with the exclusion demonstrated, is a coverage note and does not
-  cap. Label honestly: good software with work remaining.
+  fix-verification gaps, or a **material, reachable in-scope property** that a lane
+  cannot establish (for example an unpinned control, **LOGIC UNPROVEN**, **EDGE TRUST
+  UNPROVEN**, or **CHAIN UNVERIFIED**). State the path to a declared asset and a
+  bounded evidence task that would resolve the gap. Generic unknowns, external
+  assumptions without a repository-controlled path, and properties proven unable to
+  reach a declared asset are coverage notes and do not cap the grade. Label honestly:
+  good software with work remaining.
 - ⛔ **BLOCKED** — any open Critical/High, **or any lane that proved its own failure
   state** (ruling 4). Do not ship; say what and why.
 
@@ -185,15 +187,16 @@ gives each specialist the full text of its own definition as its charter.
    and what demonstrates it, within that lane's area of expertise. A lane that does
    not prove its failure state forces nothing, and the grade is then decided by the
    rest of the panel.
-5. *Anything a lane leaves unproven holds the grade at CONDITIONAL.* An unpinned
-   control, an invariant that is **LOGIC UNPROVEN**, an edge that is **EDGE TRUST
-   UNPROVEN**, a chain link that is **UNVERIFIED**: CLEARED requires every claim to be
-   proven and pinned, and ambiguity is never resolved in the software's favor. The cap
-   applies when the unproven thing is on the path to a declared asset. Something that
-   provably cannot reach one — a dev-only tool that never runs in the build,
-   documentation, an example in a separate directory, with the exclusion demonstrated —
-   is a coverage note and does not cap. What this does not soften: an artifact whose
-   build cannot be reproduced is on that path by definition, and still caps.
+5. *A material, reachable in-scope property a lane cannot establish holds the grade at
+   CONDITIONAL.* This can be an unpinned control, an invariant that is **LOGIC UNPROVEN**,
+   an edge that is **EDGE TRUST UNPROVEN**, or a chain link that is **UNVERIFIED**.
+   Name the path from the property to a declared asset and a bounded evidence task that
+   would resolve the gap. Generic unknowns, external assumptions without a
+   repository-controlled path, and properties proven unable to reach a declared asset
+   are coverage notes and do not cap. Ambiguity within a material requirement is not
+   resolved in the software's favor. An artifact whose build cannot be reproduced is on
+   the release path when it can affect the shipped artifact, and caps only when the
+   material effect and verification gap are stated.
 6. *The grade is computed, not calibrated.* White applies the rubric and the rulings to
    the surviving sub-verdicts and shows the arithmetic — which lane set the floor and
    which ruling bound it. The referee never raises or lowers a lane's sub-verdict, and a
