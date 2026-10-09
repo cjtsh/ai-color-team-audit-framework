@@ -17,6 +17,8 @@ sub-verdict — are what a Color Team audit *is*. The lanes adapt to the target 
 service's Orange is not a wallet's Orange); the colors never do. An audit that
 rewrites what a color hunts is not a Color Team audit, and must not cite this page.
 
+**Finite evidence rule (framework 1.4).** A failure state is demonstrated only with an independently checkable, reachable path from a stated attacker capability to a protected asset through an in-scope trust boundary. A named, material, reachable but unverified control may cap at CONDITIONAL with a bounded verification task; an unlimited hypothetical, missing proof of absolute safety, or externally compromised administrator/platform without a repository-controlled enabling path cannot. This does not waive build-chain integrity, hardware trust, or any demonstrated attack, and does not authorize publication when material platform-side release controls remain unverified. The referee must classify each claim as demonstrated failure, bounded evidence gap, external assumption, or release-readiness gate.
+
 **The panel's scope is the repository.** Every agent works on the repository, what it
 ships, and its declared dependencies — the software, not the machine it runs on. A
 missing firewall, an unpatched operating system, a careless owner, or a third party's
