@@ -48,13 +48,14 @@ A software security audit performed by AI agents in five steps:
    `<repo>-colorteam-audit-report-<cycle>.md`, carrying three sections — the technical
    report for engineers, the plain-English safety review for everyone else, and the findings
    ledger for agents. The referee's gate decides what may go out before it is written.
-5. **The next cycle — the improvement loop.** A grade that is not CLEARED is a to-do
-   list, not a verdict on the owner. The report names every open finding, the evidence
-   behind it, and the shortest path to CLEARED; the owner fixes what it named, cuts a new
-   revision, and the audit runs again against that revision. Each cycle keeps its own
-   plan, lock, and report, and appends one row to `<repo>-colorteam-audit-index.md` — the
-   file that survives every cycle and shows the arc. A CONDITIONAL with a defined
-   conversion path gets a light re-check; see **Conversion re-checks** below.
+5. **The next cycle — the improvement loop.** A grade that is not CLEARED identifies
+   findings for the coding team to address. For the new revision, create a new plan by
+   carrying forward the original signed plan's scope unchanged; update the target
+   revision and cycle lineage, and enumerate every prior finding to re-check. The owner
+   signs this new plan. Never edit or re-sign an earlier plan, lock, report, or index row.
+   The new plan receives a new lock and report and one appended index row. A CONDITIONAL
+   with a defined conversion path may use a light re-check; see **Conversion re-checks**
+   below. A BLOCKED result uses the full audit cycle.
 
 The plan removes the cold-start burden from the human — most owners cannot write a
 threat-model declaration from memory, but they can check one and sign it in five
@@ -120,6 +121,16 @@ Before dispatching anyone:
    **The audit does not start without an owner-signed plan for this revision** —
    every charter, severity call, and report question is built from it, and it is
    locked with the rubric: it does not change after the audit begins.
+   **For a follow-up cycle, verify scope continuity before locking.** Read the new plan's
+   cycle-lineage fields and compare its scope-bearing content (assets, unforgivable acts,
+   adapted grade rules, in-scope requirements, exclusions, and not-examined items) with
+   the original signed plan it identifies. These must be unchanged for a routine
+   improvement cycle. Confirm that the new plan names the immediately prior report and
+   accounts for every finding ID in that report. If the original plan/report is missing,
+   the lineage is unverifiable, or the scope differs, stop before Phase 0; do not infer
+   approval or silently proceed with a changed baseline. The owner may start a separate
+   engagement with a new baseline plan. The new owner signature must be on the new plan;
+   a copied signature from an earlier cycle does not approve the new target revision.
 3. **Lock the scope.** Compute the SHA-256 of the owner-signed plan file and write
    `<repo>-colorteam-audit-lock-<cycle>.md` beside it — never inside the plan, because
    writing the hash there would change the bytes it was taken over:
@@ -299,8 +310,13 @@ conversion criterion was met *by execution, not acceptance* and that the delta
 introduced no new Critical/High. Grade converts if and only if both hold.
 Unchanged specialists' prior verdicts carry forward only when byte-identity of
 the relevant code is verified (blob hashes), never assumed. A conversion re-check is a
-lighter audit, not a footnote to the previous one: it writes its own plan, its own lock,
-and its own report file, and it appends its own index row.
+lighter audit, not a footnote to the previous one: it writes its own follow-up plan, its
+own lock, and its own report file, and it appends its own index row. The follow-up plan
+carries forward the original signed scope unchanged, identifies the original plan and
+immediately prior report, and lists every prior finding ID. The referee checks every
+ID; the lighter wave does not waive the full-ledger requirement. The original plan,
+lock, report, and index row remain untouched. If the scope needs to change, stop this
+conversion re-check; the owner must start a separate engagement with a new baseline plan.
 
 ## Anti-injection rules (for every agent in the panel)
 

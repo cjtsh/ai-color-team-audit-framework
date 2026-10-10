@@ -31,10 +31,11 @@ Phase 3  Consolidation — lead applies the grade, writes the report's sections
                          (safety review + technical report + ledger)
 Phase 3½ Verification — nothing is published until the live artifact is fetched
                          and hash-matched (publish-and-verify.sh)
-Phase 4  The next cycle — when the grade is BLOCKED or CONDITIONAL: the report names
-                         what to fix; fix it, cut a new revision, and run the audit
-                         again. Each cycle keeps its own plan, lock, and report, and
-                         appends one row to the index.
+Phase 4  The next cycle — when the grade is BLOCKED or CONDITIONAL: fix the named
+                         findings and cut a new revision. Create a new signed plan
+                         carrying the original scope forward unchanged; add lineage
+                         and the prior-finding checklist. New lock, report, index row.
+                         Never edit an earlier cycle's artifacts.
 ```
 
 ## The audit plan (produced before Phase 0, mandatory)
@@ -276,7 +277,24 @@ blob-identity, never assumption) → the referee rules the conversion criterion 
 execution* (a demonstrated fix, a machine-enforced gate that actually ran) and that the
 delta introduced no new Critical/High. Grade converts if and only if both hold. A light
 re-check is a lighter audit, not a footnote to the previous one: it still writes its own
-plan, its own lock, and its own report file, and it still appends its own row to the index.
+follow-up plan, its own lock, and its own report file, and it still appends its own row to
+the index. The new plan carries the original signed scope forward unchanged, identifies
+the original plan and immediately prior report, and lists every prior finding ID. It gets
+a fresh owner signature and lock. The original plan, lock, report, and index row are never
+edited. A BLOCKED result follows the full audit cycle, not this conditional conversion
+shortcut.
+
+## Improvement-cycle plan continuity
+
+For any follow-up revision, the original signed plan remains the scope baseline. Create
+a separate plan file for the new revision; carry forward the original assets, forbidden
+outcomes, grade rules, in-scope requirements, exclusions, and coverage gaps unchanged.
+Update the target revision, identify the baseline plan and the immediately prior report,
+and list every finding ID the cycle must re-check. The owner reviews and signs this new
+plan, and the auditor hashes it into a new lock. The previous plan, lock, report, and
+index row remain immutable. Scope changes are not part of routine remediation. If a
+different scope is necessary, stop the improvement cycle; the owner may start a separate
+engagement with a new baseline plan.
 
 ## The cycle index
 

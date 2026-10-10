@@ -2,7 +2,7 @@
 
 **The new standard for software audits using agentic tools.**
 
-Version 1.5.0 · MIT License
+Version 1.5.1 · MIT License
 
 Maintained by **Bitseeker LLC**.
 
@@ -83,12 +83,23 @@ that name.
   STEP 5 - THE IMPROVEMENT LOOP              not CLEARED is not the end
   -----------------------------
   The report names every open finding, the evidence for it, and the
-  shortest path to CLEARED. Hand it to your agent, fix the code, cut a
-  new revision, and run the audit again.
+  shortest path to CLEARED. Fix those items and cut a new revision.
+
+  Keep the original signed plan, lock, report, and index row unchanged. For
+  the new revision, make a new plan file from the original plan: keep its
+  assets, scope, exclusions, and grade rules unchanged; update the target
+  revision; identify the original plan and prior report by filename and
+  SHA-256; and list every prior finding this cycle will re-check. The owner
+  reviews and signs this new plan, and the auditor
+  creates a new lock for it. Never edit or re-sign the original plan.
 
       v0.6.4   BLOCKED        ->  fix what the report named
       v0.6.5   CONDITIONAL    ->  fix the rest
       v0.6.6   CLEARED        earned by execution, not by asking
+
+  A routine improvement cycle carries the original scope forward unchanged.
+  If the scope really must change, stop the improvement cycle. Start a separate
+  audit engagement with a new baseline plan; do not fold it into the follow-up.
 
   Every cycle keeps its own plan, lock, and report. The index holds the
   whole arc in one file, so improvement is a record and not a story.
@@ -150,7 +161,7 @@ model than the one that will run the audit. Paste this:
 
 ```
 Read this runbook and follow it exactly:
-https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.5.0/colorteam-surveyor.md
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.5.1/colorteam-surveyor.md
 
 Conduct a survey of this repository.
 ```
@@ -189,7 +200,7 @@ Paste this:
 
 ```
 Read this runbook and follow it exactly:
-https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.5.0/colorteam-auditor.md
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.5.1/colorteam-auditor.md
 
 The signed audit plan is in the repository root. Run the audit.
 ```
@@ -207,13 +218,41 @@ and decides whether it may go out at all.
 
 ---
 
-**Step 5 — the improvement loop.** A grade that is not CLEARED is a to-do list, not a
-verdict on you. The report names every open finding, the evidence behind it, and the
-shortest path to CLEARED. Hand it to your agent, fix what it named, cut a new revision,
-and run steps 1–4 again against that revision. Each cycle keeps its own plan, lock, and
-report, and appends one row to **`<repo>-colorteam-audit-index.md`** — the arc, in one
-file. A CONDITIONAL with a defined path gets a *light re-check* rather than a full
-audit, so the second pass costs less than the first.
+**Step 5 — the improvement loop.** A grade that is not CLEARED gives the coding team
+findings to address. Keep the original signed plan, lock, and report unchanged. For the
+new code revision, create a separately named follow-up plan from the original plan. Carry
+its assets, scope, exclusions, and grade rules forward unchanged; update the target
+revision; identify the original plan and prior report; and list every prior finding and
+how this cycle will verify it. The owner signs the new plan, and the auditor creates a new
+lock and report for the new revision. Append a new row to
+**`<repo>-colorteam-audit-index.md`**; never rewrite an earlier row or artifact.
+
+A CONDITIONAL result with a defined conversion path may use the framework's light
+conversion re-check. It still gets its own follow-up plan, lock, report, and index row;
+the report must account for every prior finding. A BLOCKED result uses the full audit
+cycle. Do not change the scope as part of routine remediation. If a scope change is
+necessary, stop the improvement cycle and start a separate engagement with a new
+baseline plan.
+
+**Copy-and-paste prompt for the auditor on a follow-up cycle.** First complete the new
+survey and owner-sign the follow-up plan. Replace every bracketed item below. For a
+BLOCKED prior result, choose `full audit`; for a CONDITIONAL result with a defined
+conversion path, choose `light conversion re-check`.
+
+```text
+Read this runbook and follow it exactly:
+https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.5.1/colorteam-auditor.md
+
+Run a [full audit / light conversion re-check] for target revision [release tag or full commit SHA].
+
+The owner-signed follow-up plan for this revision is [follow-up plan filename] in the repository root.
+The original signed scope plan is [original plan filename].
+The immediately prior audit report is [prior report filename]; its grade was [BLOCKED / CONDITIONAL].
+
+Before starting, verify that the follow-up plan names these prior artifacts and their SHA-256 hashes, carries the original scope forward unchanged, and lists every prior finding ID. If a required artifact or finding is missing, the scope differs, or the plan is not signed for this target revision, stop and report the problem. A different scope requires a separate audit engagement with a new baseline plan. Do not edit or replace any earlier plan, lock, report, or index row.
+
+Run the audit or conversion re-check under the runbook. Verify and account for every prior finding ID in the new report, create this cycle's separate lock and report, and append one row to the cycle index. Do not claim a finding is fixed without verification.
+```
 
 ---
 

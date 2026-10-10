@@ -24,6 +24,7 @@ the standard. Delete any section that genuinely has no content — never invent 
 | **Independence** | Surveyor and auditor ran in different sessions: **`[yes / no / cannot be determined]`** — [the two session identifiers differ / both read "not exposed by the harness", so independence rests on the operator's declaration / **the identifiers are identical: one run did both, the independence rule is broken, and this audit is void — DO NOT PUBLISH**] |
 | **Cycle** | `[<cycle>]` — this file is `<repo>-colorteam-audit-report-[<cycle>].md` |
 | **Prior audit** | [Prior cycle: report `<repo>-colorteam-audit-report-[<prior cycle>].md`, SHA-256 `[hash]`, grade `[grade]` — or "first audit"] |
+| **Original scope plan** | [First cycle: "first audit"; follow-up: original signed plan filename and SHA-256, and confirmation that its scope was carried forward unchanged] |
 | **Verification** | [What was independently re-derived: artifact hashes, signatures/notarization, test suites re-run, etc.] |
 | **Scope lock** | Plan `[<repo>-colorteam-audit-plan-<cycle>.md]`, SHA-256 `[H_start]` before the first agent ran and `[H_end]` at the end — [equal: the scope never moved / **MISMATCH: the audit is void and this report must not be published**]. Owner-signed [identity, date — a handle, a role, or an organization, never a personal name]. [Hash published before the panel ran at [where] / order not witnessed.] |
 
@@ -82,7 +83,9 @@ with the lane that set the floor, any dissent, and the mandatory facts.]
 ## Appendix — findings ledger
 
 [Prior-cycle IDs → status at this commit — all of them, checked one by one against the
-prior report cited in the header. New findings: final IDs (fixed by the referee after the
+prior report cited in the header. The referee confirms the follow-up plan carries the
+original signed scope forward unchanged. A scope difference stops the improvement cycle
+and requires a separate engagement. New findings: final IDs (fixed by the referee after the
 specialists' independent counts collided), severity, one-line claim each, exact locations
 where publishable.]
 

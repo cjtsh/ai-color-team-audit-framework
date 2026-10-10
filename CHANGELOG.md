@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.5.1 — 2026-10-10
+
+### Follow-up audits preserve the original scope
+
+The v1.5.0 improvement loop already required a new plan, lock, report, and index entry
+for each revision, and the report template already required every prior finding to be
+accounted for. It did not say how a follow-up plan should relate to the original signed
+scope. v1.5.1 makes that step explicit: keep all original cycle artifacts unchanged;
+create a new plan for the new revision by carrying the original scope forward unchanged;
+identify the original plan and prior report; list every finding to re-check; then have
+the owner sign and the auditor lock the new plan. A routine fix cycle does not change
+scope. If a genuinely different scope is necessary, the improvement cycle stops; it
+requires a separate engagement with a new baseline plan.
+
+The BLOCKED path runs a full audit cycle. A CONDITIONAL result with a defined conversion
+path may use the existing light re-check, but it still creates its own follow-up plan,
+lock, report, and index row and accounts for every prior finding. Earlier plans, locks,
+reports, and index rows are never rewritten.
+
 ## 1.5.0 — 2026-10-09
 
 Version 1.5.0 consolidates the finite, risk-grounded audit scope introduced in the v1.4 work and adds a mandatory public security statement for each audited release. The v1.4 changes were not released as a separate tag; they are included here.

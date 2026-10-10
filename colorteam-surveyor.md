@@ -9,9 +9,10 @@
 >
 > Step two is the owner's signature, step three is the panel, step four is the
 > report, and step five is the improvement loop: a cycle that is not CLEARED comes
-> back as a new revision, and the revision that fixes it may need a new plan from
-> you. Each cycle keeps its own plan, its own lock, and its own report, so nothing
-> you write is ever overwritten by the next pass.
+> back as a new revision. For a follow-up, make a new plan file from the original
+> signed plan: carry its scope forward unchanged, update the target revision, and
+> record the prior cycle and findings to re-check. The owner signs this new plan;
+> the original plan, lock, and report remain unchanged.
 
 **This file is all you need.** Your operator attached it to the repository and said
 *"Conduct a survey of this repository."* That is the entire prompt. There is no other
@@ -26,6 +27,25 @@ repository's root — `payments-api-colorteam-audit-plan-v0.6.4.md` for a reposi
 tag, or the short commit when it has no tag. Create it; never overwrite a file the
 repository already has. A second cycle gets its own plan, its own lock, and its own
 report — that is what makes the improvement visible instead of erasing it.
+
+### Follow-up cycle: preserve the locked scope
+
+When the repository has a prior audit that is not CLEARED, do not start a new scope
+from scratch and do not edit or re-sign the prior plan. Create a new plan file for the
+new target revision by carrying forward the original signed plan's scope-bearing content
+unchanged: declared assets, unforgivable acts, adapted grade rules, in-scope requirements,
+exclusions, and not-examined items. Change only the target-revision and cycle-lineage
+information, and add a complete list of prior finding IDs with the evidence the next
+auditor must use to verify their disposition. The owner signs the new plan, which receives
+its own lock and report. Keep every earlier plan, lock, report, and index row unchanged.
+Do not copy the prior owner's signature as if it approved the new revision; leave the new
+plan's sign-off section for the owner to complete.
+
+The surveyor must identify the original plan and the immediately prior report in the new
+plan. If either is missing, or if the new plan's scope differs from the original scope,
+stop and tell the owner; do not silently invent, broaden, narrow, or omit requirements.
+If a different scope is needed, the owner must start a separate audit engagement with a
+new baseline plan; do not treat it as this improvement cycle.
 
 **It opens with a locked-scope block** (section 0 of the skeleton below), and then has
 two halves:
@@ -206,6 +226,12 @@ grade:
 | ⛔ BLOCKED | |
 
 **Target revision:** <!-- the same tag or commit hash as section 1 -->
+
+**Cycle lineage:** <!-- first audit, or follow-up: original signed plan filename and
+     SHA-256; immediately prior report filename and SHA-256; prior grade -->
+
+**Prior finding IDs to re-check:** <!-- list every ID from the prior report ledger;
+     include the evidence/acceptance the auditor must verify for each. First audit: "none" -->
 
 **Out of scope:** <!-- the same list as section 6, one line each -->
 
