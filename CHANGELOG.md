@@ -17,7 +17,9 @@ requires a separate engagement with a new baseline plan.
 The BLOCKED path runs a full audit cycle. A CONDITIONAL result with a defined conversion
 path may use the existing light re-check, but it still creates its own follow-up plan,
 lock, report, and index row and accounts for every prior finding. Earlier plans, locks,
-reports, and index rows are never rewritten.
+reports, and index rows are never rewritten. The Quickstart now includes a short
+copy-and-paste prompt for the follow-up auditor. The Color Team definitions and rubric
+revision are unchanged.
 
 ## 1.5.0 — 2026-10-09
 

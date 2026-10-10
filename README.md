@@ -234,24 +234,16 @@ cycle. Do not change the scope as part of routine remediation. If a scope change
 necessary, stop the improvement cycle and start a separate engagement with a new
 baseline plan.
 
-**Copy-and-paste prompt for the auditor on a follow-up cycle.** First complete the new
-survey and owner-sign the follow-up plan. Replace every bracketed item below. For a
-BLOCKED prior result, choose `full audit`; for a CONDITIONAL result with a defined
-conversion path, choose `light conversion re-check`.
+**Copy-and-paste auditor prompt for a follow-up.** First create and sign the new
+revision's plan, then replace the three bracketed items:
 
 ```text
 Read this runbook and follow it exactly:
 https://raw.githubusercontent.com/cjtsh/ai-color-team-audit-framework/v1.5.1/colorteam-auditor.md
 
-Run a [full audit / light conversion re-check] for target revision [release tag or full commit SHA].
-
-The owner-signed follow-up plan for this revision is [follow-up plan filename] in the repository root.
-The original signed scope plan is [original plan filename].
-The immediately prior audit report is [prior report filename]; its grade was [BLOCKED / CONDITIONAL].
-
-Before starting, verify that the follow-up plan names these prior artifacts and their SHA-256 hashes, carries the original scope forward unchanged, and lists every prior finding ID. If a required artifact or finding is missing, the scope differs, or the plan is not signed for this target revision, stop and report the problem. A different scope requires a separate audit engagement with a new baseline plan. Do not edit or replace any earlier plan, lock, report, or index row.
-
-Run the audit or conversion re-check under the runbook. Verify and account for every prior finding ID in the new report, create this cycle's separate lock and report, and append one row to the cycle index. Do not claim a finding is fixed without verification.
+Re-run the Color Team audit for code revision [new revision] using signed plan [plan filename].
+Keep the scope from [original plan filename] unchanged and verify all findings in [prior report filename].
+Leave earlier audit records untouched.
 ```
 
 ---
