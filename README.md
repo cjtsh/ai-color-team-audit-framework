@@ -562,3 +562,8 @@ whatever the grade — you are invited to link it in EXAMPLES.md as evidence.
 ## License
 
 MIT — see [LICENSE](LICENSE). Use it, fork it, ship safer software.
+
+
+## Legal notice
+
+This framework is provided under the [MIT License](LICENSE). Review the project [disclaimer](DISCLAIMER.md); it is an audit method, not a security certification, legal opinion, or guarantee.
